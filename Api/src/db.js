@@ -41,8 +41,8 @@ Ong_donante.hasMany(Donacion);
 Donacion.belongsTo(Ong_donante);
 Categoria.hasMany(Ong_donante);
 Ong_donante.belongsTo(Categoria);
-Campaña.belongsTo(Donacion);
-Donacion.hasMany(Campaña);
+Campaña.hasMany(Donacion);
+Donacion.belongsTo(Campaña);
 
 module.exports = {
   ...database.models,
