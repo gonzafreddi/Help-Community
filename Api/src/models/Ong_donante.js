@@ -28,7 +28,7 @@ module.exports = (sequelize) => {
     },
     email: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
     },
     páginaweb: {
       type: DataTypes.STRING,
