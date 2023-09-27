@@ -1,0 +1,25 @@
+import {
+    GET_CAMPAIGNS, 
+ } from './actions';
+
+const initialState = {
+    campaigns : [],
+    ongs : [],
+}
+
+function rootReducer(state=initialState,action){
+    
+    switch(action.type){
+      
+        case GET_CAMPAIGNS:
+            return{
+                ...state,
+                campaigns: action.payload,
+        }
+       
+        default:
+            return state
+        }
+    }
+    
+export default rootReducer;
