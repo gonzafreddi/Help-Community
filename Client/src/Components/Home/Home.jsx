@@ -47,7 +47,6 @@ export const Home = () => {
         //       totalItems={allCampaigns.length}
         // />    */}
 
-        <Cards/>
     </div>
   )
 }
