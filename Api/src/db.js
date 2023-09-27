@@ -27,12 +27,15 @@ let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].s
 database.models = Object.fromEntries(capsEntries);
 
 
-const {  } = database.models;
+const { Campaña, Categoria, Donacion, Ong_donante } = database.models;
 
 
-/* Ong_usuario.belongsToMany(, { through: "relational_table" });
-Donaciones.belongsToMany(, { through: "relational_table" });
-Categorias.belongsToMany(, { through: "relational_table" }); */
+Ong_donante.hasMany(Campaña);
+Campaña.belongsTo(Ong_donante);
+Ong_donante.hasMany(Donacion);
+Donacion.belongsTo(Ong_donante);
+Categoria.hasMany(Ong_donante);
+Ong_donante.belongsTo(Categoria);
 
 module.exports = {
   ...database.models, 
