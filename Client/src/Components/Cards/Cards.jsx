@@ -1,5 +1,9 @@
+import { Card } from "../Card/Card"
+
 export const Cards = () => {
   return (
-    <div>Cards</div>
+    <div>
+      <Card/>
+    </div>
   )
 }
