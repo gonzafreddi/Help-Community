@@ -1,33 +1,34 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import Pagination from '../../components/Pagination/Pagination';
+// import Pagination from '../Pagination/Pagination';
 import { Nav } from "../Nav/Nav"
 
 export const Home = () => {
 
-  // PAGINADO
+  // -------PAGINADO
   // const dispatch = useDispatch();
 
   // useEffect(() => {
-  //     dispatch(getDrivers());
-  //     dispatch(getTeams())
+  //     dispatch(getCampaigns());
+  //  //     dispatch(getCategory())   
   // }, [dispatch]);
 
-  // const teams = useSelector(state => state.teams);
+  //  // const categories = useSelector(state => state.category);
 
-  // const allDrivers = useSelector((state) => state.drivers);
+  // const allCampaigns = useSelector((state) => state.campaigns);
   // const [page, setPage] = useState(1);
 
   // // Número de tarjetas por página
   // const cardsPerPage = 9;
 
   // // Función para obtener las tarjetas en la página actual
-  // const getCurrentPageDrivers = () => {
+  // const getCurrentPageCampaigns = () => {
   //     const startIndex = (page - 1) * cardsPerPage;
   //     const endIndex = startIndex + cardsPerPage;
   //     console.log(`startIndex: ${startIndex}, endIndex: ${endIndex}`);
-  //     return allDrivers.slice(startIndex, endIndex);
+  //     return allCampaigns.slice(startIndex, endIndex);
   // };
+  //-----
 
 
 
@@ -36,6 +37,19 @@ export const Home = () => {
   return (
     <div>
         <Nav/>
+
+        <Cards campaigns={getCurrentPageCampaigns()} />
+        
+        {/* // <Pagination
+        //       page={page}
+        //       setPage={setPage}
+        //       itemsPerPage={cardsPerPage}
+        //       totalItems={allCampaigns.length}
+        // />    */}
+
     </div>
   )
 }
+
+
+
