@@ -1,13 +1,18 @@
-import { connect, useSelector } from 'react-redux';
+// import { connect, useSelector } from 'react-redux';
+import datosONG from "../../../../Api/ong/ong";
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import './SearchBar.css';
 
-function SearchBar() {
+export default function SearchBar() {
+
+    const campaigns = datosONG.map((ong) => ( ong.campañas.map( (campaña) => campaña ) ));
+
+    console.log(campaigns);
 
     //TODO --- Manejo de busqueda
     
-    const campaigns = useSelector(state => state.allCampaigns);
+    // const campaigns = useSelector(state => state.allCampaigns);
     const navigate = useNavigate();
 
     const [selectedCampaign, setSelectedCampaign] = useState(null);
@@ -86,7 +91,7 @@ function SearchBar() {
                         placeholder='Busca una campaña'
                     />
 
-                    <button className='search-button' onClick={handleSearchButton} disabled={suggestions.length === 0} >Buscar</button>
+                    <button className='search-button' onClick={handleSearchButton} disabled={suggestions.length === 0} >Q</button>
 
                     <ul className={`suggestion-list ${showSuggestions ? 'showSuggestions' : ''}`}>
                         {suggestions.map((campaign, index) => (
@@ -106,14 +111,15 @@ function SearchBar() {
 
 }
 
-const mapStateToProps = (state) => {
-    return {
-        allCampaigns: state.allCampaigns
-    }
-};
+
+// const mapStateToProps = (state) => {
+//     return {
+//         allCampaigns: state.allCampaigns
+//     }
+// };
 
 
 
-export default connect (
-    mapStateToProps
-) (SearchBar);
+// export default connect (
+//     mapStateToProps
+// ) (SearchBar);

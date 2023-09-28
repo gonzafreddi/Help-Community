@@ -1,5 +1,6 @@
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import './Nav.css'
+import SearchBar from '../SearchBar/SearchBar';
 
 
 export const Nav = () => {
@@ -8,13 +9,23 @@ export const Nav = () => {
             
             <div className='nav-container'>
 
-                <button>Home</button>
-                <button>Acerca de</button>
-                <div>
-                    <Link to='/createcampaign'>
-                        <button className='create-button' > Crea una campaña! </button>
-                    </Link>
+                <div className='nav-button-container'>
+                    <button className='nav-button'>Home</button>
+                    <button className='nav-button'>Acerca de</button>
+                    {/* <Link to='/createcampaign'> */}
+                        <button className='nav-button' > Crea una campaña! </button>
+                    {/* </Link> */}
                 </div>
+
+
+                <div className='sb-and-login'>
+                    <div className='sb'>
+                        <SearchBar/>
+
+                    </div>
+                    <button className='nav-button'>Iniciar Sesion</button>
+                </div>
+
 
             </div>
 

@@ -1,0 +1,108 @@
+.containerSB{
+
+    /* padding-top: 10%; */
+    display: flex;
+    /* background-color: aliceblue; */
+    /* justify-content: space-around; */
+
+}
+
+.input {
+    width: 20rem;
+    height: 2.5rem;
+    border: 0px;
+    margin-left: 15px;
+    padding: 15px;
+    font-size: 14px;
+    font-weight: 500;
+    border-top-left-radius: 0.75rem;
+    border-bottom-left-radius: 0.75rem;
+    background-color: rgba(255, 255, 255, 1);
+    text-indent: 12px;
+    color: rgba(1, 42, 74, 1);
+    transition: all 0.5s;
+}
+
+.input::placeholder{
+    color: rgba(1, 42, 74, 1);
+    text-indent: 13px;
+    letter-spacing: 0.7px;
+    font-weight: 500;
+    opacity: 30%;
+}
+
+.search-button {
+    height: 2.5rem;
+    width: 2.5rem;
+    border: 0px;
+    border-top-right-radius: 0.75rem;
+    border-bottom-right-radius: 0.75rem;
+    background-color: rgba(255, 255, 255, 1);
+    color: rgba(1, 42, 74, 0.3);
+    transition: all 0.2s;
+}
+
+.input:focus{
+    outline: none;
+    border-top-right-radius: 0.75rem;
+    border-bottom-right-radius: 0.75rem;
+    transition: border-top-right-radius 0s;
+    transition: border-bottom-right-radius 0s;
+}
+
+.input:focus + .search-button{
+    transform: translateX(1rem);
+    border-radius: 5rem;
+}
+
+
+.create-button {
+    height: 40px;
+    width: 200px;
+    border: 0px;
+    margin-left: 15px;
+    border-radius: 8px;
+    background-color: hsl(218, 11%, 14%);
+    color: hsl(220, 7%, 91%);
+}
+
+.create-button:hover {
+    background-color: hsl(210, 11%, 15%);
+    color: #7ED957;
+}
+
+.suggestion-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    z-index: 1;
+    margin-left: 15px;
+    width: 450px;
+    max-height: 600px;
+    overflow-y: auto;
+    border-radius: 8px;
+    display: none;
+    background-color: hsl(218, 11%, 14%);
+    color: hsl(220, 7%, 91%);
+    box-shadow: 0px 11px 41px 4px rgba(0,0,0,0.57);
+    opacity: 0;
+}
+  
+/* Mostrar la lista de sugerencias cuando hay sugerencias */
+.suggestion-list.showSuggestions {
+    display: block;
+    opacity: 1;
+}
+  
+/* Estilos para los elementos de la lista de sugerencias */
+.suggestionItem {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #444;
+}
+
+.suggestionItem:hover {
+    background-color: hsl(210, 11%, 15%);
+    color: #7ED957;
+}
