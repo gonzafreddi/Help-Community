@@ -2,7 +2,6 @@ require("dotenv").config();
 const { Sequelize } = require("sequelize");
 const fs = require("fs");
 const path = require("path");
-const State = require("./models/State");
 const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
 
 const database = new Sequelize(
@@ -44,9 +43,6 @@ Category.hasMany(Ong_donor);
 Ong_donor.belongsTo(Category);
 Campaign.hasMany(Donation);
 Donation.belongsTo(Campaign);
-State.hasMany(Ong_donor);
-Ong_donor.belongsTo(State);
-
 
 module.exports = {
   ...database.models,
