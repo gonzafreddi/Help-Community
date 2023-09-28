@@ -1,0 +1,7 @@
+.cardsContainer{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 3em;
+    margin-left: 6vw;
+}

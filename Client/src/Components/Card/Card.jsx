@@ -2,22 +2,28 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import style from "./Card.module.css";
 
-export const Card = () => {
+export const Card = (props) => {
+  const {nombreOng, nombre, descripcion, imagen, fechaInicio, fechaFin, objetivo, estado, categoria } = props;
+
   return (
     <div className={style.contenedor}>
         <div className={style.contenedorImagen}>
-          <p className={style.ong}>NOMBRE DE LA ONG</p>
-          <img className={style.imagen} src="https://images.pexels.com/photos/5340266/pexels-photo-5340266.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="imagen" />
+          <p className={style.ong}>{nombreOng}</p>
+          <img className={style.imagen} src={imagen} alt={nombre} />
         </div>
-      <p className={style.nombre}>Juntos por Caminar</p>
-      <p className={style.descripcion}>Con tu ayuda, brindaremos sonrisas a través de la entrega de alimentos nutritivos y útiles escolares esenciales.</p>
-      <p className={style.recaudado}>Recaudado:</p>
-      <p className={style.objetivo}>$8.560 <span className={style.de}>de</span> $25.000</p>
+      <p className={style.nombre}>{nombre}</p>
+      <p className={style.descripcion}>{descripcion}</p>
+      <p className={style.recaudado}>Objetivo: </p>
+      {/* <p className={style.objetivo}>$8.560 <span className={style.de}>de</span> ${objetivo}</p> */}
+      <p className={style.objetivo}>$ {objetivo}</p>
       <p className={style.finalizaDia}>Esta campaña finaliza el día:</p>
-      <p className={style.fechas}>24/02/2024</p>
+      <p className={style.fechas}>{fechaFin}</p>
       <Link className={style.link}>
       <p className={style.verMas}>Ver mas</p>
       </Link>
     </div>
   )
 }
+
+
+export default Card;
