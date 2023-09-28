@@ -1,4 +1,4 @@
-[
+const ong = [
   {
     id: 1,
     name: "sociedad de bomberos voluntarios de hilario ascasubi",
@@ -698,6 +698,8 @@
     ],
   },
 ];
+
+module.exports = ong;
 
 /////////////////////////////////////////////////////////////////////////////////
 
