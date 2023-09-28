@@ -1,4 +1,4 @@
-[
+const datosONG = [
   {
     id: 1,
     name: "sociedad de bomberos voluntarios de hilario ascasubi",
@@ -698,6 +698,8 @@
     ],
   },
 ];
+
+export default datosONG;
 
 /////////////////////////////////////////////////////////////////////////////////
 

@@ -20,8 +20,8 @@
     z-index: 1;
     padding: 5px;
     box-shadow: -10px 10px 10px rgba(0, 0, 0, 0.308);
-    border-bottom-left-radius: 5px;
-    border-top-left-radius: 5px;
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
 }
 
 .imagen{

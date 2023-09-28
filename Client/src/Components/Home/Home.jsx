@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+// import { useDispatch, useSelector } from 'react-redux';
 // import Pagination from '../Pagination/Pagination';
-import { Nav } from "../Nav/Nav"
+import { Nav } from "../Nav/Nav";
+import { Cards } from "../Cards/Cards";
 
 export const Home = () => {
 
@@ -38,7 +39,7 @@ export const Home = () => {
     <div>
         <Nav/>
 
-        <Cards campaigns={getCurrentPageCampaigns()} />
+        <Cards/>
         
         {/* // <Pagination
         //       page={page}
@@ -51,5 +52,5 @@ export const Home = () => {
   )
 }
 
-
+// {/* <Cards campaigns={getCurrentPageCampaigns()} /> */}
 
