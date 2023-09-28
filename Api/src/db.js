@@ -37,12 +37,16 @@ const { Campaign, Category, Donation, Ong_donor, State } = database.models;
 
 Ong_donor.hasMany(Campaign);
 Campaign.belongsTo(Ong_donor);
+
 Ong_donor.hasMany(Donation);
 Donation.belongsTo(Ong_donor);
-Category.hasMany(Ong_donor);
-Ong_donor.belongsTo(Category);
+
+Category.hasMany(Campaign);
+Campaign.belongsTo(Category);
+
 Campaign.hasMany(Donation);
 Donation.belongsTo(Campaign);
+
 State.hasMany(Ong_donor);
 Ong_donor.belongsTo(State)
 
