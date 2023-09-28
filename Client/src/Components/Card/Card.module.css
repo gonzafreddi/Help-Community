@@ -1,10 +1,10 @@
 .contenedor{
-    height: 450px;
-    width: 260px;
+    height: 500px;
+    width: 280px;
     text-align: center;
     transition: animation 0.2s;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.267);
-    margin-bottom: 15px;
+    margin-bottom: 35px;
 }
 
 .contenedorImagen{
@@ -26,7 +26,7 @@
 }
 
 .imagen{
-    width: 260px;
+    width: 280px;
     height: fit-content;
     object-fit: cover;
 }
@@ -35,22 +35,24 @@
     margin-top: 0px;
     padding-left: 10px;
     padding-right: 10px;
-    height: fit-content;
+    height: 50px;
     text-align: left;
     color: rgba(0, 0, 0, 0.829);
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 500;
     background: rgb(255, 255, 255);
+    
 }
 
 .descripcion{
-    margin-top: -20px;
+    margin-top: -10px;
     padding-left: 10px;
     padding-right: 10px;
     text-align: left;
     color: rgba(0, 0, 0, 0.7);
     font-size: 16px;
     font-weight: 500;
+    height: 60px;
 }
 
 .recaudado{
