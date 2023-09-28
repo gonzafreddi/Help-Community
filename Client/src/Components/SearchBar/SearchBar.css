@@ -8,10 +8,11 @@
 }
 
 .input {
+    font-family: 'DM Sans', sans-serif;
     width: 20rem;
     height: 2.5rem;
     border: 0px;
-    margin-left: 15px;
+    margin-left: 8px;
     padding: 15px;
     font-size: 14px;
     font-weight: 500;
@@ -24,6 +25,7 @@
 }
 
 .input::placeholder{
+    font-family: 'DM Sans', sans-serif;
     color: rgba(1, 42, 74, 1);
     text-indent: 13px;
     letter-spacing: 0.7px;
@@ -35,11 +37,20 @@
     height: 2.5rem;
     width: 2.5rem;
     border: 0px;
+    padding: 0px;
     border-top-right-radius: 0.75rem;
     border-bottom-right-radius: 0.75rem;
     background-color: rgba(255, 255, 255, 1);
-    color: rgba(1, 42, 74, 0.3);
+    color: rgba(1, 42, 74, 1);
     transition: all 0.2s;
+}
+.material-icons{
+    font-size: 13px;
+    transform: scale(2);
+}
+
+.search-button:disabled {
+    color: rgba(1, 42, 74, 0.3);
 }
 
 .input:focus{
@@ -55,44 +66,32 @@
     border-radius: 5rem;
 }
 
-
-.create-button {
-    height: 40px;
-    width: 200px;
-    border: 0px;
-    margin-left: 15px;
-    border-radius: 8px;
-    background-color: hsl(218, 11%, 14%);
-    color: hsl(220, 7%, 91%);
-}
-
-.create-button:hover {
-    background-color: hsl(210, 11%, 15%);
-    color: #7ED957;
-}
-
 .suggestion-list {
+    font-family: 'DM Sans', sans-serif;
     list-style: none;
     padding: 0;
-    margin: 0;
     position: absolute;
-    z-index: 1;
-    margin-left: 15px;
-    width: 450px;
-    max-height: 600px;
+    z-index: 10;
+    width: 23.5rem;
+    max-height: 37.5rem;
     overflow-y: auto;
-    border-radius: 8px;
+    border-radius: 0.5rem;
     display: none;
-    background-color: hsl(218, 11%, 14%);
-    color: hsl(220, 7%, 91%);
+    background-color: rgba(255, 255, 255, 1);
+    color: rgba(1, 42, 74, 1);
     box-shadow: 0px 11px 41px 4px rgba(0,0,0,0.57);
     opacity: 0;
+    transition: all 0.5s;
 }
   
 /* Mostrar la lista de sugerencias cuando hay sugerencias */
 .suggestion-list.showSuggestions {
     display: block;
     opacity: 1;
+}
+
+.input:focus ~ .suggestion-list{
+    width: 21.5rem;
 }
   
 /* Estilos para los elementos de la lista de sugerencias */
@@ -103,6 +102,6 @@
 }
 
 .suggestionItem:hover {
-    background-color: hsl(210, 11%, 15%);
-    color: #7ED957;
+    background-color: rgba(1, 42, 74, 0.9);
+    color: rgba(255, 255, 255, 1);
 }

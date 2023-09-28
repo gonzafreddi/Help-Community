@@ -16,12 +16,9 @@
 
     border-bottom: 1px solid hsl(0, 0%, 22%);
 
-    font-family: 'Poppins', sans-serif;
-
     margin-bottom: 15px;
 
 }
-
 .logo {
     height: 300px;
     margin-bottom: -24%;
@@ -41,6 +38,7 @@
     border: none;
     background: transparent;
     color: rgba(243, 243, 243, 1);
+    font-family: 'DM Sans', sans-serif;
     font-size: 15px;
     margin-right: 1.5rem;
 }
