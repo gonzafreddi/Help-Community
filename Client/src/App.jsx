@@ -4,12 +4,11 @@ import {Detail} from "./Components/Detail/Detail"
 import './App.css'
 
 function App() {
-
   return (
     <>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path='/detail' element={<Detail/>}/>
+        <Route path='/detail/:id' element={<Detail/>}/>
       </Routes>
     </>
   )
