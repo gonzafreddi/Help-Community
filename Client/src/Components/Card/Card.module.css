@@ -1,0 +1,114 @@
+.contenedor{
+    height: 500px;
+    width: 280px;
+    text-align: center;
+    transition: animation 0.2s;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.267);
+    margin-bottom: 35px;
+}
+
+.contenedorImagen{
+    position: relative;
+}
+
+.ong{
+    font-weight: 600;
+    background-color: rgba(255, 255, 255, 0.7);
+    position: absolute;
+    color: rgba(0, 0, 0, 0.664);
+    top: 1px;
+    right: 0px;
+    z-index: 1;
+    padding: 5px;
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.308);
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
+}
+
+.imagen{
+    width: 280px;
+    height: fit-content;
+    object-fit: cover;
+}
+
+.nombre{
+    margin-top: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 50px;
+    text-align: left;
+    color: rgba(0, 0, 0, 0.829);
+    font-size: 20px;
+    font-weight: 500;
+    background: rgb(255, 255, 255);
+    
+}
+
+.descripcion{
+    margin-top: -10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: left;
+    color: rgba(0, 0, 0, 0.7);
+    font-size: 16px;
+    font-weight: 500;
+    height: 60px;
+}
+
+.recaudado{
+    color: rgba(0, 0, 0, 0.6);
+    font-weight: 500;
+    margin-top: -5px;
+    font-size: 16px;
+    padding-top: 8px;
+    padding-left: 10px;
+    text-align: left;
+    border-top: 1px solid rgba(0, 0, 0, 0.199);
+}
+
+.objetivo{
+    margin-top: -15px;
+    padding-left: 10px;
+    text-align: left;
+    color: rgba(41, 197, 2, 0.9);
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.de{
+    color: rgba(0, 0, 0, 0.5);
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.finalizaDia{
+    margin-top: -20px;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.6);
+    font-weight: 500;
+    padding-top: 8px;
+    padding-left: 10px;
+    text-align: left;
+}
+
+.fechas{
+    margin-top: -15px;
+    padding-left: 10px;
+    text-align: left;
+    color: rgba(41, 197, 2, 0.9);
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.link{
+    text-decoration: none;
+}
+
+.verMas{
+    margin-top: -20px;
+    padding-right: 15px;
+    text-align: right;
+    color: rgb(0, 108, 180);
+    font-size: 20px;
+    font-weight: 500;
+}

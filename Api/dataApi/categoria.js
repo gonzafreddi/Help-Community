@@ -1,0 +1,15 @@
+[
+  { id: 1, categoria: "Social / Humana" },
+  { id: 2, categoria: "Trabajo" },
+  { id: 3, categoria: "Salud" },
+  { id: 4, categoria: "Educación" },
+  { id: 5, categoria: "Deportes / Recreación" },
+  { id: 6, categoria: "Cultura" },
+  { id: 7, categoria: "Vivienda" },
+  { id: 8, categoria: "Ciencia y Tecnología" },
+  { id: 9, categoria: "Economía" },
+  { id: 10, categoria: "Género" },
+  { id: 11, categoria: "Infraestructura, obras, servicios públicos" },
+  { id: 12, categoria: "Justicia" },
+  { id: 13, categoria: "Medio ambiente" },
+];
