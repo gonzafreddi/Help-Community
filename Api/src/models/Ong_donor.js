@@ -18,10 +18,6 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING(13),
       allowNull: true,
     },
-    state: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
     address: {
       type: DataTypes.STRING,
       allowNull: true,
@@ -36,6 +32,7 @@ module.exports = (sequelize) => {
     },
     image: {
       type: DataTypes.STRING(500),
+      allowNull: true,
     },
     user: {
       type: DataTypes.BOOLEAN,
