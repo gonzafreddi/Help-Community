@@ -3,5 +3,6 @@
     flex-direction: row;
     flex-wrap: wrap;
     gap: 1.5em;
-    margin-left: 3vw;
+    margin-left: 5.5vw;
+    margin-top: 3vw;
 }
