@@ -13,7 +13,7 @@ export const Card = (props) => {
         </div>
       <p className={style.nombre}>{nombre}</p>
       <p className={style.descripcion}>{descripcion}</p>
-      <p className={style.recaudado}>Objetivo:</p>
+      <p className={style.recaudado}>Objetivo: </p>
       {/* <p className={style.objetivo}>$8.560 <span className={style.de}>de</span> ${objetivo}</p> */}
       <p className={style.objetivo}>$ {objetivo}</p>
       <p className={style.finalizaDia}>Esta campaña finaliza el día:</p>
