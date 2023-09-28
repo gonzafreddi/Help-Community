@@ -1,16 +1,16 @@
 const { DataTypes } = require('sequelize');
-// Exportamos una funcion que define el modelo//el modelo busca unificar los datos de la API y la BD
-// Luego le injectamos la conexion a sequelize.
+
+
 module.exports = (sequelize) => {
-  // defino el modelo
-  sequelize.define('ong_donante', {
+
+  sequelize.define('ong_donor', {
     id: {
-      type: DataTypes.UUID,//identificador único
-      defaultValue: DataTypes.UUIDV4,//UUID generado aleatoriamente
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
       allowNull: false,
       primaryKey: true
     },
-    nombre: {
+    name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -18,11 +18,11 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING(13),
       allowNull: true,
     },
-    provincia: {
+    state: {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    domicilio: {
+    address: {
       type: DataTypes.STRING,
       allowNull: true,
     },
@@ -30,22 +30,21 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    páginaweb: {
+    webSite: {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    imagen: {
+    image: {
       type: DataTypes.STRING(500),
     },
-    usuario_activo: {
+    user: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: true
     },
-    usuario_tipo: {
+    userType: {
       type: DataTypes.ENUM('ong', 'donante'),
       allowNull: false,
     },
-    });
-  };
-
+  });
+};
