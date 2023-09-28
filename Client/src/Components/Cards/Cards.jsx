@@ -7,7 +7,7 @@ import style from "./Cards.module.css"
 
 export const Cards = () => {
 
-  // console.log("datosONG:", datosONG)
+console.log("datosONG:", datosONG)
   
   return (
     <div className={style.cardsContainer}>

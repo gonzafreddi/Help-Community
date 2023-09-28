@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import style from "./Card.module.css";
 
 export const Card = (props) => {
-  const {nombreOng, nombre, descripcion, imagen, fechaInicio, fechaFin, objetivo, estado, categoria } = props;
+  const { nombreOng, nombre, descripcion, imagen, fechaInicio, fechaFin, objetivo, estado, categoria } = props;
 
   return (
     <div className={style.contenedor}>
