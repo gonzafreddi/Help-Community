@@ -1,64 +1,43 @@
-const {DataTypes, UUIDV4} = require("sequelize");
+const { DataTypes, UUIDV4 } = require("sequelize");
 
 module.exports = (sequelize) => {
-    sequelize.define(
-        "Campaña",
+    sequelize.define("Campaign",
         {
-            Id:{
+            id: {
                 type: DataTypes.UUID,
-                primarykey: true,
+                primaryKey: true,
                 defaultValue: UUIDV4,
             },
-
-            Nombre:{
+            name: {
                 type: DataTypes.STRING,
                 allowNull: false,
             },
-
-            Descripcion:{
+            description: {
                 type: DataTypes.STRING,
                 allowNull: false,
             },
-
-            Imagen:{
+            image: {
                 type: DataTypes.STRING,
                 allowNull: true,
             },
-
-            Fecha_Inicio:{
+            startDate: {
                 type: DataTypes.DATE,
-                allowNull:false,
+                allowNull: false,
 
             },
-
-            Fecha_Finalizacion:{
+            endDate: {
                 type: DataTypes.DATE,
-                allowNull:false,
+                allowNull: false,
 
             },
-
-            Objetivo_Monetario:{
+            finalAmount: {
                 type: DataTypes.DECIMAL,
                 allowNull: true,
             },
-            Estado:{
+            state: {
                 type: DataTypes.BOOLEAN,
                 allowNull: false,
                 defaultValue: false,
             },
-        }
-
-
-
-
-
-
-
-
-    )
-
-
-
-
-
+        })
 }

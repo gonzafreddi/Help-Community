@@ -1,0 +1,17 @@
+import axios from "axios";
+
+export const GET_CAMPAIGNS = "GET_CAMPAIGNS";
+
+
+export function getCampaigns () {
+    return async function (dispatch){
+        try{
+            const response = await axios.get("/campaigns");
+            const drivers = response.data;
+            return dispatch({
+                type: GET_CAMPAIGNS,
+                payload: campaigns,
+            });
+        } catch (error){}
+    }
+}
