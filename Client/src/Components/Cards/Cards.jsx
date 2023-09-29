@@ -9,33 +9,15 @@ import { getCampaign } from "../../redux/actions/action";
 
 export const Cards = ({data}) => {
 
-const dispatch = useDispatch()
-
-  // Datos de las ONG y campañas
-  const datosCampaignONG = useSelector((state) => state.campaign);
-  
-  useEffect(() => {
-    // Llama a la acción para obtener las campañas usando Redux
-    dispatch(getCampaign());
-  }, [dispatch]);
-
-
-  console.log("datosONG:", datosONG);
-  console.log("datosCampaignONG:", datosCampaignONG);
-
-  
+  console.log("data:", data)
+ 
   return (
     <div className={style.cardsContainer}>
-      {data.map((ong) => (
-        <div key={ong.id}>
-          {/* <h2>{ong.name}</h2>
-          <p>Estado: {ong.state ? 'Activa' : 'Inactiva'}</p>
-          <h3>Campañas:</h3> */}
+      {data.map((campaña) => (
           <div>
-            {ong.campañas.map((campaña) => (
               <Card
                 key={campaña.id}
-                nombreOng={ong.name}
+                // nombreOng={ong.name}
                 nombre={campaña.name}
                 descripcion={campaña.description}
                 imagen={campaña.image}
@@ -45,9 +27,7 @@ const dispatch = useDispatch()
                 estado={campaña.state}
                 categoria={campaña.category}
               />
-            ))}
           </div>
-        </div>
       ))}
     </div>
   )
@@ -57,4 +37,16 @@ const dispatch = useDispatch()
 export default Cards;
 
 
+// const dispatch = useDispatch()
 
+  // Datos de las ONG y campañas
+  // const datosCampaignONG = useSelector((state) => state.campaign);
+  
+  // useEffect(() => {
+  //   // Llama a la acción para obtener las campañas usando Redux
+  //   dispatch(getCampaign());
+  // }, [dispatch]);
+      // <div key={ong.id}>
+          {/* <h2>{ong.name}</h2>
+          <p>Estado: {ong.state ? 'Activa' : 'Inactiva'}</p>
+          <h3>Campañas:</h3> */}

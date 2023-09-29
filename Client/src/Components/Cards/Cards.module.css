@@ -3,8 +3,8 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
-    /* gap: 2em; */
-    margin-left: 3.5vw;
-    margin-right: 3.5vw;
+    /* gap: 1em; */
+    margin-left: 12vw;
+    margin-right: 12vw;
     margin-top: 3vw;
 }
