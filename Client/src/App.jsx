@@ -4,6 +4,7 @@ import {Detail} from "./Components/Detail/Detail"
 import { DetailCampain } from './Components/Detail/Detail_campain'
 import './App.css'
 import { Nav } from './Components/Nav/Nav'
+import CreateCampaign from './Components/createCampaign/CreateCampaign'
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path='/detail/:id' element={<Detail/>}/>
+        <Route path='/create/campaign' element={<CreateCampaign/>}/>
         <Route path='/detail/camp' element={<DetailCampain/>}/>
       </Routes>
     </>
