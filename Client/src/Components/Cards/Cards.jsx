@@ -17,7 +17,7 @@ export const Cards = ({data}) => {
           <div>
               <Card
                 key={campaña.id}
-                // nombreOng={ong.name}
+                //nombreOng={ong.name}
                 nombre={campaña.name}
                 descripcion={campaña.description}
                 imagen={campaña.image}
