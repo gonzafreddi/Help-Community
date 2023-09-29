@@ -1,4 +1,4 @@
-[
+const state = [
   { id: 1, name: "Nacional" },
   { id: 2, name: "Ciudad Autónoma de Buenos Aires (CABA)" },
   { id: 3, name: "Buenos Aires" },
@@ -25,3 +25,4 @@
   { id: 24, name: "Tierra del Fuego" },
   { id: 25, name: "Tucumán" },
 ];
+module.exports = state;
