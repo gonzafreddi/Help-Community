@@ -18,7 +18,7 @@
     font-weight: 500;
     border-top-left-radius: 0.75rem;
     border-bottom-left-radius: 0.75rem;
-    background-color: rgba(255, 255, 255, 1);
+    background-color: #f0f2f3;
     text-indent: 12px;
     color: rgba(1, 42, 74, 1);
     transition: all 0.5s;
@@ -40,7 +40,7 @@
     padding: 0px;
     border-top-right-radius: 0.75rem;
     border-bottom-right-radius: 0.75rem;
-    background-color: rgba(255, 255, 255, 1);
+    background-color: #f0f2f3;
     color: rgba(1, 42, 74, 1);
     transition: all 0.2s;
 }
