@@ -18,7 +18,9 @@ export const Nav = () => {
                         <button className='nav-button'>Acerca de</button>
                     </Link>
                     {/* <Link to='/createcampaign'> */}
-                        <button className='nav-button' > Crea una campaña! </button>
+                        <Link to={"/create/campaign"}>
+                            <button className='nav-button' > Crea una campaña! </button>
+                        </Link>
                     {/* </Link> */}
                     {/* <UploadWidget/> */}
                 </div>
