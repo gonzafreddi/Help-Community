@@ -1,6 +1,7 @@
 import axios from "axios";
 import { GET_DETAIL_CAMPAIGN } from "./action_type";
 export const GET_CAMPAIGN = "GET_CAMPAIGN";
+export const FILTER_BY_STATE = "FILTER_BY_STATE";
 
 export const getCampaign = () => {
     return async function (dispatch){
@@ -13,6 +14,7 @@ export const getCampaign = () => {
         }
     };
 };
+
 
 export const getDetailCampaign = (name)=>{
 console.log(name);
@@ -29,3 +31,11 @@ console.log(name);
         }
     }
 }
+
+export function filterByState(payload){
+    return{
+        type: "FILTER_BY_STATE",
+        payload
+    }
+}
+
