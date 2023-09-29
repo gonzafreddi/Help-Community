@@ -1,12 +1,12 @@
 const { Router } = require("express");
 const express = require("express");
 
-const ong_donanteRouter = require("./ong_donante");
+const ong_donorRouter = require("./ong_donor");
 const campaignRouter = require("./campaignRouter");
 
 const router = Router();
 
-router.use("/ong_donante", ong_donanteRouter);
+router.use("/ong_donor", ong_donorRouter);
 
 router.use("/campaign", campaignRouter);
 
