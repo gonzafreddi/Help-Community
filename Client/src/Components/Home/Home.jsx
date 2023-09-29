@@ -50,6 +50,7 @@ export const Home = () => {
            itemsPerPage={cardsPerPage}
            totalItems={totalItems}
         /> 
+        {/* <FilterBar/> */}
 
    </div>
  )
