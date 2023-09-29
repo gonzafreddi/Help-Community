@@ -14,6 +14,23 @@ const  reducer = (state = initialState, action)=> {
                     campaign: [...action.payload].splice(0, 8),
                     campaignBackUp: action.payload,
                 };
+
+        case FILTER_BY_STATE:
+            const allCampaignCopy = [...state.campaignBackUp];
+            const filteredByState = 
+            action.payload === "Todos"
+            ? allCampaignCopy
+            : allCampaignCopy.filter((campañas) => {
+                const campaignState = campañas.state;
+                console.log(driverTeams)
+                return campaignState.includes(action.payload);
+                });
+
+            return {
+                ...state,
+                campaign: filteredByState,
+            };
+
                 default:
                     return state;
     }
