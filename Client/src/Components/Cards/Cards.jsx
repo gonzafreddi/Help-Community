@@ -19,7 +19,7 @@ export const Cards = ({data}) => {
   return (
     <div className={style.cardsContainer}>
       {data.map((campaña) => (
-          <div>
+          <div key={campaña.id}>
               <Card
                 key={campaña.id}
                 //nombreOng={ong.name} 
