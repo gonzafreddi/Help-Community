@@ -3,6 +3,7 @@ import axios from "axios";
 
 
 export const GET_CAMPAIGN = "GET_CAMPAIGN";
+export const FILTER_BY_STATE = "FILTER_BY_STATE";
 
 
 
@@ -17,3 +18,10 @@ export const getCampaign = () => {
         }
     };
 };
+
+export function filterByState(payload){
+    return{
+        type: "FILTER_BY_STATE",
+        payload
+    }
+}
