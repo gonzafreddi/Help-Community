@@ -14,8 +14,9 @@ export const Nav = () => {
                     <Link to={'/'}>
                         <button className='nav-button'>Home</button>
                     </Link>
-
-                    <button className='nav-button'>Acerca de</button>
+                    <Link to={'/about'}>
+                        <button className='nav-button'>Acerca de</button>
+                    </Link>
                     {/* <Link to='/createcampaign'> */}
                         <button className='nav-button' > Crea una campaña! </button>
                     {/* </Link> */}
