@@ -41,7 +41,6 @@ export const Home = () => {
 
  return (
    <div>
-       <Nav/>
 
        <Cards data={getCurrentPageCampaigns()}/>
        
