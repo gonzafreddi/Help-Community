@@ -1,5 +1,6 @@
 // import { Link } from 'react-router-dom';
 import './Nav.css'
+import UploadWidget from '../UploadWidget/UploadWidget';
 import SearchBar from '../SearchBar/SearchBar';
 
 
@@ -15,6 +16,7 @@ export const Nav = () => {
                     {/* <Link to='/createcampaign'> */}
                         <button className='nav-button' > Crea una campaña! </button>
                     {/* </Link> */}
+                    {/* <UploadWidget/> */}
                 </div>
 
 

@@ -1,26 +1,23 @@
-// import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Card } from "../Card/Card"
 import datosONG from "../../../../Api/ong/ong";
 import style from "./Cards.module.css"
-// import axios from "axios";
+import axios from "axios";
+import { getCampaign } from "../../redux/actions/action";
 
 
 export const Cards = ({data}) => {
 
-// console.log("datosONG:", datosONG)
-  
+  console.log("data:", data)
+ 
   return (
     <div className={style.cardsContainer}>
-      {data.map((ong) => (
-        <div key={ong.id}>
-          {/* <h2>{ong.name}</h2>
-          <p>Estado: {ong.state ? 'Activa' : 'Inactiva'}</p>
-          <h3>Campañas:</h3> */}
+      {data.map((campaña) => (
           <div>
-            {ong.campañas.map((campaña) => (
               <Card
                 key={campaña.id}
-                nombreOng={ong.name}
+                //nombreOng={ong.name} 
                 nombre={campaña.name}
                 descripcion={campaña.description}
                 imagen={campaña.image}
@@ -30,9 +27,7 @@ export const Cards = ({data}) => {
                 estado={campaña.state}
                 categoria={campaña.category}
               />
-            ))}
           </div>
-        </div>
       ))}
     </div>
   )
@@ -42,16 +37,16 @@ export const Cards = ({data}) => {
 export default Cards;
 
 
+// const dispatch = useDispatch()
 
-// const [ datosONG, setDatosONG ] = useState([]);
-// console.log("datosONG: ",datosONG)
-
-// useEffect(()=>{
-//   axios.get("http://localhost:3001/Api/ong/ong.js")
-//   .then((response)=>{
-//     setDatosONG(response.data);
-//   })
-//   .catch((error)=>{
-//     console.error("Error al obtener los Datos de la API:", error);
-//   });
-// },[]);
+  // Datos de las ONG y campañas
+  // const datosCampaignONG = useSelector((state) => state.campaign);
+  
+  // useEffect(() => {
+  //   // Llama a la acción para obtener las campañas usando Redux
+  //   dispatch(getCampaign());
+  // }, [dispatch]);
+      // <div key={ong.id}>
+          {/* <h2>{ong.name}</h2>
+          <p>Estado: {ong.state ? 'Activa' : 'Inactiva'}</p>
+          <h3>Campañas:</h3> */}

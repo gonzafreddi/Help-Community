@@ -1,8 +1,10 @@
 .cardsContainer{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 1.5em;
-    margin-left: 5.5vw;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    /* flex-wrap: wrap; */
+    justify-content: space-between;
+    /* gap: 1em; */
+    margin-left: 12vw;
+    margin-right: 10vw;
     margin-top: 3vw;
 }

@@ -13,8 +13,9 @@ const getAllCategory = async function () {
             name: categoria.name
         }}))
 
-    return result;
-  
+      const result1 = await Category.findAll()
+      return result1;    
+    
     };
 
   module.exports = {
