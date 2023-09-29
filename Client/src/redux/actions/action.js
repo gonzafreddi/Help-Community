@@ -1,10 +1,6 @@
 import axios from "axios";
-
-
-
+import { GET_DETAIL_CAMPAIGN } from "./action_type";
 export const GET_CAMPAIGN = "GET_CAMPAIGN";
-
-
 
 export const getCampaign = () => {
     return async function (dispatch){
@@ -17,3 +13,19 @@ export const getCampaign = () => {
         }
     };
 };
+
+export const getDetailCampaign = (name)=>{
+
+    return async function (dispatch){
+        try {
+            const dataDetail = await axios(`http://localhost:3001/campaign?name=${name}`)
+            const dataCampaign = dataDetail.data
+            dispatch({
+                type: GET_DETAIL_CAMPAIGN,
+                payload: dataCampaign
+            })
+        } catch (error) {
+            console.log("error en la action de detail")
+        }
+    }
+}

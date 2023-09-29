@@ -1,0 +1,3 @@
+export const GET_DETAIL_CAMPAIGN = "GET_DETAIL_CAMPAIGN"
+
+export const GET_CAMPAIGN = "GET_CAMPAIGN";
