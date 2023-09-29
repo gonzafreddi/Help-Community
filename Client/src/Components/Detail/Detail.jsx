@@ -13,9 +13,9 @@ export const Detail = () => {
         </div>
         <div className={style.infoCont}>
           <div className={style.title}><h1>Nombre de la ONG</h1></div>
-          <div className={style.hoursCont}>
+          {/* <div className={style.hoursCont}>
             <div className={style.counter}></div>
-          </div>
+          </div> */}
         </div>
       </div>
 
@@ -31,7 +31,7 @@ export const Detail = () => {
       <div className={style.campConteiner}>
       <div className={style.titleCamp}><h2>Nombre de la campaña</h2></div>
         
-        <div className={style.imgCamp}><img src="https://images.unsplash.com/photo-1506606401543-2e73709cebb4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGNpdHklMjBhdCUyMG5pZ2h0fGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60" alt="" /></div>
+        <div className={style.imgCamp}><img src="https://i.pinimg.com/474x/a5/4f/3f/a54f3fe153f65d0723ded3e18d9476b4.jpg" alt="" /></div>
         <div className={style.descriptionCamp}>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam aliquid ipsam, fuga ipsa asperiores delectus. Dignissimos quidem dolore eaque aliquid quibusdam fugit adipisci at nostrum sed molestias porro minus fugiat distinctio fuga maiores rem, sit modi. Assumenda eligendi exercitationem vitae quo, molestiae voluptates animi ipsam, et molestias ipsum ratione nihil dolorum magni corporis quod, error dolorem in laudantium qui architecto alias. In eveniet, velit perspiciatis repellendus asperiores suscipit dolore iste dolor sapiente nihil. Minima nulla, voluptate eius nam, ab beatae nobis doloremque, modi neque vero quod cumque. Exercitationem accusamus non quisquam blanditiis quaerat perferendis magni sint velit commodi aspernatur illum assumenda quidem suscipit molestiae, totam obcaecati quod rem debitis sequi dolore rerum in! Delectus exercitationem eligendi ullam impedit, ratione cum facere provident quasi quidem nihil reprehenderit eveniet molestias in dolorem eum. Non accusamus incidunt magni porro aliquam minus nam reprehenderit id sapiente facilis, fuga rem libero neque ab maiores at!</p>
         </div>
@@ -39,7 +39,9 @@ export const Detail = () => {
 
       <div className={style.cardDonationConteiner}>
         <div className={style.cardDonation}>
-          <h5 className={style.titleCard}>¿Cuanto quieres donar?</h5>
+          <div className={style.titleCard}>
+          <h5 >¿Cuanto quieres donar?</h5>
+          </div>
           <form action="">
             <div className={style.amountBtnConteiner}>
             <button className={style.amountBtn}>$1.000</button>

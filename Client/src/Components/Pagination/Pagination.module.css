@@ -1,0 +1,27 @@
+.paginationContainer{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 80px; 
+    margin-bottom: 50px;   
+    gap: 15px; 
+    width: 100%; 
+    /* clear: both;  Añade esta propiedad para evitar que otros elementos floten alrededor del componente */
+  } 
+  
+  /* Añade estilos a los botones y al input según sea necesario */
+#buttonP{
+    /* Estilos para los botones de paginación */
+    padding: 5px 10px;
+    margin: 0 5px;
+    background-color: rgb(31, 33, 80);
+    color: white;
+    cursor: pointer;
+  }
+  
+#inputPagination{
+    /* Estilos para el input de paginación */
+    width: 20px; /* Ajusta el ancho según tus preferencias */
+    text-align: center;
+  } 

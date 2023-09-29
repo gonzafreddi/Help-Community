@@ -42,6 +42,7 @@ module.exports = (sequelize) => {
     userType: {
       type: DataTypes.ENUM('ong', 'donante'),
       allowNull: false,
+      defaultValue: "donante"
     },
   });
 };

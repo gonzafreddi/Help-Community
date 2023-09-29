@@ -1,5 +1,6 @@
 .conteiner{
-    background-color: #f0f0f0;
+    background-color: #ffff;
+    color:  #012A4A;
 }
 .imageConteiner{
     
@@ -18,7 +19,7 @@
     z-index: 100;
 }
 .background{
-    background-color:rgba(0, 0, 0, .6);
+    background-color:rgba(28, 30, 58, 0.724);
     width: 100%;
     height: 80vh;
     position:absolute;
@@ -44,7 +45,7 @@ z-index: 500;
 } */
 
 .infoCont{
-    border: solid red;
+   
     display: flex;
     width: 100%;
     height: 80vh;
@@ -54,7 +55,7 @@ z-index: 500;
 
 }
 .title{
-  border: solid green;  
+ 
   width: 50%;
   display:flex;
   align-items: center;
@@ -62,6 +63,8 @@ z-index: 500;
 .title h1{
     background-color: rgba(255, 255, 255,.6);
     padding: 20px;
+    font-size: 4rem;
+    border-radius: 0px 20px 20px 0px;
     
 }
 
@@ -90,8 +93,8 @@ z-index: 500;
     justify-content: center;
     align-items: center;
     gap: 30px;
-    border: green solid;
-
+   
+    /* box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4); */
 }
 .description{
     width: 65%;
@@ -99,27 +102,23 @@ z-index: 500;
     margin-left: 50px;
 }
 
-.imgAbout{
-   
-    margin-right: 50px;
-    border: solid red;
-    margin-left: 20px;
-    margin-top: 30px;
-}
+
 
 .campConteiner{
-    border: solid red ;
+    /* box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.4), 0px 2px 4px rgba(0, 0, 0, 0.4); */
     display: flex;
     justify-content: center;
     width: 100%;
     height: 60vh;
     margin-top: 50px;
+    background-color: #ffff;
 }
 .titleCamp{
-   color: red;
-   margin-top: -40px;
+
+   margin-top: -70px;
    position: absolute;
-   border: solid green;
+   border-radius: 10px;
+  
 }
 
 .descriptionCamp{
@@ -128,12 +127,19 @@ z-index: 500;
     justify-content: center;
     align-items: center;
     margin: 50px;
+    color:  #012A4A;
 }
 .imgCamp{
     width: 50%;
+   
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.imgCamp img{
+    width: 100%;
+    height: 100%;
+    object-fit:fill;
 }
 .cardDonationConteiner{
     width: 100%;
@@ -141,22 +147,32 @@ z-index: 500;
     display: flex;
     justify-content: center;
     align-items: center;
+    
 }
 
 .cardDonation{
-    border: solid red;
+
     border-radius: 10px;
     width: 40vw;
-   
+    box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.8);
+    background-color: #297afd;
+    color: #012A4A;
+}
+.titleCard{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-size: 1.8rem;
 }
 .amountBtnConteiner{
-    border: green solid;
+
     display: flex;
     width: 100%;
     justify-content:space-around;
 
 }
 .amountBtn{
+    border: none;
    height: 4rem;
    font-size: 1.3rem;
    width: 100px;
@@ -175,6 +191,8 @@ z-index: 500;
     height: 3rem;
     border-radius: 20px;
     font-size: 1.3rem;
+    border: none;
+    
 }
 
 .sendConteiner{
@@ -188,6 +206,14 @@ z-index: 500;
 
 .sendBtn{
     font-size: 1.3rem;
-   padding: 10px 20px 10px 20px;
+   padding: 10px 25px 10px 25px;
+   background-color:#ffff;
+   color:#012A4A;
+   border: none;
+   border-radius: 10px;
+   transition: all ease .5s;
 }
-
+.sendBtn:hover{
+    color: #ffff;
+    background-color: #012A4A;
+}
