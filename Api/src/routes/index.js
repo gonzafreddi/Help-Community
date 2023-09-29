@@ -5,6 +5,7 @@ const ong_donanteRouter = require("./ong_donante");
 const campaignRouter = require("./campaignRouter");
 const stateRouter = require("./stateRouter");
 const categoryRouter = require("./categoryRouter");
+const productRouter = require("./productRouter");
 
 const router = Router();
 
@@ -14,10 +15,10 @@ router.use("/campaign", campaignRouter);
 
 router.use("/state", stateRouter);
 
-router.use("/category",categoryRouter);
+router.use("/category", categoryRouter);
+
+router.use("/product", productRouter);
 
 router.use(express.json());
-
-
 
 module.exports = router;
