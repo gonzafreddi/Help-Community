@@ -12,17 +12,19 @@ router.post("/", async (req, res) => {
      cuit,
      adddres,
      email,
+     StateId,
      webSite,
      image,
      userType
     } = req.body
-    
+     
     try{
     await Ong_donor.create({
         name,
         cuit,
         adddres,
         email,
+        StateId,
         webSite,
         image,
         userType
