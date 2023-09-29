@@ -1,4 +1,4 @@
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './Nav.css'
 import UploadWidget from '../UploadWidget/UploadWidget';
 import SearchBar from '../SearchBar/SearchBar';
@@ -11,7 +11,10 @@ export const Nav = () => {
             <div className='nav-container'>
 
                 <div className='nav-button-container'>
-                    <button className='nav-button'>Home</button>
+                    <Link to={'/'}>
+                        <button className='nav-button'>Home</button>
+                    </Link>
+
                     <button className='nav-button'>Acerca de</button>
                     {/* <Link to='/createcampaign'> */}
                         <button className='nav-button' > Crea una campaña! </button>
