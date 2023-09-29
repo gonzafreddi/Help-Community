@@ -26,29 +26,31 @@ const getAllCampaign = async function () {
 };
 
 const getCampaignByName = async function (name) {
+  console.log(name);
   if (name) {
     //Insensitve Case
-    const rawArrayDB = await Drivers.findAll({
+    console.log(name);
+    const rawArrayDB = await Campaign.findAll({
       where: {
         name: {
           [Op.iLike]: `%${name}%`,
         },
       },
-      include: {
+      /* include: {
         model: Teams,
         attributes: ["name"],
         through: { attributes: [] },
-      },
+      }, */
     });
-    const dataBaseDrivers = cleanArrayDB(rawArrayDB);
+    /* const dataBaseDrivers = cleanArrayDB(rawArrayDB);
     const rawArrayApi = (await axios.get(`http://localhost:5000/drivers`)).data;
     const driversApi = cleanArrayApi(rawArrayApi);
     const filteredApi = driversApi.filter((driver) => {
       return driver.name.toLowerCase().includes(name.toLowerCase()); // Busqueda inexacta
-    });
-    if (filteredApi.length > 0 || dataBaseDrivers.length > 0)
-      return [...filteredApi, ...dataBaseDrivers].slice(0, 15);
-    else throw new Error("Driver name not found");
+    }); */
+    if (/* filteredApi.length > 0 ||  */ rawArrayDB.length > 0)
+      return rawArrayDB;
+    else throw new Error("Campaign name not found");
   }
 };
 

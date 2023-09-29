@@ -7,7 +7,7 @@ import axios from "axios";
 import { getCampaign } from "../../redux/actions/action";
 
 
-export const Cards = () => {
+export const Cards = ({data}) => {
 
 const dispatch = useDispatch()
 
@@ -22,10 +22,11 @@ const dispatch = useDispatch()
 
   console.log("datosONG:", datosONG);
   console.log("datosCampaignONG:", datosCampaignONG);
+
   
   return (
     <div className={style.cardsContainer}>
-      {datosONG.map((ong) => (
+      {data.map((ong) => (
         <div key={ong.id}>
           {/* <h2>{ong.name}</h2>
           <p>Estado: {ong.state ? 'Activa' : 'Inactiva'}</p>
