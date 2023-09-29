@@ -7,22 +7,21 @@ import style from './filterBar.module.css';
 const FilterBar = () => {
     const dispatch = useDispatch();
 
-    // const [selectedTeam, setSelectedTeam] = useState(""); // Estado local para el equipo seleccionado
+    const [selectedState, setSelectedState] = useState(""); // Estado local 
+    const [selectedCategory, setSelectedCategory] = useState(""); // Estado local 
 
-
-
-    // function handleFilterTeam(e) {
+    // function handleFilterState(e) {
     //     const selectedValue = e.target.value;
-    //     setSelectedTeam(selectedValue); // Actualiza el estado local
-    //     dispatch(filterByTeam(selectedValue)); // Despacha la acción para filtrar por equipo
+    //     setSelectedState(selectedValue); // Actualiza el estado local
+    //     dispatch(filterByState(selectedValue)); // Despacha la acción para filtrar por equipo
     // }
 
 
 
     return (
-        <div className="filterBar-Container">
-            <select className="filter-teams" value={selectedTeam} onChange={handleFilterTeam}>
-                <option className="italic" value="" disabled>Filter by team</option>
+        <div className={filterBarContainer}>
+            <select className={filterProvince} value={selectedState} onChange={handleFilterState}>
+                <option className={italic} value="" disabled>Filter by team</option>
                 <option value="Todos">All Teams</option>
                 {sortedTeams.map((team) => (
                     <option key={team.id} value={team.name}>
@@ -30,7 +29,6 @@ const FilterBar = () => {
                     </option>
                 ))}
             </select>
-
 
         </div>
     );
