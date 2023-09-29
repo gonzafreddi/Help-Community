@@ -1,12 +1,21 @@
 // import { connect, useSelector } from 'react-redux';
 import datosONG from "../../../../Api/ong/ong";
+// import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import './SearchBar.css';
 
-export default function SearchBar() {
+const SearchBar = () => {
+
+    // const getCampaings = async () => {
+    //     const result = await axios.get('localhost:3000/campaing');
+    //     const campaigns = result.data;
+    //     return campaigns;
+    // }
 
     const data = datosONG.map((ong) => ( ong.campañas.map( (campaña) => campaña ) ));
+
+    // const campaigns = getCampaings();
 
     const campaigns = [];
 
@@ -123,6 +132,8 @@ export default function SearchBar() {
     )
 
 }
+
+export default SearchBar;
 
 
 // const mapStateToProps = (state) => {
