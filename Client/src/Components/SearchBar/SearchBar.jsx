@@ -37,7 +37,7 @@ const SearchBar = () => {
     
         setSelectedCampaign(campaign);
     
-        navigate(`/details/${selectedCampaign.id}`);                             //todo      Descomentar cuando hay detail
+        navigate(`detail/${selectedCampaign.name}`);                             //todo      Descomentar cuando hay detail
     
     } 
 
