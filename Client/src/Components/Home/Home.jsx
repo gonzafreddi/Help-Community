@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import Pagination from '../Pagination/Pagination';
 import { Cards } from "../Cards/Cards";
@@ -12,7 +12,7 @@ const [page, setPage] = useState(1);
 
  // Número de tarjetas por página
  const cardsPerPage = 8;
- const totalItems = Math.ceil(campaignBackup.length / cardsPerPage);
+ const totalItems = campaignBackup.length;
 
  // Función para obtener las tarjetas en la página actual
 
@@ -31,6 +31,3 @@ const [page, setPage] = useState(1);
    </div>
  )
 }
-
-
-

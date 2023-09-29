@@ -7,8 +7,8 @@ const initialState = {
     states: []
 }
 
+
 const  reducer = (state = initialState, action)=> {
-    
     switch (action.type) {
         case GET_CAMPAIGN:
                 return {

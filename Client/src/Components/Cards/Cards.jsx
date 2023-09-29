@@ -5,23 +5,20 @@ import style from "./Cards.module.css"
 import { getCampaign } from "../../redux/actions/action";
 
 
-export const Cards = () => {
+
+export const Cards = ({data}) => {
   
   const dispatch = useDispatch()
 
-  // Datos de las ONG y campañas
-  const campaignBackup = useSelector((state) => state.campaignBackup);
-  
   useEffect(() => {
     // Llama a la acción para obtener las campañas usando Redux
     dispatch(getCampaign());
   }, [dispatch]);
   
-  console.log("campaign: ", campaignBackup)
- 
+  
   return (
     <div className={style.cardsContainer}>
-      {campaignBackup.map((campaña) => (
+      {data.map((campaña) => (
           <div>
               <Card
                 key={campaña.id}
@@ -43,4 +40,3 @@ export const Cards = () => {
 
 
 export default Cards;
-
