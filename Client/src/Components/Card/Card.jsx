@@ -18,7 +18,7 @@ export const Card = (props) => {
       <p className={style.objetivo}>$ {objetivo}</p>
       <p className={style.finalizaDia}>Esta campaña finaliza el día:</p>
       <p className={style.fechas}>{fechaFin}</p>
-      <Link className={style.link}>
+      <Link to={`/detail/${nombre}`} className={style.link}>
       <p className={style.verMas}>Ver mas</p>
       </Link>
     </div>
