@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
-import './Nav.css'
-import UploadWidget from '../UploadWidget/UploadWidget';
+import './Nav.css';
 import SearchBar from '../SearchBar/SearchBar';
 
 
