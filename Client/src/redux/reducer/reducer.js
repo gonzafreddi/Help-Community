@@ -12,7 +12,7 @@ const  reducer = (state = initialState, action)=> {
                 return {
                     ...state,
                     campaign: [...action.payload].splice(0, 8),
-                    campaignBackUp: action.payload,
+                    campaignBackup: action.payload,
                 };
                 default:
                     return state;
