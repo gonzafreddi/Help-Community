@@ -1,14 +1,14 @@
-import { GET_CAMPAIGN } from "../actions/action"
+import { GET_CAMPAIGN, FILTER_BY_STATE } from "../actions/action"
 import { GET_DETAIL_CAMPAIGN } from "../actions/action_type";
-
 const initialState = {
     campaign: [],
     campaignBackup: [],
     detailCampaign: [],
+    states: []
 }
 
 const  reducer = (state = initialState, action)=> {
-    console.log(action)
+    
     switch (action.type) {
         case GET_CAMPAIGN:
                 return {

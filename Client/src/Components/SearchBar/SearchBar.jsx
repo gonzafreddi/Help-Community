@@ -28,18 +28,18 @@ const SearchBar = () => {
     // const campaigns = useSelector(state => state.allCampaigns);
     const navigate = useNavigate();
 
-    const [selectedCampaign, setSelectedCampaign] = useState(null);
+    const [selectedCampaign, setSelectedCampaign] = useState('');
     const [searchText, setSearchText] = useState("");
     const [suggestions, setSuggestions] = useState([]);
     const [showSuggestions, setShowSuggestions] = useState(false)
 
     const onSearch = (campaign) => {
     
-        setSelectedCampaign(campaign);
-    
+        setSelectedCampaign(campaign.name);
+
         navigate(`detail/${selectedCampaign.name}`);                             //todo      Descomentar cuando hay detail
     
-    } 
+    }
 
     const handleInputChange = (event) => {
         
@@ -60,10 +60,10 @@ const SearchBar = () => {
     };
 
     const handleSuggestionClick = (campaign) => {
+        onSearch(campaign);
         setSearchText('');
         setSuggestions([]);
         setShowSuggestions(false);
-        onSearch(campaign);
 
     }
 

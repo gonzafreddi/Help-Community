@@ -4,6 +4,7 @@ import Pagination from '../Pagination/Pagination';
 import { Nav } from "../Nav/Nav";
 import { Cards } from "../Cards/Cards";
 import datosONG from "../../../../Api/ong/ong";
+// import { FilterBar } from '../FilterBar/FilterBar';
 
 export const Home = () => {
 
@@ -41,7 +42,8 @@ export const Home = () => {
 
  return (
    <div>
-       <Nav/>
+
+       {/* <FilterBar campaigns={campaigns}/> */}
 
        <Cards data={getCurrentPageCampaigns()}/>
        
