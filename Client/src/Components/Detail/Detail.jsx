@@ -12,6 +12,7 @@ const dispatch = useDispatch()
 const campDetail = useSelector((state)=>state.detailCampaign)
 //me susubribo al estdo global para consumir la info del detalle
 const name = useParams()
+
   useEffect(()=>{
     dispatch(getDetailCampaign(name.id))
     return()=>{
@@ -49,8 +50,8 @@ const name = useParams()
       </div>
     
       <div className={style.campConteiner}>
-      <div className={style.titleCamp}><h2>{campDetail[0].name}</h2>
-            <p>{campDetail[0].description}</p>
+      <div className={style.titleCamp}><h2>{campDetail[0]?.name}</h2>
+            <p>{campDetail[0]?.description}</p>
       </div>
         
         <div className={style.imgCamp}><img src="https://media.istockphoto.com/id/1436226660/es/foto/joven-manifestante-sosteniendo-un-cartel-sobre-la-igualdad-de-g%C3%A9nero-en-una-manifestaci%C3%B3n.jpg?s=612x612&w=0&k=20&c=QPDsyJkH56CuWt097XFTXclGlALcVQuv_bwgPRvIkso=" alt="" /></div>
