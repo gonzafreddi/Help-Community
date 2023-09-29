@@ -11,11 +11,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path='/detail/:id' element={<Detail/>}/>
-<<<<<<< HEAD
         <Route path='/create/campaign' element={<CreateCampaign/>}/>
-=======
         <Route path='/detail/camp' element={<DetailCampain/>}/>
->>>>>>> 28efa4e1cf66bb319912a8af485d6cb2340a1977
       </Routes>
     </>
   )
