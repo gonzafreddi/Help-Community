@@ -13,7 +13,10 @@ const getAllState = async function () {
             name: state.name
         }}))
 
-    return result;
+      
+      const result1 = await State.findAll()
+
+      return result1;
   
     };
 
