@@ -1,33 +1,33 @@
-import React from 'react'
+import abrazo from '../../assets/imgAbrazo.jpg';
+import foco from '../../assets/imgFoco.jpg';
 import style from './About.module.css'
 
 export const About = () => {
     return (
         <div className={style.container}>
             <h2 className={style.heading}>Acerca de Nosotros</h2>
-            <p>
+            <p className={style.text}>
                 Bienvenido a nuestra comunidad comprometida con el cambio y la
                 solidaridad. En HelpCommunity, creemos en el poder de la
                 generosidad para transformar vidas y comunidades enteras. Desde septiembre de 2023, hemos estado trabajando incansablemente 
                 para abordar los problemas de la sociedad moderna.
             </p>
 
-            <h3 className={style.heading}>Nuestra Misión</h3>
-            <p className={style.text}>
-                En HelpCommunity, creemos en el poder de la comunidad para impulsar el
-                cambio y la solidaridad. Nuestra misión es proporcionar una plataforma
-                inclusiva y accesible donde individuos con pasiones y causas diversas
-                puedan unirse para marcar la diferencia.
-            </p>
+            <div className={style.textoYFoto}>
 
-            <h3 className={style.heading}>¿Cómo Funcionamos?</h3>
-            <p className={style.text}>
-                Cualquier persona puede iniciar una campaña y cualquier persona puede
-                contribuir. Nuestro proceso es simple y transparente, permitiendo a los
-                organizadores y donantes interactuar de manera directa y efectiva. Creemos
-                en la importancia de la confianza y la responsabilidad en todas nuestras
-                operaciones.
-            </p>
+                <img src={abrazo} alt="img-abrazo" className={style.imagen} />
+
+                <div className={style.tituloYCuerpo}>
+                    <h3 className={style.heading}>Nuestra Misión</h3>
+                    <p className={style.text}>
+                        En HelpCommunity, creemos en el poder de la comunidad para impulsar el
+                        cambio y la solidaridad. Nuestra misión es proporcionar una plataforma
+                        inclusiva y accesible donde individuos con pasiones y causas diversas
+                        puedan unirse para marcar la diferencia.
+                    </p>
+                </div>
+
+            </div>
 
             <h3 className={style.heading}>Únete a Nosotros</h3>
             <p className={style.text}>
@@ -39,6 +39,23 @@ export const About = () => {
                 nuestros productos con propósito. Juntos, podemos lograr un impacto real y
                 duradero en las vidas de aquellos que más lo necesitan.
             </p>
+
+            <div className={style.textoYFoto}>
+
+                <div className={style.tituloYCuerpo}>
+                    <h3 className={style.heading}>¿Cómo Funcionamos?</h3>
+                    <p className={style.text}>
+                        Cualquier persona puede iniciar una campaña y cualquier persona puede
+                        contribuir. Nuestro proceso es simple y transparente, permitiendo a los
+                        organizadores y donantes interactuar de manera directa y efectiva. Creemos
+                        en la importancia de la confianza y la responsabilidad en todas nuestras
+                        operaciones.
+                    </p>
+                </div>
+
+                <img src={foco} alt="img-foco" className={style.imagen} />
+
+            </div>
 
             <p className={style.text}>
                 Gracias por ser parte de nuestra misión de hacer un impacto positivo en
