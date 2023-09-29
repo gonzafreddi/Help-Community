@@ -7,6 +7,13 @@ import datosONG from "../../../../Api/ong/ong";
 
 export const Home = () => {
 
+  const data2 = datosONG.map((ong) => (ong.campañas.map((campaña)=> campaña)));
+
+  const campaigns = [];
+ 
+  data2.map((array)=> array.map((campaña)=> campaigns.push(campaña)));
+
+
  // -------PAGINADO
 
  const [page, setPage] = useState(1);
@@ -20,7 +27,7 @@ export const Home = () => {
  const getCurrentPageCampaigns = () => {
    const startIndex = (page - 1) * cardsPerPage;
    const endIndex = startIndex + cardsPerPage;
-   const displayedData = datosONG.slice(startIndex, endIndex);
+   const displayedData = campaigns.slice(startIndex, endIndex);
 
    return displayedData;
 
