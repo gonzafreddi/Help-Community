@@ -5,13 +5,13 @@ import style from "./Cards.module.css"
 // import axios from "axios";
 
 
-export const Cards = () => {
+export const Cards = ({data}) => {
 
-  // console.log("datosONG:", datosONG)
+// console.log("datosONG:", datosONG)
   
   return (
     <div className={style.cardsContainer}>
-      {datosONG.map((ong) => (
+      {data.map((ong) => (
         <div key={ong.id}>
           {/* <h2>{ong.name}</h2>
           <p>Estado: {ong.state ? 'Activa' : 'Inactiva'}</p>

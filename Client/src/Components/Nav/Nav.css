@@ -4,22 +4,50 @@
     
     display: flex;
 
-    flex-direction: row;
-
-    align-items: start;
-
     width: 100%;
     
-    height: 84px;
+    height: 6rem;
 
-    justify-content: center;
+    justify-content: space-between;
 
-    background: #012A4A;
+    align-items: center;
+
+    background-color: rgba(1, 42, 74, 1);
 
     border-bottom: 1px solid hsl(0, 0%, 22%);
 
-    font-family: 'Poppins', sans-serif;
-
     margin-bottom: 15px;
 
+}
+.logo {
+    height: 300px;
+    margin-bottom: -24%;
+    margin-top: -20%;
+}
+
+.sb{
+    /* margin-left: auto; */
+    margin-right: 3rem;
+}
+
+.nav-button-container{
+    margin-left: 3rem;
+}
+
+.nav-button{
+    border: none;
+    background: transparent;
+    color: rgba(243, 243, 243, 1);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    margin-right: 1.5rem;
+}
+
+.nav-button:hover{
+    cursor: pointer;
+}
+
+.sb-and-login{
+    display: flex;
+    margin-right: 3rem;
 }
