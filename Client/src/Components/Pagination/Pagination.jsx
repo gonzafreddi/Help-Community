@@ -51,7 +51,7 @@ const Pagination = ({ page, setPage, itemsPerPage, totalItems }) => {
                 autoComplete="off"
                 value={input}
             />
-            <p> of {totalPages}</p>
+            <p> de {totalPages}</p>
             <button id={style.buttonP} disabled={page === totalPages || page > totalPages} onClick={nextPage} > {">>"}
             </button>
         </div>

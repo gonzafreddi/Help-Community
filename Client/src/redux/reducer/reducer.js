@@ -1,8 +1,9 @@
-import { GET_CAMPAIGN } from "../actions/action"
+import { GET_CAMPAIGN, FILTER_BY_STATE } from "../actions/action"
 
 const initialState = {
     campaign: [],
     campaignBackup: [],
+    states: [],
 }
 
 const  reducer = (state = initialState, action)=> {
