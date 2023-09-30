@@ -64,7 +64,29 @@ const getAllCampaignsDB = async function () {
   return result;
 };
 
+const postCampaign = async (req, res) => {
+  const { name, short_description, large_description, image, startDate, endDate, finalAmount } = req.body; 
+
+  if (!name || !description || !startDate || !endDate || !finalAmount) {
+    return res.status(400).json({ error: "Require all data" });
+  }
+
+  const campaigns = await Campaign.create({
+      name,
+      short_description,
+      large_description,
+      image,
+      startDate,
+      endDate,
+      finalAmount,
+      state
+  });
+
+  return campaigns;
+};
+
 module.exports = {
   getAllCampaign,
   getCampaignByName,
+  postCampaign
 };

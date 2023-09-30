@@ -10,15 +10,10 @@ const productRouter = require("./productRouter");
 const router = Router();
 
 router.use("/ong_donor", ong_donorRouter);
-
 router.use("/campaign", campaignRouter);
-
 router.use("/state", stateRouter);
-
 router.use("/category", categoryRouter);
-
 router.use("/product", productRouter);
-
 router.use(express.json());
 
 module.exports = router;
