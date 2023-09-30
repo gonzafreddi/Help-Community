@@ -4,7 +4,6 @@ const fs = require("fs");
 const path = require("path");
 const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
 
-
 const database = new Sequelize(
   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/helpcommunity`,
   {
@@ -49,7 +48,10 @@ Campaign.hasMany(Donation);
 Donation.belongsTo(Campaign);
 
 State.hasMany(Ong_donor);
-Ong_donor.belongsTo(State)
+Ong_donor.belongsTo(State);
+
+State.hasMany(Campaign);
+Campaign.belongsTo(State);
 
 module.exports = {
   ...database.models,
