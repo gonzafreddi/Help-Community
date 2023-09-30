@@ -65,9 +65,9 @@ const getAllCampaignsDB = async function () {
 };
 
 const postCampaign = async (req, res) => {
-  const { name, short_description, large_description, image, startDate, endDate, finalAmount } = req.body; 
+  const { name, short_description, large_description, image, startDate, endDate, finalAmount, state } = req.body; 
 
-  if (!name || !description || !startDate || !endDate || !finalAmount) {
+  if (!name || !short_description || !large_description || !startDate || !endDate || !finalAmount) {
     return res.status(400).json({ error: "Require all data" });
   }
 
