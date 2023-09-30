@@ -2,6 +2,9 @@ import axios from "axios";
 import { GET_DETAIL_CAMPAIGN } from "./action_type";
 export const GET_CAMPAIGN = "GET_CAMPAIGN";
 export const FILTER_BY_STATE = "FILTER_BY_STATE";
+export const GET_STATES = "GET_STATES";
+export const GET_CATEGORY = "GET_CATEGORY";
+export const FILTER_BY_CATEGORY = "FILTER_BY_CATEGORY";
 
 export const getCampaign = () => {
     return async function (dispatch){
@@ -9,6 +12,31 @@ export const getCampaign = () => {
             const campaignData = await axios('http://localhost:3001/campaign');
             const campaign = campaignData.data;
             dispatch({type: GET_CAMPAIGN, payload: campaign});
+        } catch (error){
+            console.log("error en devolver la action", error.message)
+        }
+    };
+};
+
+export const getStates = () => {
+    return async function (dispatch){
+        try{
+            const statesData = await axios("http://localhost:3001/state");
+            const states = statesData.data;
+            dispatch({type: GET_STATES, payload: states});
+        } catch (error){
+            console.log("error en devolver la action", error.message)
+        }
+    };
+};
+
+
+export const getCategory = () => {
+    return async function (dispatch){
+        try{
+            const categoryData = await axios("http://localhost:3001/category");
+            const category = categoryData.data;
+            dispatch({type: GET_CATEGORY, payload: category});
         } catch (error){
             console.log("error en devolver la action", error.message)
         }
@@ -39,3 +67,10 @@ export function filterByState(payload){
     }
 }
 
+
+export function filterByCategory(payload){
+    return{
+        type: "FILTER_BY_CATEGORY",
+        payload
+    }
+}
