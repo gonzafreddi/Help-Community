@@ -48,7 +48,7 @@ Campaign.hasMany(Donation);
 Donation.belongsTo(Campaign);
 
 State.hasMany(Ong_donor);
-Ong_donor.belongsTo(State)
+Ong_donor.belongsTo(State);
 
 module.exports = {
   ...database.models,

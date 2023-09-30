@@ -51,7 +51,8 @@ const getAllCampaignsDB = async function () {
       Campaign.findOrCreate({
         where: {
           name: campaign.name,
-          description: campaign.description,
+          short_description: campaign.short_description,
+          long_description: campaign.long_description,
           image: campaign.image,
           startDate: campaign.startDate,
           endDate: campaign.endDate,
