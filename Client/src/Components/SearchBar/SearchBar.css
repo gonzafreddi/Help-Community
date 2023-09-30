@@ -1,0 +1,107 @@
+.containerSB{
+
+    /* padding-top: 10%; */
+    display: flex;
+    /* background-color: aliceblue; */
+    /* justify-content: space-around; */
+
+}
+
+.input {
+    font-family: 'DM Sans', sans-serif;
+    width: 20rem;
+    height: 2.5rem;
+    border: 0px;
+    margin-left: 8px;
+    padding: 15px;
+    font-size: 14px;
+    font-weight: 500;
+    border-top-left-radius: 0.75rem;
+    border-bottom-left-radius: 0.75rem;
+    background-color: #f0f2f3;
+    text-indent: 12px;
+    color: rgba(1, 42, 74, 1);
+    transition: all 0.5s;
+}
+
+.input::placeholder{
+    font-family: 'DM Sans', sans-serif;
+    color: rgba(1, 42, 74, 1);
+    text-indent: 13px;
+    letter-spacing: 0.7px;
+    font-weight: 500;
+    opacity: 30%;
+}
+
+.search-button {
+    height: 2.5rem;
+    width: 2.5rem;
+    border: 0px;
+    padding: 0px;
+    border-top-right-radius: 0.75rem;
+    border-bottom-right-radius: 0.75rem;
+    background-color: #f0f2f3;
+    color: rgba(1, 42, 74, 1);
+    transition: all 0.2s;
+}
+.material-icons{
+    font-size: 13px;
+    transform: scale(2);
+}
+
+.search-button:disabled {
+    color: rgba(1, 42, 74, 0.3);
+}
+
+.input:focus{
+    outline: none;
+    border-top-right-radius: 0.75rem;
+    border-bottom-right-radius: 0.75rem;
+    transition: border-top-right-radius 0s;
+    transition: border-bottom-right-radius 0s;
+}
+
+.input:focus + .search-button{
+    transform: translateX(1rem);
+    border-radius: 5rem;
+}
+
+.suggestion-list {
+    font-family: 'DM Sans', sans-serif;
+    list-style: none;
+    padding: 0;
+    position: absolute;
+    z-index: 10;
+    width: 23.5rem;
+    max-height: 37.5rem;
+    overflow-y: auto;
+    border-radius: 0.5rem;
+    display: none;
+    background-color: rgba(255, 255, 255, 1);
+    color: rgba(1, 42, 74, 1);
+    box-shadow: 0px 11px 41px 4px rgba(0,0,0,0.57);
+    opacity: 0;
+    transition: all 0.5s;
+}
+  
+/* Mostrar la lista de sugerencias cuando hay sugerencias */
+.suggestion-list.showSuggestions {
+    display: block;
+    opacity: 1;
+}
+
+.input:focus ~ .suggestion-list{
+    width: 21.5rem;
+}
+  
+/* Estilos para los elementos de la lista de sugerencias */
+.suggestionItem {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #444;
+}
+
+.suggestionItem:hover {
+    background-color: rgba(1, 42, 74, 0.9);
+    color: rgba(255, 255, 255, 1);
+}
