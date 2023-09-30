@@ -1,6 +1,27 @@
 import style from "./Detail.module.css"
 import imgAbout from "../../utils/images/negocio.png"
+import { useEffect } from "react"
+import { useParams } from "react-router-dom"
+import { getDetailCampaign } from "../../redux/actions/action"
+import { useDispatch, useSelector } from "react-redux/";
+
+
 export const Detail = () => {
+const dispatch = useDispatch()
+
+const campDetail = useSelector((state)=>state.detailCampaign)
+//me susubribo al estdo global para consumir la info del detalle
+const name = useParams()
+
+  useEffect(()=>{
+    dispatch(getDetailCampaign(name.id))
+    return()=>{
+      dispatch(getDetailCampaign())
+    }
+  },[])
+
+
+
   return (
     <div className={style.conteiner}>
       <div className={style.imageConteiner} >
@@ -29,9 +50,11 @@ export const Detail = () => {
       </div>
     
       <div className={style.campConteiner}>
-      <div className={style.titleCamp}><h2>Nombre de la campaña</h2></div>
+      <div className={style.titleCamp}><h2>{campDetail[0]?.name}</h2>
+            <p>{campDetail[0]?.description}</p>
+      </div>
         
-        <div className={style.imgCamp}><img src="https://i.pinimg.com/474x/a5/4f/3f/a54f3fe153f65d0723ded3e18d9476b4.jpg" alt="" /></div>
+        <div className={style.imgCamp}><img src="https://media.istockphoto.com/id/1436226660/es/foto/joven-manifestante-sosteniendo-un-cartel-sobre-la-igualdad-de-g%C3%A9nero-en-una-manifestaci%C3%B3n.jpg?s=612x612&w=0&k=20&c=QPDsyJkH56CuWt097XFTXclGlALcVQuv_bwgPRvIkso=" alt="" /></div>
         <div className={style.descriptionCamp}>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam aliquid ipsam, fuga ipsa asperiores delectus. Dignissimos quidem dolore eaque aliquid quibusdam fugit adipisci at nostrum sed molestias porro minus fugiat distinctio fuga maiores rem, sit modi. Assumenda eligendi exercitationem vitae quo, molestiae voluptates animi ipsam, et molestias ipsum ratione nihil dolorum magni corporis quod, error dolorem in laudantium qui architecto alias. In eveniet, velit perspiciatis repellendus asperiores suscipit dolore iste dolor sapiente nihil. Minima nulla, voluptate eius nam, ab beatae nobis doloremque, modi neque vero quod cumque. Exercitationem accusamus non quisquam blanditiis quaerat perferendis magni sint velit commodi aspernatur illum assumenda quidem suscipit molestiae, totam obcaecati quod rem debitis sequi dolore rerum in! Delectus exercitationem eligendi ullam impedit, ratione cum facere provident quasi quidem nihil reprehenderit eveniet molestias in dolorem eum. Non accusamus incidunt magni porro aliquam minus nam reprehenderit id sapiente facilis, fuga rem libero neque ab maiores at!</p>
         </div>

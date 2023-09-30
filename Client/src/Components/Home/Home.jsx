@@ -42,7 +42,6 @@ export const Home = () => {
 
  return (
    <div>
-       <Nav/>
 
        <FilterBar campaigns={campaigns}/>
 
@@ -54,6 +53,7 @@ export const Home = () => {
            itemsPerPage={cardsPerPage}
            totalItems={totalItems}
         /> 
+        {/* <FilterBar/> */}
 
    </div>
  )

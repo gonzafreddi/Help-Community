@@ -1,6 +1,5 @@
-// import { Link } from 'react-router-dom';
-import './Nav.css'
-import UploadWidget from '../UploadWidget/UploadWidget';
+import { Link } from 'react-router-dom';
+import './Nav.css';
 import SearchBar from '../SearchBar/SearchBar';
 
 
@@ -11,10 +10,16 @@ export const Nav = () => {
             <div className='nav-container'>
 
                 <div className='nav-button-container'>
-                    <button className='nav-button'>Home</button>
-                    <button className='nav-button'>Acerca de</button>
+                    <Link to={'/'}>
+                        <button className='nav-button'>Home</button>
+                    </Link>
+                    <Link to={'/about'}>
+                        <button className='nav-button'>Acerca de</button>
+                    </Link>
                     {/* <Link to='/createcampaign'> */}
-                        <button className='nav-button' > Crea una campaña! </button>
+                        <Link to={"/create/campaign"}>
+                            <button className='nav-button' > Crea una campaña! </button>
+                        </Link>
                     {/* </Link> */}
                     {/* <UploadWidget/> */}
                 </div>
