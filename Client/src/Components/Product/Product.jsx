@@ -10,8 +10,8 @@ export const Product = (props) => {
         <div className={style.contenedorImagen}>
           <img className={style.imagen} src={imagen} alt={nombre} />
         </div>
-      <p className={style.nombre}>{nombre}</p>
-      <p className={style.descripcion}>Rose Gold Plated Double Flared Tunnel Plug Earrings. Made of 316L Stainless Stee</p>
+    <p className={style.nombre}>{nombre}</p>
+      <p className={style.descripcion}>{descripcion}</p>
       <p className={style.precio}>$ {precio}</p>
       <p className={style.categoria}>{categoria}</p>
       <Link to={`/detail/${nombre}`} className={style.link}>
