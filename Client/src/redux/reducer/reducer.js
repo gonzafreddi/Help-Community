@@ -1,11 +1,12 @@
-import { GET_CAMPAIGN, FILTER_BY_STATE, FILTER_BY_CATEGORY, GET_STATES, GET_CATEGORY } from "../actions/action"
+import { GET_CAMPAIGN, FILTER_BY_STATE, FILTER_BY_CATEGORY, GET_STATES, GET_CATEGORY, GET_PRODUCT } from "../actions/action"
 import { GET_DETAIL_CAMPAIGN } from "../actions/action_type";
 const initialState = {
     campaign: [],
     campaignBackup: [],
     detailCampaign: [],
     states: [],
-    category: []
+    category: [],
+    product: []
 }
 
 
@@ -27,7 +28,11 @@ const reducer = (state = initialState, action)=> {
                     ...state,
                     category: action.payload
                 };
-
+        case GET_PRODUCT:
+                return {
+                    ...state,
+                    product: action.payload
+                };
         case FILTER_BY_STATE:
             const filteredByState = action.payload === "Todos" ? 
                 [...state.campaignBackUp] : 
