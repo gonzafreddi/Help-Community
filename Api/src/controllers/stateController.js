@@ -11,8 +11,7 @@ const getAllState = async function () {
     State.findOrCreate({
       where: {
             name: state.name
-        }}))
-
+        }}));
       
       const result1 = await State.findAll()
 
