@@ -1,11 +1,12 @@
 import axios from "axios";
-import { GET_DETAIL_CAMPAIGN } from "./action_type";
+import { GET_DETAIL_CAMPAIGN , GET_STATE} from "./action_type";
 export const GET_CAMPAIGN = "GET_CAMPAIGN";
 export const FILTER_BY_STATE = "FILTER_BY_STATE";
 export const GET_STATES = "GET_STATES";
 export const GET_CATEGORY = "GET_CATEGORY";
 export const FILTER_BY_CATEGORY = "FILTER_BY_CATEGORY";
 export const GET_PRODUCT = "GET_PRODUCT";
+
 
 export const getCampaign = () => {
     return async function (dispatch){
@@ -69,6 +70,7 @@ export function filterByState(payload){
 }
 
 
+
 export function filterByCategory(payload){
     return{
         type: "FILTER_BY_CATEGORY",
@@ -87,3 +89,30 @@ export const getProduct = () => {
         }
     };
 };
+
+export const getState = ()=>{
+    return async function(dispatch){
+        try {
+            const {data} = await axios("http://localhost:3001/state")
+            dispatch({
+                type: GET_STATE,
+                payload: data
+            })
+        } catch (error) {
+            console.log(error.mesage)
+        }
+    }
+}
+
+export function postCampaign(payload) {
+    return async function (dispatch) {
+        //ruta fictiocia
+       try {
+        const response = await axios.post('http://localhost:3001/create/campaign', payload);
+        return response
+       } catch (error) {
+        return error.message
+       }
+    }
+}
+
