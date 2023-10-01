@@ -1,22 +1,36 @@
 const axios = require("axios");
-const { Campaign, Categories, Donation, Ong_donor, State } = require("../db");
+const { Campaign, Category, Donation, Ong_donor, State } = require("../db");
 const { Op } = require("sequelize");
+const {
+  cleanArrayCampaignApi,
+  cleanArrayCampaignDB,
+} = require("../../helpers/helpers");
 
 const ong = require("../../dataApi/ong");
 
 const getAllCampaign = async function () {
-  const campaign = await Campaign.findAll();
-  if (campaign.length) {
-    const result = await Campaign.findAll({
-      include: {
+  const rawArrayDB = await Campaign.findAll({
+    include: [
+      {
         model: State,
         attributes: ["name"],
         through: { attributes: [] },
       },
-    });
-    return result;
-  }
-  getAllCampaignsDB();
+      {
+        model: Category,
+        attributes: ["name"],
+        through: { attributes: [] },
+      },
+      {
+        model: Ong_donor,
+        attributes: ["name"],
+        through: { attributes: [] },
+      },
+    ],
+  });
+  const campaignDB = cleanArrayCampaignDB(rawArrayDB);
+  const campaignApi = cleanArrayCampaignApi(ong);
+  return [...campaignDB, ...campaignApi];
 };
 
 const getCampaignByName = async function (name) {
@@ -30,39 +44,28 @@ const getCampaignByName = async function (name) {
           [Op.iLike]: `%${name}%`,
         },
       },
-      /* include: {
-        model: Ong_Donor,
-        attributes: ["name"],
-        through: { attributes: [] },
-      }, */
+      include: [
+        {
+          model: State,
+          attributes: ["name"],
+          through: { attributes: [] },
+        },
+        {
+          model: Category,
+          attributes: ["name"],
+          through: { attributes: [] },
+        },
+        {
+          model: Ong_donor,
+          attributes: ["name"],
+          through: { attributes: [] },
+        },
+      ],
     });
 
     if (rawArrayDB.length > 0) return rawArrayDB;
     else throw new Error("Campaign name not found");
   }
-};
-
-const getAllCampaignsDB = async function () {
-  //const campaign = await Campaign.findAll();
-
-  const result = ong.flatMap((ong) =>
-    ong.campañas.map((campaign) =>
-      Campaign.findOrCreate({
-        where: {
-          name: campaign.name,
-          short_description: campaign.short_description,
-          long_description: campaign.long_description,
-          StateId: campaign.StateId,
-          image: campaign.image,
-          startDate: campaign.startDate,
-          endDate: campaign.endDate,
-          finalAmount: campaign.finalAmount,
-          //CategoryId: campaign,// Agregar relacion Category con su relacion
-        },
-      })
-    )
-  );
-  return result;
 };
 
 const postCampaign = async (
@@ -88,9 +91,9 @@ const postCampaign = async (
     finalAmount,
     state,
   });
-  await newCampaign.setState(CategoryId);
+  await newCampaign.setCategories(CategoryId);
   await newCampaign.setStates(StateId);
-  await newCampaign.setState(ongDonorId);
+  //await newCampaign.setOng_donors(ongDonorId); // Todavia falta hacer el getAllOngDonor()
 
   return newCampaign;
 };

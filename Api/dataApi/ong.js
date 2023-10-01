@@ -22,6 +22,7 @@ const ong = [
         finalAmount: 2500000,
         state: "active",
         category: "Trabajo",
+        province: "buenos aires",
       },
       {
         id: 2,
@@ -35,6 +36,7 @@ const ong = [
         finalAmount: 1500000,
         state: "active",
         category: "Educación",
+        province: "buenos aires",
       },
     ],
   },
@@ -50,7 +52,7 @@ const ong = [
     state: true,
     campañas: [
       {
-        id: 1,
+        id: 3,
         name: "Campaña de Alimentos para Niños",
         short_description: "Recaudación de alimentos para niños necesitados",
         long_description:
@@ -61,9 +63,10 @@ const ong = [
         finalAmount: 500000,
         state: "active",
         category: "Social",
+        province: "chaco",
       },
       {
-        id: 2,
+        id: 4,
         name: "Campaña de Apoyo a Personas Mayores",
         short_description:
           "Brindar apoyo a personas mayores en situación de soledad",
@@ -75,6 +78,7 @@ const ong = [
         finalAmount: 800000,
         state: "active",
         category: "Salud",
+        province: "chaco",
       },
     ],
   },
@@ -90,7 +94,7 @@ const ong = [
     state: false,
     campañas: [
       {
-        id: 1,
+        id: 5,
         name: "Campaña de Deporte para Jóvenes",
         short_description:
           "Fomentar la participación de jóvenes en actividades deportivas",
@@ -102,6 +106,7 @@ const ong = [
         finalAmount: 1200000,
         state: "active",
         category: "Deportes / Recreación",
+        province: "río negro",
       },
     ],
   },
@@ -117,7 +122,7 @@ const ong = [
     state: false,
     campañas: [
       {
-        id: 1,
+        id: 6,
         name: "Campaña de Fomento a la Lectura",
         short_description: "Promover la lectura en la comunidad",
         long_description:
@@ -128,6 +133,7 @@ const ong = [
         finalAmount: 950000,
         state: "active",
         category: "Cultura",
+        province: "san juan",
       },
     ],
   },
@@ -143,7 +149,7 @@ const ong = [
     state: false,
     campañas: [
       {
-        id: 1,
+        id: 7,
         name: "Campaña de Educación Ambiental",
         short_description: "Promover la conciencia ambiental en la comunidad",
         long_description:
@@ -154,6 +160,7 @@ const ong = [
         finalAmount: 1800000,
         state: "active",
         category: "Medio ambiente",
+        province: "tucumán",
       },
     ],
   },
@@ -169,7 +176,7 @@ const ong = [
     state: false,
     campañas: [
       {
-        id: 1,
+        id: 8,
         name: "Campaña de Apoyo a la Juventud",
         short_description:
           "Brindar oportunidades a jóvenes en situación de vulnerabilidad",
@@ -181,9 +188,10 @@ const ong = [
         finalAmount: 1300000,
         state: "active",
         category: "Social",
+        province: "mendoza",
       },
       {
-        id: 2,
+        id: 9,
         name: "Campaña de Arte y Cultura",
         short_description: "Fomentar actividades culturales en la comunidad",
         long_description:
@@ -194,6 +202,7 @@ const ong = [
         finalAmount: 750000,
         state: "active",
         category: "Cultura",
+        province: "mendoza",
       },
     ],
   },
@@ -209,7 +218,7 @@ const ong = [
     state: false,
     campañas: [
       {
-        id: 1,
+        id: 10,
         name: "Campaña de Ayuda a Personas Mayores",
         short_description:
           "Brindar apoyo a personas mayores en situación de soledad",
@@ -221,6 +230,7 @@ const ong = [
         finalAmount: 900000,
         state: "active",
         category: "Salud",
+        province: "jujuy",
       },
     ],
   },
@@ -236,7 +246,7 @@ const ong = [
     state: false,
     campañas: [
       {
-        id: 1,
+        id: 11,
         name: "Campaña de Apoyo a Familias Vulnerables",
         short_description:
           "Brindar apoyo a familias en situación de vulnerabilidad",
@@ -248,6 +258,7 @@ const ong = [
         finalAmount: 2200000,
         state: "active",
         category: "Social",
+        province: "jujuy",
       },
     ],
   },
@@ -263,7 +274,7 @@ const ong = [
     state: false,
     campañas: [
       {
-        id: 1,
+        id: 12,
         name: "Campaña de Apoyo a Veteranos de Guerra",
         short_description: "Brindar apoyo a veteranos de guerra y sus familias",
         long_description:
@@ -274,9 +285,10 @@ const ong = [
         finalAmount: 1800000,
         state: "active",
         category: "Salud",
+        province: "neuquén",
       },
       {
-        id: 2,
+        id: 13,
         name: "Campaña de Educación para Niños",
         short_description: "Brindar educación a niños desfavorecidos",
         long_description:
@@ -287,6 +299,7 @@ const ong = [
         finalAmount: 1500000,
         state: "active",
         category: "Educación",
+        province: "neuquén",
       },
     ],
   },
@@ -302,7 +315,7 @@ const ong = [
     state: false,
     campañas: [
       {
-        id: 1,
+        id: 14,
         name: "Campaña de Deporte y Recreación",
         short_description:
           "Promover actividades deportivas y recreativas en la comunidad",
@@ -314,9 +327,10 @@ const ong = [
         finalAmount: 1300000,
         state: "active",
         category: "Deportes / Recreación",
+        province: "córdoba",
       },
       {
-        id: 2,
+        id: 15,
         name: "Campaña de Cultura y Arte",
         short_description:
           "Fomentar actividades culturales y artísticas en la comunidad",
@@ -328,6 +342,7 @@ const ong = [
         finalAmount: 800000,
         state: "active",
         category: "Cultura",
+        province: "córdoba",
       },
     ],
   },
@@ -343,7 +358,7 @@ const ong = [
     state: false,
     campañas: [
       {
-        id: 1,
+        id: 16,
         name: "Campaña de Apoyo a Veteranos de Guerra",
         short_description: "Brindar apoyo a veteranos de guerra y sus familias",
         long_description:
@@ -354,9 +369,10 @@ const ong = [
         finalAmount: 2800000,
         state: "active",
         category: "Salud",
+        province: "ciudad autónoma de buenos aires",
       },
       {
-        id: 2,
+        id: 17,
         name: "Campaña de Educación para Jóvenes",
         short_description: "Brindar educación a jóvenes desfavorecidos",
         long_description:
@@ -367,6 +383,7 @@ const ong = [
         finalAmount: 1500000,
         state: "active",
         category: "Educación",
+        province: "ciudad autónoma de buenos aires",
       },
     ],
   },
@@ -382,7 +399,7 @@ const ong = [
     state: false,
     campañas: [
       {
-        id: 1,
+        id: 18,
         name: "Campaña de Alimentos para Niños",
         short_description: "Recaudación de alimentos para niños necesitados",
         long_description:
@@ -393,9 +410,10 @@ const ong = [
         finalAmount: 500000,
         state: "active",
         category: "Social",
+        province: "tucumán",
       },
       {
-        id: 2,
+        id: 19,
         name: "Campaña de Apoyo a Personas Mayores",
         short_description:
           "Brindar apoyo a personas mayores en situación de soledad",
@@ -407,6 +425,7 @@ const ong = [
         finalAmount: 800000,
         state: "active",
         category: "Salud",
+        province: "tucumán",
       },
     ],
   },
@@ -422,7 +441,7 @@ const ong = [
     state: false,
     campañas: [
       {
-        id: 1,
+        id: 20,
         name: "Campaña de Alimentos para Familias Necesitadas",
         short_description:
           "Recaudación de alimentos para familias en situación de vulnerabilidad",
@@ -434,6 +453,7 @@ const ong = [
         finalAmount: 1200000,
         state: "active",
         category: "Social",
+        province: "mendoza",
       },
     ],
   },
@@ -449,7 +469,7 @@ const ong = [
     state: false,
     campañas: [
       {
-        id: 1,
+        id: 21,
         name: "Campaña de Arte y Cultura",
         short_description:
           "Fomentar actividades culturales y artísticas en la comunidad",
@@ -461,6 +481,7 @@ const ong = [
         finalAmount: 800000,
         state: "active",
         category: "Cultura",
+        province: "ciudad autónoma de buenos aires",
       },
     ],
   },
@@ -476,7 +497,7 @@ const ong = [
     state: false,
     campañas: [
       {
-        id: 1,
+        id: 22,
         name: "Campaña de Apoyo a Familias Vulnerables",
         short_description:
           "Brindar apoyo a familias en situación de vulnerabilidad",
@@ -488,9 +509,10 @@ const ong = [
         finalAmount: 1200000,
         state: "active",
         category: "Social",
+        province: "buenos aires",
       },
       {
-        id: 2,
+        id: 23,
         name: "Campaña de Educación para Niños",
         short_description: "Brindar educación a niños desfavorecidos",
         long_description:
@@ -501,6 +523,7 @@ const ong = [
         finalAmount: 1500000,
         state: "active",
         category: "Educación",
+        province: "buenos aires",
       },
     ],
   },
@@ -516,7 +539,7 @@ const ong = [
     state: false,
     campañas: [
       {
-        id: 1,
+        id: 24,
         name: "Campaña de Construcción de Viviendas",
         short_description:
           "Construir viviendas para familias en situación de necesidad",
@@ -528,6 +551,7 @@ const ong = [
         finalAmount: 2500000,
         state: "active",
         category: "Vivienda",
+        province: "misiones",
       },
     ],
   },
@@ -543,7 +567,7 @@ const ong = [
     state: false,
     campañas: [
       {
-        id: 1,
+        id: 25,
         name: "Campaña de Apoyo a Jóvenes Deportistas",
         short_description:
           "Brindar apoyo a jóvenes deportistas en su formación",
@@ -555,6 +579,7 @@ const ong = [
         finalAmount: 1800000,
         state: "active",
         category: "Deportes / Recreación",
+        province: "ciudad autónoma de buenos aires",
       },
     ],
   },
@@ -570,7 +595,7 @@ const ong = [
     state: false,
     campañas: [
       {
-        id: 1,
+        id: 26,
         name: "Campaña de Equipamiento para Bomberos",
         short_description:
           "Adquirir equipos y herramientas para el cuerpo de bomberos",
@@ -582,6 +607,7 @@ const ong = [
         finalAmount: 3500000,
         state: "active",
         category: "Infraestructura, obras, servicios públicos",
+        province: "córdoba",
       },
     ],
   },
@@ -597,7 +623,7 @@ const ong = [
     state: false,
     campañas: [
       {
-        id: 1,
+        id: 27,
         name: "Campaña de Promoción de la Cultura Local",
         short_description:
           "Promover y preservar la cultura folklórica de la región",
@@ -609,6 +635,7 @@ const ong = [
         finalAmount: 900000,
         state: "active",
         category: "Cultura",
+        province: "chaco",
       },
     ],
   },
@@ -624,7 +651,7 @@ const ong = [
     state: false,
     campañas: [
       {
-        id: 1,
+        id: 28,
         name: "Campaña de Apoyo a Niños con Mielomeningocele",
         short_description:
           "Brindar apoyo médico y terapéutico a niños con mielomeningocele",
@@ -636,6 +663,7 @@ const ong = [
         finalAmount: 1100000,
         state: "active",
         category: "Salud",
+        province: "santiago del estero",
       },
     ],
   },
@@ -651,7 +679,7 @@ const ong = [
     state: false,
     campañas: [
       {
-        id: 1,
+        id: 29,
         name: "Campaña de Educación para Jóvenes",
         short_description:
           "Brindar educación y oportunidades a jóvenes en riesgo social",
@@ -663,6 +691,7 @@ const ong = [
         finalAmount: 950000,
         state: "active",
         category: "Educación",
+        province: "santa fe",
       },
     ],
   },
@@ -678,7 +707,7 @@ const ong = [
     state: false,
     campañas: [
       {
-        id: 1,
+        id: 30,
         name: "Campaña de Desarrollo Comunitario",
         short_description:
           "Promover el desarrollo sostenible en comunidades locales",
@@ -690,6 +719,7 @@ const ong = [
         finalAmount: 3800000,
         state: "active",
         category: "Economía",
+        province: "tucumán",
       },
     ],
   },
@@ -705,7 +735,7 @@ const ong = [
     state: false,
     campañas: [
       {
-        id: 1,
+        id: 31,
         name: "Campaña de Mejora de Infraestructura",
         short_description:
           "Realizar mejoras en la infraestructura de la comunidad",
@@ -717,6 +747,7 @@ const ong = [
         finalAmount: 2600000,
         state: "active",
         category: "Infraestructura, obras, servicios públicos",
+        province: "buenos aires",
       },
     ],
   },
@@ -732,7 +763,7 @@ const ong = [
     state: false,
     campañas: [
       {
-        id: 1,
+        id: 32,
         name: "Campaña de Capacitación para ONGs",
         short_description:
           "Brindar capacitación a organizaciones no gubernamentales",
@@ -744,6 +775,7 @@ const ong = [
         finalAmount: 1800000,
         state: "active",
         category: "Educación",
+        province: "jujuy",
       },
     ],
   },
@@ -759,7 +791,7 @@ const ong = [
     state: false,
     campañas: [
       {
-        id: 1,
+        id: 33,
         name: "Campaña de Apoyo a Personas sin Hogar",
         short_description: "Brindar apoyo a personas en situación de calle",
         long_description:
@@ -770,6 +802,7 @@ const ong = [
         finalAmount: 750000,
         state: "active",
         category: "Social",
+        province: "ciudad autónoma de buenos aires",
       },
     ],
   },
