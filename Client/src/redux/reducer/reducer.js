@@ -1,5 +1,5 @@
 import { GET_CAMPAIGN, FILTER_BY_STATE, FILTER_BY_CATEGORY, GET_STATES, GET_CATEGORY, GET_PRODUCT } from "../actions/action"
-import { GET_DETAIL_CAMPAIGN } from "../actions/action_type";
+import { GET_DETAIL_CAMPAIGN, GET_STATE } from "../actions/action_type";
 const initialState = {
     campaign: [],
     campaignBackup: [],
@@ -58,6 +58,12 @@ const reducer = (state = initialState, action)=> {
             return{
                 ...state,
                 detailCampaign: action.payload
+            }
+        case GET_STATE:
+            return{
+                ...state,
+                states: action.payload
+                
             }
                 default:
                     return state;

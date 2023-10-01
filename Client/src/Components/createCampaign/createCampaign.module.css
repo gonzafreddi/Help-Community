@@ -109,4 +109,17 @@ color: black;
     background-color: #0963f5;
     cursor: pointer;
 }
-
+.send:disabled{
+    background-color: #cccccc;
+    color: #999999;
+    cursor: not-allowed;
+}
+span{
+    color: red;
+    display: block;
+    font-size: small;
+}
+.spanAmount{
+    margin-left: 2%;
+ 
+}

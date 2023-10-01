@@ -4,7 +4,6 @@ const fs = require("fs");
 const path = require("path");
 const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
 
-
 const database = new Sequelize(
   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/helpcommunity`,
   {
@@ -36,20 +35,41 @@ database.models = Object.fromEntries(capsEntries);
 
 const { Campaign, Category, Donation, Ong_donor, State } = database.models;
 
-Ong_donor.hasMany(Campaign);
-Campaign.belongsTo(Ong_donor);
+// Ong_donor.hasMany(Campaign);
+// Campaign.belongsTo(Ong_donor);
 
-Ong_donor.hasMany(Donation);
-Donation.belongsTo(Ong_donor);
+Ong_donor.belongsToMany(Campaign, { through: "Ong_donor_Campaign" });
+Campaign.belongsToMany(Ong_donor, { through: "Ong_donor_Campaign" });
 
-Category.hasMany(Campaign);
-Campaign.belongsTo(Category);
+// Ong_donor.hasMany(Donation);
+// Donation.belongsTo(Ong_donor);
 
-Campaign.hasMany(Donation);
-Donation.belongsTo(Campaign);
+Ong_donor.belongsToMany(Donation, { through: "Ong_donor_Donation" });
+Donation.belongsToMany(Ong_donor, { through: "Ong_donor_Donation" });
 
-State.hasMany(Ong_donor);
-Ong_donor.belongsTo(State)
+// Category.hasMany(Campaign);
+// Campaign.belongsTo(Category);
+
+Category.belongsToMany(Campaign, { through: "Category_Campaign" });
+Campaign.belongsToMany(Category, { through: "Category_Campaign" });
+
+// Campaign.hasMany(Donation);
+// Donation.belongsTo(Campaign);
+
+Campaign.belongsToMany(Donation, { through: "Campaign_Donation" });
+Donation.belongsToMany(Campaign, { through: "Campaign_Donation" });
+
+// State.hasMany(Ong_donor);
+// Ong_donor.belongsTo(State);
+
+State.belongsToMany(Ong_donor, { through: "State_Ong_donor" });
+Ong_donor.belongsToMany(State, { through: "State_Ong_donor" });
+
+// State.hasMany(Campaign);
+// Campaign.belongsTo(State);
+
+Campaign.belongsToMany(State, { through: "Campaign_State" });
+State.belongsToMany(Campaign, { through: "Campaign_State" });
 
 module.exports = {
   ...database.models,

@@ -1,6 +1,7 @@
 const {
   getAllCampaign,
   getCampaignByName,
+  postCampaign,
 } = require("../controllers/campaignController");
 
 const getCampaignHandler = async (req, res) => {
@@ -16,4 +17,42 @@ const getCampaignHandler = async (req, res) => {
   }
 };
 
-module.exports = { getCampaignHandler };
+const postCampaignHandler = async (req, res) => {
+  const {
+    name,
+    short_description,
+    long_description,
+    image,
+    startDate,
+    endDate,
+    finalAmount,
+    state,
+    StateId,
+    ongDonorId,
+    CategoryId,
+  } = req.body;
+
+  try {
+    await postCampaign(
+      name,
+      short_description,
+      long_description,
+      image,
+      startDate,
+      endDate,
+      finalAmount,
+      state,
+      StateId,
+      ongDonorId,
+      CategoryId
+    );
+    res.status(200).json(`The Campaign ${name} was successfully created`);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+module.exports = {
+  getCampaignHandler,
+  postCampaignHandler,
+};

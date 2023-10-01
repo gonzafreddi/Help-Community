@@ -1,23 +1,36 @@
 const axios = require("axios");
 const { Campaign, Category, Donation, Ong_donor, State } = require("../db");
 const { Op } = require("sequelize");
+const {
+  cleanArrayCampaignApi,
+  cleanArrayCampaignDB,
+} = require("../../helpers/helpers");
 
 const ong = require("../../dataApi/ong");
 
 const getAllCampaign = async function () {
-  const campaign = await Campaign.findAll();
-  if (campaign.length) {
-    /* const result = await Campaign.findAll({
-      include: {
+  const rawArrayDB = await Campaign.findAll({
+    include: [
+      {
+        model: State,
+        attributes: ["name"],
+        through: { attributes: [] },
+      },
+      {
+        model: Category,
+        attributes: ["name"],
+        through: { attributes: [] },
+      },
+      {
         model: Ong_donor,
-        attributes: ["StateId"],
-        through: { attributes: [] }, 
-      }, //Devuelve un array de objetos, si se quiere mostrar solo como un objeto, hay que hacer un map.
-    });
- */
-    return campaign;
-  }
-  getAllCampaignsDB();
+        attributes: ["name"],
+        through: { attributes: [] },
+      },
+    ],
+  });
+  const campaignDB = cleanArrayCampaignDB(rawArrayDB);
+  const campaignApi = cleanArrayCampaignApi(ong);
+  return [...campaignDB, ...campaignApi];
 };
 
 const getCampaignByName = async function (name) {
@@ -31,11 +44,23 @@ const getCampaignByName = async function (name) {
           [Op.iLike]: `%${name}%`,
         },
       },
-      /* include: {
-        model: Categories,
-        attributes: ["name"],
-        through: { attributes: [] },
-      }, */
+      include: [
+        {
+          model: State,
+          attributes: ["name"],
+          through: { attributes: [] },
+        },
+        {
+          model: Category,
+          attributes: ["name"],
+          through: { attributes: [] },
+        },
+        {
+          model: Ong_donor,
+          attributes: ["name"],
+          through: { attributes: [] },
+        },
+      ],
     });
 
     if (rawArrayDB.length > 0) return rawArrayDB;
@@ -43,28 +68,38 @@ const getCampaignByName = async function (name) {
   }
 };
 
-const getAllCampaignsDB = async function () {
-  //const campaign = await Campaign.findAll();
+const postCampaign = async (
+  name,
+  short_description,
+  long_description,
+  image,
+  startDate,
+  endDate,
+  finalAmount,
+  state,
+  StateId,
+  ongDonorId,
+  CategoryId
+) => {
+  const newCampaign = await Campaign.create({
+    name,
+    short_description,
+    long_description,
+    image,
+    startDate,
+    endDate,
+    finalAmount,
+    state,
+  });
+  await newCampaign.setCategories(CategoryId);
+  await newCampaign.setStates(StateId);
+  //await newCampaign.setOng_donors(ongDonorId); // Todavia falta hacer el getAllOngDonor()
 
-  const result = ong.flatMap((ong) =>
-    ong.campañas.map((campaign) =>
-      Campaign.findOrCreate({
-        where: {
-          name: campaign.name,
-          description: campaign.description,
-          image: campaign.image,
-          startDate: campaign.startDate,
-          endDate: campaign.endDate,
-          finalAmount: campaign.finalAmount,
-          //CategoryId: campaign,// Agregar relacion Category con su relacion
-        },
-      })
-    )
-  );
-  return result;
+  return newCampaign;
 };
 
 module.exports = {
   getAllCampaign,
   getCampaignByName,
+  postCampaign,
 };

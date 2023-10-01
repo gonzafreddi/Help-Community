@@ -13,24 +13,30 @@ const ong = [
       {
         id: 1,
         name: "Campaña de Ayuda a Víctimas de Inundaciones",
-        description: "Ayuda a las víctimas de inundaciones en la región",
+        short_description: "Ayuda a las víctimas de inundaciones en la región",
+        long_description:
+          "Enfrentamos una situación crítica debido a inundaciones en nuestra región. Miles de familias han perdido sus hogares y necesitan tu apoyo. Con tu donación, proporcionaremos refugio, alimentos y atención médica a los afectados. También implementaremos medidas a largo plazo para prevenir futuras inundaciones y proteger a nuestra comunidad.",
         image: "https://example.com/campaign1.jpg",
         startDate: "2023-10-01",
         endDate: "2023-11-30",
         finalAmount: 2500000,
         state: "active",
         category: "Trabajo",
+        province: "buenos aires",
       },
       {
         id: 2,
         name: "Campaña de Educación para Niños",
-        description: "Brindar educación a niños desfavorecidos",
+        short_description: "Brindar educación a niños desfavorecidos",
+        long_description:
+          "Nuestra Campaña de Educación para Niños está comprometida en cambiar el futuro de los niños que enfrentan desventajas educativas. En muchas comunidades, los niños desfavorecidos carecen de acceso a una educación de calidad. Tu apoyo nos permite ofrecer programas educativos que empoderan a estos niños, brindándoles las herramientas y oportunidades que merecen. Con tu donación, proporcionamos material educativo, becas y capacitación a maestros comprometidos. Creemos que cada niño tiene el potencial de triunfar, y con tu ayuda, estamos allanando el camino hacia un futuro más brillante para estos jóvenes, mejorando sus perspectivas de vida y contribuyendo a la equidad educativa.",
         image: "https://example.com/campaign2.jpg",
         startDate: "2023-09-15",
         endDate: "2023-12-15",
         finalAmount: 1500000,
         state: "active",
         category: "Educación",
+        province: "buenos aires",
       },
     ],
   },
@@ -46,26 +52,33 @@ const ong = [
     state: true,
     campañas: [
       {
-        id: 1,
+        id: 3,
         name: "Campaña de Alimentos para Niños",
-        description: "Recaudación de alimentos para niños necesitados",
+        short_description: "Recaudación de alimentos para niños necesitados",
+        long_description:
+          "Muchos niños en nuestra comunidad enfrentan la desnutrición y la falta de alimentos básicos. Ayúdanos a cambiar sus vidas donando hoy. Tu contribución permitirá que estos niños tengan comidas nutritivas y acceso a una atención médica adecuada.",
         image: "https://example.com/campaign3.jpg",
         startDate: "2023-10-10",
         endDate: "2023-11-30",
         finalAmount: 500000,
         state: "active",
         category: "Social",
+        province: "chaco",
       },
       {
-        id: 2,
+        id: 4,
         name: "Campaña de Apoyo a Personas Mayores",
-        description: "Brindar apoyo a personas mayores en situación de soledad",
+        short_description:
+          "Brindar apoyo a personas mayores en situación de soledad",
+        long_description:
+          "Nuestra Campaña de Apoyo a Personas Mayores se dedica a combatir la soledad y el aislamiento en la tercera edad. Para muchas personas mayores, la soledad es una realidad dolorosa que afecta su bienestar físico y emocional. Con tu apoyo, podemos llevar compañía, amistad y asistencia a estas personas que tanto lo necesitan. Organizamos visitas regulares, actividades recreativas y servicios de apoyo, permitiendo que nuestros mayores se sientan valorados y conectados con la comunidad. Tu generosidad nos ayuda a mejorar la calidad de vida de quienes han dedicado años a construir nuestras sociedades. Únete a nosotros y hagamos que cada día sea más luminoso para nuestros mayores.",
         image: "https://example.com/campaign4.jpg",
         startDate: "2023-09-20",
         endDate: "2023-12-20",
         finalAmount: 800000,
         state: "active",
         category: "Salud",
+        province: "chaco",
       },
     ],
   },
@@ -81,16 +94,19 @@ const ong = [
     state: false,
     campañas: [
       {
-        id: 1,
+        id: 5,
         name: "Campaña de Deporte para Jóvenes",
-        description:
+        short_description:
           "Fomentar la participación de jóvenes en actividades deportivas",
+        long_description:
+          "Queremos que los jóvenes de nuestra comunidad tengan la oportunidad de participar en actividades deportivas que fomenten la salud y el espíritu competitivo. Tu donación ayudará a proporcionar instalaciones deportivas adecuadas y entrenadores calificados para guiar a nuestros jóvenes hacia un futuro más saludable.",
         image: "https://example.com/campaign5.jpg",
         startDate: "2023-10-05",
         endDate: "2023-11-30",
         finalAmount: 1200000,
         state: "active",
         category: "Deportes / Recreación",
+        province: "río negro",
       },
     ],
   },
@@ -106,15 +122,18 @@ const ong = [
     state: false,
     campañas: [
       {
-        id: 1,
+        id: 6,
         name: "Campaña de Fomento a la Lectura",
-        description: "Promover la lectura en la comunidad",
+        short_description: "Promover la lectura en la comunidad",
+        long_description:
+          "La lectura es fundamental para el desarrollo intelectual y cultural de una comunidad. Con tu apoyo, ampliaremos nuestra colección de libros y organizaremos eventos educativos para fomentar la lectura en nuestra sociedad.",
         image: "https://example.com/campaign6.jpg",
         startDate: "2023-10-15",
         endDate: "2023-12-15",
         finalAmount: 950000,
         state: "active",
         category: "Cultura",
+        province: "san juan",
       },
     ],
   },
@@ -130,15 +149,18 @@ const ong = [
     state: false,
     campañas: [
       {
-        id: 1,
+        id: 7,
         name: "Campaña de Educación Ambiental",
-        description: "Promover la conciencia ambiental en la comunidad",
+        short_description: "Promover la conciencia ambiental en la comunidad",
+        long_description:
+          "Nuestro planeta enfrenta desafíos ambientales graves. Ayúdanos a crear conciencia ambiental en nuestra comunidad. Tu donación permitirá la realización de talleres educativos, programas de reciclaje y proyectos de conservación que protegerán nuestro entorno para las generaciones futuras.",
         image: "https://example.com/campaign7.jpg",
         startDate: "2023-10-08",
         endDate: "2023-12-08",
         finalAmount: 1800000,
         state: "active",
         category: "Medio ambiente",
+        province: "tucumán",
       },
     ],
   },
@@ -154,27 +176,33 @@ const ong = [
     state: false,
     campañas: [
       {
-        id: 1,
+        id: 8,
         name: "Campaña de Apoyo a la Juventud",
-        description:
+        short_description:
           "Brindar oportunidades a jóvenes en situación de vulnerabilidad",
+        long_description:
+          "Los jóvenes en situación de vulnerabilidad necesitan oportunidades para un futuro mejor. Tu contribución financiará programas de mentoría, capacitación laboral y actividades recreativas que empoderarán a nuestra juventud y les darán esperanza.",
         image: "https://example.com/campaign8.jpg",
         startDate: "2023-10-12",
         endDate: "2023-12-12",
         finalAmount: 1300000,
         state: "active",
         category: "Social",
+        province: "mendoza",
       },
       {
-        id: 2,
+        id: 9,
         name: "Campaña de Arte y Cultura",
-        description: "Fomentar actividades culturales en la comunidad",
+        short_description: "Fomentar actividades culturales en la comunidad",
+        long_description:
+          "Nuestra Campaña de Arte y Cultura está comprometida con enriquecer nuestras comunidades a través de la promoción de actividades culturales y artísticas. Reconocemos que el arte y la cultura son elementos fundamentales para el crecimiento y la cohesión de la sociedad. Tu apoyo nos permite llevar a cabo exposiciones, talleres, conciertos y eventos que fomentan la creatividad y el entendimiento intercultural. Juntos, podemos preservar nuestras tradiciones, empoderar a artistas locales y brindar a la comunidad acceso a la inspiración y la diversidad cultural. Únete a nosotros y se parte de la transformación cultural en nuestras comunidades.",
         image: "https://example.com/campaign9.jpg",
         startDate: "2023-09-25",
         endDate: "2023-11-30",
         finalAmount: 750000,
         state: "active",
         category: "Cultura",
+        province: "mendoza",
       },
     ],
   },
@@ -190,15 +218,19 @@ const ong = [
     state: false,
     campañas: [
       {
-        id: 1,
+        id: 10,
         name: "Campaña de Ayuda a Personas Mayores",
-        description: "Brindar apoyo a personas mayores en situación de soledad",
+        short_description:
+          "Brindar apoyo a personas mayores en situación de soledad",
+        long_description:
+          "Las personas mayores en soledad merecen nuestro apoyo y cariño. Con tu donación, proporcionaremos compañía, atención médica y recursos esenciales a los ancianos de nuestra comunidad. Juntos, podemos hacer que sus años dorados sean más dignos.",
         image: "https://example.com/campaign10.jpg",
         startDate: "2023-10-05",
         endDate: "2023-11-30",
         finalAmount: 900000,
         state: "active",
         category: "Salud",
+        province: "jujuy",
       },
     ],
   },
@@ -214,15 +246,19 @@ const ong = [
     state: false,
     campañas: [
       {
-        id: 1,
+        id: 11,
         name: "Campaña de Apoyo a Familias Vulnerables",
-        description: "Brindar apoyo a familias en situación de vulnerabilidad",
+        short_description:
+          "Brindar apoyo a familias en situación de vulnerabilidad",
+        long_description:
+          "En tiempos difíciles, muchas familias luchan para llegar a fin de mes. Tu donación ayudará a proporcionar alimentos, vivienda y servicios básicos a las familias en situación de vulnerabilidad. Juntos, podemos aliviar su sufrimiento y construir un futuro más prometedor.",
         image: "https://example.com/campaign11.jpg",
         startDate: "2023-10-10",
         endDate: "2023-12-10",
         finalAmount: 2200000,
         state: "active",
         category: "Social",
+        province: "jujuy",
       },
     ],
   },
@@ -238,26 +274,32 @@ const ong = [
     state: false,
     campañas: [
       {
-        id: 1,
+        id: 12,
         name: "Campaña de Apoyo a Veteranos de Guerra",
-        description: "Brindar apoyo a veteranos de guerra y sus familias",
+        short_description: "Brindar apoyo a veteranos de guerra y sus familias",
+        long_description:
+          "Nuestra campaña 'Apoyo a Veteranos de Guerra' se dedica a honrar y respaldar a aquellos valientes que han servido a su país. Estos héroes y sus familias enfrentan desafíos únicos, desde traumas de combate hasta dificultades de reintegración. Con tu generosa contribución, proporcionamos servicios de asesoramiento, atención médica y programas de empleo adaptados a las necesidades de los veteranos. También ofrecemos apoyo a sus familias, reconociendo su sacrificio. Tu donación es esencial para ayudar a nuestros veteranos a encontrar estabilidad, sanación y una vida digna después del servicio.",
         image: "https://example.com/campaign12.jpg",
         startDate: "2023-09-28",
         endDate: "2023-11-30",
         finalAmount: 1800000,
         state: "active",
         category: "Salud",
+        province: "neuquén",
       },
       {
-        id: 2,
+        id: 13,
         name: "Campaña de Educación para Niños",
-        description: "Brindar educación a niños desfavorecidos",
+        short_description: "Brindar educación a niños desfavorecidos",
+        long_description:
+          "Nuestra campaña 'Educación para Niños' tiene como objetivo romper el ciclo de la desigualdad brindando oportunidades educativas a niños desfavorecidos. Muchos de estos pequeños enfrentan barreras socioeconómicas que limitan su acceso a una educación de calidad. Con tu apoyo, proporcionamos becas escolares, material didáctico y programas de tutoría personalizados. Además, trabajamos en estrecha colaboración con escuelas locales y comunidades para crear entornos de aprendizaje seguros y enriquecedores. Tu donación es una inversión en el futuro de estos niños, ofreciéndoles las herramientas necesarias para alcanzar su máximo potencial y construir un camino hacia un futuro mejor.",
         image: "https://example.com/campaign13.jpg",
         startDate: "2023-10-15",
         endDate: "2023-12-15",
         finalAmount: 1500000,
         state: "active",
         category: "Educación",
+        province: "neuquén",
       },
     ],
   },
@@ -273,28 +315,34 @@ const ong = [
     state: false,
     campañas: [
       {
-        id: 1,
+        id: 14,
         name: "Campaña de Deporte y Recreación",
-        description:
+        short_description:
           "Promover actividades deportivas y recreativas en la comunidad",
+        long_description:
+          "Ayúdanos a llevar la alegría del deporte a nuestra comunidad. Con tu apoyo, promovemos la actividad física y la diversión en personas de todas las edades. Organizamos eventos deportivos, proporcionamos equipos y espacios para juegos, y ofrecemos clases y talleres. Tu donación nos permitirá continuar fortaleciendo los lazos comunitarios y fomentar un estilo de vida activo y saludable.",
         image: "https://example.com/campaign14.jpg",
         startDate: "2023-10-05",
         endDate: "2023-11-30",
         finalAmount: 1300000,
         state: "active",
         category: "Deportes / Recreación",
+        province: "córdoba",
       },
       {
-        id: 2,
+        id: 15,
         name: "Campaña de Cultura y Arte",
-        description:
+        short_description:
           "Fomentar actividades culturales y artísticas en la comunidad",
+        long_description:
+          "Únete a nuestra Campaña de Cultura y Arte para inspirar y enriquecer nuestras vidas a través del poder del arte y la cultura. Estamos comprometidos en organizar exposiciones, conciertos, talleres y eventos culturales para que todos puedan disfrutar y participar. Tu contribución nos ayudará a proporcionar recursos, espacios y oportunidades para artistas locales y promover la apreciación de la cultura en nuestra comunidad. Juntos, construiremos un futuro más creativo y vibrante.",
         image: "https://example.com/campaign15.jpg",
         startDate: "2023-09-20",
         endDate: "2023-12-20",
         finalAmount: 800000,
         state: "active",
         category: "Cultura",
+        province: "córdoba",
       },
     ],
   },
@@ -310,26 +358,32 @@ const ong = [
     state: false,
     campañas: [
       {
-        id: 1,
+        id: 16,
         name: "Campaña de Apoyo a Veteranos de Guerra",
-        description: "Brindar apoyo a veteranos de guerra y sus familias",
+        short_description: "Brindar apoyo a veteranos de guerra y sus familias",
+        long_description:
+          "Únete a nuestra Campaña de Apoyo a Veteranos de Guerra y hagamos juntos una diferencia significativa. Nuestros valientes veteranos y sus familias han sacrificado mucho por nuestra nación, y ahora es nuestro turno de cuidarlos. Con tus donaciones, proporcionaremos asistencia médica, apoyo psicológico, viviendas dignas y programas de reintegración para aquellos que han servido. Juntos, podemos mostrar nuestro agradecimiento y brindarles la calidad de vida que se merecen.",
         image: "https://example.com/campaign16.jpg",
         startDate: "2023-10-28",
         endDate: "2023-12-31",
         finalAmount: 2800000,
         state: "active",
         category: "Salud",
+        province: "ciudad autónoma de buenos aires",
       },
       {
-        id: 2,
+        id: 17,
         name: "Campaña de Educación para Jóvenes",
-        description: "Brindar educación a jóvenes desfavorecidos",
+        short_description: "Brindar educación a jóvenes desfavorecidos",
+        long_description:
+          "Nuestra Campaña de Educación para Jóvenes se centra en un futuro más brillante. Imagina un mundo donde todos los jóvenes, sin importar su origen, tengan acceso a una educación de calidad. Con tus donaciones, estamos construyendo escuelas, proporcionando material educativo y capacitando a maestros dedicados para alcanzar este sueño. Cada dólar donado ayuda a jóvenes desfavorecidos a superar barreras y alcanzar su máximo potencial. Únete a nosotros en esta misión de empoderamiento y transformación.",
         image: "https://example.com/campaign17.jpg",
         startDate: "2023-09-15",
         endDate: "2023-12-15",
         finalAmount: 1500000,
         state: "active",
         category: "Educación",
+        province: "ciudad autónoma de buenos aires",
       },
     ],
   },
@@ -345,26 +399,33 @@ const ong = [
     state: false,
     campañas: [
       {
-        id: 1,
+        id: 18,
         name: "Campaña de Alimentos para Niños",
-        description: "Recaudación de alimentos para niños necesitados",
+        short_description: "Recaudación de alimentos para niños necesitados",
+        long_description:
+          "Nuestra Campaña de Alimentos para Niños se enfoca en luchar contra el hambre infantil. Millones de niños en todo el mundo se acuestan cada noche con hambre, lo que afecta su salud y su futuro. Con tu generosa donación, estamos proporcionando comidas nutritivas a niños necesitados, asegurando que tengan la energía y los nutrientes necesarios para crecer y prosperar. Cada donación es una oportunidad de transformar la vida de un niño y brindarle esperanza. Únete a nuestra causa y sé parte del cambio que el mundo necesita.",
         image: "https://example.com/campaign18.jpg",
         startDate: "2023-10-10",
         endDate: "2023-11-30",
         finalAmount: 500000,
         state: "active",
         category: "Social",
+        province: "tucumán",
       },
       {
-        id: 2,
+        id: 19,
         name: "Campaña de Apoyo a Personas Mayores",
-        description: "Brindar apoyo a personas mayores en situación de soledad",
+        short_description:
+          "Brindar apoyo a personas mayores en situación de soledad",
+        long_description:
+          "Nuestra Campaña de Apoyo a Personas Mayores tiene como objetivo combatir la soledad y el aislamiento en la población de la tercera edad. Muchos adultos mayores se encuentran solos, sin compañía ni apoyo, lo que afecta su bienestar emocional y físico. Con tu generosa contribución, estamos creando redes de apoyo y amistad para personas mayores, organizando visitas regulares y actividades enriquecedoras. Tu donación permite que los ancianos disfruten de una calidad de vida mejorada y se sientan valorados en su comunidad. Únete a nosotros en esta noble causa y ayúdanos a brindar amor y compañía a quienes más lo necesitan.",
         image: "https://example.com/campaign19.jpg",
         startDate: "2023-09-20",
         endDate: "2023-12-20",
         finalAmount: 800000,
         state: "active",
         category: "Salud",
+        province: "tucumán",
       },
     ],
   },
@@ -380,16 +441,19 @@ const ong = [
     state: false,
     campañas: [
       {
-        id: 1,
+        id: 20,
         name: "Campaña de Alimentos para Familias Necesitadas",
-        description:
+        short_description:
           "Recaudación de alimentos para familias en situación de vulnerabilidad",
+        long_description:
+          "Nuestra Campaña de Alimentos para Familias Necesitadas se enfoca en apoyar a las familias que están luchando contra la vulnerabilidad alimentaria. Muchas familias, debido a diversas circunstancias, no tienen acceso suficiente a alimentos nutritivos. Tu donación marca la diferencia al proporcionar alimentos esenciales a quienes más lo necesitan. Estamos trabajando en la distribución equitativa de alimentos, brindando comidas calientes y paquetes de alimentos a estas familias. Con tu ayuda, estamos combatiendo el hambre y mejorando la calidad de vida de estas personas, ofreciéndoles la esperanza de un futuro más brillante.",
         image: "https://example.com/campaign20.jpg",
         startDate: "2023-10-18",
         endDate: "2023-11-30",
         finalAmount: 1200000,
         state: "active",
         category: "Social",
+        province: "mendoza",
       },
     ],
   },
@@ -405,16 +469,19 @@ const ong = [
     state: false,
     campañas: [
       {
-        id: 1,
+        id: 21,
         name: "Campaña de Arte y Cultura",
-        description:
+        short_description:
           "Fomentar actividades culturales y artísticas en la comunidad",
+        long_description:
+          "Nuestra Campaña de Arte y Cultura tiene como objetivo enriquecer la vida de nuestra comunidad a través del arte y la cultura. Creemos que el acceso a experiencias culturales y artísticas es fundamental para el desarrollo humano. Tu apoyo nos permite llevar a cabo eventos, talleres y exposiciones que inspiran a jóvenes y adultos por igual. Estamos comprometidos a abrir puertas a la creatividad y a celebrar la diversidad cultural. Con tus donaciones, estamos construyendo un espacio donde la imaginación florece y donde las voces artísticas se elevan. Únete a nosotros para hacer que la cultura sea accesible para todos.",
         image: "https://example.com/campaign21.jpg",
         startDate: "2023-10-15",
         endDate: "2023-12-15",
         finalAmount: 800000,
         state: "active",
         category: "Cultura",
+        province: "ciudad autónoma de buenos aires",
       },
     ],
   },
@@ -430,26 +497,33 @@ const ong = [
     state: false,
     campañas: [
       {
-        id: 1,
+        id: 22,
         name: "Campaña de Apoyo a Familias Vulnerables",
-        description: "Brindar apoyo a familias en situación de vulnerabilidad",
+        short_description:
+          "Brindar apoyo a familias en situación de vulnerabilidad",
+        long_description:
+          "Nuestra Campaña de Apoyo a Familias Vulnerables tiene como misión principal ayudar a las familias que se encuentran en momentos difíciles. Sabemos que muchas familias luchan contra la adversidad, ya sea debido a la pérdida de empleo, desastres naturales u otras circunstancias. Tu generosidad nos permite proporcionar refugio, alimentos, atención médica y apoyo emocional a estas familias en situación de vulnerabilidad. Estamos comprometidos a construir un futuro mejor para ellos, donde puedan recuperarse y prosperar. Tus donaciones son la clave para hacerlo posible. Únete a nosotros en esta noble causa y ayuda a cambiar vidas.",
         image: "https://example.com/campaign22.jpg",
         startDate: "2023-10-10",
         endDate: "2023-11-30",
         finalAmount: 1200000,
         state: "active",
         category: "Social",
+        province: "buenos aires",
       },
       {
-        id: 2,
+        id: 23,
         name: "Campaña de Educación para Niños",
-        description: "Brindar educación a niños desfavorecidos",
+        short_description: "Brindar educación a niños desfavorecidos",
+        long_description:
+          "Nuestra Campaña de Educación para Niños es un faro de esperanza para los niños desfavorecidos que anhelan un futuro brillante. En todo el mundo, millones de niños enfrentan barreras para acceder a una educación de calidad. Con tu apoyo, estamos derribando esas barreras. Tus donaciones ayudan a proporcionar libros, útiles escolares y oportunidades de aprendizaje a niños que de otra manera no tendrían acceso a la educación. Estamos construyendo puentes hacia un mundo de conocimiento y posibilidades para estos jóvenes. Únete a nosotros en esta travesía educativa y marca la diferencia en las vidas de estos niños.",
         image: "https://example.com/campaign23.jpg",
         startDate: "2023-09-25",
         endDate: "2023-12-31",
         finalAmount: 1500000,
         state: "active",
         category: "Educación",
+        province: "buenos aires",
       },
     ],
   },
@@ -465,16 +539,19 @@ const ong = [
     state: false,
     campañas: [
       {
-        id: 1,
+        id: 24,
         name: "Campaña de Construcción de Viviendas",
-        description:
+        short_description:
           "Construir viviendas para familias en situación de necesidad",
+        long_description:
+          "Nuestra Campaña de Construcción de Viviendas se enfoca en cambiar vidas y comunidades enteras. Imagina un mundo donde cada familia tenga un techo seguro sobre sus cabezas, un lugar donde puedan crear recuerdos y prosperar. Lamentablemente, muchas familias luchan por tener un hogar digno. Con tu apoyo, estamos construyendo la esperanza y la seguridad que estas familias necesitan desesperadamente. Cada donación contribuye directamente a la construcción de viviendas asequibles y adecuadas para aquellos que más lo necesitan. Ayúdanos a convertir casas en hogares y a construir un futuro mejor para estas familias.",
         image: "https://example.com/campaign24.jpg",
         startDate: "2023-10-20",
         endDate: "2023-12-20",
         finalAmount: 2500000,
         state: "active",
         category: "Vivienda",
+        province: "misiones",
       },
     ],
   },
@@ -490,15 +567,19 @@ const ong = [
     state: false,
     campañas: [
       {
-        id: 1,
+        id: 25,
         name: "Campaña de Apoyo a Jóvenes Deportistas",
-        description: "Brindar apoyo a jóvenes deportistas en su formación",
+        short_description:
+          "Brindar apoyo a jóvenes deportistas en su formación",
+        long_description:
+          "Nuestra Campaña de Apoyo a Jóvenes Deportistas tiene como objetivo empoderar a la próxima generación de atletas. Muchos jóvenes talentosos enfrentan barreras económicas que obstaculizan su desarrollo en el mundo del deporte. Con tu generosidad, estamos cambiando eso. Tu contribución proporciona oportunidades de entrenamiento de calidad, acceso a instalaciones deportivas y asesoramiento profesional a estos jóvenes talentos. Estamos construyendo un camino hacia el éxito deportivo y personal para estos atletas prometedores. Tu apoyo marca la diferencia en la vida de quienes sueñan con llegar a la cima.",
         image: "https://example.com/campaign25.jpg",
         startDate: "2023-10-25",
         endDate: "2023-12-25",
         finalAmount: 1800000,
         state: "active",
         category: "Deportes / Recreación",
+        province: "ciudad autónoma de buenos aires",
       },
     ],
   },
@@ -514,16 +595,19 @@ const ong = [
     state: false,
     campañas: [
       {
-        id: 1,
+        id: 26,
         name: "Campaña de Equipamiento para Bomberos",
-        description:
+        short_description:
           "Adquirir equipos y herramientas para el cuerpo de bomberos",
+        long_description:
+          "Nuestra Campaña de Equipamiento para Bomberos busca garantizar la seguridad de nuestros valientes bomberos, quienes arriesgan sus vidas para protegernos a diario. La falta de equipos adecuados pone en riesgo su labor heroica. Con tu apoyo, adquiriremos equipos de última generación, herramientas especializadas y tecnología avanzada para que puedan enfrentar incendios y emergencias con mayor eficiencia y seguridad. Tu contribución no solo protege a nuestros bomberos, sino que también preserva vidas y propiedades en nuestras comunidades. Juntos, hacemos posible su misión de salvar vidas.",
         image: "https://example.com/campaign26.jpg",
         startDate: "2023-11-05",
         endDate: "2023-12-31",
         finalAmount: 3500000,
         state: "active",
         category: "Infraestructura, obras, servicios públicos",
+        province: "córdoba",
       },
     ],
   },
@@ -539,15 +623,19 @@ const ong = [
     state: false,
     campañas: [
       {
-        id: 1,
+        id: 27,
         name: "Campaña de Promoción de la Cultura Local",
-        description: "Promover y preservar la cultura folklórica de la región",
+        short_description:
+          "Promover y preservar la cultura folklórica de la región",
+        long_description:
+          "Nuestra Campaña de Promoción de la Cultura Local es una iniciativa apasionante para salvaguardar y celebrar las ricas tradiciones y expresiones culturales de nuestra región. La cultura es el alma de nuestra comunidad, y esta campaña se enfoca en rescatar y promover nuestras danzas, música, artesanías y festividades únicas. Tu apoyo financiero respaldará la organización de eventos culturales, talleres educativos y la preservación de nuestro patrimonio cultural. Juntos, podemos asegurar que las futuras generaciones hereden y valoren nuestra identidad cultural, fortaleciendo así el tejido social de nuestra comunidad.",
         image: "https://example.com/campaign27.jpg",
         startDate: "2023-10-15",
         endDate: "2023-12-15",
         finalAmount: 900000,
         state: "active",
         category: "Cultura",
+        province: "chaco",
       },
     ],
   },
@@ -563,16 +651,19 @@ const ong = [
     state: false,
     campañas: [
       {
-        id: 1,
+        id: 28,
         name: "Campaña de Apoyo a Niños con Mielomeningocele",
-        description:
+        short_description:
           "Brindar apoyo médico y terapéutico a niños con mielomeningocele",
+        long_description:
+          "Nuestra Campaña de Apoyo a Niños con Mielomeningocele es una iniciativa que busca marcar la diferencia en las vidas de los niños que enfrentan esta condición médica. El mielomeningocele es un defecto congénito de la médula espinal que puede tener un impacto significativo en la calidad de vida de los niños. Tu contribución financiera respaldará tratamientos médicos, terapias especializadas y el acceso a equipos adaptativos que son esenciales para el desarrollo y bienestar de estos valientes pequeños. Con tu generosidad, estamos construyendo un futuro más brillante y lleno de oportunidades para estos niños y sus familias, brindándoles la esperanza y el apoyo que merecen.",
         image: "https://example.com/campaign28.jpg",
         startDate: "2023-11-01",
         endDate: "2023-12-31",
         finalAmount: 1100000,
         state: "active",
         category: "Salud",
+        province: "santiago del estero",
       },
     ],
   },
@@ -588,16 +679,19 @@ const ong = [
     state: false,
     campañas: [
       {
-        id: 1,
+        id: 29,
         name: "Campaña de Educación para Jóvenes",
-        description:
+        short_description:
           "Brindar educación y oportunidades a jóvenes en riesgo social",
+        long_description:
+          "Nuestra Campaña de Educación para Jóvenes está dedicada a transformar vidas y comunidades al brindar educación y oportunidades a jóvenes en riesgo social. En un mundo donde el acceso a la educación es desigual, tu apoyo es una inversión en el futuro. Con cada donación, estamos derribando barreras educativas y empoderando a estos jóvenes para que alcancen su máximo potencial. Estamos creando programas educativos innovadores, ofreciendo tutorías personalizadas y proporcionando recursos para que puedan superar obstáculos. Tu contribución es la llave que abre puertas hacia un futuro más brillante, donde estos jóvenes puedan construir un camino exitoso y contribuir positivamente a la sociedad.",
         image: "https://example.com/campaign29.jpg",
         startDate: "2023-11-10",
         endDate: "2023-12-31",
         finalAmount: 950000,
         state: "active",
         category: "Educación",
+        province: "santa fe",
       },
     ],
   },
@@ -613,15 +707,19 @@ const ong = [
     state: false,
     campañas: [
       {
-        id: 1,
+        id: 30,
         name: "Campaña de Desarrollo Comunitario",
-        description: "Promover el desarrollo sostenible en comunidades locales",
+        short_description:
+          "Promover el desarrollo sostenible en comunidades locales",
+        long_description:
+          "Nuestra Campaña de Desarrollo Comunitario se centra en impulsar el progreso sostenible en las comunidades locales. En un mundo donde las desigualdades persisten, buscamos crear un cambio real. Con tu apoyo, estamos construyendo un futuro donde las comunidades tengan acceso a recursos básicos, educación de calidad y oportunidades económicas. Estamos trabajando junto a estas comunidades para desarrollar infraestructuras sostenibles, fomentar la educación ambiental y promover el empoderamiento económico. Tu donación es un paso hacia un mundo más equitativo y sostenible, donde cada comunidad pueda prosperar y preservar su entorno para las generaciones futuras.",
         image: "https://example.com/campaign30.jpg",
         startDate: "2023-11-05",
         endDate: "2023-12-31",
         finalAmount: 3800000,
         state: "active",
         category: "Economía",
+        province: "tucumán",
       },
     ],
   },
@@ -637,15 +735,19 @@ const ong = [
     state: false,
     campañas: [
       {
-        id: 1,
+        id: 31,
         name: "Campaña de Mejora de Infraestructura",
-        description: "Realizar mejoras en la infraestructura de la comunidad",
+        short_description:
+          "Realizar mejoras en la infraestructura de la comunidad",
+        long_description:
+          "Nuestra Campaña de Mejora de Infraestructura está enfocada en transformar las vidas de las personas en comunidades desatendidas. Sabemos que la falta de infraestructura adecuada puede obstaculizar el progreso y el bienestar. Con tu apoyo, estamos llevando a cabo proyectos para mejorar carreteras, puentes, sistemas de agua potable y más. Estas mejoras no solo facilitan el acceso a servicios básicos, como atención médica y educación, sino que también generan empleo local. Tu donación marca la diferencia al crear un entorno más seguro y próspero para estas comunidades. Únete a nosotros en la construcción de un futuro mejor y más accesible para todos.",
         image: "https://example.com/campaign31.jpg",
         startDate: "2023-11-08",
         endDate: "2023-12-31",
         finalAmount: 2600000,
         state: "active",
         category: "Infraestructura, obras, servicios públicos",
+        province: "buenos aires",
       },
     ],
   },
@@ -661,15 +763,19 @@ const ong = [
     state: false,
     campañas: [
       {
-        id: 1,
+        id: 32,
         name: "Campaña de Capacitación para ONGs",
-        description: "Brindar capacitación a organizaciones no gubernamentales",
+        short_description:
+          "Brindar capacitación a organizaciones no gubernamentales",
+        long_description:
+          "Nuestra Campaña de Capacitación para ONGs es esencial para fortalecer el tejido de apoyo a las comunidades necesitadas. Trabajamos incansablemente para empoderar a organizaciones no gubernamentales, proporcionándoles las habilidades y herramientas necesarias para maximizar su impacto. Al invertir en esta campaña, estás invirtiendo en el futuro de numerosas ONGs y, por ende, en la vida de las personas a las que sirven. Tu contribución permite que estas organizaciones sean más efectivas en la lucha contra la pobreza, la educación, la salud y otros desafíos cruciales. Juntos, podemos construir un mundo más justo y equitativo.",
         image: "https://example.com/campaign32.jpg",
         startDate: "2023-11-15",
         endDate: "2023-12-31",
         finalAmount: 1800000,
         state: "active",
         category: "Educación",
+        province: "jujuy",
       },
     ],
   },
@@ -685,15 +791,18 @@ const ong = [
     state: false,
     campañas: [
       {
-        id: 1,
+        id: 33,
         name: "Campaña de Apoyo a Personas sin Hogar",
-        description: "Brindar apoyo a personas en situación de calle",
+        short_description: "Brindar apoyo a personas en situación de calle",
+        long_description:
+          "Nuestra Campaña de Apoyo a Personas sin Hogar tiene como objetivo ayudar a las personas más vulnerables de nuestra sociedad. Diariamente, miles de personas luchan por sobrevivir en las calles, enfrentando el hambre, el frío y la soledad. Con tu generosidad, podemos ofrecer refugio, alimentos calientes y servicios de atención médica a quienes más lo necesitan. Pero esto no es solo una solución a corto plazo; estamos comprometidos en trabajar en programas de rehabilitación y vivienda asequible para brindar un camino hacia la recuperación y la estabilidad. Tu donación marca la diferencia entre la desesperación y la esperanza para estas personas sin hogar, brindándoles una segunda oportunidad para reconstruir sus vidas.",
         image: "https://example.com/campaign33.jpg",
         startDate: "2023-11-20",
         endDate: "2023-12-31",
         finalAmount: 750000,
         state: "active",
         category: "Social",
+        province: "ciudad autónoma de buenos aires",
       },
     ],
   },
