@@ -1,0 +1,86 @@
+.contenedor{
+    height: 390px;
+    width: 220px;
+    text-align: center;
+    transition: animation 0.2s;
+    box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.178);
+    margin-bottom: 35px;
+    border-radius: 5px;
+}
+
+.contenedorImagen{
+    position: relative;
+    background-color: white;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    
+}
+
+.imagen{
+    width: 220px;
+    height: 170px;
+    object-fit:contain;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    
+}
+
+.nombre{
+    margin-top: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 55px;
+    text-align: left;
+    color: rgba(0, 0, 0, 0.829);
+    font-size: 14px;
+    font-weight: 500;
+    overflow: auto;
+    /* background: rgb(255, 255, 255); */
+    
+}
+
+.descripcion{
+    margin-top: -10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: left;
+    color: rgba(0, 0, 0, 0.7);
+    font-size: 14px;
+    /* font-weight: 500; */
+    height: 80px;
+    overflow: auto;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.199);
+}
+
+.precio{
+    margin-top: -13px;
+    padding-left: 10px;
+    text-align: left;
+    color: rgba(0, 0, 0, 0.9);
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.categoria{
+    margin-top: -13px;
+    padding-left: 10px;
+    text-align: left;
+    color: rgba(0, 0, 0, 0.9);
+    font-size: 14px;
+    /* font-weight: 500; */
+}
+
+.link{
+    text-decoration: none;
+    
+    
+}
+
+.verMas{
+    margin-top: -15px;
+    padding-right: 15px;
+    text-align: right;
+    color: rgb(19, 153, 2);
+    font-size: 16px;
+    /* font-weight: 500; */
+}

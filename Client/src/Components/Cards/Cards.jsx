@@ -5,7 +5,6 @@ import style from "./Cards.module.css"
 import { getCampaign } from "../../redux/actions/action";
 
 
-
 export const Cards = ({data}) => {
   
   const dispatch = useDispatch()

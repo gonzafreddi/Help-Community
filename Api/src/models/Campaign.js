@@ -24,15 +24,25 @@ module.exports = (sequelize) => {
       allowNull: true,
     },
     startDate: {
-      type: DataTypes.DATE,
+      type: DataTypes.STRING,
       allowNull: false,
+      validate: {
+        isDate: {
+          msg: "endDate must be a valid date ie.: 1980-01-25",
+        },
+      },
     },
     endDate: {
-      type: DataTypes.DATE,
+      type: DataTypes.STRING,
       allowNull: false,
+      validate: {
+        isDate: {
+          msg: "endDate must be a valid date ie.: 1980-01-25",
+        },
+      },
     },
     finalAmount: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.INTEGER,
       allowNull: true,
     },
     state: {
