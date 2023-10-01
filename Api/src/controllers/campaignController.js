@@ -1,5 +1,5 @@
 const axios = require("axios");
-const { Campaign, Category, Donation, Ong_donor, State } = require("../db");
+const { Campaign, Categories, Donation, Ong_donor, State } = require("../db");
 const { Op } = require("sequelize");
 
 const ong = require("../../dataApi/ong");
@@ -7,15 +7,14 @@ const ong = require("../../dataApi/ong");
 const getAllCampaign = async function () {
   const campaign = await Campaign.findAll();
   if (campaign.length) {
-    /* const result = await Campaign.findAll({
+    const result = await Campaign.findAll({
       include: {
-        model: Ong_donor,
-        attributes: ["StateId"],
-        through: { attributes: [] }, 
-      }, //Devuelve un array de objetos, si se quiere mostrar solo como un objeto, hay que hacer un map.
+        model: State,
+        attributes: ["name"],
+        through: { attributes: [] },
+      },
     });
- */
-    return campaign;
+    return result;
   }
   getAllCampaignsDB();
 };
@@ -32,7 +31,7 @@ const getCampaignByName = async function (name) {
         },
       },
       /* include: {
-        model: Categories,
+        model: Ong_Donor,
         attributes: ["name"],
         through: { attributes: [] },
       }, */
@@ -51,7 +50,9 @@ const getAllCampaignsDB = async function () {
       Campaign.findOrCreate({
         where: {
           name: campaign.name,
-          description: campaign.description,
+          short_description: campaign.short_description,
+          long_description: campaign.long_description,
+          StateId: campaign.StateId,
           image: campaign.image,
           startDate: campaign.startDate,
           endDate: campaign.endDate,
@@ -64,29 +65,38 @@ const getAllCampaignsDB = async function () {
   return result;
 };
 
-const postCampaign = async (req, res) => {
-  const { name, short_description, large_description, image, startDate, endDate, finalAmount, state } = req.body; 
-
-  if (!name || !short_description || !large_description || !startDate || !endDate || !finalAmount) {
-    return res.status(400).json({ error: "Require all data" });
-  }
-
-  const campaigns = await Campaign.create({
-      name,
-      short_description,
-      large_description,
-      image,
-      startDate,
-      endDate,
-      finalAmount,
-      state
+const postCampaign = async (
+  name,
+  short_description,
+  long_description,
+  image,
+  startDate,
+  endDate,
+  finalAmount,
+  state,
+  StateId,
+  ongDonorId,
+  CategoryId
+) => {
+  const newCampaign = await Campaign.create({
+    name,
+    short_description,
+    long_description,
+    image,
+    startDate,
+    endDate,
+    finalAmount,
+    state,
   });
+  await newCampaign.setState(CategoryId);
+  await newCampaign.setStates(StateId);
+  await newCampaign.setState(ongDonorId);
 
-  return campaigns;
+  return newCampaign;
 };
 
 module.exports = {
   getAllCampaign,
   getCampaignByName,
-  postCampaign
+  postCampaign,
 };
