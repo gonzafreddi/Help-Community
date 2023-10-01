@@ -69,32 +69,6 @@ export function filterByState(payload){
     }
 }
 
-export const getState = ()=>{
-    return async function(dispatch){
-        try {
-            const {data} = await axios("http://localhost:3001/state")
-            dispatch({
-                type: GET_STATE,
-                payload: data
-            })
-        } catch (error) {
-            console.log(error.mesage)
-        }
-    }
-}
-
-export function postCampaign(payload) {
-    return async function (dispatch) {
-        //ruta fictiocia
-       try {
-        const response = await axios.post('http://localhost:3001/create/campaign', payload);
-        return response
-       } catch (error) {
-        return error.message
-       }
-    }
-}
-
 
 
 export function filterByCategory(payload){
@@ -142,23 +116,3 @@ export function postCampaign(payload) {
     }
 }
 
-
-
-export function filterByCategory(payload){
-    return{
-        type: "FILTER_BY_CATEGORY",
-        payload
-    }
-}
-
-export const getProduct = () => {
-    return async function (dispatch){
-        try{
-            const productData = await axios("http://localhost:3001/product");
-            const product = productData.data;
-            dispatch({type: GET_PRODUCT, payload: product});
-        } catch (error){
-            console.log("error en devolver la action", error.message)
-        }
-    };
-};
