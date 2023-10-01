@@ -1,4 +1,7 @@
-const { getAllProducts } = require("../controllers/productController");
+const {
+  getAllProducts,
+  postProduct,
+} = require("../controllers/productController");
 
 const getProductHandler = async (req, res) => {
   try {
@@ -10,4 +13,15 @@ const getProductHandler = async (req, res) => {
   }
 };
 
-module.exports = { getProductHandler };
+const postProductHandler = async (req, res) => {
+  const { name, description, image, price, category, ongDonorId } = req.body;
+
+  try {
+    await postProduct(name, description, image, price, category, ongDonorId);
+    res.status(200).json(`The Product ${name} was successfully created`);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+module.exports = { getProductHandler, postProductHandler };
