@@ -27,7 +27,7 @@ const [page, setPage] = useState(1);
 
  return (
    <div>
-       <FilterBar campaigns={campaigns}/>
+       {/* <FilterBar campaigns={campaigns}/> */}
        <Cards data={getCurrentPageCampaigns()}/>
        <Pagination page={page} setPage={setPage} itemsPerPage={cardsPerPage} totalItems={totalItems}/>
    </div>

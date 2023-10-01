@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_DETAIL_CAMPAIGN , GET_STATE} from "./action_type";
+import { GET_DETAIL_CAMPAIGN , GET_STATE, GET_CATEGORY} from "./action_type";
 export const GET_CAMPAIGN = "GET_CAMPAIGN";
 export const FILTER_BY_STATE = "FILTER_BY_STATE";
 
@@ -58,12 +58,23 @@ export function postCampaign(payload) {
     return async function (dispatch) {
         //ruta fictiocia
        try {
-        const response = await axios.post('http://localhost:3001/create/campaign', payload);
+        const response = await axios.post('http://localhost:3001/campaign/create', payload);
         return response
        } catch (error) {
         return error.message
        }
     }
 }
-
-
+export function getCategory(){
+    return async function(dispatch){
+        try { 
+            const response = await axios("http://localhost:3001/category")
+            dispatch({
+                type: GET_CATEGORY,
+                payload:response.data
+            })
+        } catch (error) {
+            return console.log(error.message)           
+        }
+    }
+}

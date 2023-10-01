@@ -1,14 +1,16 @@
 import { GET_CAMPAIGN, FILTER_BY_STATE } from "../actions/action"
-import { GET_DETAIL_CAMPAIGN, GET_STATE } from "../actions/action_type";
+import { GET_CATEGORY, GET_DETAIL_CAMPAIGN, GET_STATE } from "../actions/action_type";
 const initialState = {
     campaign: [],
     campaignBackup: [],
     detailCampaign: [],
-    states: []
+    states: [],
+    category: []
 }
 
 
 const  reducer = (state = initialState, action)=> {
+    console.log(action.payload)
     switch (action.type) {
         case GET_CAMPAIGN:
                 return {
@@ -19,7 +21,7 @@ const  reducer = (state = initialState, action)=> {
 
 
         case FILTER_BY_STATE:
-            const allCampaignCopy = [...state.campaignBackUp];
+            const allCampaignCopy = [...state.campaignBackup];
             const filteredByState = 
             action.payload === "Todos"
             ? allCampaignCopy
@@ -45,6 +47,12 @@ const  reducer = (state = initialState, action)=> {
                 states: action.payload
                 
             }
+        case GET_CATEGORY:{
+            return{
+                ...state,
+                category: action.payload
+            }
+        }
                 default:
                     return state;
     }

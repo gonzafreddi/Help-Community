@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import './Nav.css';
-import SearchBar from '../SearchBar/SearchBar';
+// import SearchBar from '../SearchBar/SearchBar';
 
 
 export const Nav = () => {
@@ -27,7 +27,7 @@ export const Nav = () => {
 
                 <div className='sb-and-login'>
                     <div className='sb'>
-                        <SearchBar/>
+                        {/* <SearchBar/> */}
 
                     </div>
                     <button className='nav-button'>Iniciar Sesion</button>
