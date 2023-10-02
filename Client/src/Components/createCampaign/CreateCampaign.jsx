@@ -30,7 +30,7 @@ export default function CreateCampaign(){
     long_description: "",
     image: "",
     endDate: [],
-    CategoryID:"",
+    CategoryId:"",
     finalAmount: "",
     StateId: ""
   })
@@ -41,13 +41,15 @@ export default function CreateCampaign(){
     handleSubmit(info, dispatch, postCampaign);
   };
 
+
   const handleInputChange = (e) => {
     handleChange(info, setInfo, setErrors, e);
   };
 
   const isDisabled = disableFunction(errors);
 
-  
+  console.log(info)
+  console.log(errors)
     return(<div className={style.bodyConteiner}>
         <div className={style.formConteiner}>
          
@@ -66,15 +68,11 @@ export default function CreateCampaign(){
 
 
                 
-//---------------------------------------------trabajar sobre cloudinray---------------------------------------------------------------------------------------
 
 
                 <label className={style.title}  htmlFor=""><h3>Añade una imagen a tu campaña</h3></label>
                 <button className={style.send}>Subir Foto</button>
 
-
-
----------------------------------------------------------------------------------------------------------------------------------------
                <div className={style.selectsConteiner}>
                 <div className={style.state}>
                 <label className={style.title}  htmlFor=""><h3>¿En que provincia se encuntra tu campaña?</h3></label>
@@ -116,7 +114,7 @@ export default function CreateCampaign(){
                </div>
 
                 <h3 className={style.title} >¿Cuales son las razones principales por las que vas a recaudar dinero</h3>
-                <span>{errors.CategoryID}</span>
+                <span>{errors.CategoryId}</span>
               <select onChange={handleInputChange} name="CategoryId" id="">
                 {
                   category.map((e,index)=><option key={index} value={e.id}>

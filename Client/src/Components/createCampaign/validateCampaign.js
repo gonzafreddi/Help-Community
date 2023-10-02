@@ -18,8 +18,8 @@ export function validateCampaign(input) {
     if (!input.CategoryId) {
       error.CategoryId = "Seleccione una categoría";
     }
-    if (!input.state) {
-      error.state = "Seleccione una provincia";
+    if (!input.StateId) {
+      error.StateId = "Seleccione una provincia";
     }
     if (!input.finalAmount) {
       error.finalAmount = "Debe tener un objetivo máximo de dinero";
