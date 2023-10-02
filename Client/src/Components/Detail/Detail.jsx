@@ -8,19 +8,26 @@ import { useDispatch, useSelector } from "react-redux/";
 
 export const Detail = () => {
 const dispatch = useDispatch()
-
-const campDetail = useSelector((state)=>state.detailCampaign)
-console.log(campDetail[0].long_description)
-//me susubribo al estdo global para consumir la info del detalle
 const name = useParams()
+const campDetail = useSelector((state)=>state.detailCampaign)
+console.log(name.id)
+
+  // useEffect(()=>{
+  //   dispatch(getDetailCampaign(name.id))
+  //   return()=>{
+  //     dispatch(getDetailCampaign())
+  //   }
+  // },[])
+
 
   useEffect(()=>{
     dispatch(getDetailCampaign(name.id))
-    return()=>{
-      dispatch(getDetailCampaign())
-    }
   },[])
-
+  
+  console.log(campDetail)
+  //me susubribo al estdo global para consumir la info del detalle
+  
+  
 
 
   return (
@@ -63,9 +70,9 @@ const name = useParams()
             <p>{campDetail[0]?.description}</p>
       </div>
         
-        <div className={style.imgCamp}><img src={campDetail[0].image} alt="" /></div>
+        <div className={style.imgCamp}><img src={campDetail[0]?.image} alt="" /></div>
         <div className={style.descriptionCamp}>
-          <p>{campDetail[0].long_description}</p>
+          <p>{campDetail[0]?.long_description}</p>
         </div>
       </div>
 
