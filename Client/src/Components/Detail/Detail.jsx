@@ -10,6 +10,7 @@ export const Detail = () => {
 const dispatch = useDispatch()
 
 const campDetail = useSelector((state)=>state.detailCampaign)
+console.log(campDetail[0].long_description)
 //me susubribo al estdo global para consumir la info del detalle
 const name = useParams()
 
@@ -43,7 +44,15 @@ const name = useParams()
       <div className={style.about}>
         <div className={style.description}>
           <div><h2>¿Quienes Somos?</h2></div>
-          <div>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatum architecto esse consequuntur dolorum, voluptatibus, fugiat doloribus, dignissimos ex temporibus fuga animi pariatur ad iste deserunt commodi nesciunt quibusdam. Numquam, rem! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste animi similique provident vel exercitationem cupiditate ullam repudiandae suscipit quibusdam minima, sint consectetur impedit ipsum illum vitae doloremque voluptatem molestias officia. Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum hic minus porro assumenda praesentium, ex iure illum amet a aspernatur quae laboriosam vero ad autem architecto recusandae aliquam itaque magni.</div>
+          <div>Somos un grupo de apasionados desarrolladores que creen en el poder de la tecnología para cambiar vidas. Nuestra misión es utilizar nuestras habilidades en desarrollo web para crear una plataforma que haga que la ayuda y el apoyo estén al alcance de todos. Queremos conectar a quienes pueden brindar ayuda con aquellos que la necesitan, sin importar dónde se encuentren en el mundo.
+
+          En nuestro proyecto, creamos una plataforma en línea accesible y fácil de usar. Desarrollamos herramientas y servicios que facilitan la colaboración y el apoyo mutuo. Conectamos a personas necesitadas con voluntarios y donantes dispuestos a ayudar.
+
+          Nuestros valores se basan en la compasión. Nos importa profundamente el bienestar de los demás y creemos que la tecnología puede ser una fuerza para el bien en el mundo. Trabajamos juntos y con la comunidad para lograr un impacto positivo.
+
+          Si compartes nuestra pasión por utilizar la tecnología para ayudar a quienes lo necesitan, te invitamos a unirte a nuestro proyecto. Juntos, podemos marcar la diferencia en la vida de muchas personas y construir un mundo más solidario.
+
+         Contáctanos si deseas ser parte de este esfuerzo o si tienes alguna pregunta. Estamos aquí para construir un futuro más brillante y compasivo.</div>
         </div>
         <div className={style.imgAbout}><img src={imgAbout} alt="" /></div>
         
@@ -54,9 +63,9 @@ const name = useParams()
             <p>{campDetail[0]?.description}</p>
       </div>
         
-        <div className={style.imgCamp}><img src="https://media.istockphoto.com/id/1436226660/es/foto/joven-manifestante-sosteniendo-un-cartel-sobre-la-igualdad-de-g%C3%A9nero-en-una-manifestaci%C3%B3n.jpg?s=612x612&w=0&k=20&c=QPDsyJkH56CuWt097XFTXclGlALcVQuv_bwgPRvIkso=" alt="" /></div>
+        <div className={style.imgCamp}><img src={campDetail[0].image} alt="" /></div>
         <div className={style.descriptionCamp}>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam aliquid ipsam, fuga ipsa asperiores delectus. Dignissimos quidem dolore eaque aliquid quibusdam fugit adipisci at nostrum sed molestias porro minus fugiat distinctio fuga maiores rem, sit modi. Assumenda eligendi exercitationem vitae quo, molestiae voluptates animi ipsam, et molestias ipsum ratione nihil dolorum magni corporis quod, error dolorem in laudantium qui architecto alias. In eveniet, velit perspiciatis repellendus asperiores suscipit dolore iste dolor sapiente nihil. Minima nulla, voluptate eius nam, ab beatae nobis doloremque, modi neque vero quod cumque. Exercitationem accusamus non quisquam blanditiis quaerat perferendis magni sint velit commodi aspernatur illum assumenda quidem suscipit molestiae, totam obcaecati quod rem debitis sequi dolore rerum in! Delectus exercitationem eligendi ullam impedit, ratione cum facere provident quasi quidem nihil reprehenderit eveniet molestias in dolorem eum. Non accusamus incidunt magni porro aliquam minus nam reprehenderit id sapiente facilis, fuga rem libero neque ab maiores at!</p>
+          <p>{campDetail[0].long_description}</p>
         </div>
       </div>
 

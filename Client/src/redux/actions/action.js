@@ -106,9 +106,9 @@ export const getState = ()=>{
 
 export function postCampaign(payload) {
     return async function (dispatch) {
-        //ruta fictiocia
+      
        try {
-        const response = await axios.post('http://localhost:3001/create/campaign', payload);
+        const response = await axios.post('http://localhost:3001/campaign/create', payload);
         return response
        } catch (error) {
         return error.message

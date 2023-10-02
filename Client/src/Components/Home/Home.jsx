@@ -8,14 +8,6 @@ import FilterBar from '../FilterBar/FilterBar';
 
 export const Home = () => {
 
-  // const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //     dispatch(getCampaign());
-  //     dispatch(getStates());
-  //     dispatch(getCategory())
-  // }, [dispatch]);
-
   const campaignBackup = useSelector((state) => state.campaignBackup);
 
   const [page, setPage] = useState(1);
@@ -34,11 +26,11 @@ export const Home = () => {
   };
 
 
-  return (
-    <div>
-      <FilterBar campaigns={campaignBackup}/>
-      <Cards data={getCurrentPageCampaigns()}/>
-      <Pagination page={page} setPage={setPage} itemsPerPage={cardsPerPage} totalItems={totalItems}/>
-    </div>
-  )
+ return (
+   <div>
+       <FilterBar campaigns={campaignBackup}/>
+       <Cards data={getCurrentPageCampaigns()}/>
+       <Pagination page={page} setPage={setPage} itemsPerPage={cardsPerPage} totalItems={totalItems}/>
+   </div>
+ )
 }
