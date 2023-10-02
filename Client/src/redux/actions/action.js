@@ -50,6 +50,7 @@ export const getDetailCampaign = (name)=>{
 console.log(name);
     return async function (dispatch){
         try {
+            console.log("entre a la funcion")
             const dataDetail = await axios(`http://localhost:3001/campaign?name=${name}`)
             const dataCampaign = dataDetail.data
             dispatch({
