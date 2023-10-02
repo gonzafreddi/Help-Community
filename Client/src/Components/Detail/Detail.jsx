@@ -12,17 +12,15 @@ const name = useParams()
 const campDetail = useSelector((state)=>state.detailCampaign)
 console.log(name.id)
 
-  // useEffect(()=>{
-  //   dispatch(getDetailCampaign(name.id))
-  //   return()=>{
-  //     dispatch(getDetailCampaign())
-  //   }
-  // },[])
-
-
   useEffect(()=>{
     dispatch(getDetailCampaign(name.id))
+    return()=>{
+      dispatch(getDetailCampaign())
+    }
   },[])
+
+
+ 
   
   console.log(campDetail)
   //me susubribo al estdo global para consumir la info del detalle
