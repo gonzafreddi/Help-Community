@@ -1,8 +1,9 @@
-// import { connect, useSelector } from 'react-redux';
-import datosONG from "../../../../Api/ong/ong";
-// import axios from 'axios';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
+
+import { getCampaign } from "../../redux/actions/action";
 import './SearchBar.css';
 
 const SearchBar = () => {
@@ -13,19 +14,18 @@ const SearchBar = () => {
     //     return campaigns;
     // }
 
-    const data = datosONG.map((ong) => ( ong.campañas.map( (campaña) => campaña ) ));
+    const campaigns = useSelector((state) => state.campaignBackup);
 
-    // const campaigns = getCampaings();
 
-    const campaigns = [];
+    // const dispatch = useDispatch();
 
-    data.map((array) => array.map( (campaña) => campaigns.push(campaña) ));
-
-    // console.log(campaigns);
+    // useEffect(() => {
+    
+    //     dispatch(getCampaign());
+    // }, [dispatch]);
 
     //TODO --- Manejo de busqueda
-    
-    // const campaigns = useSelector(state => state.allCampaigns);
+
     const navigate = useNavigate();
 
     const [selectedCampaign, setSelectedCampaign] = useState('');
@@ -37,7 +37,7 @@ const SearchBar = () => {
     
         setSelectedCampaign(campaign.name);
 
-        navigate(`detail/${selectedCampaign.name}`);                             //todo      Descomentar cuando hay detail
+        navigate(`detail/${selectedCampaign.name}`);
     
     }
 

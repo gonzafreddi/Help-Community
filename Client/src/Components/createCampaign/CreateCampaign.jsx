@@ -3,10 +3,15 @@ import { useSelector } from "react-redux";
 import { useState } from "react"
 import {validateCampaign} from "./validateCampaign"
 import { useEffect } from "react";
-
+import UploadWidget from "../UploadWidget/UploadWidget";
 
 export default function CreateCampaign(){
 
+  const [imageUrl, setImageUrl] = useState(""); // Estado para almacenar la URL
+
+  const handleImageUpload = (url) => {
+      setImageUrl(url); // Actualiza el estado con la URL de la imagen
+  }
   const states = useSelector((state)=>state.states)
   //con este estado local simulo q hago un post a la base de datos
   const[campaign, setCampaign]=useState({})
@@ -17,7 +22,7 @@ export default function CreateCampaign(){
     name: "",
     resumeDescr: "", 
     description: "",
-    image: "",
+    image: imageUrl,
     endDate: {},
     category:"",
     finalAmount: "",
@@ -53,6 +58,7 @@ export default function CreateCampaign(){
       // Si el nombre del campo es "day", "month" o "year", actualiza endDate
       updatedInfo = {
         ...info,
+        image: imageUrl,
         endDate: {
           ...info.endDate,
           [e.target.name]: e.target.value,
@@ -62,6 +68,7 @@ export default function CreateCampaign(){
       // Para otros campos, simplemente actualiza su valor
       updatedInfo = {
         ...info,
+        image: imageUrl,
         [e.target.name]: e.target.value,
       };
     }
@@ -91,10 +98,15 @@ export default function CreateCampaign(){
                 <input className={style.nameAndPrice} onChange={handleChange} type="text" name="resumeDescr" id="" />
                 <label className={style.title} htmlFor=""><h3>Describe tu campaña</h3></label>
                 <span>{errors.description}</span>
-                <textarea onChange={handleChange} name="description" id="" cols="30" rows="10" readonly></textarea>
+                <textarea onChange={handleChange} name="description" id="" cols="30" rows="10"></textarea>
 
                 <label className={style.title}  htmlFor=""><h3>Añade una imagen a tu campaña</h3></label>
-                <button className={style.send}>Subir Foto</button>
+                <UploadWidget onImageUpload={handleImageUpload}/>
+                {
+                  imageUrl !== "" 
+                  ? <img className={style.campaignImg} src={imageUrl} alt="campaignImg" /> 
+                  : null
+                }
 
                <div className={style.selectsConteiner}>
                 <div className={style.state}>
@@ -162,7 +174,7 @@ export default function CreateCampaign(){
           
 
            <div className={style.sendCont}> <input disabled={disableFunction()}className={style.send}type="submit" /></div>
-            </form>
+          </form>
         </div>
     </div>)
 }
