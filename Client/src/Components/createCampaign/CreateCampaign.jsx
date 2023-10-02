@@ -34,7 +34,7 @@ export default function CreateCampaign(){
     finalAmount: "",
     StateId: ""
   })
-  
+
   const handleFormSubmit = (e) => {
     e.preventDefault();
     window.alert("Campaña creada con éxito");
@@ -64,9 +64,17 @@ export default function CreateCampaign(){
                 <span>{errors.description}</span>
                 <textarea onChange={handleInputChange} name="long_description" id="" cols="30" rows="10" readonly></textarea>
 
+
+                
+//---------------------------------------------trabajar sobre cloudinray---------------------------------------------------------------------------------------
+
+
                 <label className={style.title}  htmlFor=""><h3>Añade una imagen a tu campaña</h3></label>
                 <button className={style.send}>Subir Foto</button>
 
+
+
+---------------------------------------------------------------------------------------------------------------------------------------
                <div className={style.selectsConteiner}>
                 <div className={style.state}>
                 <label className={style.title}  htmlFor=""><h3>¿En que provincia se encuntra tu campaña?</h3></label>
