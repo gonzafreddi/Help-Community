@@ -40,8 +40,8 @@ const reducer = (state = initialState, action)=> {
         case FILTER_BY_STATE:
             const filteredByState = action.payload === "Todos" ? 
                 [...state.campaignBackUp] : 
-                [...state.campaignBackUp].filter((campañas) => {
-                return campañas.state.includes(action.payload);
+                [...state.campaignBackUp].filter((campaign) => {
+                return campaign.state.includes(action.payload);
                 });
 
             return {
@@ -51,8 +51,8 @@ const reducer = (state = initialState, action)=> {
         case FILTER_BY_CATEGORY:
             const filteredByCategory = action.payload === "Todos"
             ? [...state.campaignBackUp] // Si es "Todos", no aplicar filtro
-            : [...state.campaignBackUp].filter((campañas) => 
-            campañas.category === action.payload);
+            : [...state.campaignBackUp].filter((campaign) => 
+            campaign.category === action.payload);
             return {
                 ...state,
                 campaign: filteredByCategory,
