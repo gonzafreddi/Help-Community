@@ -1,139 +1,139 @@
-// // import { connect, useSelector } from 'react-redux';
-// import datosONG from "../../../../Api/ong/ong";
-// // import axios from 'axios';
-// import { useNavigate } from 'react-router-dom';
-// import { useState } from 'react';
-// import './SearchBar.css';
+// import { connect, useSelector } from 'react-redux';
+import datosONG from "../../../../Api/ong/ong";
+// import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import './SearchBar.css';
 
-// const SearchBar = () => {
-// console.log(datosONG)
-//     // const getCampaings = async () => {
-//     //     const result = await axios.get('localhost:3000/campaing');
-//     //     const campaigns = result.data;
-//     //     return campaigns;
-//     // }
+const SearchBar = () => {
 
-//     const data = datosONG.map((ong) => ( ong.campañas.map( (campaña) => campaña ) ));
+    // const getCampaings = async () => {
+    //     const result = await axios.get('localhost:3000/campaing');
+    //     const campaigns = result.data;
+    //     return campaigns;
+    // }
 
-//     // const campaigns = getCampaings();
+    const data = datosONG.map((ong) => ( ong.campañas.map( (campaña) => campaña ) ));
 
-//     const campaigns = [];
+    // const campaigns = getCampaings();
 
-//     data.map((array) => array.map( (campaña) => campaigns.push(campaña) ));
+    const campaigns = [];
 
-//     // console.log(campaigns);
+    data.map((array) => array.map( (campaña) => campaigns.push(campaña) ));
 
-//     //TODO --- Manejo de busqueda
+    // console.log(campaigns);
+
+    //TODO --- Manejo de busqueda
     
-//     // const campaigns = useSelector(state => state.allCampaigns);
-//     const navigate = useNavigate();
+    // const campaigns = useSelector(state => state.allCampaigns);
+    const navigate = useNavigate();
 
-//     const [selectedCampaign, setSelectedCampaign] = useState('');
-//     const [searchText, setSearchText] = useState("");
-//     const [suggestions, setSuggestions] = useState([]);
-//     const [showSuggestions, setShowSuggestions] = useState(false)
+    const [selectedCampaign, setSelectedCampaign] = useState('');
+    const [searchText, setSearchText] = useState("");
+    const [suggestions, setSuggestions] = useState([]);
+    const [showSuggestions, setShowSuggestions] = useState(false)
 
-//     const onSearch = (campaign) => {
+    const onSearch = (campaign) => {
     
-//         setSelectedCampaign(campaign.name);
+        setSelectedCampaign(campaign.name);
 
-//         navigate(`detail/${selectedCampaign.name}`);                             //todo      Descomentar cuando hay detail
+        navigate(`detail/${selectedCampaign.name}`);                             //todo      Descomentar cuando hay detail
     
-//     }
+    }
 
-//     const handleInputChange = (event) => {
+    const handleInputChange = (event) => {
         
-//         const value = event.target.value;
-//         setSearchText(value.toUpperCase());
-//         setShowSuggestions(value !== '');
+        const value = event.target.value;
+        setSearchText(value.toUpperCase());
+        setShowSuggestions(value !== '');
 
-//         if(searchText === '') {
-//             setShowSuggestions(false);
-//         }
+        if(searchText === '') {
+            setShowSuggestions(false);
+        }
 
-//         const filtered = campaigns.filter((campaign) => 
-//             campaign.name.toUpperCase().includes(value.toUpperCase())
-//         );
+        const filtered = campaigns.filter((campaign) => 
+            campaign.name.toUpperCase().includes(value.toUpperCase())
+        );
 
-//         setSuggestions(filtered.slice(0, 10));
+        setSuggestions(filtered.slice(0, 10));
 
-//     };
+    };
 
-//     const handleSuggestionClick = (campaign) => {
-//         onSearch(campaign);
-//         setSearchText('');
-//         setSuggestions([]);
-//         setShowSuggestions(false);
+    const handleSuggestionClick = (campaign) => {
+        onSearch(campaign);
+        setSearchText('');
+        setSuggestions([]);
+        setShowSuggestions(false);
 
-//     }
+    }
 
-//     const handleEnterPress = (event) => {
+    const handleEnterPress = (event) => {
 
-//         if(event.key  === 'Enter') {
+        if(event.key  === 'Enter') {
 
-//             if (suggestions.length > 0) {
-//                 handleSuggestionClick(suggestions[0]);
-//             }
+            if (suggestions.length > 0) {
+                handleSuggestionClick(suggestions[0]);
+            }
 
-//         }
+        }
 
-//     }
+    }
 
-//     const handleSearchButton = () => {
+    const handleSearchButton = () => {
 
-//         if (suggestions.length > 0) {
-//             handleSuggestionClick(suggestions[0]);
-//         }
+        if (suggestions.length > 0) {
+            handleSuggestionClick(suggestions[0]);
+        }
 
-//     }
+    }
 
-//     return(
+    return(
 
-//         <div className='SearchBar'>
+        <div className='SearchBar'>
 
-//             <div className='containerSB'>
+            <div className='containerSB'>
 
                 
-//                 <div className='input-container'>
-//                     <input 
-//                         className='input'
-//                         type='search'
-//                         value={searchText}
-//                         onChange={handleInputChange}
-//                         onKeyPress={handleEnterPress}
-//                         placeholder='Busca una campaña'
-//                     />
+                <div className='input-container'>
+                    <input 
+                        className='input'
+                        type='search'
+                        value={searchText}
+                        onChange={handleInputChange}
+                        onKeyPress={handleEnterPress}
+                        placeholder='Busca una campaña'
+                    />
 
-//                     <button className='search-button' onClick={handleSearchButton} disabled={suggestions.length === 0} >
-//                         {/* <svg className="lupa" xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-//                             <circle cx="5" cy="5" r="4"></circle>
-//                             <line x1="11" y1="11" x2="7.7" y2="7.65"></line>
-//                         </svg> */}
-//                         <i className="material-icons">
-//                             search
-//                         </i>
+                    <button className='search-button' onClick={handleSearchButton} disabled={suggestions.length === 0} >
+                        {/* <svg className="lupa" xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <circle cx="5" cy="5" r="4"></circle>
+                            <line x1="11" y1="11" x2="7.7" y2="7.65"></line>
+                        </svg> */}
+                        <i className="material-icons">
+                            search
+                        </i>
 
-//                     </button>
+                    </button>
 
-//                     <ul className={`suggestion-list ${showSuggestions ? 'showSuggestions' : ''}`}>
-//                         {suggestions.map((campaign, index) => (
-//                             <li className='suggestionItem' key={index} onClick={() => handleSuggestionClick(campaign)}>
-//                                 {campaign.name.toUpperCase()}
-//                             </li>
-//                         ))}
-//                     </ul>
-//                 </div>
+                    <ul className={`suggestion-list ${showSuggestions ? 'showSuggestions' : ''}`}>
+                        {suggestions.map((campaign, index) => (
+                            <li className='suggestionItem' key={index} onClick={() => handleSuggestionClick(campaign)}>
+                                {campaign.name.toUpperCase()}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
 
-//             </div>
+            </div>
 
-//         </div>
+        </div>
 
 
-//     )
+    )
 
-// }
+}
 
-// export default SearchBar;
+export default SearchBar;
 
 
 // const mapStateToProps = (state) => {
