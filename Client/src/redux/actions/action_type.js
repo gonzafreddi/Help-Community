@@ -1,3 +1,2 @@
 export const GET_DETAIL_CAMPAIGN = "GET_DETAIL_CAMPAIGN"
 export const GET_STATE = "GET_STATE"
-export const GET_CATEGORY  = "GET_CATEGORY"
