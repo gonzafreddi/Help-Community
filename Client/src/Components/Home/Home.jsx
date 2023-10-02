@@ -1,11 +1,20 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getCampaign, getStates, getCategory } from '../../redux/actions/action';
 import Pagination from '../Pagination/Pagination';
 import { Cards } from "../Cards/Cards";
 import FilterBar from '../FilterBar/FilterBar';
 
 
 export const Home = () => {
+
+  // const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //     dispatch(getCampaign());
+  //     dispatch(getStates());
+  //     dispatch(getCategory())
+  // }, [dispatch]);
 
   const campaignBackup = useSelector((state) => state.campaignBackup);
 

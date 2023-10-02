@@ -1,35 +1,37 @@
 import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Card } from "../Card/Card"
 import style from "./Cards.module.css"
 import { getCampaign } from "../../redux/actions/action";
+
 
 
 export const Cards = ({data}) => {
   
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    // Llama a la acción para obtener las campañas usando Redux
-    dispatch(getCampaign());
-  }, [dispatch]);
+
+    useEffect(() => {
+        dispatch(getCampaign());  // Llama a la acción para obtener las campañas usando Redux
+    }, [dispatch]);
+
   
-  
+
   return (
     <div className={style.cardsContainer}>
       {data.map((campaña) => (
           <div key={campaña.id}>
               <Card
                 key={campaña.id}
-                //nombreOng={ong.name} 
+                nombreOng={campaña.ong} 
                 nombre={campaña.name}
-                descripcion={campaña.description}
+                descripcion={campaña.short_description}
                 imagen={campaña.image}
                 fechaInicio={campaña.startDate}
                 fechaFin={campaña.endDate}
                 objetivo={campaña.finalAmount}
-                estado={campaña.state}
-                categoria={campaña.CategoryId}
+                provincia={campaña.state}
+                categoria={campaña.category}
               />
           </div>
       ))}
