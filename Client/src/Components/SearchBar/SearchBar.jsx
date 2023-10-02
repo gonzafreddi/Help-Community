@@ -1,5 +1,5 @@
 // import { connect, useSelector } from 'react-redux';
-import datosONG from "../../../../Api/ong/ong";
+// import datosONG from "../../../../Api/ong/ong";
 // import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
