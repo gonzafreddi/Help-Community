@@ -11,6 +11,7 @@ import CreateCampaign from './Components/createCampaign/CreateCampaign'
 import { useEffect } from 'react'
 import { getCategory, getState } from './redux/actions/action'
 import { useDispatch } from 'react-redux'
+import Landing from './Components/landing/Landing'
 
 function App() {
   const dispatch = useDispatch()
@@ -22,7 +23,7 @@ function App() {
     <>
       <Nav/>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Landing />} />
         <Route path='/detail/:id' element={<Detail/>}/>
         <Route path='/about' element={<About/>}/>
         <Route path='/create/campaign' element={<CreateCampaign/>}/>
