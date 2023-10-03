@@ -33,7 +33,7 @@ let capsEntries = entries.map((entry) => [
 ]);
 database.models = Object.fromEntries(capsEntries);
 
-const { Campaign, Category, Donation, User, State } = database.models;
+const { Campaign, Category, User, State } = database.models;
 
 // Ong_donor.hasMany(Campaign);
 // Campaign.belongsTo(Ong_donor);
@@ -56,8 +56,7 @@ Campaign.belongsToMany(Category, { through: "Category_Campaign" });
 // Campaign.hasMany(Donation);
 // Donation.belongsTo(Campaign);
 
-Campaign.belongsToMany(Donation, { through: "Campaign_Donation" });
-Donation.belongsToMany(Campaign, { through: "Campaign_Donation" });
+
 
 // State.hasMany(Ong_donor);
 // Ong_donor.belongsTo(State);
