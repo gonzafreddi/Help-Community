@@ -24,6 +24,9 @@ export function validateCampaign(input) {
     if (!input.finalAmount) {
       error.finalAmount = "Debe tener un objetivo máximo de dinero";
     }
+    if (input.image === '') {
+      error.image = "Debe tener una imagen";
+    }
     return error;
   }
   

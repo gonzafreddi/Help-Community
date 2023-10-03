@@ -8,6 +8,7 @@ import FilterBar from '../FilterBar/FilterBar';
 
 export const Home = () => {
 
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -37,6 +38,7 @@ export const Home = () => {
    return displayedData;
 
  };
+
 
 
  return (
