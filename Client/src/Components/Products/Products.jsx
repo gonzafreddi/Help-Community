@@ -9,9 +9,9 @@ export const Products = () => {
 
 const dispatch = useDispatch();
 
-const product = useSelector((state) => state.product);
+const products = useSelector((state) => state.products);
 
-console.log("products: ", product)
+console.log("products: ", products)
 
 useEffect(()=>{
     dispatch(getProduct())
@@ -20,11 +20,11 @@ useEffect(()=>{
 
     return (
         <div className={style.cardsContainer}>
-        {product.map((producto) => (
+        {products.map((producto) => (
             <div key={producto.id}>
                 <Product
                   key={producto.id}
-                  nombre={producto.name}
+                  nombre={producto.title}
                   descripcion={producto.description}
                   imagen={producto.image}
                   precio={producto.price}

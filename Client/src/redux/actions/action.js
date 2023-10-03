@@ -8,6 +8,7 @@ export const FILTER_BY_CATEGORY = "FILTER_BY_CATEGORY";
 export const GET_PRODUCT = "GET_PRODUCT";
 
 
+
 export const getCampaign = () => {
     return async function (dispatch){
         try{
@@ -36,7 +37,7 @@ export const getStates = () => {
 export const getCategory = () => {
     return async function (dispatch){
         try{
-            const categoryData = await axios("http://localhost:3001/category");
+            const categoryData = await axios("https://dummyjson.com/products/categories");
             const category = categoryData.data;
             dispatch({type: GET_CATEGORY, payload: category});
         } catch (error){
@@ -82,11 +83,11 @@ export function filterByCategory(payload){
 export const getProduct = () => {
     return async function (dispatch){
         try{
-            const productData = await axios("http://localhost:3001/product");
+            const productData = await axios("https://dummyjson.com/products");
             const product = productData.data;
             dispatch({type: GET_PRODUCT, payload: product});
         } catch (error){
-            console.log("error en devolver la action", error.message)
+            console.log("error en devolver los productos", error.message)
         }
     };
 };
@@ -116,3 +117,4 @@ export function postCampaign(payload) {
        }
     }
 }
+

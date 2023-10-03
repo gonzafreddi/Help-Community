@@ -27,7 +27,9 @@ export const Home = () => {
 
  // Número de tarjetas por página
  const cardsPerPage = 8;
+
  const totalItems = allCampaigns.length;
+
 
  // Función para obtener las tarjetas en la página actual
 
