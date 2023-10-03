@@ -25,10 +25,27 @@ module.exports = (sequelize) => {
                 allowNull: false,
 
             },
-            category: {
+            
+            brand:{
                 type: DataTypes.STRING,
-                allowNull: false,
+                allowNull:false,
+            },
+
+            stock:{
+                type: DataTypes.INTEGER,
+                allowNull:false,
+
+            },
+            
+            rating:{
+                type: DataTypes.REAL,
+                allowNull:false,
+            },
+
+            state:{
+                type: DataTypes.BOOLEAN,
+                allowNull:false,
+                defaultValue: false,
             }
-          
         })
 }
