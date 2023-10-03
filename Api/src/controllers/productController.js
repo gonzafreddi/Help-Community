@@ -4,6 +4,7 @@ const {
   cleanArrayProductDB,
   cleanArrayProductApi,
 } = require("../../helpers/productHelper");
+const products = require("../../dataApi/products");
 
 const getAllProducts = async function () {
   const rawArrayDB = await Product.findAll(/* {
@@ -14,25 +15,18 @@ const getAllProducts = async function () {
     },
     // Habilitar cuando esté el getAllOngDonor()
   } */);
-  console.log(rawArrayDB);
+
   const productsDB = cleanArrayProductDB(rawArrayDB);
 
-  const rawArrayApi = (await axios.get(`https://fakestoreapi.com/products`))
-    .data;
-
-  const productsApi = cleanArrayProductApi(rawArrayApi);
+  /* const rawArrayApi = (await axios.get(`https://fakestoreapi.com/products`))
+    .data; */
+  console.log(products);
+  const productsApi = cleanArrayProductApi(products);
 
   return [...productsDB, ...productsApi];
 };
 
-const postProduct = async (
-  name,
-  description,
-  image,
-  price,
-  category,
-  ongDonorId
-) => {
+const postProduct = async (name, description, image, price, category) => {
   const newProduct = await Product.create({
     name,
     description,

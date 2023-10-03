@@ -7,7 +7,7 @@ const cleanArrayProductDB = (productsDB) =>
       description: product.description,
       image: product.image,
       category: product.category,
-      /* donor: stringAll(product.ongDonorId), */
+      state: false,
       created: true,
     };
   });
@@ -19,8 +19,12 @@ const cleanArrayProductApi = (productsApi) =>
       name: product.title,
       price: product.price,
       description: product.description,
-      image: product.image,
+      stock: product.stock,
+      brand: product.brand,
+      rating: product.rating,
+      image: product.thumbnail,
       category: product.category,
+      state: false,
       created: false,
     };
   });
