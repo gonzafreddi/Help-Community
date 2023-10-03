@@ -1,12 +1,17 @@
-
-import { GET_CAMPAIGN, FILTER_BY_STATE, FILTER_BY_CATEGORY, GET_STATES, GET_CATEGORY, GET_PRODUCT } from "../actions/action"
-import { GET_DETAIL_CAMPAIGN, GET_STATE } from "../actions/action_type";
-
-
-
-const initialState = {
+import {
+    GET_CAMPAIGN,
+    FILTER_BY_STATE,
+    FILTER_BY_CATEGORY,
+    GET_STATES,
+    GET_CATEGORY,
+    GET_PRODUCT,
+  } from "../actions/action";
+  import { GET_DETAIL_CAMPAIGN, GET_STATE } from "../actions/action_type";
+  
+  const initialState = {
     campaign: [],
     campaignBackup: [],
+    campaignFiltered: [],
     detailCampaign: [],
     states: [],
     category: [],
@@ -73,6 +78,6 @@ const reducer = (state = initialState, action)=> {
                 default:
                     return state;
     }
-}
-
-export default reducer;
+  };
+  
+  export default reducer;
