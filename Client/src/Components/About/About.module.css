@@ -1,0 +1,33 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: left;
+}
+
+.heading {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: rgb(7, 56, 97);
+}
+
+.text {
+    font-size: 19px;
+    margin-bottom: 15px;
+}
+
+.imagen {
+    height: 450px;
+    width: 450px;
+    border-radius: 50px;
+    
+}
+
+.textoYFoto{
+    display: flex;
+}
+
+.tituloYCuerpo{
+    display: inline-block;
+    margin: 2rem;
+}

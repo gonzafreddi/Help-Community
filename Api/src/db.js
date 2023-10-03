@@ -33,16 +33,42 @@ let capsEntries = entries.map((entry) => [
 ]);
 database.models = Object.fromEntries(capsEntries);
 
-const { Campaña, Categoria, Donacion, Ong_donante } = database.models;
+const { Campaign, Category, User, State } = database.models;
 
-Ong_donante.hasMany(Campaña);
-Campaña.belongsTo(Ong_donante);
-Ong_donante.hasMany(Donacion);
-Donacion.belongsTo(Ong_donante);
-Categoria.hasMany(Ong_donante);
-Ong_donante.belongsTo(Categoria);
-Campaña.hasMany(Donacion);
-Donacion.belongsTo(Campaña);
+// Ong_donor.hasMany(Campaign);
+// Campaign.belongsTo(Ong_donor);
+
+User.belongsToMany(Campaign, { through: "User_Campaign" });
+Campaign.belongsToMany(User, { through: "User_Campaign" });
+
+// Ong_donor.hasMany(Donation);
+// Donation.belongsTo(Ong_donor);
+
+//Ong_donor.belongsToMany(Donation, { through: "Ong_donor_Donation" });
+//Donation.belongsToMany(Ong_donor, { through: "Ong_donor_Donation" });
+
+// Category.hasMany(Campaign);
+// Campaign.belongsTo(Category);
+
+Category.belongsToMany(Campaign, { through: "Category_Campaign" });
+Campaign.belongsToMany(Category, { through: "Category_Campaign" });
+
+// Campaign.hasMany(Donation);
+// Donation.belongsTo(Campaign);
+
+
+
+// State.hasMany(Ong_donor);
+// Ong_donor.belongsTo(State);
+
+//State.belongsToMany(Ong_donor, { through: "State_Ong_donor" });
+//Ong_donor.belongsToMany(State, { through: "State_Ong_donor" });
+
+// State.hasMany(Campaign);
+// Campaign.belongsTo(State);
+
+Campaign.belongsToMany(State, { through: "Campaign_State" });
+State.belongsToMany(Campaign, { through: "Campaign_State" });
 
 module.exports = {
   ...database.models,
