@@ -62,12 +62,23 @@ console.log(name);
     }
 }
 
-export function filterByState(payload){
-    return{
-        type: "FILTER_BY_STATE",
-        payload
-    }
-}
+
+export const filterByState = (stateId) => {
+    return async function (dispatch) {
+        try {
+            dispatch({ type: FILTER_BY_STATE, payload: stateId });
+        } catch (error) {
+            console.log(error.message)
+        }
+    };
+};
+
+// export function filterByState(payload){
+//     return{
+//         type: "FILTER_BY_STATE",
+//         payload
+//     }
+// }
 
 
 

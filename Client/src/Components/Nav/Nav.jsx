@@ -29,10 +29,10 @@ export const Nav = () => {
 
 
                 <div className='sb-and-login'>
-                    <div className='sb'>
+                    {/* <div className='sb'>
                         <SearchBar/>
 
-                    </div>
+                    </div> */}
                     <button className='nav-button'>Iniciar Sesion</button>
                 </div>
 

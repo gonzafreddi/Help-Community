@@ -1,8 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { filterByState, getCategory, getStates } from '../../redux/actions/action';
+import { filterByState, filterByCategory } from '../../redux/actions/action';
 import React, { useEffect, useState } from 'react';
 // import SearchBar from '../SearchBar/SearchBar';
 import style from './FilterBar.module.css';
+import axios from "axios";
 
 const FilterBar = ({ campaigns }) => {
     const dispatch = useDispatch();
@@ -12,26 +13,38 @@ const FilterBar = ({ campaigns }) => {
 
     console.log("states:", states);
     console.log("category:", category);
+    // console.log("campaignBackup:", campaignBackup);
 
-
+    const [statesDisponibles, setStatesDisponibles] = useState([]);
     const [selectedState, setSelectedState] = useState(""); // Estado local 
     const [selectedCategory, setSelectedCategory] = useState(""); // Estado local 
 
-    function handleFilterState(event) {
-        setSelectedState(event.target.value); // Actualiza el estado local
-        dispatch(filterByState(event.target.value)); // Despacha la acción para filtrar por state(provincia)
-    }
+    
+    useEffect(() => {
+        // Realiza una solicitud GET para obtener la lista de provincias desde el servidor
+        axios
+          .get("http://localhost:3001/state")
+          .then((response) => {
+            setStatesDisponibles(response.data);
+          })
+          .catch((error) => {
+            console.error("Error al obtener las provincias:", error);
+          });
+      }, []);
 
-    function handleFilterCategory(event) {
-        setSelectedCategory(event.target.value);
-        dispatch(filterByCategory(event.target.value));
+      function handleFilterState(event) {
+        setSelectedState(event.target.value);
       }
 
-    useEffect(() => {
-          dispatch(getStates());
-          dispatch(getCategory());
-      }, [dispatch]);
-    
+      function handleFilterCategory(event) {
+        setSelectedCategory(event.target.value);
+      }
+
+      useEffect(() => {
+        // Aquí puedes aplicar los filtros en el estado de Redux
+        dispatch(filterByState(selectedState));
+        dispatch(filterByCategory(selectedCategory));
+      }, [selectedState, selectedCategory]);
 
 
     return (
@@ -39,9 +52,9 @@ const FilterBar = ({ campaigns }) => {
             <select className={style.filters} value={selectedState} onChange={handleFilterState}>
                 <option className={style.italic} value="" disabled>Filtrar por provincia</option>
                 <option className={style.casillero} value="Todos">Todas las provincias</option>
-                {states.map((campaña) => (
-                    <option className={style.opciones} key={campaña.id} value={campaña.name}>
-                        {campaña.name}
+                {statesDisponibles.map((state) => (
+                    <option className={style.opciones} key={state.id} value={state.StateId}>
+                        {state.name}
                     </option>
                 ))}
             </select>
@@ -49,9 +62,9 @@ const FilterBar = ({ campaigns }) => {
                 <option className={style.italic} value="" disabled>Filtrar por categoría</option>
                 <option className={style.casillero} value="Todos">Todas las categorías</option>
                 {category.map((categoria) => (
-                    <option className={style.opciones} key={categoria.id} value={categoria.name}>
+                    <option className={style.opciones} key={categoria.id} value={categoria.CategoryId}>
                         {categoria.name}
-                    </option>
+            </option>
                 ))}
             </select>
         </div>

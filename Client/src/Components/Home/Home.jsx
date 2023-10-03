@@ -7,20 +7,20 @@ import FilterBar from '../FilterBar/FilterBar';
 
 export const Home = () => {
 
-const campaignBackup = useSelector((state) => state.campaignBackup);
+const campaign = useSelector((state) => state.campaign);
 
 const [page, setPage] = useState(1);
 
  // Número de tarjetas por página
  const cardsPerPage = 8;
- const totalItems = campaignBackup.length;
+ const totalItems = campaign.length;
 
  // Función para obtener las tarjetas en la página actual
 
    const getCurrentPageCampaigns = () => {
    const startIndex = (page - 1) * cardsPerPage;
    const endIndex = startIndex + cardsPerPage;
-   const displayedData = campaignBackup.slice(startIndex, endIndex);
+   const displayedData = campaign.slice(startIndex, endIndex);
    return displayedData;
 
  };
@@ -28,7 +28,7 @@ const [page, setPage] = useState(1);
 
  return (
    <div>
-       <FilterBar campaigns={campaignBackup}/>
+       <FilterBar/>
        <Cards data={getCurrentPageCampaigns()}/>
        <Pagination page={page} setPage={setPage} itemsPerPage={cardsPerPage} totalItems={totalItems}/>
    </div>
