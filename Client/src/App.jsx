@@ -9,19 +9,21 @@ import Footer from './Components/Footer/Footer'
 import './App.css'
 import CreateCampaign from './Components/createCampaign/CreateCampaign'
 import { useEffect } from 'react'
-import { getState } from './redux/actions/action'
+import { getCategory, getState } from './redux/actions/action'
 import { useDispatch } from 'react-redux'
+import Landing from './Components/landing/Landing'
 
 function App() {
   const dispatch = useDispatch()
   useEffect(()=>{
     dispatch(getState())
+    dispatch(getCategory())
   },[])
   return (
     <>
       <Nav/>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Landing />} />
         <Route path='/detail/:id' element={<Detail/>}/>
         <Route path='/about' element={<About/>}/>
         <Route path='/create/campaign' element={<CreateCampaign/>}/>
