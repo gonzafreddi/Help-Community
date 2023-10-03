@@ -8,6 +8,7 @@ export const FILTER_BY_CATEGORY = "FILTER_BY_CATEGORY";
 export const GET_PRODUCT = "GET_PRODUCT";
 
 
+
 export const getCampaign = () => {
     return async function (dispatch){
         try{
@@ -36,7 +37,7 @@ export const getStates = () => {
 export const getCategory = () => {
     return async function (dispatch){
         try{
-            const categoryData = await axios("http://localhost:3001/category");
+            const categoryData = await axios("https://dummyjson.com/products/categories");
             const category = categoryData.data;
             dispatch({type: GET_CATEGORY, payload: category});
         } catch (error){
@@ -50,6 +51,7 @@ export const getDetailCampaign = (name)=>{
 console.log(name);
     return async function (dispatch){
         try {
+            console.log("entre a la funcion")
             const dataDetail = await axios(`http://localhost:3001/campaign?name=${name}`)
             const dataCampaign = dataDetail.data
             dispatch({
@@ -62,23 +64,12 @@ console.log(name);
     }
 }
 
-
-export const filterByState = (stateId) => {
-    return async function (dispatch) {
-        try {
-            dispatch({ type: FILTER_BY_STATE, payload: stateId });
-        } catch (error) {
-            console.log(error.message)
-        }
-    };
-};
-
-// export function filterByState(payload){
-//     return{
-//         type: "FILTER_BY_STATE",
-//         payload
-//     }
-// }
+export function filterByState(payload){
+    return{
+        type: "FILTER_BY_STATE",
+        payload
+    }
+}
 
 
 
@@ -92,11 +83,11 @@ export function filterByCategory(payload){
 export const getProduct = () => {
     return async function (dispatch){
         try{
-            const productData = await axios("http://localhost:3001/product");
+            const productData = await axios("https://dummyjson.com/products");
             const product = productData.data;
             dispatch({type: GET_PRODUCT, payload: product});
         } catch (error){
-            console.log("error en devolver la action", error.message)
+            console.log("error en devolver los productos", error.message)
         }
     };
 };
@@ -117,12 +108,13 @@ export const getState = ()=>{
 
 export function postCampaign(payload) {
     return async function (dispatch) {
-        //ruta fictiocia
+      
        try {
-        const response = await axios.post('http://localhost:3001/create/campaign', payload);
+        const response = await axios.post('http://localhost:3001/campaign/create', payload);
         return response
        } catch (error) {
         return error.message
        }
     }
 }
+

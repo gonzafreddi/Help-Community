@@ -15,7 +15,7 @@ import {
     detailCampaign: [],
     states: [],
     category: [],
-    product: [],
+    products: [],
     filters: false,
   };
   
@@ -40,7 +40,7 @@ import {
       case GET_PRODUCT:
         return {
           ...state,
-          product: action.payload,
+          products: action.payload,
         };
       case FILTER_BY_STATE:
         let sta = [];
