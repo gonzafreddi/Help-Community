@@ -8,28 +8,32 @@ import FilterBar from '../FilterBar/FilterBar';
 
 export const Home = () => {
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //     dispatch(getCampaign());
-  //     dispatch(getStates());
-  //     dispatch(getCategory())
-  // }, [dispatch]);
+  useEffect(() => {
+      dispatch(getCampaign());
+      dispatch(getStates());
+      dispatch(getCategory())
+  }, [dispatch]);
 
-const campaignBackup = useSelector((state) => state.campaignBackup);
 
-const [page, setPage] = useState(1);
+
+  const states = useSelector(state => state.states);
+  const category = useSelector(state => state.category);
+  const allCampaigns = useSelector((state) => state.campaign);
+
+  const [page, setPage] = useState(1);
 
  // Número de tarjetas por página
  const cardsPerPage = 8;
- const totalItems = campaignBackup.length;
+ const totalItems = allCampaigns.length;
 
  // Función para obtener las tarjetas en la página actual
 
    const getCurrentPageCampaigns = () => {
    const startIndex = (page - 1) * cardsPerPage;
    const endIndex = startIndex + cardsPerPage;
-   const displayedData = campaignBackup.slice(startIndex, endIndex);
+   const displayedData = allCampaigns.slice(startIndex, endIndex);
    return displayedData;
 
  };
@@ -37,7 +41,7 @@ const [page, setPage] = useState(1);
 
  return (
    <div>
-       <FilterBar campaigns={campaigns}/>
+       <FilterBar states={states} category={category} />
        <Cards data={getCurrentPageCampaigns()}/>
        <Pagination page={page} setPage={setPage} itemsPerPage={cardsPerPage} totalItems={totalItems}/>
    </div>
