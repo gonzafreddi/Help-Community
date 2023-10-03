@@ -9,13 +9,14 @@ import Footer from './Components/Footer/Footer'
 import './App.css'
 import CreateCampaign from './Components/createCampaign/CreateCampaign'
 import { useEffect } from 'react'
-import { getState } from './redux/actions/action'
+import { getCategory, getState } from './redux/actions/action'
 import { useDispatch } from 'react-redux'
 
 function App() {
   const dispatch = useDispatch()
   useEffect(()=>{
     dispatch(getState())
+    dispatch(getCategory())
   },[])
   return (
     <>

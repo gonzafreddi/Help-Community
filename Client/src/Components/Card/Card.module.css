@@ -1,23 +1,29 @@
 .contenedor{
-    height: 390px;
-    width: 220px;
+    height: 425px;
+    width: 235px;
     text-align: center;
-    transition: animation 0.2s;
     box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.178);
     margin-bottom: 35px;
     border-radius: 5px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contenedor:hover{
+    transform: scale(1.03);
+    cursor: default;
+    box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.61);
 }
 
 .contenedorImagen{
     position: relative;
 }
 
-/* 
+
 .ong{
-    font-weight: 600;
-    background-color: rgba(255, 255, 255, 0.822);
+    font-size: 14px;
+    background-color: rgba(255, 255, 255, 0.616);
     position: absolute;
-    color: rgba(0, 0, 0, 0.664);
+    color: rgb(0, 0, 0);
     top: 1px;
     right: 0px;
     z-index: 1;
@@ -26,10 +32,9 @@
     border-bottom-left-radius: 0px;
     border-top-left-radius: 0px; 
 }
-*/
 
 .imagen{
-    width: 220px;
+    width: 235px;
     height: 170px;
     object-fit: cover;
     border-top-right-radius: 5px;
@@ -50,7 +55,7 @@
 }
 
 .descripcion{
-    margin-top: -10px;
+    margin-top: -15px;
     padding-left: 10px;
     padding-right: 10px;
     text-align: left;
@@ -61,10 +66,49 @@
     border-bottom: 1px solid rgba(0, 0, 0, 0.199);
 }
 
+.provincia{
+    background-color: rgba(45, 139, 1, 0.7);
+    margin-left: 10px;
+    margin-top: -8px;
+    color: white;
+    font-size: 11px;
+    height: min-content;
+    width: max-content;
+    border-radius: 5px;
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: 500;
+
+}
+
+.categoria{
+    margin-left: 10px;
+    margin-top: -6px;
+    background-color: rgba(0, 151, 197, 0.7);
+    color: white;
+    font-size: 11px;
+    height: min-content;
+    width: max-content;
+    max-width: 208px;
+    border-radius: 5px;
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+ 
+}
+
+
 .recaudado{
     color: rgba(0, 0, 0, 0.6);
     /* font-weight: 500; */
-    margin-top: -20px;
+    margin-top: -15px;
     font-size: 14px;
     padding-top: 8px;
     padding-left: 10px;

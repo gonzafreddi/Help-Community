@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getCampaign, getStates, getCategory } from '../../redux/actions/action';
 import Pagination from '../Pagination/Pagination';
 import { Cards } from "../Cards/Cards";
 import FilterBar from '../FilterBar/FilterBar';
@@ -7,23 +8,22 @@ import FilterBar from '../FilterBar/FilterBar';
 
 export const Home = () => {
 
-const campaignBackup = useSelector((state) => state.campaignBackup);
+  const campaignBackup = useSelector((state) => state.campaignBackup);
 
-const [page, setPage] = useState(1);
+  const [page, setPage] = useState(1);
 
- // Número de tarjetas por página
- const cardsPerPage = 8;
- const totalItems = campaignBackup.length;
+  // Número de tarjetas por página
+  const cardsPerPage = 8;
+  const totalItems = campaignBackup.length;
 
- // Función para obtener las tarjetas en la página actual
-
-   const getCurrentPageCampaigns = () => {
-   const startIndex = (page - 1) * cardsPerPage;
-   const endIndex = startIndex + cardsPerPage;
-   const displayedData = campaignBackup.slice(startIndex, endIndex);
-   return displayedData;
-
- };
+ 
+  // Función para obtener las tarjetas en la página actual
+  const getCurrentPageCampaigns = () => {
+    const startIndex = (page - 1) * cardsPerPage;
+    const endIndex = startIndex + cardsPerPage;
+    const displayedData = campaignBackup.slice(startIndex, endIndex);
+    return displayedData;
+  };
 
 
  return (

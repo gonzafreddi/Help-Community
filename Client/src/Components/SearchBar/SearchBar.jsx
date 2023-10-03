@@ -1,31 +1,19 @@
-// import { connect, useSelector } from 'react-redux';
-import datosONG from "../../../../Api/ong/ong";
-// import axios from 'axios';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
+
+import { getCampaign } from "../../redux/actions/action";
 import './SearchBar.css';
 
 const SearchBar = () => {
 
-    // const getCampaings = async () => {
-    //     const result = await axios.get('localhost:3000/campaing');
-    //     const campaigns = result.data;
-    //     return campaigns;
-    // }
-
-    const data = datosONG.map((ong) => ( ong.campañas.map( (campaña) => campaña ) ));
-
-    // const campaigns = getCampaings();
-
-    const campaigns = [];
-
-    data.map((array) => array.map( (campaña) => campaigns.push(campaña) ));
-
+    const campaigns = useSelector((state) => state.campaignBackup);
+    // console.log('CAMPAÑAS ========');
     // console.log(campaigns);
 
     //TODO --- Manejo de busqueda
-    
-    // const campaigns = useSelector(state => state.allCampaigns);
+
     const navigate = useNavigate();
 
     const [selectedCampaign, setSelectedCampaign] = useState('');
@@ -36,8 +24,8 @@ const SearchBar = () => {
     const onSearch = (campaign) => {
     
         setSelectedCampaign(campaign.name);
-
-        navigate(`detail/${selectedCampaign.name}`);                             //todo      Descomentar cuando hay detail
+        console.log(selectedCampaign);
+        navigate(`detail/${selectedCampaign}`);
     
     }
 
@@ -105,10 +93,6 @@ const SearchBar = () => {
                     />
 
                     <button className='search-button' onClick={handleSearchButton} disabled={suggestions.length === 0} >
-                        {/* <svg className="lupa" xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                            <circle cx="5" cy="5" r="4"></circle>
-                            <line x1="11" y1="11" x2="7.7" y2="7.65"></line>
-                        </svg> */}
                         <i className="material-icons">
                             search
                         </i>

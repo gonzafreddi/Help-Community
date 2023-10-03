@@ -50,6 +50,7 @@ export const getDetailCampaign = (name)=>{
 console.log(name);
     return async function (dispatch){
         try {
+            console.log("entre a la funcion")
             const dataDetail = await axios(`http://localhost:3001/campaign?name=${name}`)
             const dataCampaign = dataDetail.data
             dispatch({
@@ -106,13 +107,12 @@ export const getState = ()=>{
 
 export function postCampaign(payload) {
     return async function (dispatch) {
-        //ruta fictiocia
+      
        try {
-        const response = await axios.post('http://localhost:3001/create/campaign', payload);
+        const response = await axios.post('http://localhost:3001/campaign/create', payload);
         return response
        } catch (error) {
         return error.message
        }
     }
 }
-

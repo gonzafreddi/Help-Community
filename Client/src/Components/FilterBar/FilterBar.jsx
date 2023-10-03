@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 // import SearchBar from '../SearchBar/SearchBar';
 import style from './FilterBar.module.css';
 
-const FilterBar = ({ campaigns }) => {
+const FilterBar = ({ campaignBackup }) => {
     const dispatch = useDispatch();
 
     const states = useSelector((state) => state.states);

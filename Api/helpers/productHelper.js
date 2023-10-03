@@ -16,7 +16,7 @@ const cleanArrayProductApi = (productsApi) =>
   productsApi.map((product) => {
     return {
       id: product.id,
-      name: product.name,
+      name: product.title,
       price: product.price,
       description: product.description,
       image: product.image,
