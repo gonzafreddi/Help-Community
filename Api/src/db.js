@@ -33,7 +33,7 @@ let capsEntries = entries.map((entry) => [
 ]);
 database.models = Object.fromEntries(capsEntries);
 
-const { Campaign, Category, User, State } = database.models;
+const { Campaign, Category, User, State, CategoryProduct, Product} = database.models;
 
 // Ong_donor.hasMany(Campaign);
 // Campaign.belongsTo(Ong_donor);
@@ -69,6 +69,14 @@ Campaign.belongsToMany(Category, { through: "Category_Campaign" });
 
 Campaign.belongsToMany(State, { through: "Campaign_State" });
 State.belongsToMany(Campaign, { through: "Campaign_State" });
+
+
+CategoryProduct.hasMany(Product);
+Product.belongsTo(CategoryProduct);
+
+Product.belongsToMany(User,{through: "Buys"});
+User.belongsToMany(Product,{through: "Buys"});
+
 
 module.exports = {
   ...database.models,
