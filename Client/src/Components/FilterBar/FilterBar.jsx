@@ -12,14 +12,21 @@ const FilterBar = ({ states, category }) => {
     function handleFilterState(e) {
         const selectedValue = e.target.value;
         setSelectedState(selectedValue); // Actualiza el estado local
-        dispatch(filterByState(selectedValue));
+        // Aplicar el filtro sin importar mayúsculas o minúsculas
+        const filteredState = selectedValue.toLowerCase();
+        dispatch(filterByState(filteredState));
     }
 
     function handleFilterCategory(e) {
         const selectedValue = e.target.value;
         setSelectedCategory(selectedValue); // Actualiza el estado local
-        dispatch(filterByCategory(selectedValue));
-      }
+         // Normalizar el nombre de la categoría
+        const firstWord = selectedValue.split(" ")[0]; // Obtener la primera palabra
+        const normalizedCategory = category.find(cat => cat.name.toLowerCase().startsWith(firstWord.toLowerCase()));
+        if (normalizedCategory) {
+        dispatch(filterByCategory(normalizedCategory.name));
+        }       
+    }
     
 
 
