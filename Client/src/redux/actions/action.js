@@ -38,19 +38,6 @@ export const getStates = () => {
 
 
 
-export const getCategory = () => {
-    return async function (dispatch){
-        try{
-            const categoryData = await axios("http://localhost:3001/category");
-            const category = categoryData.data;
-            dispatch({type: GET_CATEGORY, payload: category});
-        } catch (error){
-            console.log("error en devolver la action", error.message)
-        }
-    };
-};
-
-
 
 export const getCateg = () => {
     return async function (dispatch){
