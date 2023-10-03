@@ -4,6 +4,7 @@ export default function Landing(){
         <h1>Esta va a ser la landing</h1>
         <Link to={"/products"}>
         <button>ingresar</button>
+        
         </Link>
     </div>)
 }
