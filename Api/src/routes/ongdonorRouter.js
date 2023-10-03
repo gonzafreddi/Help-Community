@@ -3,6 +3,7 @@ const { postOng_donorHandler } = require("../handlers/ongdonorHandler");
 
 const ongdonorRouter = Router();
 
-ongdonorRouter.post("/", postOng_donorHandler);
+//ongdonorRouter.get("/", getOng_donorHandler);
+ongdonorRouter.post("/create", postOng_donorHandler);
 
 module.exports = ongdonorRouter;
