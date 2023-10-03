@@ -21,7 +21,7 @@ const reducer = (state = initialState, action)=> {
                 return {
                     ...state,
                     campaign: [...action.payload].splice(0, 8),
-                    campaignBackup: action.payload,
+                    campaignBackUp: action.payload,
                 };
         case GET_STATES:
                 return {

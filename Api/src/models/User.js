@@ -3,7 +3,7 @@ const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
 
-  sequelize.define('ong_donor', {
+  sequelize.define('user', {
     id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
@@ -14,35 +14,19 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    cuit: {
-      type: DataTypes.STRING(13),
-      allowNull: true,
-    },
-    address: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    webSite: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    image: {
-      type: DataTypes.STRING(500),
-      allowNull: true,
-    },
-    user: {
+    userState: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: true
     },
     userType: {
-      type: DataTypes.ENUM('ong', 'donante'),
+      type: DataTypes.ENUM('user', 'admin'),
       allowNull: false,
-      defaultValue: "donante"
+      defaultValue: "user"
     },
   });
 };
