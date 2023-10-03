@@ -34,21 +34,9 @@ export const getStates = () => {
 };
 
 
-export const getCategory = () => {
-    return async function (dispatch){
-        try{
-            const categoryData = await axios("https://dummyjson.com/products/categories");
-            const category = categoryData.data;
-            dispatch({type: GET_CATEGORY, payload: category});
-        } catch (error){
-            console.log("error en devolver la action", error.message)
-        }
-    };
-};
-
 
 export const getDetailCampaign = (name)=>{
-console.log(name);
+    console.log(name);
     return async function (dispatch){
         try {
             console.log("entre a la funcion")
@@ -88,6 +76,18 @@ export const getProduct = () => {
             dispatch({type: GET_PRODUCT, payload: product});
         } catch (error){
             console.log("error en devolver los productos", error.message)
+        }
+    };
+};
+
+export const getCategory = () => {
+    return async function (dispatch){
+        try{
+            const categoryData = await axios("https://dummyjson.com/products/categories");
+            const category = categoryData.data;
+            dispatch({type: GET_CATEGORY, payload: category});
+        } catch (error){
+            console.log("error en devolver las categorias", error.message)
         }
     };
 };
