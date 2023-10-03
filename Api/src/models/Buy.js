@@ -12,7 +12,7 @@ module.exports = (sequelize) => {
       allowNull: false
     },
     totalAmount: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.REAL,
       allowNull: false
     }
   });
