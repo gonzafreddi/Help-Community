@@ -21,9 +21,10 @@ export default function CreateCampaign(){
     name: "",
     short_description: "", 
     long_description: "",
-    image: imageUrl,
+    image: `${imageUrl}`,
     startDate: "1980-01-25",
     endDate: `${{}}`,
+    endDate: ["1980-01-25"],
     finalAmount: "",
     StateId: "",
     CategoryId:"",
@@ -49,19 +50,30 @@ export default function CreateCampaign(){
   };
 
 
+  // const handleInputChange = (e) => {
+  //   handleChange(info, setInfo, setErrors, e);
+  //   const updatedInfo = {
+  //     ...info,
+  //     [e.target.name]:e.target.value,
+  //     image: imageUrl,
+  //   };
+  //   setInfo(updatedInfo)
+  // };
+
   const handleInputChange = (e) => {
-    handleChange(info, setInfo, setErrors, e);
     const updatedInfo = {
       ...info,
-      image: imageUrl,
+      [e.target.name]: e.target.value,
+      image: imageUrl, // Establecer image con imageUrl
     };
-    setInfo(updatedInfo)
+  
+    handleChange(updatedInfo, setInfo, setErrors, e); // Pasar updatedInfo en lugar de info
   };
-
+  
   const isDisabled = disableFunction(errors);
-
-  console.log(info)
-  console.log(errors)
+console.log(errors)
+console.log(info)
+ 
     return(<div className={style.bodyConteiner}>
         <div className={style.formConteiner}>
          
