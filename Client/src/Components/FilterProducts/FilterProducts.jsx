@@ -21,7 +21,7 @@ const FilterProducts = ({ categ }) => {
                 <option className={style.italic} value="" disabled>Filtrar por provincia</option>
                 <option className={style.casillero} value="Todos">Todas las provincias</option>
                 {categ.map((category) => (
-                    <option className={style.opciones}  value={category.name}>
+                    <option className={style.opciones} key={category.name} value={category.name}>
                         {category.name}
                     </option>
                 ))}
