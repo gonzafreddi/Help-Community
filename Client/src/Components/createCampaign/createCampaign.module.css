@@ -123,3 +123,10 @@ span{
     margin-left: 2%;
  
 }
+
+.campaignImg{
+    max-height: 100px;
+    max-width: 100px;
+    margin-top: 1rem;
+    border-radius: 8%;
+}

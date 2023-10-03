@@ -1,11 +1,18 @@
 import style from "./createCampaign.module.css"
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react"
+import UploadWidget from "../UploadWidget/UploadWidget";
 import { postCampaign } from "../../redux/actions/action";
 import { handleSubmit, handleChange, disableFunction } from "./formUtils";
 
-
 export default function CreateCampaign(){
+
+  const [imageUrl, setImageUrl] = useState(""); // Estado para almacenar la URL
+
+  const handleImageUpload = (url) => {
+      setImageUrl(url); // Actualiza el estado con la URL de la imagen
+  }
+
   const dispatch = useDispatch()
   const states = useSelector((state)=>state.states)
   const category = useSelector((state)=>state.category)
@@ -14,9 +21,10 @@ export default function CreateCampaign(){
     name: "",
     short_description: "", 
     long_description: "",
-    image: "",
+    image: `${imageUrl}`,
     startDate: "1980-01-25",
     endDate: `${{}}`,
+    endDate: ["1980-01-25"],
     finalAmount: "",
     StateId: "",
     CategoryId:"",
@@ -42,14 +50,30 @@ export default function CreateCampaign(){
   };
 
 
+  // const handleInputChange = (e) => {
+  //   handleChange(info, setInfo, setErrors, e);
+  //   const updatedInfo = {
+  //     ...info,
+  //     [e.target.name]:e.target.value,
+  //     image: imageUrl,
+  //   };
+  //   setInfo(updatedInfo)
+  // };
+
   const handleInputChange = (e) => {
-    handleChange(info, setInfo, setErrors, e);
+    const updatedInfo = {
+      ...info,
+      [e.target.name]: e.target.value,
+      image: imageUrl, // Establecer image con imageUrl
+    };
+  
+    handleChange(updatedInfo, setInfo, setErrors, e); // Pasar updatedInfo en lugar de info
   };
-
+  
   const isDisabled = disableFunction(errors);
-
-  console.log(info)
-  console.log(errors)
+console.log(errors)
+console.log(info)
+ 
     return(<div className={style.bodyConteiner}>
         <div className={style.formConteiner}>
          
@@ -65,13 +89,14 @@ export default function CreateCampaign(){
                 <label className={style.title} htmlFor=""><h3>Describe tu campaña</h3></label>
                 <span>{errors.description}</span>
                 <textarea onChange={handleInputChange} name="long_description" id="" cols="30" rows="10" readonly></textarea>
-
-
                 
-
-
                 <label className={style.title}  htmlFor=""><h3>Añade una imagen a tu campaña</h3></label>
-                <button className={style.send}>Subir Foto</button>
+                <UploadWidget onImageUpload={handleImageUpload}/>
+                {
+                  imageUrl !== "" 
+                  ? <img className={style.campaignImg} src={imageUrl} alt="campaignImg" /> 
+                  : null
+                }
 
                <div className={style.selectsConteiner}>
                 <div className={style.state}>
