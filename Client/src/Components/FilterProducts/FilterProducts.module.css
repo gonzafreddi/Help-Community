@@ -1,0 +1,30 @@
+.filterBarContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    gap: 2em;
+}
+
+.filters{
+    background-color: rgba(1, 42, 74, 0.815);
+    color: rgba(255, 255, 255, 0.945);
+    width: max-content;
+    height: 25px;
+    font-size: 16px;
+    box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.418);
+    border-radius: 5px;
+    padding-left: 5px;
+}
+
+.casillero{
+    background-color:  white;
+    color: rgba(1, 42, 74, 0.815);
+}
+
+.opciones{
+    background-color: rgb(255, 255, 255);
+    color: rgba(1, 42, 74, 0.815);
+}
+
