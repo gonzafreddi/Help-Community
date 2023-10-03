@@ -49,17 +49,6 @@ export default function CreateCampaign(){
     handleSubmit(info, dispatch, postCampaign);
   };
 
-
-  // const handleInputChange = (e) => {
-  //   handleChange(info, setInfo, setErrors, e);
-  //   const updatedInfo = {
-  //     ...info,
-  //     [e.target.name]:e.target.value,
-  //     image: imageUrl,
-  //   };
-  //   setInfo(updatedInfo)
-  // };
-
   const handleInputChange = (e) => {
     const updatedInfo = {
       ...info,
@@ -71,8 +60,7 @@ export default function CreateCampaign(){
   };
   
   const isDisabled = disableFunction(errors);
-console.log(errors)
-console.log(info)
+
  
     return(<div className={style.bodyConteiner}>
         <div className={style.formConteiner}>
