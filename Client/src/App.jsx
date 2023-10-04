@@ -12,6 +12,7 @@ import { useEffect } from 'react'
 import { getCategory, getState } from './redux/actions/action'
 import { useDispatch } from 'react-redux'
 import Landing from './Components/landing/Landing'
+import Login from './Components/Login/Login'
 
 function App() {
   const dispatch = useDispatch()
@@ -29,6 +30,7 @@ function App() {
         <Route path='/create/campaign' element={<CreateCampaign/>}/>
         <Route path='/detail/camp' element={<DetailCampain/>}/>
         <Route path="/products" element={<Products />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
       <Footer/>
     </>

@@ -33,7 +33,9 @@ export const Nav = () => {
                         <SearchBar/>
 
                     </div> */}
-                    <button className='nav-button'>Iniciar Sesion</button>
+                    <Link to={"/login"}>
+                        <button className='nav-button'>Iniciar Sesion</button>
+                    </Link>
                 </div>
 
 

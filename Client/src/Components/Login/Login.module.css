@@ -1,0 +1,63 @@
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #fff;
+    min-width: 20%;
+    min-height: 30%;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.buttonCont{
+    align-self: end;
+}
+
+.closeBtn{
+    border: none;
+    background: transparent;
+}
+
+a {
+    text-decoration: none;
+}
+
+.forgotPass{
+    color: rgba(60, 110, 169, 1);
+}
+
+.google {
+    margin-top: 20%;
+    margin-bottom: 10%;
+    border: none;
+    min-height: 40px;
+    min-width: 240px;
+    font-family: 'DM Sans', sans-serif;  
+    font-weight: 600;
+}
+
+.closeBtn:hover {
+    cursor: pointer;
+}
+
+.google:hover {
+    cursor: pointer;
+}
+
+h1 {
+    font-size: 1.3em;
+    color: rgba(1, 42, 74, 1);
+}
