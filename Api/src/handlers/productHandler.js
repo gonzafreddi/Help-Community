@@ -14,10 +14,18 @@ const getProductHandler = async (req, res) => {
 };
 
 const postProductHandler = async (req, res) => {
-  const { name, description, image, price, category, ongDonorId } = req.body;
+  const { name, description, image, price, category, CategoryProductId } =
+    req.body;
 
   try {
-    await postProduct(name, description, image, price, category, ongDonorId);
+    await postProduct(
+      name,
+      description,
+      image,
+      price,
+      category,
+      CategoryProductId
+    );
     res.status(200).json(`The Product ${name} was successfully created`);
   } catch (error) {
     res.status(400).json({ error: error.message });

@@ -1,5 +1,5 @@
 const axios = require("axios");
-const { Product, Ong_donor } = require("../db");
+const { Product, CategoryProduct } = require("../db");
 const {
   cleanArrayProductDB,
   cleanArrayProductApi,
@@ -7,14 +7,14 @@ const {
 const products = require("../../dataApi/products");
 
 const getAllProducts = async function () {
-  const rawArrayDB = await Product.findAll(/* {
+  const rawArrayDB = await CategoryProduct.findAll({
     include: {
-      model: Ong_donor,
-      attributes: ["name"],
+      model: Product,
+      attributes: ["name", "price", "description", "image", "state", "created"],
       through: { attributes: [] },
     },
     // Habilitar cuando esté el getAllOngDonor()
-  } */);
+  });
 
   const productsDB = cleanArrayProductDB(rawArrayDB);
 
@@ -25,13 +25,27 @@ const getAllProducts = async function () {
   return [...productsDB, ...productsApi];
 };
 
-const postProduct = async (name, description, image, price, category) => {
+const postProduct = async (
+  name,
+  description,
+  image,
+  price,
+  brand,
+  stock,
+  rating,
+  state,
+  CategoryProductId
+) => {
   const newProduct = await Product.create({
     name,
     description,
     image,
     price,
-    category,
+    brand,
+    stock,
+    rating,
+    state,
+    CategoryProductId,
   });
   //await newProduct.setProducts(ongDonorId); // Todavia falta hacer el getAllOngDonor()
 
