@@ -17,8 +17,10 @@ import {
     detailCampaign: [],
     states: [],
     category: [],
+    
     product: [],
-    categ:[]
+    categ:[],
+    productCopy:[]
 }
 
 
@@ -52,7 +54,7 @@ const reducer = (state = initialState, action)=> {
                 return {
                     ...state,
                     product: action.payload,
-                    productCopy: action.payload
+                    productCopy: action.payload,
                 };
         case FILTER_BY_STATE:
             const filteredByState = action.payload === "Todos" ? 
