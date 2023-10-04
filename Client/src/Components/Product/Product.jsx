@@ -1,14 +1,13 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import style from "./Product.module.css";
-// import FilterProducts from '../FilterProducts/FilterProducts';
+
 
 export const Product = (props) => {
   const { nombre, descripcion, imagen, precio, categoria } = props;
 
   return (
     <div className={style.contenedor}>
-      {/* <FilterProducts category={categoria}/> */}
         <div className={style.contenedorImagen}>
           <img className={style.imagen} src={imagen} alt={nombre} />
         </div>

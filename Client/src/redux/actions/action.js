@@ -100,7 +100,7 @@ export function filterByCategory(payload){
 
 export function filterByCateg(payload){
     return{
-        type: "FILTER_BY_CATEG",
+        type: FILTER_BY_CATEG,
         payload
     }
 }
@@ -111,8 +111,8 @@ export const getProduct = () => {
     return async function (dispatch){
         try{
             const productData = await axios("https://dummyjson.com/products");
-            const product = productData.data;
-            dispatch({type: GET_PRODUCT, payload: product});
+            const products = productData.data;
+            dispatch({type: GET_PRODUCT, payload: products});
         } catch (error){
             console.log("error en devolver los productos", error.message)
         }
