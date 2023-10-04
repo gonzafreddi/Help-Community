@@ -15,17 +15,16 @@ const Login = ({closeLogin}) => {
       e.preventDefault();
       auth.register(emailRegister, passwordRegister);
     };
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
       e.preventDefault();
-      auth.login(email, password);
+      await auth.login(email, password);
+      closeLogin();
     };
-    const handleGoogle = (e) => {
+    const handleGoogle = async (e) => {
       e.preventDefault();
-      auth.loginWithGoogle();
+      await auth.loginWithGoogle();
+      closeLogin();
     };
-    const handleLogout = () => {
-      auth.logout();
-    }
     return (
         <div className={style.modalOverlay}>
             <div className={style.modal}>
