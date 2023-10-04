@@ -22,16 +22,15 @@ useEffect(()=>{
 },[dispatch])
 
 
-const categ = useSelector((state) => state.categ);
-console.log("category: ", categ)
-const product = useSelector((state) => state.product);
-console.log("product: ", product)
+const categ = useSelector(state => state.categ);
+
+const products = useSelector((state) => state.product);
+console.log("products: ", products)
 
     return (
-      <div>
-        <FilterProducts categ={categ}/>
         <div className={style.cardsContainer}>
-        {product.map((producto) => (
+        {/* <FilterProducts categ={categ}/> */}
+        {products?.map((producto) => (
             <div key={producto.id}>
                 <Product
                   key={producto.id}
@@ -45,7 +44,6 @@ console.log("product: ", product)
             </div>
         ))}
         </div>
-      </div>
     )
   }
 

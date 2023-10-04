@@ -7,16 +7,13 @@ module.exports = (sequelize) => {
       primaryKey: true,
       defaultValue: UUIDV4,
     },
-    //amountBuys: {
-      //          buy:{
-        //            type: DataTypes.STRING,
-          //          allowNull: false,},
-                
-            //    quantityProduct: {
-              //          type: DataTypes.INTEGER,
-                //        allowNull: false,
-                  //    },
-    //},
-   
+    buyOut: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    totalAmount: {
+      type: DataTypes.REAL,
+      allowNull: false
+    }
   });
 };

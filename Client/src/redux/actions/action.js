@@ -9,13 +9,13 @@ export const GET_PRODUCT = "GET_PRODUCT";
 
 export const GET_CATEG = "GET_CATEG";
 export const FILTER_BY_CATEG = "FILTER_BY_CATEG";
-
+axios.defaults.baseURL = "https://help-community-production-ad63.up.railway.app"
 
 
 export const getCampaign = () => {
     return async function (dispatch){
         try{
-            const campaignData = await axios('http://localhost:3001/campaign');
+            const campaignData = await axios('/campaign');
             const campaign = campaignData.data;
             dispatch({type: GET_CAMPAIGN, payload: campaign});
         } catch (error){
@@ -24,18 +24,31 @@ export const getCampaign = () => {
     };
 };
 
-// export const getStates = () => {
-//     return async function (dispatch){
-//         try{
-//             const statesData = await axios("http://localhost:3001/state");
-//             const states = statesData.data;
-//             dispatch({type: GET_STATES, payload: states});
-//         } catch (error){
-//             console.log("error en devolver la action", error.message)
-//         }
-//     };
-// };
+export const getStates = () => {
+    return async function (dispatch){
+        try{
+            const statesData = await axios("/state");
+            const states = statesData.data;
+            dispatch({type: GET_STATES, payload: states});
+        } catch (error){
+            console.log("error en devolver la action", error.message)
+        }
+    };
+};
 
+
+
+export const getCategory = () => {
+    return async function (dispatch){
+        try{
+            const categoryData = await axios("/category");
+            const category = categoryData.data;
+            dispatch({type: GET_CATEGORY, payload: category});
+        } catch (error){
+            console.log("error en devolver la action", error.message)
+        }
+    };
+};
 
 
 
@@ -56,8 +69,8 @@ export const getDetailCampaign = (name)=>{
     // console.log(name);
     return async function (dispatch){
         try {
-            // console.log("entre a la funcion")
-            const dataDetail = await axios(`http://localhost:3001/campaign?name=${name}`)
+            console.log("entre a la funcion")
+            const dataDetail = await axios(`/campaign?name=${name}`)
             const dataCampaign = dataDetail.data
             dispatch({
                 type: GET_DETAIL_CAMPAIGN,
@@ -97,7 +110,7 @@ export function filterByCateg(payload){
 export const getProduct = () => {
     return async function (dispatch){
         try{
-            const productData = await axios("https://dummyjson.com/products");
+            const productData = await axios("/product");
             const product = productData.data;
             dispatch({type: GET_PRODUCT, payload: product});
         } catch (error){
@@ -122,7 +135,7 @@ export const getProduct = () => {
 export const getState = ()=>{
     return async function(dispatch){
         try {
-            const {data} = await axios("http://localhost:3001/state")
+            const {data} = await axios("/state")
             dispatch({
                 type: GET_STATE,
                 payload: data
@@ -137,7 +150,7 @@ export function postCampaign(payload) {
     return async function (dispatch) {
       
        try {
-        const response = await axios.post('http://localhost:3001/campaign/create', payload);
+        const response = await axios.post('/campaign/create', payload);
         return response
        } catch (error) {
         return error.message
