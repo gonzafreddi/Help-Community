@@ -15,7 +15,7 @@ export const Product = (props) => {
       <p className={style.descripcion}>{descripcion}</p>
       <p className={style.precio}>$ {precio}</p>
       <p className={style.categoria}>{categoria}</p>
-      <Link to={`/detail/${nombre}`} className={style.link}>
+      <Link to={`/products/detail/${nombre}`} className={style.link}>
       <p className={style.verMas}>Comprar</p>
       </Link>
     </div>

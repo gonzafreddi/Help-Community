@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 import { Home } from './Components/Home/Home'
 import {Detail} from "./Components/Detail/Detail"
-import { DetailCampain } from './Components/Detail/Detail_campain'
+import { DetailProduct } from './Components/Detail/Detail_product'
 import { About } from './Components/About/About'
 import { Nav } from './Components/Nav/Nav'
 import { Products } from './Components/Products/Products'
@@ -27,7 +27,7 @@ function App() {
         <Route path='/detail/:id' element={<Detail/>}/>
         <Route path='/about' element={<About/>}/>
         <Route path='/create/campaign' element={<CreateCampaign/>}/>
-        <Route path='/detail/camp' element={<DetailCampain/>}/>
+        <Route path='/products/detail/:name' element={<DetailProduct/>}/>
         <Route path="/products" element={<Products />} />
       </Routes>
       <Footer/>
