@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCampaign, getStates, getCategory } from '../../redux/actions/action';
+import { getCampaign } from '../../redux/actions/action';
 import Pagination from '../Pagination/Pagination';
 import { Cards } from "../Cards/Cards";
-import FilterBar from '../FilterBar/FilterBar';
+// import FilterBar from '../FilterBar/FilterBar';
 
 
 export const Home = () => {
@@ -13,14 +13,14 @@ export const Home = () => {
 
   useEffect(() => {
       dispatch(getCampaign());
-      dispatch(getStates());
-      dispatch(getCategory())
+      // dispatch(getStates());
+      // dispatch(getCategory())
   }, [dispatch]);
 
 
 
-  const states = useSelector(state => state.states);
-  const category = useSelector(state => state.category);
+  // const states = useSelector(state => state.states);
+  // const category = useSelector(state => state.category);
   const allCampaigns = useSelector((state) => state.campaign);
 
   const [page, setPage] = useState(1);
@@ -45,7 +45,7 @@ export const Home = () => {
 
  return (
    <div>
-       <FilterBar states={states} category={category} />
+       {/* <FilterBar states={states} category={category} /> */}
        <Cards data={getCurrentPageCampaigns()}/>
        <Pagination page={page} setPage={setPage} itemsPerPage={cardsPerPage} totalItems={totalItems}/>
    </div>

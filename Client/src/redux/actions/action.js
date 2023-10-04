@@ -1,10 +1,10 @@
 import axios from "axios";
 import { GET_DETAIL_CAMPAIGN , GET_STATE} from "./action_type";
 export const GET_CAMPAIGN = "GET_CAMPAIGN";
-export const FILTER_BY_STATE = "FILTER_BY_STATE";
-export const GET_STATES = "GET_STATES";
-export const GET_CATEGORY = "GET_CATEGORY";
-export const FILTER_BY_CATEGORY = "FILTER_BY_CATEGORY";
+// export const FILTER_BY_STATE = "FILTER_BY_STATE";
+// export const GET_STATES = "GET_STATES";
+// export const GET_CATEGORY = "GET_CATEGORY";
+// export const FILTER_BY_CATEGORY = "FILTER_BY_CATEGORY";
 export const GET_PRODUCT = "GET_PRODUCT";
 
 export const GET_CATEG = "GET_CATEG";
@@ -24,17 +24,17 @@ export const getCampaign = () => {
     };
 };
 
-export const getStates = () => {
-    return async function (dispatch){
-        try{
-            const statesData = await axios("http://localhost:3001/state");
-            const states = statesData.data;
-            dispatch({type: GET_STATES, payload: states});
-        } catch (error){
-            console.log("error en devolver la action", error.message)
-        }
-    };
-};
+// export const getStates = () => {
+//     return async function (dispatch){
+//         try{
+//             const statesData = await axios("http://localhost:3001/state");
+//             const states = statesData.data;
+//             dispatch({type: GET_STATES, payload: states});
+//         } catch (error){
+//             console.log("error en devolver la action", error.message)
+//         }
+//     };
+// };
 
 
 
@@ -53,10 +53,10 @@ export const getCateg = () => {
 
 
 export const getDetailCampaign = (name)=>{
-    console.log(name);
+    // console.log(name);
     return async function (dispatch){
         try {
-            console.log("entre a la funcion")
+            // console.log("entre a la funcion")
             const dataDetail = await axios(`http://localhost:3001/campaign?name=${name}`)
             const dataCampaign = dataDetail.data
             dispatch({
@@ -69,26 +69,26 @@ export const getDetailCampaign = (name)=>{
     }
 }
 
-export function filterByState(payload){
-    return{
-        type: "FILTER_BY_STATE",
-        payload
-    }
-}
+// export function filterByState(payload){
+//     return{
+//         type: "FILTER_BY_STATE",
+//         payload
+//     }
+// }
 
 
 
-export function filterByCategory(payload){
-    return{
-        type: "FILTER_BY_CATEGORY",
-        payload
-    }
-}
+// export function filterByCategory(payload){
+//     return{
+//         type: "FILTER_BY_CATEGORY",
+//         payload
+//     }
+// }
 
 export function filterByCateg(payload){
     return{
         type: "FILTER_BY_CATEG",
-        payload
+        payload,
     }
 }
 
@@ -106,17 +106,18 @@ export const getProduct = () => {
     };
 };
 
-export const getCategory = () => {
-    return async function (dispatch){
-        try{
-            const categoryData = await axios("https://dummyjson.com/products/categories");
-            const category = categoryData.data;
-            dispatch({type: GET_CATEGORY, payload: category});
-        } catch (error){
-            console.log("error en devolver las categorias", error.message)
-        }
-    };
-};
+
+// export const getCategory = () => {
+//     return async function (dispatch){
+//         try{
+//             const categoryData = await axios("http://localhost:3001/category");
+//             const category = categoryData.data;
+//             dispatch({type: GET_CATEGORY, payload: category});
+//         } catch (error){
+//             console.log("error en devolver las categorias", error.message)
+//         }
+//     };
+// };
 
 export const getState = ()=>{
     return async function(dispatch){

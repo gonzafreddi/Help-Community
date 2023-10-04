@@ -6,6 +6,7 @@ import style from "./Product.module.css";
 export const Product = (props) => {
   const { nombre, descripcion, imagen, precio, categoria } = props;
 
+
   return (
     <div className={style.contenedor}>
       {/* <FilterProducts category={categoria}/> */}
