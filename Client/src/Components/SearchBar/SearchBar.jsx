@@ -84,7 +84,7 @@ const SearchBar = () => {
                 
                 <div className='input-container'>
                     <input 
-                        className='input'
+                        className='searchInput'
                         type='search'
                         value={searchText}
                         onChange={handleInputChange}
