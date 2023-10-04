@@ -1,9 +1,24 @@
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
+// import SearchBar from '../SearchBar/SearchBar';
+import Login from '../Login/Login';
 import './Nav.css';
-import SearchBar from '../SearchBar/SearchBar';
 
 
 export const Nav = () => {
+
+    const [loginOpen, setLoginOpen] = useState(false);
+    
+    const openLogin = () => {
+      setLoginOpen(true);
+      document.body.style.overflow = 'hidden';
+    };
+  
+    const closeLogin = () => {
+      setLoginOpen(false);
+      document.body.style.overflow = 'unset';
+    };
+
     return (
         <nav className='Nav'>
             
@@ -33,9 +48,10 @@ export const Nav = () => {
                         <SearchBar/>
 
                     </div> */}
-                    <Link to={"/login"}>
-                        <button className='nav-button'>Iniciar Sesion</button>
-                    </Link>
+                    {/* <Link to={"/login"}> */}
+                        <button className='nav-button' onClick={openLogin}>Iniciar Sesion</button>
+                        {loginOpen && <Login closeLogin={closeLogin} />}
+                    {/* </Link> */}
                 </div>
 
 
