@@ -18,9 +18,9 @@ import {
     states: [],
     category: [],
     
-    product: [],
+    products: [],
     categ:[],
-    productCopy:[]
+    productsCopy:[]
 }
 
 
@@ -53,8 +53,8 @@ const reducer = (state = initialState, action)=> {
         case GET_PRODUCT:
                 return {
                     ...state,
-                    product: action.payload,
-                    productCopy: action.payload,
+                    products: action.payload.products, // Accede a products.products para obtener los productos
+                    productsCopy: action.payload.products,
                 };
         case FILTER_BY_STATE:
             const filteredByState = action.payload === "Todos" ? 
@@ -78,15 +78,14 @@ const reducer = (state = initialState, action)=> {
             };
 
         case FILTER_BY_CATEG:
-                const filteredByCateg = action.payload === "Todos"
-                ? [...state.productCopy] // Si es "Todos", no aplicar filtro
-                : [...state.productCopy].filter((product) => 
-                product.category === action.payload);
-                return {
-                    ...state,
-                    product: filteredByCateg,
-                };
-
+            const filteredByCateg = action.payload === "Todos"
+            ? [...state.productsCopy] // Restaurar la copia original de productos si se selecciona "Todos"
+            : state.productsCopy.filter(producto => producto.category === action.payload);
+    
+        return {
+            ...state,
+            products: filteredByCateg
+        };
 
          case GET_DETAIL_CAMPAIGN:
             return{

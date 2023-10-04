@@ -17,8 +17,9 @@ useEffect(()=>{
 
 
 const categ = useSelector(state => state.categ);
+console.log(categ)
 
-const products = useSelector((state) => state.product);
+const products = useSelector((state) => state.products);
 console.log("products: ", products)
 
     return (
