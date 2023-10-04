@@ -20,6 +20,7 @@ router.use("/categoryProduct", CategoryProductRouter);
 router.use("/buys", buysRouter);
 
 
+
 router.use(express.json());
 
 module.exports = router;
