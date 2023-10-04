@@ -1,30 +1,34 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProduct } from "../../redux/actions/action";
+import { getProduct, getCateg } from "../../redux/actions/action";
 import { Product } from "../Product/Product";
 import style from "./Products.module.css"
+import FilterProducts from '../FilterProducts/FilterProducts';
 
 
 export const Products = () => {
 
 const dispatch = useDispatch();
 
-const product = useSelector((state) => state.product);
-
-console.log("products: ", product)
-
 useEffect(()=>{
-    dispatch(getProduct())
+    dispatch(getProduct());
+    dispatch(getCateg())
 },[dispatch])
 
 
+const categ = useSelector(state => state.categ);
+
+const products = useSelector((state) => state.products);
+console.log("products: ", products)
+
     return (
         <div className={style.cardsContainer}>
-        {product.map((producto) => (
+        <FilterProducts categ={categ}/>
+        {products.map((producto) => (
             <div key={producto.id}>
                 <Product
                   key={producto.id}
-                  nombre={producto.name}
+                  nombre={producto.title}
                   descripcion={producto.description}
                   imagen={producto.image}
                   precio={producto.price}

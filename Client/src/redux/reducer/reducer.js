@@ -1,16 +1,24 @@
-
-import { GET_CAMPAIGN, FILTER_BY_STATE, FILTER_BY_CATEGORY, GET_STATES, GET_CATEGORY, GET_PRODUCT } from "../actions/action"
-import { GET_DETAIL_CAMPAIGN, GET_STATE } from "../actions/action_type";
-
-
-
-const initialState = {
+import {
+    GET_CAMPAIGN,
+    FILTER_BY_STATE,
+    FILTER_BY_CATEGORY,
+    GET_STATES,
+    GET_CATEGORY,
+    GET_PRODUCT,
+    GET_CATEG,
+    FILTER_BY_CATEG
+  } from "../actions/action";
+  import { GET_DETAIL_CAMPAIGN, GET_STATE } from "../actions/action_type";
+  
+  const initialState = {
     campaign: [],
     campaignBackup: [],
+    campaignFiltered: [],
     detailCampaign: [],
     states: [],
     category: [],
-    product: []
+    product: [],
+    categ:[]
 }
 
 
@@ -33,10 +41,18 @@ const reducer = (state = initialState, action)=> {
                     ...state,
                     category: action.payload
                 };
+
+        case GET_CATEG:
+                return {
+                    ...state,
+                    categ: action.payload
+                };
+
         case GET_PRODUCT:
                 return {
                     ...state,
-                    product: action.payload
+                    product: action.payload,
+                    productCopy: action.payload
                 };
         case FILTER_BY_STATE:
             const filteredByState = action.payload === "Todos" ? 
@@ -59,6 +75,17 @@ const reducer = (state = initialState, action)=> {
                 campaign: filteredByCategory,
             };
 
+        case FILTER_BY_CATEG:
+                const filteredByCateg = action.payload === "Todos"
+                ? [...state.productCopy] // Si es "Todos", no aplicar filtro
+                : [...state.productCopy].filter((product) => 
+                product.category === action.payload);
+                return {
+                    ...state,
+                    product: filteredByCateg,
+                };
+
+
          case GET_DETAIL_CAMPAIGN:
             return{
                 ...state,
@@ -73,6 +100,6 @@ const reducer = (state = initialState, action)=> {
                 default:
                     return state;
     }
-}
-
-export default reducer;
+  };
+  
+  export default reducer;

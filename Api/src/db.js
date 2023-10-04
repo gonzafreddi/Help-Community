@@ -2,10 +2,18 @@ require("dotenv").config();
 const { Sequelize } = require("sequelize");
 const fs = require("fs");
 const path = require("path");
-const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
+const { DB_USER, DB_PASSWORD, DB_HOST , DB_DEPLOY} = process.env;
+
+// const database = new Sequelize(
+//   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/helpcommunity`,
+//   {
+//     logging: false, // set to console.log to see the raw SQL queries
+//     native: false, // lets Sequelize know we can use pg-native for ~30% more speed
+//   }
+// )
 
 const database = new Sequelize(
-  `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/helpcommunity`,
+  DB_DEPLOY,
   {
     logging: false, // set to console.log to see the raw SQL queries
     native: false, // lets Sequelize know we can use pg-native for ~30% more speed
@@ -33,7 +41,7 @@ let capsEntries = entries.map((entry) => [
 ]);
 database.models = Object.fromEntries(capsEntries);
 
-const { Campaign, Category, User, State } = database.models;
+const { Campaign, Category, User, State, CategoryProduct, Product} = database.models;
 
 // Ong_donor.hasMany(Campaign);
 // Campaign.belongsTo(Ong_donor);
@@ -69,6 +77,14 @@ Campaign.belongsToMany(Category, { through: "Category_Campaign" });
 
 Campaign.belongsToMany(State, { through: "Campaign_State" });
 State.belongsToMany(Campaign, { through: "Campaign_State" });
+
+
+CategoryProduct.hasMany(Product);
+Product.belongsTo(CategoryProduct);
+
+Product.belongsToMany(User,{through: "Buys"});
+User.belongsToMany(Product,{through: "Buys"});
+
 
 module.exports = {
   ...database.models,

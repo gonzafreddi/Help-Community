@@ -1,8 +1,11 @@
-// import { useDispatch, useSelector } from 'react-redux';
+
+import { useDispatch, useSelector } from 'react-redux';
 import { filterByState, filterByCategory } from '../../redux/actions/action';
 import React, { useEffect, useState } from 'react';
 // import SearchBar from '../SearchBar/SearchBar';
 import style from './FilterBar.module.css';
+import axios from "axios";
+
 
 const FilterBar = ({ states, category }) => {
 
@@ -35,8 +38,10 @@ const FilterBar = ({ states, category }) => {
             <select className={style.filters} value={selectedState} onChange={handleFilterState}>
                 <option className={style.italic} value="" disabled>Filtrar por provincia</option>
                 <option className={style.casillero} value="Todos">Todas las provincias</option>
+
                 {states.map((state) => (
                     <option className={style.opciones} key={state.id} value={state.name}>
+
                         {state.name}
                     </option>
                 ))}
@@ -45,6 +50,7 @@ const FilterBar = ({ states, category }) => {
             <select className={style.filters} value={selectedCategory} onChange={handleFilterCategory}>
                 <option className={style.italic} value="" disabled>Filtrar por categoría</option>
                 <option className={style.casillero} value="Todos">Todas las categorías</option>
+
                 {category.map((category) => (
                     <option className={style.opciones} key={category.id} value={category.name}>
                         {category.name}

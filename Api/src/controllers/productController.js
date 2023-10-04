@@ -20,7 +20,6 @@ const getAllProducts = async function () {
 
   /* const rawArrayApi = (await axios.get(`https://fakestoreapi.com/products`))
     .data; */
-  console.log(products);
   const productsApi = cleanArrayProductApi(products);
 
   return [...productsDB, ...productsApi];
