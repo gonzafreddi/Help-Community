@@ -1,9 +1,9 @@
-import { filterByCateg } from '../../redux/actions/action';
+import { filterByCateg, productOrdenPrecio } from '../../redux/actions/action';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import style from './FilterProducts.module.css';
 
-const FilterProducts = ({ categ, selectedCategory, setSelectedCategory }) => {
+const FilterProducts = ({ categ }) => {
 
     const dispatch = useDispatch();
 
@@ -21,6 +21,11 @@ const FilterProducts = ({ categ, selectedCategory, setSelectedCategory }) => {
         
         dispatch(filterByCateg(filterValue));
       };
+      
+
+    const ordenPrecio = (event) => {
+        dispatch(productOrdenPrecio(event.target.name))
+}
         // console.log("categorias: ", categ)
 
     return (
@@ -34,7 +39,8 @@ const FilterProducts = ({ categ, selectedCategory, setSelectedCategory }) => {
                     </option>
                 ))}
             </select>
-
+            <button name="precioMenor" onClick={ordenPrecio}>Orden menor/mayor precio</button>
+            <button name="precioMayor" onClick={ordenPrecio}>Orden mayor/menor precio</button>
 
         </div>
     );
