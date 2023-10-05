@@ -6,6 +6,13 @@
     box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.178);
     margin-bottom: 35px;
     border-radius: 5px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contenedor:hover{
+    transform: scale(1.02);
+    cursor: default;
+    box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.61);
 }
 
 .contenedorImagen{
@@ -63,11 +70,19 @@
 
 .categoria{
     margin-top: -13px;
-    padding-left: 10px;
+    margin-left: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 1px;
     text-align: left;
-    color: rgba(0, 0, 0, 0.9);
+    color: rgb(255, 255, 255);
     font-size: 14px;
+    background-color: #007bff6c;
     /* font-weight: 500; */
+border-radius: 5px;
+    width: fit-content;
+    min-width: min-content;
+    max-width: max-content;
 }
 
 .link{

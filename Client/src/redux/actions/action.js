@@ -130,6 +130,7 @@ export const getProduct = () => {
     };
 };
 
+
 export const getState = ()=>{
     return async function(dispatch){
         try {

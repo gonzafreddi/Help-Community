@@ -9,7 +9,7 @@ const FilterProducts = ({ categ }) => {
 
     const [selectedCateg, setSelectedCateg] = useState(""); // Estado local 
 
-    console.log("selectedCateg", selectedCateg)
+    // console.log("selectedCateg", selectedCateg)
     
     const handleFilterCateg = (event) => {
         const selectedValue = event.target.value;
@@ -28,19 +28,28 @@ const FilterProducts = ({ categ }) => {
 }
         // console.log("categorias: ", categ)
 
+    const capitalizeFirstLetter = (str) => { //para poner la primera letra de la lista de categs en mayuscula
+        if (str.length === 0) {
+            return str; // Devuelve una cadena vacía si la cadena de entrada es vacía
+        }
+        const firstLetter = str.charAt(0).toUpperCase(); // Convierte la primera letra en mayúscula
+        const restOfString = str.slice(1).toLowerCase(); // Convierte el resto de la cadena en minúscula
+        return firstLetter + restOfString; // Devuelve la cadena resultante
+        };
+
     return (
         <div className={style.filterBarContainer}>
             <select className={style.filters} value={selectedCateg} onChange={handleFilterCateg}>
-                <option className={style.italic} value="" disabled>Filtrar por Categoria</option>
-                <option className={style.casillero} value="Todos">Todas las categorias</option>
+                <option className={style.italic} value="Todos" disabled>Filtrar por Categoria</option>
+                <option className={style.casillero} value="">Todas las categorias</option>
                 {categ.map((category) => (
                     <option className={style.opciones} key={category} value={category}>
-                        {category}
+                        {capitalizeFirstLetter(category)}
                     </option>
                 ))}
             </select>
-            <button name="precioMenor" onClick={ordenPrecio}>Orden menor/mayor precio</button>
-            <button name="precioMayor" onClick={ordenPrecio}>Orden mayor/menor precio</button>
+            <button className={style.boton} name="precioMenor" onClick={ordenPrecio}>Menor precio</button>
+            <button className={style.boton} name="precioMayor" onClick={ordenPrecio}>Mayor precio</button>
 
         </div>
     );

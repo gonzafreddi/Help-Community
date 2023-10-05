@@ -53,8 +53,8 @@ const reducer = (state = initialState, action)=> {
                   categ: action.payload
               };
 
-              case GET_PRODUCT:
-                return {
+      case GET_PRODUCT:
+              return {
                   ...state,
                   products: action.payload.products,
                   productsCopy: action.payload.products,
@@ -83,13 +83,13 @@ const reducer = (state = initialState, action)=> {
           };
 
           case FILTER_BY_CATEG:
-            const filteredByCateg = action.payload === "Todos"
+            const filteredByCateg = action.payload === ""
               ? state.productsCopy // No aplicar ningún filtro, mostrar todos los productos
               : state.productsCopy.filter(producto => producto.category === action.payload);
           
             return {
               ...state,
-              filter: action.payload !== "Todos", // Establecer filter en true solo si no es "Todos"
+              filters: action.payload !== "", // Establecer filter en true solo si no es ""
               productsFiltered: filteredByCateg
             };
 
