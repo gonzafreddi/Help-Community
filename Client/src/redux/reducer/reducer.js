@@ -8,7 +8,7 @@ import {
     GET_CATEG,
     FILTER_BY_CATEG
   } from "../actions/action";
-  import { ADD_TO_CART, GET_DETAIL_CAMPAIGN, GET_STATE } from "../actions/action_type";
+  import { ADD_TO_CART, GET_DETAIL_CAMPAIGN, GET_STATE, REMOVE_TO_CART } from "../actions/action_type";
   
   const initialState = {
     campaign: [],
@@ -100,7 +100,7 @@ const reducer = (state = initialState, action)=> {
             }
         case ADD_TO_CART:
             const {product, quantity} = action.payload;
-            const exisingItem = state.cartShop.find(item=> item.product.nombre === product.nombre)
+            const exisingItem = state.cartShop.find(item=> item.product.id === product.id)
             
             if(exisingItem){
                 //si esta actualizo la cantidad 
@@ -128,7 +128,14 @@ const reducer = (state = initialState, action)=> {
                     }
                     ]
                 }
-            }
+            }case REMOVE_TO_CART:
+            const idToRemove = action.payload;
+            const filteredCart = state.cartShop.filter(item => item.product.id !== idToRemove);
+            return {
+              ...state,
+              cartShop:filteredCart
+            };
+          
                 default:
                     return state;
     }

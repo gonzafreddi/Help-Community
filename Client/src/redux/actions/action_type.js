@@ -1,6 +1,5 @@
 export const GET_DETAIL_CAMPAIGN = "GET_DETAIL_CAMPAIGN"
 export const GET_STATE = "GET_STATE"
 export const ADD_TO_CART = "ADD_TO_CART"
-export const REMOVE_ONE_TO_CART = "REMOVE_ONE_TO_CART"
-export const REMOVE_ALL_TO_CART = "REMOVE_ALL_TO_CART"
+export const REMOVE_TO_CART = "REMOVE_TO_CART"
 export const CLEART_CART = "CLEAR_CART"

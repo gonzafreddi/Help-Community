@@ -12,6 +12,7 @@ import { useEffect } from 'react'
 import { getCategory, getState } from './redux/actions/action'
 import { useDispatch } from 'react-redux'
 import Landing from './Components/landing/Landing'
+import ShoppingCart from './Components/shopping cart/ShoppingCart'
 
 function App() {
   const dispatch = useDispatch()

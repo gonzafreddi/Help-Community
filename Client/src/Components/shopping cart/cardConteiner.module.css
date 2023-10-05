@@ -41,6 +41,9 @@ body{
     color: rgba(1, 42, 74, 1);
     background-color: #ffff;
 }
+.btnCount:hover{
+    cursor: pointer;
+}
 .price p{
     font-size: 1.3em;
     color: rgba(0, 0, 0, 0.546);
