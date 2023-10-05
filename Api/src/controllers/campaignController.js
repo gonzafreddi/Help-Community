@@ -21,11 +21,11 @@ const getAllCampaign = async function () {
         attributes: ["name"],
         through: { attributes: [] },
       },
-      {
+      /* {
         model: Ong_donor,
         attributes: ["name"],
         through: { attributes: [] },
-      },
+      }, */
     ],
   });
   const campaignDB = cleanArrayCampaignDB(rawArrayDB);
@@ -55,11 +55,11 @@ const getCampaignByName = async function (name) {
           attributes: ["name"],
           through: { attributes: [] },
         },
-        {
+        /* {
           model: Ong_donor,
           attributes: ["name"],
           through: { attributes: [] },
-        },
+        }, */
       ],
     });
 
@@ -77,6 +77,7 @@ const postCampaign = async (
   endDate,
   finalAmount,
   state,
+  ong,
   StateId,
   ongDonorId,
   CategoryId
@@ -90,6 +91,7 @@ const postCampaign = async (
     endDate,
     finalAmount,
     state,
+    ong,
   });
   await newCampaign.setCategories(CategoryId);
   await newCampaign.setStates(StateId);

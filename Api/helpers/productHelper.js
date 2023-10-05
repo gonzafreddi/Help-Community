@@ -29,9 +29,9 @@ const cleanArrayProductApi = (productsApi) =>
     };
   });
 
-const stringAll = (Donors) => {
-  const teamsNames = Donors.map((donor) => donor.name);
-  return teamsNames.join(", ");
+const stringAll = (category) => {
+  const categoryName = category.map((categ) => categ.name);
+  return categoryName.join(", ");
 };
 
 module.exports = {

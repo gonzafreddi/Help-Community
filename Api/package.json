@@ -24,6 +24,7 @@
     "pg": "^8.11.1",
     "pg-hstore": "2.3.4",
     "scrollreveal": "^4.0.9",
-    "sequelize": "^6.33.0"
+    "sequelize": "^6.33.0",
+    "vercel": "^32.4.1"
   }
 }

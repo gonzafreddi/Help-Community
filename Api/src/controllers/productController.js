@@ -1,5 +1,5 @@
 const axios = require("axios");
-const { Product, Ong_donor } = require("../db");
+const { Product, CategoryProduct } = require("../db");
 const {
   cleanArrayProductDB,
   cleanArrayProductApi,
@@ -7,32 +7,59 @@ const {
 const products = require("../../dataApi/products");
 
 const getAllProducts = async function () {
-  const rawArrayDB = await Product.findAll(/* {
-    include: {
-      model: Ong_donor,
-      attributes: ["name"],
-      through: { attributes: [] },
-    },
+  const rawArrayDB = await CategoryProduct.findAll({
+    include: [
+      {
+        model: Product,
+        attributes: [
+          "id",
+          "name",
+          "price",
+          "description",
+          "image",
+          "brand",
+          "stock",
+          "rating",
+          "state",
+        ],
+        /*  through: { attributes: [] }, */
+      },
+    ],
     // Habilitar cuando esté el getAllOngDonor()
-  } */);
+  });
+  console.log(rawArrayDB);
+  return rawArrayDB;
 
-  const productsDB = cleanArrayProductDB(rawArrayDB);
+  // const productsDB = cleanArrayProductDB(rawArrayDB);
 
-  /* const rawArrayApi = (await axios.get(`https://fakestoreapi.com/products`))
-    .data; */
-  console.log(products);
-  const productsApi = cleanArrayProductApi(products);
+  // /* const rawArrayApi = (await axios.get(`https://fakestoreapi.com/products`))
+  //   .data; */
+  // const productsApi = cleanArrayProductApi(products);
 
-  return [...productsDB, ...productsApi];
+  // return [...productsDB, ...productsApi];
 };
 
-const postProduct = async (name, description, image, price, category) => {
+const postProduct = async (
+  name,
+  description,
+  image,
+  price,
+  brand,
+  stock,
+  rating,
+  state,
+  CategoryProductId
+) => {
   const newProduct = await Product.create({
     name,
     description,
     image,
     price,
-    category,
+    brand,
+    stock,
+    rating,
+    state,
+    CategoryProductId,
   });
   //await newProduct.setProducts(ongDonorId); // Todavia falta hacer el getAllOngDonor()
 
