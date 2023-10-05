@@ -8,7 +8,7 @@ import {
     GET_CATEG,
     FILTER_BY_CATEG
   } from "../actions/action";
-  import { GET_DETAIL_CAMPAIGN, GET_STATE } from "../actions/action_type";
+  import { ADD_TO_CART, GET_DETAIL_CAMPAIGN, GET_STATE } from "../actions/action_type";
   
   const initialState = {
     campaign: [],
@@ -17,7 +17,7 @@ import {
     detailCampaign: [],
     states: [],
     category: [],
-    
+    cartShop:[],
     products: [],
     categ:[],
     productsCopy:[]
@@ -97,6 +97,11 @@ const reducer = (state = initialState, action)=> {
                 ...state,
                 states: action.payload
                 
+            }
+        case ADD_TO_CART:
+            return{
+                ...state,
+                cartShop: [...state.cartShop, action.payload] 
             }
                 default:
                     return state;

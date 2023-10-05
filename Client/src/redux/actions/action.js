@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_DETAIL_CAMPAIGN , GET_STATE} from "./action_type";
+import { ADD_TO_CART, GET_DETAIL_CAMPAIGN , GET_STATE} from "./action_type";
 export const GET_CAMPAIGN = "GET_CAMPAIGN";
 export const FILTER_BY_STATE = "FILTER_BY_STATE";
 export const GET_STATES = "GET_STATES";
@@ -142,6 +142,13 @@ export function postCampaign(payload) {
        } catch (error) {
         return error.message
        }
+    }
+}
+
+export const addToCart=(props)=>{
+    return{
+        type: ADD_TO_CART,
+        payload: props
     }
 }
 

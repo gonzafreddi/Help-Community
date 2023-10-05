@@ -23,6 +23,9 @@ export const Nav = () => {
                         <Link to={"/products"}>
                             <button className='nav-button' >Productos</button>
                         </Link>
+                        <Link to={"/shoppingCart"}>
+                        <button className='nav-button' >carrito</button>
+                        </Link>
                     {/* </Link> */}
                     {/* <UploadWidget/> */}
                 </div>
