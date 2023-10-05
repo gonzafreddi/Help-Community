@@ -14,16 +14,29 @@ const getProductHandler = async (req, res) => {
 };
 
 const postProductHandler = async (req, res) => {
-  const { name, description, image, price, category, CategoryProductId } =
-    req.body;
+  const {
+    name,
+    description,
+    image,
+    price,
+    brand,
+    stock,
+    rating,
+    state,
+    CategoryProductId,
+  } = req.body;
 
+  console.log(CategoryProductId);
   try {
     await postProduct(
       name,
       description,
       image,
       price,
-      category,
+      brand,
+      stock,
+      rating,
+      state,
       CategoryProductId
     );
     res.status(200).json(`The Product ${name} was successfully created`);
