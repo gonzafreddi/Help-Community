@@ -9,13 +9,11 @@
     margin-top: 3vw;
 }
 
-.buttonCarga{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 50px; 
-    margin-bottom: 50px;   
-    gap: 15px;
-    margin-left: 50%;
-}
 
+
+/* .card.visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+   */

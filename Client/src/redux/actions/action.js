@@ -107,20 +107,6 @@ export function filterByCateg(payload){
 
 
 
-// export const getProduct = (limit,skip) => {
-//     return async function (dispatch) {
-//         try {
-//           const productData = await axios.get("https://dummyjson.com/products", {
-//             params: { limit, skip },
-//           });
-//           console.log(productData);
-//           const products = productData.data;
-//           dispatch({ type: GET_PRODUCT, payload: products });
-//         } catch (error) {
-//           console.log("error en devolver los productos", error.message);
-//         }
-//       };
-// };
 
 export const getProduct = (additionalCards) => {
     return async function (dispatch, getState) {
