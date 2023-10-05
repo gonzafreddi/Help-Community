@@ -1,11 +1,24 @@
+import { useEffect } from "react"
 import styles from "./buy.module.css"
+import {  useSelector } from "react-redux/es/hooks/useSelector"
+
+
 export default function(){
-    let total = 1
+
+const cart = useSelector((state)=> state.cartShop)
+
+useEffect(()=>{
+    console.log(cart)
+},[cart])
+
+
+
+
     return(<div className={styles.buyCont}>
         <div className={styles.resume}><h4>Resumen de la compra</h4></div>
         <div>
             <div className={styles.amount}>
-            <p>Productos {total > 1 ? `(${total})` : ''}</p>
+            <p>Productos </p>
                 <p>$123231</p>
             </div>
             <div className={styles.amount}>

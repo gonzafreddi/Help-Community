@@ -8,7 +8,7 @@ import {
     GET_CATEG,
     FILTER_BY_CATEG
   } from "../actions/action";
-  import { ADD_TO_CART, GET_DETAIL_CAMPAIGN, GET_STATE, REMOVE_TO_CART } from "../actions/action_type";
+  import { ADD_ONE_TO_CART, ADD_TO_CART, GET_DETAIL_CAMPAIGN, GET_STATE, REMOVE_ONE_TO_CART, REMOVE_TO_CART } from "../actions/action_type";
   
   const initialState = {
     campaign: [],
@@ -135,7 +135,43 @@ const reducer = (state = initialState, action)=> {
               ...state,
               cartShop:filteredCart
             };
-          
+            case ADD_ONE_TO_CART:
+            const productIdToAdd = action.payload
+            const updtedCart = state.cartShop.map(item =>{
+                if(item.product.id === productIdToAdd){
+                    return{
+                        ...item,
+                        quantity: item.quantity + 1
+
+                    }
+                }
+
+                return item
+            })
+            const calculateTotalPrice = updtedCart.map(e=>({
+                ...e,
+                precio: e.product.precio * e.quantity
+            }))
+                return{
+                    ...state,
+                    cartShop: calculateTotalPrice
+                }
+                case REMOVE_ONE_TO_CART:
+                    const productIdToRemov = action.payload
+                    const updtedRemoveCart = state.cartShop.map(item =>{
+                        if(item.product.id === productIdToRemov && item.quantity > 1){
+                            return{
+                                ...item,
+                                quantity: item.quantity - 1
+                            }
+                        }
+                        return item
+                    })
+              
+                        return{
+                            ...state,
+                            cartShop: updtedRemoveCart
+                        }
                 default:
                     return state;
     }
