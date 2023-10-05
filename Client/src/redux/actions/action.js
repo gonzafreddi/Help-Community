@@ -107,17 +107,57 @@ export function filterByCateg(payload){
 
 
 
-export const getProduct = () => {
-    return async function (dispatch){
-        try{
-            const productData = await axios("https://dummyjson.com/products");
-            const products = productData.data;
-            dispatch({type: GET_PRODUCT, payload: products});
-        } catch (error){
-            console.log("error en devolver los productos", error.message)
+// export const getProduct = (limit,skip) => {
+//     return async function (dispatch) {
+//         try {
+//           const productData = await axios.get("https://dummyjson.com/products", {
+//             params: { limit, skip },
+//           });
+//           console.log(productData);
+//           const products = productData.data;
+//           dispatch({ type: GET_PRODUCT, payload: products });
+//         } catch (error) {
+//           console.log("error en devolver los productos", error.message);
+//         }
+//       };
+// };
+
+export const getProduct = (additionalCards) => {
+    return async function (dispatch, getState) {
+        try {
+          const currentState = getState(); // Obtén el estado actual para calcular el valor de skip
+          const currentProducts = currentState.products;
+          const skip = currentProducts.length; // Calcula el valor de skip desde el estado actual
+    
+          const productData = await axios.get("https://dummyjson.com/products", {
+            params: { limit: additionalCards, skip },
+          });
+          const newProducts = productData.data.products;
+
+          // Combina las tarjetas existentes con las nuevas tarjetas
+          const combinedProducts = [...currentProducts, ...newProducts];
+    
+          dispatch({ type: GET_PRODUCT, payload: combinedProducts });
+        } catch (error) {
+          console.log("error al obtener productos adicionales", error.message);
         }
-    };
-};
+      };
+  };
+
+// export const getProduct = (limit, skip) => {
+//     return async function (dispatch) {
+//       try {
+//         const productData = await axios.get("https://dummyjson.com/products", {
+//           params: { limit, skip },
+//         });
+//         const products = productData.data.products;
+//         dispatch({ type: GET_PRODUCT, payload: products });
+//       } catch (error) {
+//         console.log("error al obtener productos", error.message);
+//       }
+//     };
+//   };
+  
 
 export const getState = ()=>{
     return async function(dispatch){

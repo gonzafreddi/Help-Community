@@ -8,3 +8,14 @@
     margin-right: 10vw;
     margin-top: 3vw;
 }
+
+.buttonCarga{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px; 
+    margin-bottom: 50px;   
+    gap: 15px;
+    margin-left: 50%;
+}
+
