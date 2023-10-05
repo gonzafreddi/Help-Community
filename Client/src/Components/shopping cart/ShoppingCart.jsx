@@ -5,20 +5,24 @@ import { useSelector } from "react-redux"
 export default function ShoppingCart(){
 
     const cart = useSelector((state)=> state.cartShop)
-    console.log("log de carrito",cart)
+    // console.log("log de carrito",cart[0]?.product)
+    // const product = cart[0]?.product
+    // const quantity = cart[0]?.quantity
     return(<div className={style.conteiner}>
         <div className={style.cont}>
        <div className={style.items}>
          
        {
-            cart?.map((e)=>{
+            cart?.map((e, index)=>{
             return<CardShopping
-            id={e.id}
-            name={e.nombre}
-            price={e.precio}
+            key={index}
+            id={e.product.id}
+            name={e.product.nombre}
+            price={e.product.precio}
             rating={e.rating}
-            stock={e.stock}
-            image={e.imagen}
+            stock={e.product.stock}
+            image={e.product.imagen}
+            quantity={e.quantity}
             />
             })
         }

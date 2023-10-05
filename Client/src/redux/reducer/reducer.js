@@ -99,9 +99,35 @@ const reducer = (state = initialState, action)=> {
                 
             }
         case ADD_TO_CART:
-            return{
-                ...state,
-                cartShop: [...state.cartShop, action.payload] 
+            const {product, quantity} = action.payload;
+            const exisingItem = state.cartShop.find(item=> item.product.nombre === product.nombre)
+            
+            if(exisingItem){
+                //si esta actualizo la cantidad 
+                
+                const updtedCartItems = state.cartShop.map(item =>{
+                    if(item.product.nombre === product.nombre){
+                        return{
+                            ...item,
+                            quantity: item.quantity +1
+                        }
+                    }
+                    return item
+                })
+                return {
+                    ...state, 
+                    cartShop: updtedCartItems
+                }
+            }else {
+                return{
+                    ...state, 
+                    cartShop: [...state.cartShop, 
+                    {
+                        product,
+                        quantity
+                    }
+                    ]
+                }
             }
                 default:
                     return state;

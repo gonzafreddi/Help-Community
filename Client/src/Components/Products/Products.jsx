@@ -8,12 +8,12 @@ import FilterProducts from '../FilterProducts/FilterProducts';
 
 export const Products = () => {
 
-const dispatch = useDispatch();
+// const dispatch = useDispatch();
 
-useEffect(()=>{
-    dispatch(getProduct());
-    dispatch(getCateg())
-},[dispatch])
+// useEffect(()=>{
+//     // dispatch(getProduct());
+//     dispatch(getCateg())
+// },[dispatch])
 
 
 const categ = useSelector(state => state.categ);
