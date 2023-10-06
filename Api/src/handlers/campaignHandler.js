@@ -29,7 +29,6 @@ const postCampaignHandler = async (req, res) => {
     state,
     ong,
     StateId,
-    ongDonorId,
     CategoryId,
   } = req.body;
 
@@ -45,7 +44,6 @@ const postCampaignHandler = async (req, res) => {
       state,
       ong,
       StateId,
-      ongDonorId,
       CategoryId
     );
     res.status(200).json(`The Campaign ${name} was successfully created`);
