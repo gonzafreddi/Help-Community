@@ -4,12 +4,14 @@ import { useDispatch } from "react-redux"
 import { removeTocart } from "../../redux/actions/action"
 import { addOneToCart, removeOneToCart } from "../../redux/actions/action"
 
+// card de cada producto
+
+
 export default function CardShopping(props){
 const {id, name, image, price, rating, stock,quantity} = props
 
 const dispatch = useDispatch()
     return(<div className={style.cardConteiner}>
-   
         <div className={style.image}><img src={image} alt="" /></div>
        <div className={style.head}>
        <h4>{name}</h4>

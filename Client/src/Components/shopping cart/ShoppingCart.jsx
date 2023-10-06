@@ -27,7 +27,7 @@ export default function ShoppingCart(){
             })
         }
        </div>
-        <Buy/>
+            {cart.length > 1? <Buy/>: <h1>Comience a comprar</h1>}
         </div>
     </div>)
 }

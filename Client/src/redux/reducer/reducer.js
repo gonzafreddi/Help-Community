@@ -147,15 +147,17 @@ const reducer = (state = initialState, action)=> {
                 }
 
                 return item
-            })
-            const calculateTotalPrice = updtedCart.map(e=>({
-                ...e,
-                precio: e.product.precio * e.quantity
-            }))
-                return{
-                    ...state,
-                    cartShop: calculateTotalPrice
-                }
+                })
+              const calculateTotalPrice = updtedCart.map(e=>({
+                   ...e,
+                  precio: e.product.precio * e.quantity
+               }))
+                 return{
+                     ...state,
+                        cartShop: calculateTotalPrice
+                    }
+
+
                 case REMOVE_ONE_TO_CART:
                     const productIdToRemov = action.payload
                     const updtedRemoveCart = state.cartShop.map(item =>{
