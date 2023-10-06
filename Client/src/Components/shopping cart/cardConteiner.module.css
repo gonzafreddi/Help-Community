@@ -15,6 +15,7 @@ body{
     background-color: #ffff;
     margin-bottom: 20px;
 }
+
 .image{
     width: 30%;
     height: 90%;
@@ -57,4 +58,8 @@ body{
     color:#3A86FF; 
     background-color: #ffff;
     font-size: 1.1em;
+}
+
+.btnDelete:hover{
+    cursor: pointer;
 }
