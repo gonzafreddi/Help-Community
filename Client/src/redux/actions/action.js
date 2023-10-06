@@ -144,4 +144,18 @@ export function postCampaign(payload) {
        }
     }
 }
+export function postUser(payload) {
+    return async function (dispatch) {
+      
+        try {
+            const {data} = await axios.post('http://localhost:3001/user/create', payload);
+            
+            if (!data.length) throw Error('No se ha podido crear el usuario')
+            if (data.length) console.log('Usuario creado correctamente')
+            
+        } catch (error) {
+            return error.message
+        }
+    }
+}
 

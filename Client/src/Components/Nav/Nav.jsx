@@ -8,7 +8,7 @@ import './Nav.css';
 
 export const Nav = () => {
     const auth = useAuth();
-    const { displayName } = auth.user;
+    const { email } = auth.user;
     const [loginOpen, setLoginOpen] = useState(false);
     
     const openLogin = () => {
@@ -55,14 +55,14 @@ export const Nav = () => {
 
                     </div> */}
                     {
-                        displayName 
+                        email 
                         ? <button className='nav-button' onClick={handleLogout}>Cerrar Sesion</button>
                         : <button className='nav-button' onClick={openLogin}>Iniciar Sesion</button>
                     }
                     {loginOpen && <Login closeLogin={closeLogin} />}
 
                     {
-                        displayName ? <button className='nav-button'>{displayName}</button> : null
+                        email ? <button className='nav-button'>{email}</button> : null
                     }
 
                 </div>
