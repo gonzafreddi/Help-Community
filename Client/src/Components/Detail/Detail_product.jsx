@@ -16,7 +16,7 @@ export const DetailProduct = () => {
             await dispatch(getProductByName(name));
             setLoading(false);
         };
-
+ 
         fetchData();
     }, [name]);
 
