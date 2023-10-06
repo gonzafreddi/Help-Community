@@ -2,13 +2,15 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 // import { useAuth } from '../../context/AuthContext';
 import Login from '../Login/Login';
+import {faCartShopping} from "@fortawesome/free-solid-svg-icons"
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 // import SearchBar from '../SearchBar/SearchBar';
 import './Nav.css';
 
 
 export const Nav = () => {
     const auth = useAuth();
-    const { displayName } = auth.user;
+    const { email } = auth.user;
     const [loginOpen, setLoginOpen] = useState(false);
     
     const openLogin = () => {
@@ -44,6 +46,10 @@ export const Nav = () => {
                         <Link to={"/products"}>
                             <button className='nav-button' >Productos</button>
                         </Link>
+                        <Link to={"/shoppingCart"}>
+                        <button className='nav-button' > <FontAwesomeIcon icon={faCartShopping}/></button>
+                      
+                        </Link>
                     {/* </Link> */}
                     {/* <UploadWidget/> */}
                 </div>
@@ -55,14 +61,14 @@ export const Nav = () => {
 
                     </div> */}
                     {
-                        displayName 
+                        email 
                         ? <button className='nav-button' onClick={handleLogout}>Cerrar Sesion</button>
                         : <button className='nav-button' onClick={openLogin}>Iniciar Sesion</button>
                     }
                     {loginOpen && <Login closeLogin={closeLogin} />}
 
                     {
-                        displayName ? <button className='nav-button'>{displayName}</button> : null
+                        email ? <button className='nav-button'>{email}</button> : null
                     }
 
                 </div>

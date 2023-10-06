@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_DETAIL_CAMPAIGN , GET_STATE} from "./action_type";
+import { ADD_ONE_TO_CART, ADD_TO_CART, CLEART_CART, GET_DETAIL_CAMPAIGN , GET_STATE, REMOVE_ONE_TO_CART, REMOVE_TO_CART} from "./action_type";
 export const GET_CAMPAIGN = "GET_CAMPAIGN";
 export const FILTER_BY_STATE = "FILTER_BY_STATE";
 export const GET_STATES = "GET_STATES";
@@ -144,4 +144,47 @@ export function postCampaign(payload) {
        }
     }
 }
+export function postUser(payload) {
+    return async function (dispatch) {
+      
+        try {
+            const {data} = await axios.post('http://localhost:3001/user/create', payload);
+            
+            if (!data.length) throw Error('No se ha podido crear el usuario')
+            if (data.length) console.log('Usuario creado correctamente')
+            
+        } catch (error) {
+            return error.message
+        }
+    }
+}
 
+export const addToCart=(product, quantity)=>{
+    return{
+        type: ADD_TO_CART,
+        payload: {
+            product,
+            quantity
+        }
+    }
+}
+
+export const removeTocart=(id)=>{
+    return{
+        type: REMOVE_TO_CART,
+        payload: id
+    }
+}
+export const addOneToCart=(id)=>{
+return{
+    type:ADD_ONE_TO_CART,
+    payload: id
+}
+}
+
+export const removeOneToCart=(id)=>{
+    return{
+        type:REMOVE_ONE_TO_CART,
+        payload:id
+    }
+}

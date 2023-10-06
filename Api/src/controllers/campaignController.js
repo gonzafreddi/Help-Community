@@ -1,5 +1,4 @@
-const axios = require("axios");
-const { Campaign, Category, Donation, Ong_donor, State } = require("../db");
+const { Campaign, Category, State } = require("../db");
 const { Op } = require("sequelize");
 const {
   cleanArrayCampaignApi,
@@ -21,11 +20,6 @@ const getAllCampaign = async function () {
         attributes: ["name"],
         through: { attributes: [] },
       },
-      /* {
-        model: Ong_donor,
-        attributes: ["name"],
-        through: { attributes: [] },
-      }, */
     ],
   });
   const campaignDB = cleanArrayCampaignDB(rawArrayDB);
@@ -34,10 +28,8 @@ const getAllCampaign = async function () {
 };
 
 const getCampaignByName = async function (name) {
-  console.log(name);
   if (name) {
     //Insensitve Case
-    console.log(name);
     const rawArrayDB = await Campaign.findAll({
       where: {
         name: {
@@ -55,15 +47,17 @@ const getCampaignByName = async function (name) {
           attributes: ["name"],
           through: { attributes: [] },
         },
-        /* {
-          model: Ong_donor,
-          attributes: ["name"],
-          through: { attributes: [] },
-        }, */
       ],
     });
+    const campaignDB = cleanArrayCampaignDB(rawArrayDB);
 
-    if (rawArrayDB.length > 0) return rawArrayDB;
+    const campaignApi = cleanArrayCampaignApi(ong);
+    const filteredApi = campaignApi.filter((campaign) => {
+      return campaign.name.toLowerCase().includes(name.toLowerCase()); // Busqueda inexacta
+    });
+
+    if (filteredApi.length > 0 || campaignDB.length > 0)
+      return [...filteredApi, ...campaignDB];
     else throw new Error("Campaign name not found");
   }
 };
@@ -79,7 +73,6 @@ const postCampaign = async (
   state,
   ong,
   StateId,
-  ongDonorId,
   CategoryId
 ) => {
   const newCampaign = await Campaign.create({
@@ -95,7 +88,6 @@ const postCampaign = async (
   });
   await newCampaign.setCategories(CategoryId);
   await newCampaign.setStates(StateId);
-  //await newCampaign.setOng_donors(ongDonorId); // Todavia falta hacer el getAllOngDonor()
 
   return newCampaign;
 };

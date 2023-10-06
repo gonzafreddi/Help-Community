@@ -1,4 +1,3 @@
-const axios = require("axios");
 const { Product, CategoryProduct } = require("../db");
 const {
   cleanArrayProductDB,
@@ -22,21 +21,61 @@ const getAllProducts = async function () {
           "rating",
           "state",
         ],
-        /*  through: { attributes: [] }, */
       },
     ],
-    // Habilitar cuando esté el getAllOngDonor()
   });
-  console.log(rawArrayDB);
-  return rawArrayDB;
 
-  // const productsDB = cleanArrayProductDB(rawArrayDB);
+  const productsDB = cleanArrayProductDB(rawArrayDB);
 
-  // /* const rawArrayApi = (await axios.get(`https://fakestoreapi.com/products`))
-  //   .data; */
-  // const productsApi = cleanArrayProductApi(products);
+  const productsApi = cleanArrayProductApi(products);
 
-  // return [...productsDB, ...productsApi];
+  return [...productsDB, ...productsApi];
+};
+
+const getProductByName = async function (name) {
+  if (name) {
+    //Insensitve Case
+    const rawArrayDB = await CategoryProduct.findAll({
+      include: [
+        {
+          model: Product,
+          attributes: [
+            "id",
+            "name",
+            "price",
+            "description",
+            "image",
+            "brand",
+            "stock",
+            "rating",
+            "state",
+          ],
+        },
+      ],
+    });
+
+    const productDB = [];
+
+    rawArrayDB.forEach((category) => {
+      category.Products.forEach((product) => {
+        if (product.name.toLowerCase().includes(name.toLowerCase())) {
+          productDB.push({
+            ...product.dataValues,
+            category: category.name,
+            created: true,
+          });
+        }
+      });
+    });
+
+    const productApi = cleanArrayProductApi(products);
+    const filteredApi = productApi.filter((product) => {
+      return product.name.toLowerCase().includes(name.toLowerCase()); // Busqueda inexacta
+    });
+    if (filteredApi.length > 0 || productDB.length > 0)
+      return [...filteredApi, ...productDB];
+    else throw new Error("Product name not found");
+  }
 };
 
 const postProduct = async (
@@ -61,7 +100,6 @@ const postProduct = async (
     state,
     CategoryProductId,
   });
-  //await newProduct.setProducts(ongDonorId); // Todavia falta hacer el getAllOngDonor()
 
   return newProduct;
 };
@@ -69,4 +107,5 @@ const postProduct = async (
 module.exports = {
   getAllProducts,
   postProduct,
+  getProductByName,
 };

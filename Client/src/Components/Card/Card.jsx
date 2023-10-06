@@ -7,6 +7,7 @@ export const Card = (props) => {
 
   return (
     <div className={style.contenedor}>
+      <button>agg</button>
         <div className={style.contenedorImagen}>
           <p className={style.ong}>{nombreOng.toUpperCase()}</p>
           <img className={style.imagen} src="https://img.freepik.com/foto-gratis/usted-puede-ayudar-dar-concepto-donacion-bienestar_53876-121039.jpg?w=2000" alt={nombre} />
@@ -23,6 +24,7 @@ export const Card = (props) => {
       <Link to={`/detail/${nombre}`} className={style.link}>
       <p className={style.verMas}>Ver mas</p>
       </Link>
+     
     </div>
   )
 }

@@ -59,6 +59,7 @@ const currentCards = getCurrentPageCampaigns();
         {currentCards?.map((producto) => {
         return  <Product
                   key={producto.id}
+                  id={producto.id}
                   nombre={producto.title}
                   descripcion={producto.description}
                   imagen={producto.images[0]}
