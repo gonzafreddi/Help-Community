@@ -13,16 +13,19 @@ export const Products = () => {
 
   const dispatch = useDispatch();
   const [loadedCards, setLoadedCards] = useState(30); // Inicialmente cargamos 30 tarjetas
-  const [cardsToLoad, setCardsToLoad] = useState(30); // Cantidad de tarjetas a cargar adicionalmente
+  // const [cardsToLoad, setCardsToLoad] = useState(30); // Cantidad de tarjetas a cargar adicionalmente
   
-
+  const [selectedCategory, setSelectedCategory] = useState(""); // Estado para la categoría seleccionada
 
   
-useEffect(() => {
-  dispatch(getProduct(loadedCards));
-  dispatch(getCateg());
-}, [dispatch, loadedCards]);
+  useEffect(() => {
+    // Reinicia el contador de tarjetas cargadas al cambiar la categoría
+    setLoadedCards(30);
 
+    // Realiza la carga inicial de productos
+    dispatch(getProduct(loadedCards, 0, selectedCategory));
+    dispatch(getCateg());
+  }, [dispatch, selectedCategory]);
 
   
 
@@ -51,34 +54,28 @@ const products = useSelector((state) => state.products);
 
 
       const handleLoadMore = () => {
-        const totalCards = 100; // Supongamos 100 tarjetas en total
-        const remainingCards = totalCards - loadedCards;
-        const nextLoad = Math.min(cardsToLoad, remainingCards);
+        // const totalCards = 100; // Supongamos 100 tarjetas en total
+        // const remainingCards = totalCards - loadedCards;
+        // const nextLoad = Math.min(cardsToLoad, remainingCards);
       
-        dispatch(getProduct(nextLoad, loadedCards));
-        setLoadedCards(loadedCards + nextLoad);
-        setCardsToLoad(nextLoad);
+        // dispatch(getProduct(nextLoad, loadedCards));
+        // setLoadedCards(loadedCards + nextLoad);
+        // setCardsToLoad(nextLoad);
 
-        // initializeScrollReveal();
-        
+
+        dispatch(getProduct(loadedCards, products.length, selectedCategory));
+        setLoadedCards(loadedCards + 30);// Puedes ajustar la cantidad de tarjetas a cargar
       };
 
 
-      // const initializeScrollReveal = () => {
-      //   ScrollReveal().reveal(".card", {
-      //     reset: true,
-      //     distance: "60px",
-      //     duration: 3000,
-
-      //   });
-      // };
+ 
 
 
 
 
     return (
       <div>
-        <FilterProducts categ={categ}/>
+        <FilterProducts categ={categ} setSelectedCategory={setSelectedCategory}/>
 
         <div className={style.cardsContainer}>
         {products?.map((producto) => {

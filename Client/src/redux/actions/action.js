@@ -5,8 +5,8 @@ export const FILTER_BY_STATE = "FILTER_BY_STATE";
 export const GET_STATES = "GET_STATES";
 export const GET_CATEGORY = "GET_CATEGORY";
 export const FILTER_BY_CATEGORY = "FILTER_BY_CATEGORY";
-export const GET_PRODUCT = "GET_PRODUCT";
 
+export const GET_PRODUCT = "GET_PRODUCT";
 export const GET_CATEG = "GET_CATEG";
 export const FILTER_BY_CATEG = "FILTER_BY_CATEG";
 
@@ -108,41 +108,44 @@ export function filterByCateg(payload){
 
 
 
-export const getProduct = (additionalCards) => {
-    return async function (dispatch, getState) {
-        try {
-          const currentState = getState(); // Obtén el estado actual para calcular el valor de skip
-          const currentProducts = currentState.products;
-          const skip = currentProducts.length; // Calcula el valor de skip desde el estado actual
+// export const getProduct = (additionalCards) => {
+//     return async function (dispatch, getState) {
+//         try {
+//           const currentState = getState(); // Obtén el estado actual para calcular el valor de skip
+//           const currentProducts = currentState.products;
+//           const skip = currentProducts.length; // Calcula el valor de skip desde el estado actual
     
-          const productData = await axios.get("https://dummyjson.com/products", {
-            params: { limit: additionalCards, skip },
-          });
-          const newProducts = productData.data.products;
+//           const productData = await axios.get("https://dummyjson.com/products", {
+//             params: { limit: additionalCards, skip },
+//           });
+//           const newProducts = productData.data.products;
 
-          // Combina las tarjetas existentes con las nuevas tarjetas
-          const combinedProducts = [...currentProducts, ...newProducts];
+//           // Combina las tarjetas existentes con las nuevas tarjetas
+//           const combinedProducts = [...currentProducts, ...newProducts];
     
-          dispatch({ type: GET_PRODUCT, payload: combinedProducts });
-        } catch (error) {
-          console.log("error al obtener productos adicionales", error.message);
-        }
-      };
-  };
-
-// export const getProduct = (limit, skip) => {
-//     return async function (dispatch) {
-//       try {
-//         const productData = await axios.get("https://dummyjson.com/products", {
-//           params: { limit, skip },
-//         });
-//         const products = productData.data.products;
-//         dispatch({ type: GET_PRODUCT, payload: products });
-//       } catch (error) {
-//         console.log("error al obtener productos", error.message);
-//       }
-//     };
+//           dispatch({ type: GET_PRODUCT, payload: combinedProducts });
+//         } catch (error) {
+//           console.log("error al obtener productos adicionales", error.message);
+//         }
+//       };
 //   };
+
+export const getProduct = (additionalCards, skip, category) => {
+    return async function (dispatch) {
+      try {
+        const productData = await axios.get("https://dummyjson.com/products", {
+          params: { limit: additionalCards, skip, category },
+        });
+  
+        const newProducts = productData.data.products;
+  
+        dispatch({ type: GET_PRODUCT, payload: newProducts });
+      } catch (error) {
+        console.log("Error al obtener productos adicionales", error.message);
+      }
+    };
+  };
+  
   
 
 export const getState = ()=>{
