@@ -1,41 +1,34 @@
-const cleanArrayProductDB = (productsDB) =>
-  productsDB.map((product) => {
-    return {
-      id: product.id,
-      name: product.name,
-      price: product.price,
-      description: product.description,
-      image: product.image,
-      category: product.category,
-      state: false,
+const { Product } = require("../src/db");
+
+const cleanArrayProductDB = (rawArrayDB) => {
+  return rawArrayDB.flatMap((category) => {
+    const categoryName = category.name;
+    return category.Products.map((product) => ({
+      ...product.toJSON(),
+      category: categoryName,
       created: true,
-    };
+    }));
   });
+};
 
 const cleanArrayProductApi = (productsApi) =>
-  productsApi.map((product) => {
+  productsApi.map((productData) => {
     return {
-      id: product.id,
-      name: product.title,
-      price: product.price,
-      description: product.description,
-      stock: product.stock,
-      brand: product.brand,
-      rating: product.rating,
-      image: product.thumbnail,
-      category: product.category,
+      id: productData.id,
+      name: productData.title,
+      price: productData.price,
+      description: productData.description,
+      image: productData.thumbnail,
+      brand: productData.brand,
+      stock: productData.stock,
+      rating: productData.rating,
       state: false,
+      category: productData.category,
       created: false,
     };
   });
 
-const stringAll = (category) => {
-  const categoryName = category.map((categ) => categ.name);
-  return categoryName.join(", ");
-};
-
 module.exports = {
   cleanArrayProductApi,
   cleanArrayProductDB,
-  stringAll,
 };
