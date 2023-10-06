@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import style from "./Product.module.css";
 import { addToCart } from '../../redux/actions/action';
 import { useDispatch } from "react-redux";
-
+import {faCartPlus} from "@fortawesome/free-solid-svg-icons"
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 
 
 export const Product = (props) => {
@@ -24,12 +25,14 @@ export const Product = (props) => {
       <p className={style.descripcion}>{descripcion}</p>
       <p className={style.precio}>$ {precio}</p>
       <p className={style.categoria}>{categoria}</p>
-      <button onClick={hancleAddtoCart}>agg</button>
+      <button className={style.verMas} onClick={hancleAddtoCart}><FontAwesomeIcon icon={faCartPlus}/></button>
+      
 
       <Link to={`/products/detail/${nombre}`} className={style.link}>
       <p className={style.verMas}>Comprar</p>
 
       </Link>
+     
     </div>
   )
 }
