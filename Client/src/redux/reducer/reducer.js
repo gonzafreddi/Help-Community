@@ -53,8 +53,8 @@ const reducer = (state = initialState, action)=> {
         case GET_PRODUCT:
                 return {
                     ...state,
-                    products: action.payload.products, // Accede a products.products para obtener los productos
-                    productsCopy: action.payload.products,
+                    products: action.payload, // Accede a products.products para obtener los productos
+                    productsCopy: action.payload,
                 };
         case FILTER_BY_STATE:
             const filteredByState = action.payload === "Todos" ? 

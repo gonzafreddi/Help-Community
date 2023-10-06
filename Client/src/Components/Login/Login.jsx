@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import style from './Login.module.css';
-import { useAuth } from '../../context/AuthContext';
+// import { useAuth } from '../../context/AuthContext';
 import { useState } from 'react';
 
 const Login = ({closeLogin}) => {

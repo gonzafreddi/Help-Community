@@ -3,9 +3,9 @@ import { Home } from './Components/Home/Home'
 import {Detail} from "./Components/Detail/Detail"
 import { DetailCampain } from './Components/Detail/Detail_campain'
 import { About } from './Components/About/About'
-import { Nav } from './Components/Nav/Nav'
+// import { Nav } from './Components/Nav/Nav'
 import { Products } from './Components/Products/Products'
-import { AuthProvider } from './context/AuthContext'
+// import { AuthProvider } from './context/AuthContext'
 import Footer from './Components/Footer/Footer'
 import CreateCampaign from './Components/createCampaign/CreateCampaign'
 import { useEffect } from 'react'
@@ -22,8 +22,8 @@ function App() {
   },[])
   return (
     <>
-      <AuthProvider>
-        <Nav/>
+      {/* <AuthProvider> */}
+        {/* <Nav/> */}
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path='/detail/:id' element={<Detail/>}/>
@@ -34,7 +34,7 @@ function App() {
           {/* <Route path="/login" element={<Login />} /> */}
         </Routes>
         <Footer/>
-      </AuthProvider>
+      {/* </AuthProvider> */}
     </>
   )
 }

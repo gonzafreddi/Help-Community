@@ -110,8 +110,8 @@ export function filterByCateg(payload){
 export const getProduct = () => {
     return async function (dispatch){
         try{
-            const productData = await axios("https://dummyjson.com/products");
-            const products = productData.data;
+            const productData = await axios("https://dummyjson.com/products?limit=0");
+            const products = productData.data.products;
             dispatch({type: GET_PRODUCT, payload: products});
         } catch (error){
             console.log("error en devolver los productos", error.message)
