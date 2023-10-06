@@ -11,7 +11,7 @@ export const Nav = () => {
 
                 <div className='nav-button-container'>
                     <Link to={'/'}>
-                        <button className='nav-button'>Home</button>
+                        <button className='nav-button'>Landing</button>
                     </Link>
                     <Link to={'/about'}>
                         <button className='nav-button'>Acerca de</button>
