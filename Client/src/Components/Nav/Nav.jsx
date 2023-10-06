@@ -1,9 +1,30 @@
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { useAuth } from '../../context/AuthContext';
+import Login from '../Login/Login';
+// import SearchBar from '../SearchBar/SearchBar';
 import './Nav.css';
-import SearchBar from '../SearchBar/SearchBar';
 
 
 export const Nav = () => {
+    const auth = useAuth();
+    const { displayName } = auth.user;
+    const [loginOpen, setLoginOpen] = useState(false);
+    
+    const openLogin = () => {
+      setLoginOpen(true);
+      document.body.style.overflow = 'hidden';
+    };
+  
+    const closeLogin = () => {
+      setLoginOpen(false);
+      document.body.style.overflow = 'unset';
+    };
+
+    const handleLogout = () => {
+        auth.logout();
+    }
+
     return (
         <nav className='Nav'>
             
@@ -36,7 +57,17 @@ export const Nav = () => {
                         <SearchBar/>
 
                     </div> */}
-                    <button className='nav-button'>Iniciar Sesion</button>
+                    {
+                        displayName 
+                        ? <button className='nav-button' onClick={handleLogout}>Cerrar Sesion</button>
+                        : <button className='nav-button' onClick={openLogin}>Iniciar Sesion</button>
+                    }
+                    {loginOpen && <Login closeLogin={closeLogin} />}
+
+                    {
+                        displayName ? <button className='nav-button'>{displayName}</button> : null
+                    }
+
                 </div>
 
 

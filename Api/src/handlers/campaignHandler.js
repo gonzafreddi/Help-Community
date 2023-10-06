@@ -27,6 +27,7 @@ const postCampaignHandler = async (req, res) => {
     endDate,
     finalAmount,
     state,
+    ong,
     StateId,
     ongDonorId,
     CategoryId,
@@ -42,13 +43,14 @@ const postCampaignHandler = async (req, res) => {
       endDate,
       finalAmount,
       state,
+      ong,
       StateId,
       ongDonorId,
       CategoryId
     );
     res.status(200).json(`The Campaign ${name} was successfully created`);
   } catch (error) {
-    console.log(error)
+    console.log(error);
     res.status(400).json({ error: error.message });
   }
 };
