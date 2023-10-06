@@ -14,6 +14,7 @@ export default function Buy() {
   },[cart])
 
   const totalAmount = finalAmount(cart);
+  
   return (
     <div className={styles.buyCont}>
       <div className={styles.resume}>

@@ -12,7 +12,7 @@ export const  finalAmount = (cartItems) => {
     for (let i = 0; i < cartItems.length; i++) {
       const product = cartItems[i].product;
       const quantity = cartItems[i].quantity;
-      const productTotal = product.precio * quantity;
+      const productTotal = product.price  || product.precio * quantity;
       totalAmount += productTotal;
     }
     

@@ -15,6 +15,7 @@ export const Product = (props) => {
     const quantityToadd = 1
     dispatch(addToCart(props, quantityToadd))
   }
+  console.log(props, "props log")
 
   return (
     <div className={style.contenedor}>

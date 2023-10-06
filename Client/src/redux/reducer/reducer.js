@@ -9,7 +9,7 @@ import {
     GET_CATEG,
     FILTER_BY_CATEG
   } from "../actions/action";
-  import { ADD_ONE_TO_CART, ADD_TO_CART, GET_DETAIL_CAMPAIGN, GET_STATE, REMOVE_ONE_TO_CART, REMOVE_TO_CART } from "../actions/action_type";
+  import { ADD_ONE_TO_CART, ADD_TO_CART, GET_DETAIL_CAMPAIGN, GET_PRODUCT_BY_NAME, GET_STATE, REMOVE_ONE_TO_CART, REMOVE_TO_CART } from "../actions/action_type";
   
   const initialState = {
     campaign: [],
@@ -21,7 +21,8 @@ import {
     cartShop: getItem("cartShop")||[],
     products: [],
     categ:[],
-    productsCopy:[]
+    productsCopy:[],
+    detailProduct:[]
 }
 
 
@@ -175,6 +176,12 @@ const reducer = (state = initialState, action)=> {
                             ...state,
                             cartShop: updtedRemoveCart
                         }
+                case GET_PRODUCT_BY_NAME:
+                    return{
+                        ...state, 
+                        detailProduct: action.payload
+
+                    }
                 default:
                     return state;
     }
