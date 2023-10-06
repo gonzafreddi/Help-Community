@@ -11,6 +11,7 @@ import CreateCampaign from './Components/createCampaign/CreateCampaign'
 import { useEffect } from 'react'
 import { getCategory, getState } from './redux/actions/action'
 import { useDispatch } from 'react-redux'
+import ShoppingCart from './Components/shopping cart/ShoppingCart'
 import Landing from './Components/landing/Landing'
 import './App.css'
 function App(){

@@ -1,3 +1,4 @@
+import { getItem } from "../../utils/localStorage";
 import {
     GET_CAMPAIGN,
     FILTER_BY_STATE,
@@ -17,7 +18,7 @@ import {
     detailCampaign: [],
     states: [],
     category: [],
-    cartShop:[],
+    cartShop: getItem("cartShop")||[],
     products: [],
     categ:[],
     productsCopy:[]

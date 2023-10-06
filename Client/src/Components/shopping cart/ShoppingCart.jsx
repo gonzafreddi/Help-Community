@@ -1,13 +1,18 @@
+import { useEffect } from "react"
 import Buy from "./buy"
 import CardShopping from "./cardShopping"
 import style from "./shoppingCart.module.css"
 import { useSelector } from "react-redux"
+import { setItem } from "../../utils/localStorage"
 export default function ShoppingCart(){
 
     const cart = useSelector((state)=> state.cartShop)
     // console.log("log de carrito",cart[0]?.product)
     // const product = cart[0]?.product
     // const quantity = cart[0]?.quantity
+    useEffect(()=>{
+        setItem("cartShop",cart)
+    },[cart])
     return(<div className={style.conteiner}>
         <div className={style.cont}>
        <div className={style.items}>
@@ -27,7 +32,7 @@ export default function ShoppingCart(){
             })
         }
        </div>
-            {cart.length > 1? <Buy/>: <h1>Comience a comprar</h1>}
+       <Buy/>
         </div>
     </div>)
 }
