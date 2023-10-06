@@ -26,8 +26,7 @@ export const DetailProduct = () => {
         dispatch(addToCart(product, quantityToadd))
       }
 
-      let precio = typeof product.price
-    console.log(precio)
+
     return (
         <div className={style.conteiner}>
             {loading ? (
@@ -39,14 +38,14 @@ export const DetailProduct = () => {
                 product && (
                     <div className={style.productCont}>
                         <div className={style.imgCont}>
-                            <img src={product.image} alt="" />
+                            <img src={product?.image} alt="" />
                         </div>
                         <div className={`${style.column} ${style.infoProduct}`}>
                             <p>+500 vendidos</p>
-                            <h1>{product.name}</h1>
-                            <p>{product.description}</p>
+                            <h1>{product?.name}</h1>
+                            <p>{product?.description}</p>
                             <div className={style.price}>
-                                <p>$ {product.price}</p>
+                                <p>$ {product?.price}</p>
                             </div>
                             <div className={style.buyCont}>
                                 <button className={style.btnBuy}>Comprar</button>

@@ -8,28 +8,30 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 
 
 export const Product = (props) => {
-  const { nombre, descripcion, imagen, precio, categoria } = props;
+  const { name, description, image, price, category } = props;
   const dispatch = useDispatch()
   
+ 
+
   const hancleAddtoCart = ()=>{
     const quantityToadd = 1
     dispatch(addToCart(props, quantityToadd))
   }
-  console.log(props, "props log")
+
 
   return (
     <div className={style.contenedor}>
         <div className={style.contenedorImagen}>
-          <img className={style.imagen} src={imagen} alt={nombre} />
+          <img className={style.imagen} src={image} alt={name} />
         </div>
-    <p className={style.nombre}>{nombre}</p>
-      <p className={style.descripcion}>{descripcion}</p>
-      <p className={style.precio}>$ {precio}</p>
-      <p className={style.categoria}>{categoria}</p>
+    <p className={style.nombre}>{name}</p>
+      <p className={style.descripcion}>{description}</p>
+      <p className={style.precio}>$ {price}</p>
+      <p className={style.categoria}>{category}</p>
       <button className={style.verMas} onClick={hancleAddtoCart}><FontAwesomeIcon icon={faCartPlus}/></button>
       
 
-      <Link to={`/products/detail/${nombre}`} className={style.link}>
+      <Link to={`/products/detail/${name}`} className={style.link}>
       <p className={style.verMas}>Comprar</p>
 
       </Link>
