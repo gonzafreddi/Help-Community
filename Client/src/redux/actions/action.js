@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ADD_ONE_TO_CART, ADD_TO_CART, CLEART_CART, GET_DETAIL_CAMPAIGN , GET_STATE, REMOVE_ONE_TO_CART, REMOVE_TO_CART} from "./action_type";
+import { ADD_ONE_TO_CART, ADD_TO_CART, CLEART_CART, GET_DETAIL_CAMPAIGN , GET_STATE, REMOVE_ONE_TO_CART, REMOVE_TO_CART, GET_PRODUCT_BY_NAME} from "./action_type";
 export const GET_CAMPAIGN = "GET_CAMPAIGN";
 export const FILTER_BY_STATE = "FILTER_BY_STATE";
 export const GET_STATES = "GET_STATES";
@@ -172,5 +172,20 @@ export const removeOneToCart=(id)=>{
     return{
         type:REMOVE_ONE_TO_CART,
         payload:id
+    }
+}
+
+export const getProductByName=(name)=>{
+    return async (dispatch)=>{
+        try {
+            const response = await axios(`http://localhost:3001/product?name=${name}`)
+            console.log(response.data)
+            dispatch({
+                type: GET_PRODUCT_BY_NAME,
+                payload: response.data
+            })
+        } catch (error) {
+            console.log(error.message)
+        }
     }
 }
