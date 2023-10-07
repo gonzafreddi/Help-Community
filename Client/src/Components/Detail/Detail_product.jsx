@@ -4,7 +4,7 @@ import { getProductByName } from "../../redux/actions/action";
 import style from "./detail_campain.module.css";
 import { addToCart } from "../../redux/actions/action";
 import { useParams } from "react-router-dom";
-
+import Loader from "../loader/loader";
 export const DetailProduct = () => {
     const detailProduct = useSelector((state) => state.detailProduct);
     const dispatch = useDispatch();
@@ -20,18 +20,21 @@ export const DetailProduct = () => {
         fetchData();
     }, [name]);
 
-    const product = detailProduct[0];
+    let product = detailProduct[0];
     const hancleAddtoCart = ()=>{
         const quantityToadd = 1
         dispatch(addToCart(product, quantityToadd))
       }
 
 
+
+
     return (
         <div className={style.conteiner}>
             {loading ? (
                 // Muestra "Cargando..." durante 1 segundo
-                <div>
+                <div className={style.loader}>
+                    <Loader/>
                     <h1>Cargando...</h1>
                 </div>
             ) : (

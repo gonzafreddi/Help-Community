@@ -3,7 +3,7 @@ import style from "./cardConteiner.module.css"
 import { useDispatch } from "react-redux"
 import { removeTocart } from "../../redux/actions/action"
 import { addOneToCart, removeOneToCart } from "../../redux/actions/action"
-
+import { Link } from "react-router-dom"
 // card de cada producto
 
 
@@ -12,7 +12,11 @@ const {id, name, image, price, rating, stock,quantity} = props
 
 const dispatch = useDispatch()
     return(<div className={style.cardConteiner}>
-        <div className={style.image}><img src={image} alt="" /></div>
+        <div className={style.image}>
+            <Link to={`/products/detail/${name}`}>
+            <img src={image} alt="" />
+            </Link>
+        </div>
        <div className={style.head}>
        <h4>{name}</h4>
         <button className={style.btnDelete}
