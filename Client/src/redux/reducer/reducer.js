@@ -7,7 +7,8 @@ import {
     GET_CATEGORY,
     GET_PRODUCT,
     GET_CATEG,
-    FILTER_BY_CATEG
+    FILTER_BY_CATEG,
+    ORDEN_PRECIO
   } from "../actions/action";
   import { ADD_ONE_TO_CART, ADD_TO_CART, GET_DETAIL_CAMPAIGN, GET_PRODUCT_BY_NAME, GET_STATE, REMOVE_ONE_TO_CART, REMOVE_TO_CART } from "../actions/action_type";
   
@@ -22,12 +23,14 @@ import {
     products: [],
     categ:[],
     productsCopy:[],
-    detailProduct:[]
+    detailProduct:[],
+    productsFiltered:[],
+    filters: false
 }
 
 
 const reducer = (state = initialState, action)=> {
-    console.log(action)
+    // console.log(action)
     switch (action.type) {
         case GET_CAMPAIGN:
                 return {
@@ -57,6 +60,8 @@ const reducer = (state = initialState, action)=> {
                     ...state,
                     products: action.payload.products, // Accede a products.products para obtener los productos
                     productsCopy: action.payload.products,
+                    productsFiltered: action.payload.products,
+                    filters: false, // Asegúrate de restablecer el estado de los filtros
                 };
         case FILTER_BY_STATE:
             const filteredByState = action.payload === "Todos" ? 
@@ -81,14 +86,30 @@ const reducer = (state = initialState, action)=> {
 
         case FILTER_BY_CATEG:
             const filteredByCateg = action.payload === "Todos"
-            ? [...state.productsCopy] // Restaurar la copia original de productos si se selecciona "Todos"
+            ? state.productsCopy // Restaurar la copia original de productos si se selecciona "Todos"
             : state.productsCopy.filter(producto => producto.category === action.payload);
     
         return {
             ...state,
-            products: filteredByCateg
+            products: filteredByCateg,
+            productsFiltered: filteredByCateg,
+            filters: action.payload !== "Todos", // Establecer filter en true solo si no es ""
         };
 
+        case ORDEN_PRECIO:
+            const { type } = action.payload;
+            const sortedProducts = [...state.productsFiltered];
+          
+            if (type === "precioMayor") {
+              sortedProducts.sort((a, b) => b.price - a.price);
+            } else if (type === "precioMenor") {
+              sortedProducts.sort((a, b) => a.price - b.price);
+            }
+          
+            return {
+              ...state,
+              productsFiltered: sortedProducts,
+            };
          case GET_DETAIL_CAMPAIGN:
             return{
                 ...state,

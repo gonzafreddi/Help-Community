@@ -17,10 +17,10 @@ useEffect(()=>{
 
 
 const categ = useSelector(state => state.categ);
-console.log(categ)
+// console.log(categ)
 
-const products = useSelector((state) => state.products);
-console.log("products: ", products)
+const products = useSelector((state) => state.productsFiltered); //state.productsFiltered ver si cambio para filtros
+// console.log("products: ", products)
 
     return (
       <div>
@@ -30,11 +30,11 @@ console.log("products: ", products)
         return  <Product
                   key={producto.id}
                   id={producto.id}
-                  nombre={producto.title}
-                  descripcion={producto.description}
-                  imagen={producto.images[0]}
-                  precio={producto.price}
-                  categoria={producto.category}
+                  name={producto.title}
+                  description={producto.description}
+                  image={producto.images[0]}
+                  price={producto.price}
+                  category={producto.category}
                 />
         })}
       </div>
