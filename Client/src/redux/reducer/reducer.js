@@ -8,7 +8,8 @@ import {
     GET_PRODUCT,
     GET_CATEG,
     FILTER_BY_CATEG,
-    ORDEN_PRECIO
+    ORDEN_PRECIO,
+    FILTROS_PRECIO
   } from "../actions/action";
   import { ADD_ONE_TO_CART, ADD_TO_CART, GET_DETAIL_CAMPAIGN, GET_PRODUCT_BY_NAME, GET_STATE, REMOVE_ONE_TO_CART, REMOVE_TO_CART } from "../actions/action_type";
   
@@ -30,7 +31,7 @@ import {
 
 
 const reducer = (state = initialState, action)=> {
-    // console.log(action)
+    console.log("state: ", state)
     switch (action.type) {
         case GET_CAMPAIGN:
                 return {
@@ -60,7 +61,7 @@ const reducer = (state = initialState, action)=> {
                     ...state,
                     products: action.payload.products, // Accede a products.products para obtener los productos
                     productsCopy: action.payload.products,
-                    productsFiltered: action.payload.products,
+                    // productsFiltered: action.payload.products,
                     filters: false, // Asegúrate de restablecer el estado de los filtros
                 };
         case FILTER_BY_STATE:
@@ -88,6 +89,7 @@ const reducer = (state = initialState, action)=> {
             const filteredByCateg = action.payload === "Todos"
             ? state.productsCopy // Restaurar la copia original de productos si se selecciona "Todos"
             : state.productsCopy.filter(producto => producto.category === action.payload);
+            
     
         return {
             ...state,
@@ -97,19 +99,150 @@ const reducer = (state = initialState, action)=> {
         };
 
         case ORDEN_PRECIO:
-            const { type } = action.payload;
-            const sortedProducts = [...state.productsFiltered];
-          
-            if (type === "precioMayor") {
-              sortedProducts.sort((a, b) => b.price - a.price);
-            } else if (type === "precioMenor") {
-              sortedProducts.sort((a, b) => a.price - b.price);
+            switch (action.payload) {
+                case "precioMayor":
+                    let may = [];
+                    if (state.filters) {
+                        may = [...state.productsFiltered].sort((prev, next) => {
+                            if ((prev.price) > (next.price)) return -1;
+                            if ((prev.price) < (next.price)) return 1;
+                            return 0;
+                        });
+                        return {
+                            ...state,
+                            products: [...may],
+                            productsFiltered: may,
+                            filters: true
+                        };
+                    } else {
+                        may = [...state.productsCopy].sort((prev, next) => {
+                            if ((prev.price) > (next.price)) return -1;
+                            if ((prev.price) < (next.price)) return 1;
+                            return 0;
+                        });
+                        return {
+                            ...state,
+                            products: [...may],
+                            productsFiltered: may,
+                            filters: true
+                        };
+                    }
+                case "precioMenor":
+                    let men = [];
+                    if (state.filters) {
+                        men = [...state.productsFiltered].sort((prev, next) => {
+                            if ((prev.price) > (next.price)) return 1;
+                            if ((prev.price) < (next.price)) return -1;
+                            return 0;
+                        });
+                        return {
+                            ...state,
+                            products: [...men],
+                            productsFiltered: men,
+                            filters: true
+                        };
+                    } else {
+                        men = [...state.productsCopy].sort((prev, next) => {
+                            if ((prev.price) > (next.price)) return 1;
+                            if ((prev.price) < (next.price)) return -1;
+                            return 0;
+                        });
+                        return {
+                            ...state,
+                            products: [...men],
+                            productsFiltered: men,
+                            filters: true
+                        };
+                    }
+                default:
+                    return state;
             }
-          
-            return {
-              ...state,
-              productsFiltered: sortedProducts,
-            };
+        
+            case FILTROS_PRECIO:
+            switch (action.payload) {
+                case "menor100":
+                    let menorCien = []
+                    if(state.filters){
+                        menorCien = [...state.productsFiltered].filter((prod) => (prod.price) < 100);
+                        return {
+                        ...state,
+                        products: [...menorCien],
+                        productsFiltered: menorCien,
+                        filters: true
+
+                        }} else{
+                            
+                        menorCien = [...state.productsCopy].filter((prod) => (prod.price) < 100);
+                        return {
+                        ...state,
+                        products: [...menorCien],
+                        productsFiltered: menorCien,
+                        filters: true
+                        }
+                        };
+                case "menor500":
+                    let menorQuini = []
+                    if(state.filters){
+                        menorQuini = [...state.productsFiltered].filter((prod) => (prod.price) < 500);
+                        return {
+                        ...state,
+                        products: [...menorQuini],
+                        productsFiltered: menorQuini,
+                        filters: true
+
+                        }} else{
+                            
+                        menorQuini = [...state.productsCopy].filter((prod) => (prod.price) < 500);
+                        return {
+                        ...state,
+                        products: [...menorQuini],
+                        productsFiltered: menorQuini,
+                        filters: true
+                        }
+                        };
+                case "menor1000":
+                    let menorMil = []
+                    if(state.filters){
+                        menorMil = [...state.productsFiltered].filter((prod) => (prod.price) < 1000);
+                        return {
+                        ...state,
+                        products: [...menorMil],
+                        productsFiltered: menorMil,
+                        filters: true
+
+                        }} else{
+                            
+                        menorMil = [...state.productsCopy].filter((prod) => (prod.price) < 1000);
+                        return {
+                        ...state,
+                        products: [...menorMil],
+                        productsFiltered: menorMil,
+                        filters: true
+                        }
+                        };
+                case "mayor1000":
+                    let mayorMil = []
+                    if(state.filters){
+                        mayorMil = [...state.productsFiltered].filter((prod) => (prod.price) > 1000);
+                        return {
+                        ...state,
+                        products: [...mayorMil],
+                        productsFiltered: mayorMil,
+                        filters: true
+
+                        }} else{
+                            
+                        mayorMil = [...state.productsCopy].filter((prod) => (prod.price) > 1000);
+                        return {
+                        ...state,
+                        products: [...mayorMil],
+                        productsFiltered: mayorMil,
+                        filters: true
+                        }
+                        };
+                default:
+                    return state;
+            }
          case GET_DETAIL_CAMPAIGN:
             return{
                 ...state,
