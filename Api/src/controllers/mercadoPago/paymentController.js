@@ -51,8 +51,42 @@ const createOrder = async(req, res)=>{
             unit_price: 500,
             currency_id: "ARS",
             quantity: 1
-        }]
+        }],
+
+    // ? Darle el control a mercado pago...
+        back_urls:{
+            success:'http://localhost:3001/payment/success',
+            failure:'http://localhost:3001/payment/failure',
+            pending: 'http://localhost:3001/payment/pending', //cuando el usuario no ha pagado
+            },
+        notification_url:'https://4d84-2803-cf00-efe-4b00-20e7-2335-ce64-4563.ngrok-free.app/webhook',
+
     })
-    console.log(result.body)
-}
-module.exports = createOrder;
+    console.log(result.body);
+    res.send(result.body);
+
+   
+};
+
+const receiveWebhook = async(req,res) => {
+    
+    const payment = req.query;
+    console.log(req.query);
+    try {
+        
+        if (payment.type === "payment"){
+            const data = await mercadopago.payment.findById(payment["data.id"]);
+            console.log(data);
+    
+        };
+            res.sendstatus(204);
+        
+    } catch (error) {
+        console.log(error);
+        return res.sendstatus(500).json({error: error.message});
+        
+    }
+   
+};
+
+module.exports = {createOrder, receiveWebhook};
