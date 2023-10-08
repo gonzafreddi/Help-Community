@@ -59,7 +59,7 @@ const createOrder = async(req, res)=>{
             failure:'http://localhost:3001/payment/failure',
             pending: 'http://localhost:3001/payment/pending', //cuando el usuario no ha pagado
             },
-        notification_url:'https://4d84-2803-cf00-efe-4b00-20e7-2335-ce64-4563.ngrok-free.app/webhook',
+        notification_url:'https://edca-2803-cf00-efe-4b00-f51d-2a31-7af0-a108.ngrok-free.app/webhook',
 
     })
     console.log(result.body);
@@ -68,25 +68,6 @@ const createOrder = async(req, res)=>{
    
 };
 
-const receiveWebhook = async(req,res) => {
-    
-    const payment = req.query;
-    console.log(req.query);
-    try {
-        
-        if (payment.type === "payment"){
-            const data = await mercadopago.payment.findById(payment["data.id"]);
-            console.log(data);
-    
-        };
-            res.sendstatus(204);
-        
-    } catch (error) {
-        console.log(error);
-        return res.sendstatus(500).json({error: error.message});
-        
-    }
-   
-};
 
-module.exports = {createOrder, receiveWebhook};
+
+module.exports = createOrder;
