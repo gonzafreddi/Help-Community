@@ -203,3 +203,16 @@ export const getProductByName=(name)=>{
         }
     }
 }
+
+export const createOrder = (payload)=>{
+    return async (dispatch)=>{
+        try {
+            const {data} = await axios.post("http://localhost:3001/payment/create_order", payload)
+            console.log(data)
+            window.location.href = data.init_point
+            return order
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
