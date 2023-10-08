@@ -43,14 +43,15 @@ const createOrder = async(req, res)=>{
     mercadopago.configure({
         access_token:"TEST-6850757546672488-100711-50177e634a355fb71db241599efdb0f3-1503945548"
     })
+    console.log(req.body[0].price)
 
     const result = await mercadopago.preferences.create({
         items:[{
-            title: "laptop lenovo",
-            id: 23,
-            unit_price: 500,
+            title: req.body[0].name,
+            id: req.body[0].id,
+            unit_price: req.body[0].price,
             currency_id: "ARS",
-            quantity: 1
+            quantity: req.body.quantity || 1
         }],
 
     // ? Darle el control a mercado pago...
