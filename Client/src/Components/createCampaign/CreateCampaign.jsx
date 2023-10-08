@@ -66,19 +66,19 @@ export default function CreateCampaign(){
         <div className={style.formConteiner}>
          
             <form onSubmit={handleFormSubmit} action="">
-            <h1>Crear una campaña</h1>
-                <label className={`${style.title}`} htmlFor=""><h3>Colocale un nombre a tu campaña</h3></label>
+                <h1>Crear una campaña</h1>
+                <label className={`${style.title}`} htmlFor=""><h3>Coloquele un nombre a su campaña</h3></label>
                 <span>{errors.name}</span>
-                <input className={style.nameAndPrice} onChange={handleInputChange} type="text" name="name" placeholder="Nombre" id="" />
+                <input className={style.nameAndPrice} onChange={handleInputChange} type="text" name="name" placeholder="Nombre de la campaña" id="" />
 
-                <label className={`${style.title}`} htmlFor=""><h3>resumen de su descripcion</h3></label>
+                <label className={`${style.title}`} htmlFor=""><h3>Describa su campaña en pocas palabras</h3></label>
                 <span>{errors.resumeDescr}</span>
-                <input className={style.nameAndPrice} onChange={handleInputChange} type="text" name="short_description" id="" />
-                <label className={style.title} htmlFor=""><h3>Describe tu campaña</h3></label>
+                <input className={style.nameAndPrice} onChange={handleInputChange} type="text" name="short_description" id="" placeholder="Descripción corta de la campaña"/>
+                <label className={style.title} htmlFor=""><h3>Describa su campaña detalladamente</h3></label>
                 <span>{errors.description}</span>
-                <textarea onChange={handleInputChange} name="long_description" id="" cols="30" rows="10" readonly></textarea>
+                <textarea onChange={handleInputChange} name="long_description" id="" cols="30" rows="10" readonly placeholder="Descripción completa de su campaña"></textarea>
                 
-                <label className={style.title}  htmlFor=""><h3>Añade una imagen a tu campaña</h3></label>
+                <label className={style.title}  htmlFor=""><h3>Añada una imagen a su campaña</h3></label>
                 <UploadWidget onImageUpload={handleImageUpload}/>
                 {
                   imageUrl !== "" 
@@ -88,9 +88,9 @@ export default function CreateCampaign(){
 
                <div className={style.selectsConteiner}>
                 <div className={style.state}>
-                <label className={style.title}  htmlFor=""><h3>¿En que provincia se encuntra tu campaña?</h3></label>
+                <label className={style.title}  htmlFor=""><h3>¿En que provincia se encuntra su campaña?</h3></label>
                 <span>{errors.StateId}</span>
-                <select onChange={handleInputChange} name="StateId" id="">
+                <select className={style.provSelect} onChange={handleInputChange} name="StateId" id="">
                 <option value="">Provincia</option>
                 {
                   states.map((e, index)=> <option value={e.id} key={index}>
@@ -101,7 +101,7 @@ export default function CreateCampaign(){
                </div>
                  
               <div>
-              <label className={style.title}  htmlFor=""><h3>¿Cuando finaliza tu campaña?</h3></label>
+              <label className={style.title}  htmlFor=""><h3>¿Cuando finaliza su campaña?</h3></label>
                 
               
               <span>{errors.endDate}</span>
@@ -126,7 +126,7 @@ export default function CreateCampaign(){
                 </div>
                </div>
 
-                <h3 className={style.title} >¿Cuales son las razones principales por las que vas a recaudar dinero</h3>
+                <h3 className={style.title} >¿Cuales son las razones principales por las que va a recaudar dinero?</h3>
                 <span>{errors.CategoryId}</span>
               <select onChange={handleInputChange} name="CategoryId" id="">
                 {
@@ -136,7 +136,7 @@ export default function CreateCampaign(){
                 }
               </select>
 
-              <h3 className={style.title} >¿Cuanto te gustaria recaudar?</h3>
+              <h3 className={style.title} >¿Cuanto le gustaria recaudar?</h3>
               <span className={style.spanAmount}>{errors.finalAmount}</span>
              <div className={style.monto}>
              
