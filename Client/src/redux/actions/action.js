@@ -11,6 +11,7 @@ export const ORDEN_PRECIO = "ORDEN_PRECIO";
 export const GET_CATEG = "GET_CATEG";
 export const FILTER_BY_CATEG = "FILTER_BY_CATEG";
 export const FILTROS_PRECIO = "FILTROS_PRECIO";
+export const RESET = "RESET";
 
 
 
@@ -127,6 +128,17 @@ export const productOrdenPrecio = (order) => {
         }
     };
 };
+
+export const resetProducts = () => {
+    return async function (dispatch){
+        try {
+            dispatch({ type: RESET });
+        } catch (error) {
+            console.log(error.message);
+        }
+    };
+};
+
 
 
 export const getProduct = () => {

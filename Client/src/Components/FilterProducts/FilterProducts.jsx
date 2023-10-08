@@ -1,4 +1,4 @@
-import { filterByCateg, productOrdenPrecio, productsFiltrosPrecio } from '../../redux/actions/action';
+import { filterByCateg, productOrdenPrecio, productsFiltrosPrecio, resetProducts } from '../../redux/actions/action';
 import React, { useEffect, useState } from 'react';
 import style from './FilterProducts.module.css';
 import { useDispatch, useSelector } from 'react-redux';
@@ -22,6 +22,10 @@ const FilterProducts = ({ categ }) => {
     const filtrosPrecio = (event) => {
         dispatch(productsFiltrosPrecio(event.target.name))
         }
+
+    const reset = (event) => {
+        dispatch(resetProducts(event.target.name))
+    }
 
     
         // console.log("categorias: ", categ)
@@ -52,6 +56,7 @@ const FilterProducts = ({ categ }) => {
             <button className={style.boton} name="mayor1000" onClick={filtrosPrecio}>Mayor a $1000</button>
             <button className={style.boton} name="precioMenor" onClick={ordenPrecio}>Menor precio</button>
             <button className={style.boton} name="precioMayor" onClick={ordenPrecio}>Mayor precio</button>
+            <button className={style.reset} onClick={reset}>RESET FILTERS</button>
         </div>
     );
 };
