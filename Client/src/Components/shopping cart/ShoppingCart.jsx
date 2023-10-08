@@ -12,22 +12,23 @@ export default function ShoppingCart() {
   useEffect(() => {
     setItem("cartShop", cart);
   }, [cart]);
-console.log(cart)
+
   return (
     <div className={style.conteiner}>
       <div className={style.cont}>
         <div className={style.items}>
           {cart?.length > 0 ? (
             cart.map((e, index) => {
+              console.log(e);
               return (
                 <CardShopping
                   key={index}
                   id={e.product.id}
-                  name={e.product.nombre}
-                  price={e.product.precio}
+                  name={e.product.name}
+                  price={e.product.price}
                   rating={e.rating}
                   stock={e.product.stock}
-                  image={e.product.imagen}
+                  image={e.product.image}
                   quantity={e.quantity}
                 />
               );
