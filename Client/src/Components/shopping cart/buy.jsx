@@ -13,6 +13,7 @@ export default function Buy() {
     window.localStorage.setItem("dataCart", JSON.stringify(cart))
   },[cart])
 
+  console.log(cart)
   const totalAmount = finalAmount(cart);
   
   return (
