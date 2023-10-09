@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import style from './Login.module.css';
-// import { useAuth } from '../../context/AuthContext';
+import { useAuth } from '../../context/AuthContext';
 import { useState } from 'react';
 import { validateLogin, validateRegister } from './validateLogin';
 import { postUser } from '../../redux/actions/action';
