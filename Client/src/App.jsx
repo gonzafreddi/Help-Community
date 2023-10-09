@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import { Home } from './Components/Home/Home'
 import {Detail} from "./Components/Detail/Detail"
 import { DetailProduct } from './Components/Detail/Detail_product'
@@ -16,6 +16,7 @@ import Landing from './Components/landing/Landing'
 import './App.css'
 function App(){
   const dispatch = useDispatch()
+  const location = useLocation()
   useEffect(()=>{
     dispatch(getState())
     dispatch(getCategory())
@@ -24,9 +25,9 @@ function App(){
     <>
 
      <AuthProvider>
-     <Nav/>
+    {location.pathname !== "/" && <Nav />}
       <Routes>
-        <Route path="/" element={<Landing />} />
+        <Route path="/" element={<Home />} />
         <Route path='/detail/:id' element={<Detail/>}/>
         <Route path='/about' element={<About/>}/>
         <Route path='/create/campaign' element={<CreateCampaign/>}/>
@@ -35,7 +36,7 @@ function App(){
         <Route path="/products" element={<Products />} />
          {/* <Route path="/login" element={<Login />} /> */}
       </Routes>
-      <Footer/>
+    {location.pathname !== "/" && <Footer />}
      </AuthProvider>
     </>
   )

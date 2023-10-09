@@ -4,11 +4,15 @@ import { useState } from 'react';
 import Login from '../Login/Login';
 import {faCartShopping} from "@fortawesome/free-solid-svg-icons"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
+ import { useSelector } from 'react-redux';
 // import SearchBar from '../SearchBar/SearchBar';
 import './Nav.css';
 
 
 export const Nav = () => {
+    const cart = useSelector((state) => state.cartShop);
+    const totalProduct = cart.length;
+  
     const auth = useAuth();
     const { email } = auth.user;
     const [loginOpen, setLoginOpen] = useState(false);
@@ -34,7 +38,7 @@ export const Nav = () => {
 
                 <div className='nav-button-container'>
                     <Link to={'/'}>
-                        <button className='nav-button'>Home</button>
+                        <button className='nav-button'>Landing</button>
                     </Link>
                     <Link to={'/about'}>
                         <button className='nav-button'>Acerca de</button>
@@ -47,7 +51,7 @@ export const Nav = () => {
                             <button className='nav-button' >Productos</button>
                         </Link>
                         <Link to={"/shoppingCart"}>
-                        <button className='nav-button' > <FontAwesomeIcon icon={faCartShopping}/></button>
+                        <button className='nav-button' > <div className='cart-item'><FontAwesomeIcon icon={faCartShopping}/><p >{cart.length > 0 ?totalProduct : null}</p></div></button>
                       
                         </Link>
                     {/* </Link> */}

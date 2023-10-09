@@ -18,7 +18,8 @@ useEffect(()=>{
 
 
 const categ = useSelector(state => state.categ);
-console.log(categ)
+// console.log(categ)
+
 
 const products = useSelector((state) => state.products);
 
@@ -41,7 +42,9 @@ const totalItems = products.length;
 
 };
 
-console.log("products: ", products)
+
+
+
 
 const currentCards = getCurrentPageCampaigns();
 
@@ -60,11 +63,11 @@ const currentCards = getCurrentPageCampaigns();
         return  <Product
                   key={producto.id}
                   id={producto.id}
-                  nombre={producto.title}
-                  descripcion={producto.description}
-                  imagen={producto.images[0]}
-                  precio={producto.price}
-                  categoria={producto.category}
+                  name={producto.title}
+                  description={producto.description}
+                  image={producto.images[0]}
+                  price={producto.price}
+                  category={producto.category}
                 />
         })}
       </div>
