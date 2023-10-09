@@ -45,10 +45,13 @@ export const Home = () => {
 
 
  return (
-   <div className={style.contenedor}>
+   <div className={style.conteiner}>
        {/* <FilterBar states={states} category={category} /> */}
-       <Cards data={getCurrentPageCampaigns()}/>
-       <Pagination page={page} setPage={setPage} itemsPerPage={cardsPerPage} totalItems={totalItems}/>
+
+       <Cards className={style.contenedor} data={getCurrentPageCampaigns()}/>
+     <div className={style.pagination}>
+     <Pagination  page={page} setPage={setPage} itemsPerPage={cardsPerPage} totalItems={totalItems}/>
+     </div>
    </div>
  )
 }
