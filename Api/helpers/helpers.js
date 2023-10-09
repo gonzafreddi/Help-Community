@@ -11,7 +11,7 @@ const cleanArrayCampaignDB = (arr) =>
       finalAmount: campaign.finalAmount,
       state: stringAll(campaign.States),
       category: stringAll(campaign.Categories),
-      ong: stringAll(campaign.ong_donors),
+      ong: campaign.ong,
       borradoCondicional: campaign.state,
       created: true,
     };

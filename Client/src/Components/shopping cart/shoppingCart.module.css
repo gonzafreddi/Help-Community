@@ -1,0 +1,22 @@
+.conteiner{
+    
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  
+    display: flex;
+    min-height: 80vh;
+
+
+}
+.cont{
+
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+ 
+}
+.items{
+
+    width: 65%;
+}

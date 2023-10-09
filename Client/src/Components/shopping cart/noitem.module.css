@@ -1,0 +1,37 @@
+.font{
+    font-size: 123px;
+}
+.conteiner{
+    height: 80vh;
+    width: 150%;
+    display: flex;
+    justify-self: center;
+
+}
+
+.contenido{
+    transition: all ease;
+    margin-left: auto;
+    margin: auto;
+    text-align: center;
+}
+
+.contenido p{
+    font-size: 1.3em;
+    color: rgba(1, 42, 74, 1);;
+}
+
+.contenido button{
+    padding: 10px 30px 10px 30px;
+    border-radius: 10px;
+    background-color: #3A86FF;
+    color: #ffff;
+    border: none;
+    transition: all ease .3s;
+    font-size: 1.1rem;
+}
+
+.contenido button:hover{
+    background-color: #0963f5;
+    cursor: pointer;
+}

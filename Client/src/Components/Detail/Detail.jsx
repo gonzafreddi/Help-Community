@@ -1,5 +1,5 @@
 import style from "./Detail.module.css"
-import imgAbout from "../../utils/images/negocio.png"
+
 import { useEffect } from "react"
 import { useParams } from "react-router-dom"
 import { getDetailCampaign } from "../../redux/actions/action"

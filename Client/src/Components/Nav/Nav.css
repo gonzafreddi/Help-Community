@@ -51,3 +51,11 @@
     display: flex;
     margin-right: 3rem;
 }
+.cart-item{
+display: flex;
+}
+.cart-item p{
+    margin: -15px;
+    margin-left: 5px;
+    color: red;
+}

@@ -6,11 +6,12 @@
     margin-bottom: 35px;
     border-radius: 5px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: white;
 }
 
 .contenedor:hover{
     transform: scale(1.03);
-    cursor: default;
+    cursor: default; 
     box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.61);
 }
 
