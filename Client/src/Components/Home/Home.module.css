@@ -1,0 +1,19 @@
+.conteiner{
+    background-size:cover;
+    height: 100vh;
+    position: absolute;
+    width: 100vw;
+    background-image: url("https://static.vecteezy.com/system/resources/previews/002/009/033/non_2x/abstract-blur-and-defocused-shopping-mall-background-free-photo.jpg");
+}
+
+.contenedor{
+    /* background-color: aquamarine; */
+    background-attachment: fixed;
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+.pagination{
+    display: flex;
+    justify-content: center;
+}

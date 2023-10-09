@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_DETAIL_CAMPAIGN , GET_STATE} from "./action_type";
+import { ADD_ONE_TO_CART, ADD_TO_CART, CLEART_CART, GET_DETAIL_CAMPAIGN , GET_STATE, REMOVE_ONE_TO_CART, REMOVE_TO_CART, GET_PRODUCT_BY_NAME} from "./action_type";
 export const GET_CAMPAIGN = "GET_CAMPAIGN";
 export const FILTER_BY_STATE = "FILTER_BY_STATE";
 export const GET_STATES = "GET_STATES";
@@ -7,11 +7,19 @@ export const GET_CATEGORY = "GET_CATEGORY";
 export const FILTER_BY_CATEGORY = "FILTER_BY_CATEGORY";
 export const GET_PRODUCT = "GET_PRODUCT";
 
+export const ORDEN_PRECIO = "ORDEN_PRECIO";
 export const GET_CATEG = "GET_CATEG";
 export const FILTER_BY_CATEG = "FILTER_BY_CATEG";
-axios.defaults.baseURL = "https://help-community-production-ad63.up.railway.app"
-
-
+export const FILTROS_PRECIO = "FILTROS_PRECIO";
+export const RESET = "RESET";
+console.log(process.env.NODE_ENV)
+if (process.env.NODE_ENV === 'development') {
+    // En entorno de desarrollo
+    axios.defaults.baseURL = "http://localhost:3001";
+  } else {
+    // En otros entornos (por ejemplo, producción)
+    axios.defaults.baseURL  = "https://help-community-production-ad63.up.railway.app";
+  }
 export const getCampaign = () => {
     return async function (dispatch){
         try{
@@ -100,19 +108,50 @@ export function filterByCategory(payload){
 
 export function filterByCateg(payload){
     return{
-        type: "FILTER_BY_CATEG",
+        type: FILTER_BY_CATEG,
         payload
     }
 }
+
+export const productOrdenPrecio = (order) => {
+    return async function (dispatch) {
+      try {
+        dispatch({ type: ORDEN_PRECIO, payload: order });
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+  };
+
+
+  export const productsFiltrosPrecio = (order) => {
+    return async function (dispatch){
+        try{
+            dispatch({type: FILTROS_PRECIO, payload: order});
+        } catch (error){
+            console.log(error.message)
+        }
+    };
+};
+
+export const resetProducts = () => {
+    return async function (dispatch){
+        try {
+            dispatch({ type: RESET });
+        } catch (error) {
+            console.log(error.message);
+        }
+    };
+};
 
 
 
 export const getProduct = () => {
     return async function (dispatch){
         try{
-            const productData = await axios("/product");
-            const product = productData.data;
-            dispatch({type: GET_PRODUCT, payload: product});
+            const productData = await axios("https://dummyjson.com/products?limit=0");
+            const products = productData.data.products;
+            dispatch({type: GET_PRODUCT, payload: products});
         } catch (error){
             console.log("error en devolver los productos", error.message)
         }
@@ -144,4 +183,75 @@ export function postCampaign(payload) {
        }
     }
 }
+export function postUser(payload) {
+    return async function (dispatch) {
+      
+        try {
+            const {data} = await axios.post('/user/create', payload);
+            
+            if (!data.length) throw Error('No se ha podido crear el usuario')
+            if (data.length) console.log('Usuario creado correctamente')
+            
+        } catch (error) {
+            return error.message
+        }
+    }
+}
 
+export const addToCart=(product, quantity)=>{
+    return{
+        type: ADD_TO_CART,
+        payload: {
+            product,
+            quantity
+        }
+    }
+}
+
+export const removeTocart=(id)=>{
+    return{
+        type: REMOVE_TO_CART,
+        payload: id
+    }
+}
+export const addOneToCart=(id)=>{
+return{
+    type:ADD_ONE_TO_CART,
+    payload: id
+}
+}
+
+export const removeOneToCart=(id)=>{
+    return{
+        type:REMOVE_ONE_TO_CART,
+        payload:id
+    }
+}
+
+export const getProductByName=(name)=>{
+    return async (dispatch)=>{
+        try {
+            const response = await axios(`/product?name=${name}`)
+            console.log(response.data)
+            dispatch({
+                type: GET_PRODUCT_BY_NAME,
+                payload: response.data
+            })
+        } catch (error) {
+            console.log(error.message)
+        }
+    }
+}
+
+export const createOrder = (payload)=>{
+    return async (dispatch)=>{
+        try {
+            const {data} = await axios.post("/payment/create_order", payload)
+            console.log(data)
+            window.location.href = data.init_point
+            return order
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}

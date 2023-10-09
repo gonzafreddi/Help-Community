@@ -1,10 +1,13 @@
 import style from "./Detail.module.css"
-import imgAbout from "../../utils/images/negocio.png"
+import ClipboardJS from "clipboard"
+
 import { useEffect } from "react"
 import { useParams } from "react-router-dom"
 import { getDetailCampaign } from "../../redux/actions/action"
 import { useDispatch, useSelector } from "react-redux/";
+import imgAbout  from "../../utils/images/negocio.png"
 
+new ClipboardJS(".button");
 
 export const Detail = () => {
 const dispatch = useDispatch()
@@ -68,7 +71,7 @@ console.log(name.id)
             <p>{campDetail[0]?.description}</p>
       </div>
         
-        <div className={style.imgCamp}><img src={campDetail[0]?.image} alt="" /></div>
+        <div className={style.imgCamp}><img src="https://img.freepik.com/foto-gratis/usted-puede-ayudar-dar-concepto-donacion-bienestar_53876-121039.jpg?w=2000" alt="" /></div>
         <div className={style.descriptionCamp}>
           <p>{campDetail[0]?.long_description}</p>
         </div>
@@ -77,9 +80,11 @@ console.log(name.id)
       <div className={style.cardDonationConteiner}>
         <div className={style.cardDonation}>
           <div className={style.titleCard}>
-          <h5 >¿Cuanto quieres donar?</h5>
+          <p id="cbu">CBU: 123456789087654321123</p>
+          <button data_clipboard-action="copy" data-clipboard-text="123456789087654321123"><i className="material-icons">content_copy</i></button>
+          <h5>ALIAS: HELPCOMMUNITY</h5>
           </div>
-          <form action="">
+          {/* <form action="">
             <div className={style.amountBtnConteiner}>
             <button className={style.amountBtn}>$1.000</button>
             <button className={style.amountBtn}>$5.000</button>
@@ -91,7 +96,7 @@ console.log(name.id)
             <div className={style.sendConteiner}>
             <input className={style.sendBtn} type="submit" />
             </div>
-          </form>
+          </form> */}
         </div>
       </div>
       

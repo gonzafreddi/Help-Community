@@ -2,30 +2,31 @@
     display: flex;
     font-size: 1.2rem;
     justify-content: center;
+    font-family: 'DM Sans', sans-serif;
 }
 h1{
-    color: #3A86FF;
+    color: rgb(7, 56, 97);
+    text-align: center;
+    font-weight: 500;
+
 }
 input{
-    box-shadow: 2px 2px 2px 3px rgba(0, 0, 0, 0.3);
-    border: none;
+    border: 1px solid rgb(216, 215, 215);
     outline: none;
 }
 input:focus{
-    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.4);
+    /* border: 1px solid rgb(216, 215, 215); */
 }
 textarea:focus{
-    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.6);
     outline: none;
 }
 .formConteiner{
-    border: solid red;
-    border: 15px;
+    border: 2px solid rgb(216, 215, 215);
+    border-radius: 20px;
     width: 90%;
     display: flex;
     justify-content: center;
-    box-shadow: 0px 15px 15px 15px rgba(0, 0, 0, 0.5);
-   margin: 50px;
+    margin: 50px;
    
 }
 form{
@@ -33,19 +34,26 @@ form{
     
 }
 textarea{
-    box-shadow: 2px 2px 2px 3px rgba(0, 0, 0, 0.3);
-   resize: none;
-   border: none;
-   border-radius: 10px;
-   width: 100%;
-    
+    resize: none;
+    /* border: 1px solid rgb(216, 215, 215); */
+    border: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    border-radius: 10px;
+    width: 100%;
+    padding-top: 5px;
+    text-indent: 10px;
+}
+
+textarea::placeholder{
+    font-family: 'DM Sans', sans-serif;
+    text-indent: 10px;
 }
 .title{
-    /* border: solid green 1px; */
     width: 100%;
     display: flex;
     margin-bottom: 10px;
-    margin-top: 10px
+    margin-top: 10px;
 }
 .nameAndPrice{
     border-radius: 10px;
@@ -62,18 +70,23 @@ textarea{
  
 }
 select{
-    width: 200px;
-
+    width: 125px;
+    border-radius: 4px;
     border: none;
-    color: #3A86FF;
+    color: rgb(7, 56, 97);
     font-size: 1.3rem;
-    border-bottom: solid #3A86FF .3px;
+    border-bottom: solid rgb(7, 56, 97) 1px;
+    margin-right: 1rem;
     
 }
+
+.provSelect{
+    width: 180px;
+    text-align: center;
+}
 option{
-    background-color: #81b2d7;
-    color: white;
-    
+    background-color: rgb(7, 56, 97, 0.8);
+    color: white; 
 }
 .monto{
     display: flex;
@@ -83,37 +96,58 @@ option{
     margin-right: 10px;
 }
 .ars{
-position: absolute;
-margin-left: 75%;
-color: red;
-color: black;
-
+    position: absolute;
+    margin-left: 75%;
+    color: black;
 }
 .sendCont{
     width: 100%;
     display: flex;
     justify-content: center;
-    margin-top: 50px;
+    /* margin-top: 50px; */
     margin-bottom: 50px;
 }
+
 .send{
-    padding: 10px 30px 10px 30px;
-    border-radius: 10px;
-    background-color: #3A86FF;
-    color: #ffff;
     border: none;
-    transition: all ease .3s;
-    font-size: 1.1rem;
+    margin-top: 40px;
+    height: 40px;
+    width: 240px;
+    font-family: 'DM Sans', sans-serif;
+    color: rgba(219, 220, 221, 1);
+    border-radius: 10px;
+    background-color: rgb(7, 56, 97);
+    font-weight: 600;
+    transition: all 0.15s;
 }
 .send:hover{
-    background-color: #0963f5;
+    background-color: rgb(7, 56, 97);
+    color: rgba(219, 220, 221, 1);
     cursor: pointer;
 }
+
 .send:disabled{
     background-color: #cccccc;
     color: #999999;
     cursor: not-allowed;
 }
+
+.send:active{
+    transform: scale(0.95);
+}
+
+.send:disabled{
+    cursor: default;
+    color: rgb(121, 121, 121);
+    background-color: #e6e6e6;
+}
+
+.send:disabled:hover{
+    color: rgb(150, 150, 150);
+    cursor: default;
+}
+
+
 span{
     color: red;
     display: block;
@@ -129,4 +163,8 @@ span{
     max-width: 100px;
     margin-top: 1rem;
     border-radius: 8%;
+}
+
+h3{
+    font-weight: 300;
 }

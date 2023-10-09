@@ -8,3 +8,17 @@
     margin-right: 10vw;
     margin-top: 3vw;
 }
+
+.barra{
+    display:flex;
+    justify-content:space-around;
+    margin-left: 200px;
+}
+.paginationCont{
+
+    display: flex;
+    justify-content: center;
+}
+.pagin{
+border: solid green;
+}
