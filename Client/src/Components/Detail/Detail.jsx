@@ -81,7 +81,7 @@ console.log(name.id)
         <div className={style.cardDonation}>
           <div className={style.titleCard}>
           <p id="cbu">CBU: 123456789087654321123</p>
-          <button className={style.buttonCopy} data_clipboard-action="copy" data-clipboard-target="#cbu"><i className="material-icons">content_copy</i></button>
+          <button data_clipboard-action="copy" data-clipboard-text="123456789087654321123"><i className="material-icons">content_copy</i></button>
           <h5>ALIAS: HELPCOMMUNITY</h5>
           </div>
           {/* <form action="">

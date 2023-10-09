@@ -168,6 +168,28 @@ font-size: 1.3rem;
     font-size: 1.5rem;
     color: white;
 }
+
+.estiloTitulo{
+    margin-right: 20px;
+}
+
+.titleAlias{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    color: white;
+}
+
+.material-icons{
+    font-size: 13px;
+    color: #ffffff;
+    border: 0px;
+    background-color: #297afd;
+    cursor: pointer;
+}
 .amountBtnConteiner{
 
     display: flex;
