@@ -91,7 +91,7 @@ const SearchBar = () => {
                         value={searchText}
                         onChange={handleInputChange}
                         onKeyPress={handleEnterPress}
-                        placeholder='Busca una campaña'
+                        placeholder='Busca un producto'
                     />
 
                     <button className='search-button' onClick={handleSearchButton} disabled={suggestions.length === 0} >
