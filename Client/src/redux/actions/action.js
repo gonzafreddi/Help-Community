@@ -7,8 +7,11 @@ export const GET_CATEGORY = "GET_CATEGORY";
 export const FILTER_BY_CATEGORY = "FILTER_BY_CATEGORY";
 export const GET_PRODUCT = "GET_PRODUCT";
 
+export const ORDEN_PRECIO = "ORDEN_PRECIO";
 export const GET_CATEG = "GET_CATEG";
 export const FILTER_BY_CATEG = "FILTER_BY_CATEG";
+export const FILTROS_PRECIO = "FILTROS_PRECIO";
+export const RESET = "RESET";
 
 
 
@@ -104,6 +107,37 @@ export function filterByCateg(payload){
         payload
     }
 }
+
+export const productOrdenPrecio = (order) => {
+    return async function (dispatch) {
+      try {
+        dispatch({ type: ORDEN_PRECIO, payload: order });
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+  };
+
+
+  export const productsFiltrosPrecio = (order) => {
+    return async function (dispatch){
+        try{
+            dispatch({type: FILTROS_PRECIO, payload: order});
+        } catch (error){
+            console.log(error.message)
+        }
+    };
+};
+
+export const resetProducts = () => {
+    return async function (dispatch){
+        try {
+            dispatch({ type: RESET });
+        } catch (error) {
+            console.log(error.message);
+        }
+    };
+};
 
 
 

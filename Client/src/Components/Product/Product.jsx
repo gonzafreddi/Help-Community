@@ -17,7 +17,16 @@ export const Product = (props) => {
     const quantityToadd = 1
     dispatch(addToCart(props, quantityToadd))
   }
+  // console.log(props, "props log")
 
+  const capitalizeFirstLetter = (str) => { //para poner la primera letra de la lista de categs en mayuscula
+    if (str.length === 0) {
+        return str; // Devuelve una cadena vacía si la cadena de entrada es vacía
+    }
+    const firstLetter = str.charAt(0).toUpperCase(); // Convierte la primera letra en mayúscula
+    const restOfString = str.slice(1).toLowerCase(); // Convierte el resto de la cadena en minúscula
+    return firstLetter + restOfString; // Devuelve la cadena resultante
+    };
 
   return (
     <div className={style.contenedor}>
@@ -27,7 +36,7 @@ export const Product = (props) => {
     <p className={style.nombre}>{name}</p>
       <p className={style.descripcion}>{description}</p>
       <p className={style.precio}>$ {price}</p>
-      <p className={style.categoria}>{category}</p>
+      <p className={style.categoria}>{capitalizeFirstLetter(category)}</p>
       <button className={style.verMas} onClick={hancleAddtoCart}><FontAwesomeIcon icon={faCartPlus}/></button>
       
 

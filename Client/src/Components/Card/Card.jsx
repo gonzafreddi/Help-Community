@@ -7,14 +7,14 @@ export const Card = (props) => {
 
   return (
     <div className={style.contenedor}>
-      <button>agg</button>
+      {/* <button>agg</button> */}
         <div className={style.contenedorImagen}>
           <p className={style.ong}>{nombreOng.toUpperCase()}</p>
           <img className={style.imagen} src="https://img.freepik.com/foto-gratis/usted-puede-ayudar-dar-concepto-donacion-bienestar_53876-121039.jpg?w=2000" alt={nombre} />
         </div>
       <p className={style.nombre}>{nombre}</p>
       <p className={style.descripcion}>{descripcion}.</p>
-      <p className={style.provincia}>{provincia}</p>
+      <p className={style.provincia}>{provincia.toUpperCase()}</p>
       <p className={style.categoria}>{categoria.toUpperCase()}</p>
       <p className={style.recaudado}>Objetivo: </p>
       {/* <p className={style.objetivo}>$8.560 <span className={style.de}>de</span> ${objetivo}</p> */}
