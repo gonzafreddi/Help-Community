@@ -1,0 +1,10 @@
+.cardsContainer{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    /* flex-wrap: wrap; */
+    justify-content: space-between;
+    gap: 2em;
+    margin-left: 10vw;
+    margin-right: 8vw;
+    margin-top: 3vw;
+}
