@@ -12,13 +12,18 @@ export const GET_CATEG = "GET_CATEG";
 export const FILTER_BY_CATEG = "FILTER_BY_CATEG";
 export const FILTROS_PRECIO = "FILTROS_PRECIO";
 export const RESET = "RESET";
-
-
-
+console.log(process.env.NODE_ENV)
+if (process.env.NODE_ENV === 'development') {
+    // En entorno de desarrollo
+    axios.defaults.baseURL = "http://localhost:3001";
+  } else {
+    // En otros entornos (por ejemplo, producción)
+    axios.defaults.baseURL  = "https://help-community-production-ad63.up.railway.app";
+  }
 export const getCampaign = () => {
     return async function (dispatch){
         try{
-            const campaignData = await axios('http://localhost:3001/campaign');
+            const campaignData = await axios('/campaign');
             const campaign = campaignData.data;
             dispatch({type: GET_CAMPAIGN, payload: campaign});
         } catch (error){
@@ -30,7 +35,7 @@ export const getCampaign = () => {
 export const getStates = () => {
     return async function (dispatch){
         try{
-            const statesData = await axios("http://localhost:3001/state");
+            const statesData = await axios("/state");
             const states = statesData.data;
             dispatch({type: GET_STATES, payload: states});
         } catch (error){
@@ -44,7 +49,7 @@ export const getStates = () => {
 export const getCategory = () => {
     return async function (dispatch){
         try{
-            const categoryData = await axios("http://localhost:3001/category");
+            const categoryData = await axios("/category");
             const category = categoryData.data;
             dispatch({type: GET_CATEGORY, payload: category});
         } catch (error){
@@ -73,7 +78,7 @@ console.log(name);
     return async function (dispatch){
         try {
             console.log("entre a la funcion")
-            const dataDetail = await axios(`http://localhost:3001/campaign?name=${name}`)
+            const dataDetail = await axios(`/campaign?name=${name}`)
             const dataCampaign = dataDetail.data
             dispatch({
                 type: GET_DETAIL_CAMPAIGN,
@@ -156,7 +161,7 @@ export const getProduct = () => {
 export const getState = ()=>{
     return async function(dispatch){
         try {
-            const {data} = await axios("http://localhost:3001/state")
+            const {data} = await axios("/state")
             dispatch({
                 type: GET_STATE,
                 payload: data
@@ -171,7 +176,7 @@ export function postCampaign(payload) {
     return async function (dispatch) {
       
        try {
-        const response = await axios.post('http://localhost:3001/campaign/create', payload);
+        const response = await axios.post('/campaign/create', payload);
         return response
        } catch (error) {
         return error.message
@@ -182,7 +187,7 @@ export function postUser(payload) {
     return async function (dispatch) {
       
         try {
-            const {data} = await axios.post('http://localhost:3001/user/create', payload);
+            const {data} = await axios.post('/user/create', payload);
             
             if (!data.length) throw Error('No se ha podido crear el usuario')
             if (data.length) console.log('Usuario creado correctamente')
@@ -226,7 +231,7 @@ export const removeOneToCart=(id)=>{
 export const getProductByName=(name)=>{
     return async (dispatch)=>{
         try {
-            const response = await axios(`http://localhost:3001/product?name=${name}`)
+            const response = await axios(`/product?name=${name}`)
             console.log(response.data)
             dispatch({
                 type: GET_PRODUCT_BY_NAME,
@@ -241,7 +246,7 @@ export const getProductByName=(name)=>{
 export const createOrder = (payload)=>{
     return async (dispatch)=>{
         try {
-            const {data} = await axios.post("http://localhost:3001/payment/create_order", payload)
+            const {data} = await axios.post("/payment/create_order", payload)
             console.log(data)
             window.location.href = data.init_point
             return order
