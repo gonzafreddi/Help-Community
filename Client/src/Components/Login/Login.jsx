@@ -29,8 +29,8 @@ const Login = ({closeLogin}) => {
     //Estados locales de logueo
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
-
+    
+    
     //Manejo de registro
     const handleRegister = async (e) => {
         e.preventDefault();
@@ -38,7 +38,7 @@ const Login = ({closeLogin}) => {
         try {
             await auth.register(emailRegister, passwordRegister);
             const userToPost = {
-                name:"Fernando",
+                name:nameRegister,
                 email: emailRegister
             }
             dispatch(postUser(userToPost))
@@ -50,27 +50,46 @@ const Login = ({closeLogin}) => {
 
     //Manejo de logueo
     const handleLogin = async (e) => {
-      e.preventDefault();
-      try {
-        await auth.login(email, password);
-        closeLogin();
-      } catch (error) {
-        console.log(error);
-        if (error.code === 'auth/invalid-login-credentials') {
-          // Manejar intento de inicio de sesión con contraseña incorrecta
-          setErrors({...errors, password:'Contraseña incorrecta. Inténtalo de nuevo.'});
+        e.preventDefault();
+        try {
+            await auth.login(email, password);
+            closeLogin();
+        } catch (error) {
+            if (error.code === 'auth/invalid-login-credentials') {
+            // Manejar intento de inicio de sesión con contraseña incorrecta
+            setErrors({...errors, password:'Contraseña incorrecta. Inténtalo de nuevo.'});
         } else {
-          // Otro tipo de error, como cuenta inactiva, etc.
-          console.error(error.message);
+            // Otro tipo de error, como cuenta inactiva, etc.
+            console.error(error.message);
         }
-      }
+        }
     };
 
     //Manejo de logueo/registro con google
     const handleGoogle = async (e) => {
-      e.preventDefault();
-      await auth.loginWithGoogle();
-      closeLogin();
+        e.preventDefault();
+        const result = await auth.loginWithGoogle();
+
+
+        try {
+            
+            const { displayName } = result.user;
+            const { email } = result.user;
+            const userToPost = {
+                name: displayName,
+                email
+            }
+            console.log(userToPost);
+
+            //TODO          Descomentar el dispatch cuando la funcion post este lista para recibir usuarios iguales
+            //dispatch(postUser(userToPost))
+
+        } catch (error) {
+            setErrors({...errors, other:error.message})
+        }
+
+
+        closeLogin();
     };
 
     const disableRegister = () => {
@@ -112,6 +131,7 @@ const Login = ({closeLogin}) => {
                     <div className={style.login}>
                         <div>
                             <h1 className={style.textoLI}>Inicie Sesión</h1>
+                            <h1 className={style.textoLI}>{auth.user.email}</h1>
                         </div>
 
                         <div className={style.formContainer}>
@@ -147,7 +167,7 @@ const Login = ({closeLogin}) => {
                                     type="password"
                                     placeholder='Contraseña'
                                 />
-                                <span className={style.errorMsg}>{errors.password}</span>
+                                <span className={style.wrongPass}>{errors.password}</span>
                                 <div className={style.forgotPassContainer}>
                                     <Link>
                                         <a className={style.forgotPass}>¿Has olvidado tu contraseña?</a>
@@ -157,6 +177,7 @@ const Login = ({closeLogin}) => {
                                 <button onClick={(e) => handleLogin(e)} className={style.submitBtn} disabled={isLogDisabled}>
                                     Iniciar Sesión
                                 </button>
+
                             </form>
                         </div>
 
