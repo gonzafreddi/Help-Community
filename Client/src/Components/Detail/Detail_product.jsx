@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProductByName } from "../../redux/actions/action";
+import { createOrder, getProductByName } from "../../redux/actions/action";
 import style from "./detail_campain.module.css";
 import { addToCart } from "../../redux/actions/action";
 import { useParams } from "react-router-dom";
+
 import Loader from "../loader/loader";
 export const DetailProduct = () => {
     const detailProduct = useSelector((state) => state.detailProduct);
+
+
+    
     const dispatch = useDispatch();
     const { name } = useParams();
     const [loading, setLoading] = useState(true);
@@ -26,8 +30,11 @@ export const DetailProduct = () => {
         dispatch(addToCart(product, quantityToadd))
       }
 
-
-
+    const handleSubmit=(detailProduct)=>{
+        console.log(detailProduct)
+        dispatch(createOrder(detailProduct))
+    }
+      
 
     return (
         <div className={style.conteiner}>
@@ -51,7 +58,8 @@ export const DetailProduct = () => {
                                 <p>$ {product?.price}</p>
                             </div>
                             <div className={style.buyCont}>
-                                <button className={style.btnBuy}>Comprar</button>
+                            <button className={style.btnBuy} onClick={() => handleSubmit(detailProduct)}>Comprar</button>
+
                                 <button className={style.btnAddToCart} onClick={hancleAddtoCart}>Agregar al carrito</button>
                             </div>
                         </div>
