@@ -23,6 +23,7 @@ function App(){
   },[])
   return (
     <>
+
      <AuthProvider>
     {location.pathname !== "/" && <Nav />}
       <Routes>
