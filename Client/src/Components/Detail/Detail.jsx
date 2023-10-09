@@ -4,6 +4,7 @@ import { useEffect } from "react"
 import { useParams } from "react-router-dom"
 import { getDetailCampaign } from "../../redux/actions/action"
 import { useDispatch, useSelector } from "react-redux/";
+import imgAbout  from "../../utils/images/negocio.png"
 
 
 export const Detail = () => {
