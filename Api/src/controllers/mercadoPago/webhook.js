@@ -10,20 +10,17 @@ const receiveWebhook = async(req,res) => {
 
     
     try {
-        
-        //if (type === "payment"){
-          //const datos_pago = await mercadopago.payment.findById(data.id);
-            //console.log(datos_pago);
+        if (type === "payment"){
+          const datos_pago = await mercadopago.payment.findById(data.id);
+            console.log(datos_pago);
     
-        //};
-
+        };
         console.log(payment);
-            //return data;
-            //res.sendstatus(204);
-        
+            // return data;
+            res.sendstatus(204);
     } catch (error) {
         console.log(error);
-        //return res.sendstatus(500).json({error: error.message});
+        return res.sendstatus(500).json({error: error.message});
         
     }
    
