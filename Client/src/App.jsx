@@ -13,14 +13,20 @@ import { getCategory, getState } from './redux/actions/action'
 import { useDispatch } from 'react-redux'
 import ShoppingCart from './Components/shopping cart/ShoppingCart'
 import Landing from './Components/landing/Landing'
+import { setItem } from './utils/localStorage'
+import { useSelector } from 'react-redux'
 import './App.css'
 function App(){
   const dispatch = useDispatch()
   const location = useLocation()
+  const cart = useSelector((state) => state.cartShop);
+
+
   useEffect(()=>{
+    setItem("cartShop", cart)
     dispatch(getState())
     dispatch(getCategory())
-  },[])
+  },[cart])
   return (
     <>
      <AuthProvider>
