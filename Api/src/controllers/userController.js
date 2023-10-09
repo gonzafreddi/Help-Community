@@ -39,9 +39,11 @@ const postUser = async (
   name,
   email,
   ) => {
-  const newUser = await User.create({
-  name,
-  email,
+  const newUser = await User.findOrCreate({
+      where: {
+            name: User.name,
+            email: User.email,
+        }   
   });
   
   return newUser;
