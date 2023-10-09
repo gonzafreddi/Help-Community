@@ -50,12 +50,19 @@ const FilterProducts = ({ categ }) => {
                     </option>
                 ))}
             </select>
-            <button className={style.boton} name="menor100" onClick={filtrosPrecio}>Menor a $100</button>
-            <button className={style.boton} name="menor500" onClick={filtrosPrecio}>Menor a $500</button>
-            <button className={style.boton} name="menor1000" onClick={filtrosPrecio}>Menor a $1000</button>
-            <button className={style.boton} name="mayor1000" onClick={filtrosPrecio}>Mayor a $1000</button>
-            <button className={style.boton} name="precioMenor" onClick={ordenPrecio}>Menor precio</button>
-            <button className={style.boton} name="precioMayor" onClick={ordenPrecio}>Mayor precio</button>
+            
+            <select className={style.filters}>
+            <option className={style.casillero} name="precioMenor" onClick={ordenPrecio}>Menor precio</option>
+            <option className={style.casillero} name="precioMayor" onClick={ordenPrecio}>Mayor precio</option>
+            </select>
+
+            <select className={style.filters}>         
+            <option className={style.casillero} name="menor100" onClick={filtrosPrecio}>Menor a $100</option>
+            <option className={style.casillero} name="menor500" onClick={filtrosPrecio}>Menor a $500</option>
+            <option className={style.casillero} name="menor1000" onClick={filtrosPrecio}>Menor a $1000</option>
+            <option className={style.casillero} name="mayor1000" onClick={filtrosPrecio}>Mayor a $1000</option>
+            </select>  
+            
             <button className={style.reset} onClick={reset}>RESET FILTERS</button>
         </div>
     );
