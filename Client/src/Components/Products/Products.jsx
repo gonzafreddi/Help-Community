@@ -20,6 +20,7 @@ useEffect(()=>{
 const categ = useSelector(state => state.categ);
 // console.log(categ)
 
+
 const products = useSelector((state) => state.products);
 
 
@@ -44,6 +45,9 @@ const totalItems = products.length;
 // console.log("products: ", products)
 // const products = useSelector((state) => state.products); //state.productsFiltered ver si cambio para filtros
 // // console.log("products: ", products)
+
+
+
 
 const currentCards = getCurrentPageCampaigns();
 
