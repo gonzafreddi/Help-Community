@@ -3,11 +3,12 @@
     display: flex;
     justify-content: right;
     align-items: center;
-    margin-top: -30px; 
+    /* margin-top: -30px; 
     margin-bottom: 50px;   
-    margin-right: 14em;
+    margin-right: 14em; */
     gap: 15px; 
-    width: 100%; 
+    font-size: large;
+    /* width: 100%;  */
     /* clear: both;  Añade esta propiedad para evitar que otros elementos floten alrededor del componente */
   } 
   
@@ -20,10 +21,14 @@
     color: white;
     cursor: pointer;
     border: 0px;
+    border-radius: 8px;
   }
   
 #inputPagination{
     /* Estilos para el input de paginación */
     width: 20px; /* Ajusta el ancho según tus preferencias */
     text-align: center;
+    background-color: transparent;
+    border: none;
+    font-size: large;
   } 

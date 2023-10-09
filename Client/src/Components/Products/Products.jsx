@@ -57,7 +57,7 @@ const currentCards = getCurrentPageCampaigns();
         <div className={style.barra}>
         <FilterProducts categ={categ}/>
 
-        <Pagination page={page} setPage={setPage} itemsPerPage={cardsPerPage} totalItems={totalItems}/>
+        
         </div>
 
 
@@ -73,7 +73,9 @@ const currentCards = getCurrentPageCampaigns();
                   category={producto.category}
                 />
         })}
+         
       </div>
+      <div className={style.paginationCont}><Pagination className={style.pagin} page={page} setPage={setPage} itemsPerPage={cardsPerPage} totalItems={totalItems}/></div>
     </div>
     )
   }
