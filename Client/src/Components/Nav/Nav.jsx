@@ -5,7 +5,7 @@ import Login from '../Login/Login';
 import {faCartShopping} from "@fortawesome/free-solid-svg-icons"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
  import { useSelector } from 'react-redux';
-// import SearchBar from '../SearchBar/SearchBar';
+import SearchBar from '../SearchBar/SearchBar';
 import './Nav.css';
 
 
@@ -60,10 +60,10 @@ export const Nav = () => {
 
 
                 <div className='sb-and-login'>
-                    {/* <div className='sb'>
+                    <div className='sb'>
                         <SearchBar/>
 
-                    </div> */}
+                    </div>
                     {
                         email 
                         ? <button className='nav-button' onClick={handleLogout}>Cerrar Sesion</button>

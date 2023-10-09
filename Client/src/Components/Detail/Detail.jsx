@@ -69,7 +69,7 @@ console.log(name.id)
             <p>{campDetail[0]?.description}</p>
       </div>
         
-        <div className={style.imgCamp}><img src={campDetail[0]?.image} alt="" /></div>
+        <div className={style.imgCamp}><img src="https://img.freepik.com/foto-gratis/usted-puede-ayudar-dar-concepto-donacion-bienestar_53876-121039.jpg?w=2000" alt="" /></div>
         <div className={style.descriptionCamp}>
           <p>{campDetail[0]?.long_description}</p>
         </div>
