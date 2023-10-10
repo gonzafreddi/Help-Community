@@ -1,5 +1,4 @@
-import style from "./cardInfouser.module.css"
-
+import style from "./cardInfoUser.module.css"
 export function CardInfoUser({h5, p, icon}){
     return(<div className={style.userConteiner}>
         
