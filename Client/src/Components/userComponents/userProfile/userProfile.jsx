@@ -1,6 +1,7 @@
 import style from "./userProfile.module.css"
 import { useAuth } from "../../../context/AuthContext";
 import { CardInfoUser } from "../cardInfo/cardInfoUser"
+import Login from "../../Login/Login";
 export default function UserProfile(){
 
   const auth = useAuth();
@@ -16,7 +17,9 @@ export default function UserProfile(){
 
 
     return(<div className={style.conteiner}>
-     <div className={style.center}>
+     {
+      email ? 
+      <div className={style.center}>
      <div className={style.userConteiner} >
         <p>Informacion Personal</p>
       <div className={style.userData}>
@@ -57,5 +60,7 @@ export default function UserProfile(){
         </div>
       
      </div>
+     : <Login/>
+     }
     </div>)
 }
