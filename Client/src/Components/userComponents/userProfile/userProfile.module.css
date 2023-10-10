@@ -1,0 +1,50 @@
+.conteiner{
+    min-height: 60vh;
+   
+    display: flex;
+    justify-content: center;
+}
+.center{
+
+    width: 60%;
+}
+.userConteiner{
+    width: 100%;
+
+  
+}
+
+.userData{
+    display: flex;
+   background-color: #ffff;
+   height: 120px;
+   margin-top: -15px;
+}
+
+.imgUserCont{
+    width: 20%;
+}
+.imgsize{
+ 
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+.imgsize img{
+    object-fit: contain;
+    height: 80%;
+    width: 80%;
+   
+
+}
+.text{
+    margin-left: 20px;
+}
+
+.cardConteiner{
+    margin-bottom: 30px;
+    margin-top: -15px;
+}

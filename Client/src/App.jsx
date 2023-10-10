@@ -16,6 +16,7 @@ import ShoppingCart from './Components/shopping cart/ShoppingCart'
 import { setItem } from './utils/localStorage'
 import { useSelector } from 'react-redux'
 import './App.css'
+import UserProfile from './Components/userComponents/userProfile/userProfile'
 function App(){
   const dispatch = useDispatch()
   const location = useLocation()
@@ -41,6 +42,7 @@ function App(){
         <Route path='/products/detail/:name' element={<DetailProduct/>}/>
         <Route path="/shoppingCart" element={<ShoppingCart />} />
         <Route path="/products" element={<Products />} />
+        <Route path='/userProfile' element={<UserProfile/>}/>
          {/* <Route path="/login" element={<Login />} /> */}
       </Routes>
     {location.pathname !== "/" && <Footer />}
