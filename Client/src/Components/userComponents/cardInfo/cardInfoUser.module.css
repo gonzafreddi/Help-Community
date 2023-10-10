@@ -1,0 +1,40 @@
+
+.userConteiner{
+    width: 100%;
+
+  
+}
+
+.userData{
+    display: flex;
+   background-color: #ffff;
+   height: 120px;
+   justify-content:space-between;
+}
+
+.iconConteiner{
+    width: 10%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.iconConteiner img{
+ 
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+}
+.text{
+    margin-left: 20px;
+    width: 80%;
+}
+
+.button{
+    border: solid green;
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}

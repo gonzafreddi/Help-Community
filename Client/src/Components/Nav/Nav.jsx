@@ -14,6 +14,8 @@ export const Nav = () => {
     const totalProduct = cart.length;
   
     const auth = useAuth();
+    console.log(auth)
+    
     const { email } = auth.user;
     const [loginOpen, setLoginOpen] = useState(false);
     

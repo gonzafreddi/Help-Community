@@ -1,0 +1,30 @@
+.conteiner{
+    min-height: 60vh;
+    border: solid red;
+    display: flex;
+    justify-content: center;
+}
+.center{
+    border: solid green;
+    width: 60%;
+}
+.userConteiner{
+    width: 100%;
+    border: solid green;
+  
+}
+
+.userData{
+    display: flex;
+   background-color: #ffff;
+   height: 120px;
+}
+
+.imgUserCont{
+    width: 20%;
+    background-color: red;
+}
+.imgsize
+.text{
+    margin-left: 20px;
+}
