@@ -1,4 +1,15 @@
-const { Product } = require("../src/db");
+const { Product, CategoryProduct } = require("../src/db");
+
+const getCategoryProductId = async (categoryName) => {
+  const categoryProduct = await CategoryProduct.findOne({
+    where: { name: categoryName },
+  });
+  if (!categoryProduct) {
+    throw new Error(`Category "${categoryName}" not found`);
+  }
+
+  return categoryProduct.id;
+};
 
 const cleanArrayProductDB = (rawArrayDB) => {
   return rawArrayDB.flatMap((category) => {
@@ -6,7 +17,7 @@ const cleanArrayProductDB = (rawArrayDB) => {
     return category.Products.map((product) => ({
       ...product.toJSON(),
       category: categoryName,
-      created: true,
+      /* created: true, */
     }));
   });
 };
@@ -23,7 +34,7 @@ const cleanArrayProductApi = (productsApi) =>
       stock: productData.stock,
       rating: productData.rating,
       state: false,
-      category: productData.category,
+      category: productData.category, //Aplicar funcion para que coloque el id de la categoria
       created: false,
     };
   });
@@ -31,4 +42,5 @@ const cleanArrayProductApi = (productsApi) =>
 module.exports = {
   cleanArrayProductApi,
   cleanArrayProductDB,
+  getCategoryProductId,
 };
