@@ -31,10 +31,18 @@
 }
 
 .button{
-    border: solid green;
+  
     width: 10%;
     display: flex;
     justify-content: center;
     align-items: center;
 
+}
+
+.button button{
+    background: #fff;
+    border: none;
+    color: #12121273;
+    font-size: 1.5em;
+    cursor: pointer;
 }
