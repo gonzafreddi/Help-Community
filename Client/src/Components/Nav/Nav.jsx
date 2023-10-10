@@ -6,6 +6,7 @@ import {faCartShopping} from "@fortawesome/free-solid-svg-icons"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
  import { useSelector } from 'react-redux';
 import SearchBar from '../SearchBar/SearchBar';
+import { UserNav } from '../userComponents/userNav/userNav';
 import './Nav.css';
 
 
@@ -14,7 +15,6 @@ export const Nav = () => {
     const totalProduct = cart.length;
   
     const auth = useAuth();
-    console.log(auth)
     
     const { email } = auth.user;
     const [loginOpen, setLoginOpen] = useState(false);
@@ -74,7 +74,7 @@ export const Nav = () => {
                     {loginOpen && <Login closeLogin={closeLogin} />}
 
                     {
-                        email ? <button className='nav-button'>{email}</button> : null
+                        email ? <button className='nav-button'><Link to={"/userProfile"}><UserNav/></Link></button> : null
                     }
 
                 </div>

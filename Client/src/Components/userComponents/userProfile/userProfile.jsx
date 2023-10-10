@@ -1,6 +1,20 @@
 import style from "./userProfile.module.css"
+import { useAuth } from "../../../context/AuthContext";
 import { CardInfoUser } from "../cardInfo/cardInfoUser"
 export default function UserProfile(){
+
+  const auth = useAuth();
+  console.log(auth.user)
+  const { email } = auth.user;
+  const {displayName} =auth.user
+  const {photoURL} = auth.user
+
+
+
+
+
+
+
     return(<div className={style.conteiner}>
      <div className={style.center}>
      <div className={style.userConteiner} >
@@ -9,13 +23,13 @@ export default function UserProfile(){
 
             <div className={style.imgUserCont}>
                 <div className={style.imgsize}>
-                <img src="https://cdn-icons-png.flaticon.com/256/9549/9549704.png" alt="" />
+                <img src={photoURL} alt="" />
                 </div>
             </div>
 
             <div className={style.text}>
-            <h2>Nombre Apellido</h2>
-            <p>usuariodedhelpComunnity@gmail.com</p>
+            <h2>{displayName}</h2>
+            <p>{email}</p>
             </div>
         </div>
         <p>Datos cuenta</p>
