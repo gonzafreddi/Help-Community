@@ -4,7 +4,7 @@ import { useAuth } from '../../context/AuthContext';
 import Login from '../Login/Login';
 import {faCartShopping} from "@fortawesome/free-solid-svg-icons"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
- import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import SearchBar from '../SearchBar/SearchBar';
 import './Nav.css';
 
@@ -45,7 +45,10 @@ export const Nav = () => {
                     </Link>
                     {/* <Link to='/createcampaign'> */}
                         <Link to={"/create/campaign"}>
-                            <button className='nav-button' > Crea una campaña! </button>
+                            <button className='nav-button' > Crear una campaña </button>
+                        </Link>
+                        <Link to={"/create/product"}>
+                            <button className='nav-button' > Crear un producto </button>
                         </Link>
                         <Link to={"/products"}>
                             <button className='nav-button' >Productos</button>
