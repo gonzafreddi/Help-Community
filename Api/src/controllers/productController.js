@@ -2,10 +2,32 @@ const { Product, CategoryProduct } = require("../db");
 const {
   cleanArrayProductDB,
   cleanArrayProductApi,
+  getCategoryProductId,
 } = require("../../helpers/productHelper");
 const products = require("../../dataApi/products");
 
 const getAllProducts = async function () {
+  const prodDB = await Product.findAll();
+  if (prodDB.length < 100) {
+    const rawProdApi = products.map(async (product) => {
+      const categoryProductId = await getCategoryProductId(product.category);
+      await Product.findOrCreate({
+        where: {
+          name: product.title,
+          price: product.price,
+          description: product.description,
+          image: product.thumbnail,
+          brand: product.brand,
+          stock: product.stock,
+          rating: product.rating,
+          state: false,
+          CategoryProductId: categoryProductId,
+        },
+      });
+    });
+    await Promise.all(rawProdApi);
+  }
+  //trae todos los productos
   const rawArrayDB = await CategoryProduct.findAll({
     include: [
       {
@@ -27,9 +49,10 @@ const getAllProducts = async function () {
 
   const productsDB = cleanArrayProductDB(rawArrayDB);
 
-  const productsApi = cleanArrayProductApi(products);
+  return productsDB;
+  /* const productsApi = cleanArrayProductApi(products);
 
-  return [...productsDB, ...productsApi];
+  return [...productsDB, ...productsApi]; */
 };
 
 const getProductByName = async function (name) {
