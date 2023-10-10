@@ -46,12 +46,13 @@ export const DetailProduct = () => {
                 </div>
             ) : (
                 product && (
+                    <div>
                     <div className={style.productCont}>
                         <div className={style.imgCont}>
                             <img src={product?.image} alt="" />
                         </div>
                         <div className={`${style.column} ${style.infoProduct}`}>
-                            <p>+500 vendidos</p>
+                            <p>Stock: {product?.stock}</p>
                             <h1>{product?.name}</h1>
                             <p>{product?.description}</p>
                             <div className={style.price}>
@@ -62,6 +63,14 @@ export const DetailProduct = () => {
 
                                 <button className={style.btnAddToCart} onClick={hancleAddtoCart}>Agregar al carrito</button>
                             </div>
+                        </div>
+                    </div>
+                        <div className={style.reviewsCont}>
+                            <h2>Reviews</h2>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, 
+                                enim asperiores tempore iste nam, possimus itaque facilis, suscipit 
+                                rem soluta velit officiis alias assumenda reprehenderit cum. Quibusdam, 
+                                nisi fugit. Ea.</p>
                         </div>
                     </div>
                 )
