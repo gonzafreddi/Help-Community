@@ -2,7 +2,7 @@
 export function validateProduct(product) {
     let error = {};
   
-    console.log(product);
+    
 
     if (!product.name) {
       error.name = "Debe ingresar un nombre a su producto";

@@ -2,9 +2,7 @@
 import {validateProduct} from "./validateProduct"
 export function handleSubmit(product, imageUrl, dispatch, postProduct) {
 
-    const { name, description, image, price, category, stock } = product;
-
-    console.log(image);
+    const { name, description, price, category, stock } = product;
 
     const productToPost = {
         name,
@@ -17,12 +15,12 @@ export function handleSubmit(product, imageUrl, dispatch, postProduct) {
         rating: 0
     }
 
-    console.log(`PRODUCT TO POST IMAGE ---> ${productToPost.image}`);
+    
     try {
         dispatch(postProduct(productToPost));
         
     } catch (error) {
-        console.log(error.message);
+        return(error.message);
     }
 
 
