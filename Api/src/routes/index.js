@@ -7,21 +7,21 @@ const stateRouter = require("./stateRouter");
 const categoryRouter = require("./categoryRouter");
 const productRouter = require("./productRouter");
 const paymentRouter = require("./paymentRouter");
-const webhookRouter = require ("./webhookRouter");
+// const webhookRouter = require ("./webhookRouter");
 const CategoryProductRouter = require("./categoryProductRouter");
 const buysRouter = require("./buysRouter");
-const reviewRouter = require("./reviewRouter");
+// const reviewRouter = require("./reviewRouter");
 
 const router = Router();
 
 router.use("/payment", paymentRouter);
-router.use("/", webhookRouter);
+
 router.use("/user", userRouter);
 router.use("/campaign", campaignRouter);
 router.use("/state", stateRouter);
 router.use("/category", categoryRouter);
 router.use("/product", productRouter);
-router.use("/review", reviewRouter);
+// router.use("/review", reviewRouter);
 router.use("/categoryProduct", CategoryProductRouter);
 router.use("/buys", buysRouter);
 

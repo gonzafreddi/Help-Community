@@ -39,11 +39,13 @@ const { ACCESS_TOKEN } = process.env;
 // esto vendria a ser un post de creae una orden 
 
 
+
 const createOrder = async(req, res)=>{
     mercadopago.configure({
         access_token:"TEST-6850757546672488-100711-50177e634a355fb71db241599efdb0f3-1503945548"
     })
-    console.log(req.body[0].price)
+    // console.log(req.body[0].price)
+    console.log(req.body)
 
     const result = await mercadopago.preferences.create({
         items:[{
@@ -51,7 +53,8 @@ const createOrder = async(req, res)=>{
             id: req.body[0].id,
             unit_price: req.body[0].price,
             currency_id: "ARS",
-            quantity: req.body.quantity || 1
+            quantity: req.body.quantity || 1,
+            userEmail: req.body[0].email
         }],
 
     // ? Darle el control a mercado pago...
@@ -60,10 +63,10 @@ const createOrder = async(req, res)=>{
             failure:'http://localhost:3001/payment/failure',
             pending: 'http://localhost:3001/payment/pending', //cuando el usuario no ha pagado
             },
-        notification_url:'https://edca-2803-cf00-efe-4b00-f51d-2a31-7af0-a108.ngrok-free.app/webhook',
+        notification_url:`https://pmcmwdd1-3001.brs.devtunnels.ms/payment/webhook?email=${req.body[0].email}`,
 
     })
-    console.log(result.body);
+    // console.log(result.body);
     res.send(result.body);
 
    
