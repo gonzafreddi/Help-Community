@@ -3,7 +3,7 @@ import UploadWidget from "../UploadWidget/UploadWidget";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react"
 import { getCateg, postProduct } from "../../redux/actions/action";
-import { disableFunction, handleChange, handleSubmit } from "../CreateProduct/productCreateOrEdit";
+import { disableFunction, handleChange, handleSubmit } from "./productCreateOrEdit";
 
 //Notificaciones
 import { ToastContainer, toast } from 'react-toastify';
