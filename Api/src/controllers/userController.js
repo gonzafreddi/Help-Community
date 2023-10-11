@@ -38,14 +38,27 @@ const getUserByName = async function (name) {
 const postUser = async (
   name,
   email,
+  image,
+  userState,
+  userAdmin,
+  userSuperadmin,
   ) => {
+
+ 
+  
+
   console.log(email);
   const newUser = await User.findOrCreate({
     where: {
         name,
         email,
+      image,
+  userState,
+  userAdmin,
+  userSuperadmin,
     },
    
+
   });
   
   return newUser;
