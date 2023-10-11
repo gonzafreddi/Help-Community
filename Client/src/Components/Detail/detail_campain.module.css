@@ -108,6 +108,10 @@
     margin-top: 5em;
 }
 
+.tituloReviews{
+  color: #011431cc;
+}
+
 .añadir{
     height: 40px;
     padding: 0px 20px;
@@ -154,6 +158,10 @@
     z-index: 999;
   }
 
+  .queOpinas{
+    color: #011431cc;
+  }
+
   .imgReviewCont{
     align-items: center;
     justify-content: center;
@@ -173,7 +181,7 @@
   .areaNombres{
     display: flex;
     flex-direction: row;
-    gap: 20%;
+    gap: 5%;
     
   }
 

@@ -83,14 +83,14 @@ export const DetailProduct = () => {
                     </div>
                         <div className={style.reviewsCont}>
                             <div className={style.contTitulos}>
-                            <h2>Product Reviews</h2>
+                            <h2 className={style.tituloReviews}>Product Reviews</h2>
                             <button className={style.añadir} onClick={openReviewPopup}>Añadir review</button>
                             </div>
                             {isReviewPopupOpen && (
                             <div className={style.modalBackground}>
                                 <div className={style.reviewPopup}>
                                 {/* Contenido del popup aquí */}
-                                <h2>¿Que opinas sobre este producto?</h2>
+                                <h2 className={style.queOpinas}>¿Que opinas sobre este producto?</h2>
                                 <div className={style.imgReviewCont} >
                                 <img className={style.imgReview} src={product?.image} alt="" />
                                 </div>
