@@ -2,6 +2,7 @@ const {
   getAllProducts,
   postProduct,
   getProductByName,
+  putProduct,
 } = require("../controllers/productController");
 
 const getProductHandler = async (req, res) => {
@@ -28,7 +29,6 @@ const postProductHandler = async (req, res) => {
     CategoryProductId,
   } = req.body;
 
-  console.log(CategoryProductId);
   try {
     await postProduct(
       name,
@@ -47,4 +47,34 @@ const postProductHandler = async (req, res) => {
   }
 };
 
-module.exports = { getProductHandler, postProductHandler };
+const putProductHandler = async (req, res) => {
+  try {
+    let { id } = req.params;
+    let {
+      name,
+      description,
+      image,
+      price,
+      brand,
+      stock,
+      rating,
+      state,
+      CategoryProductId,
+    } = req.body;
+    await putProduct(
+      id,
+      name,
+      description,
+      image,
+      price,
+      brand,
+      stock,
+      rating,
+      state,
+      CategoryProductId
+    );
+    res.status(200).json(`The Product ${name} was successfully updated`);
+  } catch (error) {}
+};
+
+module.exports = { getProductHandler, postProductHandler, putProductHandler };
