@@ -91,5 +91,6 @@ User.belongsToMany(Product, { through: "Buys" });
 
 module.exports = {
   ...database.models,
+  User, 
   conn: database,
 };
