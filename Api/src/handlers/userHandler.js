@@ -22,7 +22,7 @@ const postUserHandler = async (req, res) => {
     userAdmin,
     userSuperadmin,
   } = req.body;
-
+  //console.log(email);
   try {
     await postUser(
     name,

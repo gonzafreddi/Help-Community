@@ -5,6 +5,7 @@ export const FILTER_BY_STATE = "FILTER_BY_STATE";
 export const GET_STATES = "GET_STATES";
 export const GET_CATEGORY = "GET_CATEGORY";
 export const FILTER_BY_CATEGORY = "FILTER_BY_CATEGORY";
+
 export const GET_PRODUCT = "GET_PRODUCT";
 
 export const ORDEN_PRECIO = "ORDEN_PRECIO";
@@ -12,6 +13,11 @@ export const GET_CATEG = "GET_CATEG";
 export const FILTER_BY_CATEG = "FILTER_BY_CATEG";
 export const FILTROS_PRECIO = "FILTROS_PRECIO";
 export const RESET = "RESET";
+
+export const GET_USERS = "GET_USERS";
+
+
+
 console.log(process.env.NODE_ENV)
 if (process.env.NODE_ENV === 'development') {
     // En entorno de desarrollo
@@ -63,7 +69,7 @@ export const getCategory = () => {
 export const getCateg = () => {
     return async function (dispatch){
         try{
-            const categData = await axios("https://dummyjson.com/products/categories");
+            const categData = await axios("/categoryProduct");
             const categ = categData.data;
             dispatch({type: GET_CATEG, payload: categ});
         } catch (error){
@@ -183,6 +189,18 @@ export function postCampaign(payload) {
        }
     }
 }
+
+export function postProduct(payload) {
+    return async function () {
+      
+        try {
+            const response = await axios.post('/product', payload);
+            return response
+        } catch (error) {
+            return error.message
+        }
+    }
+}
 export function postUser(payload) {
     return async function (dispatch) {
       
@@ -255,3 +273,22 @@ export const createOrder = (payload)=>{
         }
     }
 }
+
+
+
+export const getUsers = () => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get("/user");
+      const data = response.data;
+    //   console.log("Response user", response.data);
+      return dispatch({
+        type: GET_USERS,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
