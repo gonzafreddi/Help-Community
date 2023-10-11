@@ -52,7 +52,7 @@ export default Admin;
 
 
 
-// Llama a dispatch(fetchUsers()) para obtener una lista de usuarios a través de Redux.
+// Llama a dispatch(getUsers()) para obtener una lista de usuarios a través de Redux.
 // Comprueba si existe un usuario almacenado en el localStorage del navegador.
 // Si no hay un usuario en el almacenamiento local (userEnStorage es null o undefined), redirige al usuario a la página de inicio /home y muestra una alerta.
 // Si hay un usuario en el almacenamiento local, comprueba si el usuario tiene un perfil con el valor 1. Si es así, nuevamente redirige al usuario a la página de inicio y muestra una alerta.
