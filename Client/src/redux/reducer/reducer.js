@@ -67,12 +67,6 @@ const reducer = (state = initialState, action)=> {
                     // // productsFiltered: action.payload.products,
                     filters: false, // Asegúrate de restablecer el estado de los filtros
 
-                    products: action.payload, // Accede a products.products para obtener los productos
-                    productsCopy: action.payload,
-
-                    // productsFiltered: action.payload.products,
-                    filters: false, // Asegúrate de restablecer el estado de los filtros
-
                 };
         case FILTER_BY_STATE:
             const filteredByState = action.payload === "Todos" ? 
