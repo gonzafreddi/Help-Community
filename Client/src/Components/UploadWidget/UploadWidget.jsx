@@ -27,7 +27,7 @@ const UploadWidget = ({ onImageUpload }) => { // Añade la prop "onImageUpload"
                 type="button" 
                 onClick={() => widgetRef.current.open()}
             >
-                Subir Imagen
+                <p className={style.buttonPlus}>+</p>
             </button>
         </div>
     )

@@ -11,8 +11,8 @@ import CreateCampaign from './Components/createCampaign/CreateCampaign'
 import { useEffect } from 'react'
 import { getCategory, getState } from './redux/actions/action'
 import { useDispatch } from 'react-redux'
+import CreateProduct from './Components/createProduct/CreateProduct'
 import ShoppingCart from './Components/shopping cart/ShoppingCart'
-import Landing from './Components/landing/Landing'
 import { setItem } from './utils/localStorage'
 import { useSelector } from 'react-redux'
 import './App.css'
@@ -42,6 +42,7 @@ function App(){
         <Route path='/detail/:id' element={<Detail/>}/>
         <Route path='/about' element={<About/>}/>
         <Route path='/create/campaign' element={<CreateCampaign/>}/>
+        <Route path='/create/product' element={<CreateProduct/>}/>
         <Route path='/products/detail/:name' element={<DetailProduct/>}/>
         <Route path="/shoppingCart" element={<ShoppingCart />} />
         <Route path="/products" element={<Products />} />

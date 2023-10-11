@@ -69,7 +69,7 @@ export const getCategory = () => {
 export const getCateg = () => {
     return async function (dispatch){
         try{
-            const categData = await axios("https://dummyjson.com/products/categories");
+            const categData = await axios("/categoryProduct");
             const categ = categData.data;
             dispatch({type: GET_CATEG, payload: categ});
         } catch (error){
@@ -187,6 +187,18 @@ export function postCampaign(payload) {
        } catch (error) {
         return error.message
        }
+    }
+}
+
+export function postProduct(payload) {
+    return async function () {
+      
+        try {
+            const response = await axios.post('/product', payload);
+            return response
+        } catch (error) {
+            return error.message
+        }
     }
 }
 export function postUser(payload) {
