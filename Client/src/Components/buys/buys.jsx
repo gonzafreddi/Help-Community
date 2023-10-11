@@ -1,6 +1,6 @@
 import style from "./buys.module.css"
 import { CardInfoUser } from "../userComponents/cardInfo/cardInfoUser"
-export function AllBuys(){
+export function Buys(){
     return(<div className={style.conteiner}>
         
       <div className={style.cards}> 
