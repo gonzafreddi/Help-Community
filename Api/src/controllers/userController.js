@@ -38,10 +38,18 @@ const getUserByName = async function (name) {
 const postUser = async (
   name,
   email,
+  image,
+  userState,
+  userAdmin,
+  userSuperadmin,
   ) => {
   const newUser = await User.create({
   name,
   email,
+  image,
+  userState,
+  userAdmin,
+  userSuperadmin,
   });
   
   return newUser;
