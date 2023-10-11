@@ -4,12 +4,14 @@ import { createOrder, getProductByName } from "../../redux/actions/action";
 import style from "./detail_campain.module.css";
 import { addToCart } from "../../redux/actions/action";
 import { useParams } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
 import Loader from "../loader/loader";
 export const DetailProduct = () => {
     const detailProduct = useSelector((state) => state.detailProduct);
-
-
+    const auth = useAuth()
+    const { email } = auth.user;
+    const emailUser = {email: email}
     
     const dispatch = useDispatch();
     const { name } = useParams();
@@ -32,9 +34,12 @@ export const DetailProduct = () => {
       }
 
     const handleSubmit=(detailProduct)=>{
-        console.log(detailProduct)
-        dispatch(createOrder(detailProduct))
+        const allData = [{...product, email}]
+        console.log(allData)
+        dispatch(createOrder(allData))
     }
+    const allData =  [{...product, email}]
+    console.log(allData)
 
     const openReviewPopup = () => {
         setReviewPopupOpen(true);
