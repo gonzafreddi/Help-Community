@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 import style from './Login.module.css';
 import { useAuth } from '../../context/AuthContext';
@@ -11,6 +12,65 @@ const Login = ({closeLogin}) => {
     const auth = useAuth();
 
     const dispatch = useDispatch();
+
+    const notify = (type) => {
+        if (type === 'logError') {
+            toast.error('Ocurrio un error al iniciar sesión', {
+                position: "bottom-right",
+                autoClose: 4000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+        } else if (type === 'regSuccess') {
+            toast.success('Registro completado', {
+                position: "bottom-right",
+                autoClose: 4000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+        } else if (type === 'logSuccess') {
+            toast.success('Sesión iniciada correctamente', {
+                position: "bottom-right",
+                autoClose: 4000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+        } else if (type === 'regError') {
+            toast.error('Ocurrio un error en el registro, intentelo nuevamente', {
+                position: "bottom-right",
+                autoClose: 4000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+        } else if (type === 'googleSuccess') {
+            toast.success('Ingreso con Google realizado correctamente', {
+                position: "bottom-right",
+                autoClose: 4000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+        }
+    };
 
     //Estados de errores
     const [errors, setErrors] = useState({
@@ -44,6 +104,7 @@ const Login = ({closeLogin}) => {
             dispatch(postUser(userToPost))
             closeLogin();
         } catch (error) {
+            notify('regError');
             setErrors({...errors, other:error.message})
         }
     };
@@ -52,15 +113,24 @@ const Login = ({closeLogin}) => {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
+
             await auth.login(email, password);
+            notify('logSuccess');
             closeLogin();
+
         } catch (error) {
+
             if (error.code === 'auth/invalid-login-credentials') {
+
             // Manejar intento de inicio de sesión con contraseña incorrecta
             setErrors({...errors, password:'Contraseña incorrecta. Inténtalo de nuevo.'});
+
         } else {
+
             // Otro tipo de error, como cuenta inactiva, etc.
+            notify('logError');
             console.error(error.message);
+
         }
         }
     };
@@ -82,7 +152,9 @@ const Login = ({closeLogin}) => {
             console.log(userToPost);
 
             //TODO          Descomentar el dispatch cuando la funcion post este lista para recibir usuarios iguales
-            //dispatch(postUser(userToPost))
+            dispatch(postUser(userToPost))
+
+            notify('googleSuccess');
 
         } catch (error) {
             setErrors({...errors, other:error.message})
@@ -116,7 +188,6 @@ const Login = ({closeLogin}) => {
         setErrors(validateRegister({passwordRegister}))
         isRegDisabled = disableRegister();
     }
-
 
     
 
@@ -265,6 +336,7 @@ const Login = ({closeLogin}) => {
                     </div>
                 </section>
             </div>
+            <ToastContainer />
         </div>
     )
 }
