@@ -1,5 +1,5 @@
 import React, { useEffect, useContext, useState } from "react";
-import SideBarAdmin from "../Components/SideBarAdmin";
+import SideBarAdmin from "../SideBarAdmin/SideBarAdmin";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getUsers } from "../../../redux/actions/action.js";    //hay que hacer un redux para traer usuarios, asi revisamos si son admin o no

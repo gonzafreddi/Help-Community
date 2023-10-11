@@ -10,7 +10,8 @@ import {
     FILTER_BY_CATEG,
     ORDEN_PRECIO,
     FILTROS_PRECIO,
-    RESET
+    RESET,
+    GET_USERS,
   } from "../actions/action";
   import { ADD_ONE_TO_CART, ADD_TO_CART, GET_DETAIL_CAMPAIGN, GET_PRODUCT_BY_NAME, GET_STATE, REMOVE_ONE_TO_CART, REMOVE_TO_CART } from "../actions/action_type";
   
@@ -27,7 +28,8 @@ import {
     productsCopy:[],
     detailProduct:[],
     productsFiltered:[],
-    filters: false
+    filters: false,
+    users:[],
 }
 
 
@@ -347,6 +349,12 @@ const reducer = (state = initialState, action)=> {
                             productsFiltered: [],
                             filters: false
                         };  
+                case GET_USERS:
+                        return {
+                          ...state,
+                          users: action.payload,   
+                        };
+
                 default:
                     return state;
     }

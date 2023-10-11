@@ -17,6 +17,7 @@ import { setItem } from './utils/localStorage'
 import { useSelector } from 'react-redux'
 import './App.css'
 import UserProfile from './Components/userComponents/userProfile/userProfile'
+import Admin from './Components/adminComponents/admin/admin'
 
 
 
@@ -47,8 +48,8 @@ function App(){
         <Route path='/userProfile' element={<UserProfile/>}/>
 
         
-        {/* <Route path="/admin" element={<Admin />} />
-        <Route path="/admin/users" element={<Users />} />
+        <Route path="/admin" element={<Admin />} />
+        {/* <Route path="/admin/users" element={<Users />} />
         <Route path="/admin/products" element={<adminProducts />} />
         <Route path="/admin/products/create" element={<createProduct />} />
         <Route path="/admin/products/:id" element={<editProduct />} />

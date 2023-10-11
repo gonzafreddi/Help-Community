@@ -14,7 +14,7 @@ export const FILTER_BY_CATEG = "FILTER_BY_CATEG";
 export const FILTROS_PRECIO = "FILTROS_PRECIO";
 export const RESET = "RESET";
 
-// export const GET_USERS = "GET_USERS";
+export const GET_USERS = "GET_USERS";
 
 
 
@@ -264,19 +264,19 @@ export const createOrder = (payload)=>{
 
 
 
-// export const getUsers = () => {
-//   return async (dispatch) => {
-//     try {
-//       const response = await axios.get(`${baseURL}/users`);
-//       const data = response.data;
-//     //   console.log("Response user", response.data);
-//       return dispatch({
-//         type: FETCH_USERS,
-//         payload: data,
-//       });
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// };
+export const getUsers = () => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get("/user");
+      const data = response.data;
+    //   console.log("Response user", response.data);
+      return dispatch({
+        type: GET_USERS,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
 
