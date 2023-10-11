@@ -18,7 +18,7 @@ const postUserHandler = async (req, res) => {
     name,
     email,
   } = req.body;
-
+  //console.log(email);
   try {
     await postUser(
     name,
