@@ -8,14 +8,14 @@ import { getUsers } from "../../../redux/actions/action.js";    //hay que hacer 
 function Admin() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const user1 = useSelector((state) => state.users.usersList);
+  const user1 = useSelector((state) => state.users);
 
   const [habilitado, setHabilitado] = useState(true);
   let userEnStorage = JSON.parse(localStorage.getItem("user"));
 
   console.log("ESTO ES USER EN STORAGE LUEGO DE CERRAR SESION:", userEnStorage);
   useEffect(() => {
-    dispatch(fetchUsers());
+    dispatch(getUsers());
     if (user1) {
       if (!userEnStorage) {
         console.log("que onda");
@@ -24,7 +24,7 @@ function Admin() {
         setTimeout(function () {
           window.alert("Acceso bloqueado :)");
         }, 1000);
-      } else if (userEnStorage.profile === 1) {
+      } else if (userEnStorage.userType === "user") {
         console.log("entra en el segundod e admin");
         navigate("/home");
         setTimeout(function () {
@@ -36,7 +36,7 @@ function Admin() {
 
   return (
     <>
-      {userEnStorage && userEnStorage.profile === 2 ? (
+      {userEnStorage && userEnStorage.userType === "admin" ? (
         <>
           <div>
             <SideBarAdmin />
