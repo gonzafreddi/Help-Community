@@ -68,10 +68,6 @@ const createOrder = async(req, res)=>{
     })
     // console.log(result.body);
     res.send(result.body);
-
-   
 };
-
-
 
 module.exports = createOrder;
