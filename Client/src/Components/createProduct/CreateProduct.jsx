@@ -1,13 +1,43 @@
+import style from "./CreateProduct.module.css"
+import UploadWidget from "../UploadWidget/UploadWidget";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react"
-import UploadWidget from "../UploadWidget/UploadWidget";
-import { getCateg, postCampaign } from "../../redux/actions/action";
-import { handleSubmit, handleChange, disableFunction } from "../createCampaign/formUtils";
-import style from "./CreateProduct.module.css"
+import { getCateg, postProduct } from "../../redux/actions/action";
+import { disableFunction, handleChange, handleSubmit } from "../CreateProduct/productCreateOrEdit";
+
+//Notificaciones
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function CreateProduct(){
 
     const dispatch = useDispatch();
+
+    const notify = (type) => {
+        if (type === 'error') {
+            toast.error('Ocurrio un error al crear el producto', {
+                position: "bottom-right",
+                autoClose: 4000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+        } else if (type === 'success') {
+            toast.success('Producto creado correctamente', {
+                position: "bottom-right",
+                autoClose: 4000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+        }
+    };
 
     useEffect(()=>{
         dispatch(getCateg())
@@ -18,44 +48,54 @@ export default function CreateProduct(){
   
     const [imageUrl, setImageUrl] = useState(""); // Estado para almacenar la URL
 
-    const handleImageUpload = (url) => {
-        setImageUrl(url); // Actualiza el estado con la URL de la imagen
-    }
-
-//   const states = useSelector((state)=>state.states)
-//   const category = useSelector((state)=>state.category)
-
     const [product, setProduct] = useState({
         name: "",
         description: "",
         image: `${imageUrl}`,
-        price:""
+        price:"",
+        category:"",
+        stock: ""
     })
    
     const [errors, setErrors] = useState({
         name: "",
-        description: "", 
+        description: "",
         image: "",
-        endDate: [],
-        CategoryId:"",
-        finalAmount: "",
-        StateId: ""
+        price:"",
+        category:"",
+        stock: "",
+        other:""
     })
 
-    const handleFormSubmit = (e) => {
-        e.preventDefault();
-        window.alert("Campaña creada con éxito");
-        handleSubmit(info, dispatch, postCampaign);
+    const handleImageUpload = (url) => {
+        setImageUrl(url);
+        setProduct({
+            ...product,
+            image: imageUrl
+        })
+    }
+
+    const handleFormSubmit = async (e) => {
+        try {
+
+            e.preventDefault();
+            await handleSubmit(product, imageUrl, dispatch, postProduct);
+            notify('success');
+            
+        } catch (error) {
+            notify('error');
+            console.log(error.message);
+        }
     };
 
     const handleInputChange = (e) => {
         const updatedInfo = {
-        ...product,
-        [e.target.name]: e.target.value,
-        image: imageUrl, // Establecer image con imageUrl
+            ...product,
+            [e.target.name]: e.target.value,
+            image: imageUrl, // Establecer image con imageUrl
         };
     
-        handleChange(updatedInfo, setProduct, setErrors, e); // Pasar updatedInfo en lugar de info
+        handleChange(updatedInfo, setProduct, setErrors); // Pasar updatedInfo en lugar de info
     };
 
     const capitalizeFirstLetter = (str) => {
@@ -68,8 +108,11 @@ export default function CreateProduct(){
         const restOfString = str.slice(1).toLowerCase();
         return firstLetter + restOfString;
     };
+
+
   
-    const isDisabled = disableFunction(errors);
+    // const isDisabled = disableFunction(errors);
+    const isDisabled = false;
 
  
     return (
@@ -77,36 +120,39 @@ export default function CreateProduct(){
             <div className={style.productCont}>
                 <div className={style.imgCont}>
                     {
-                        imageUrl
-                        ? <img src={product?.image} alt="" /> 
+                        imageUrl !== ""
+                        ? <img className={style.productImg} src={imageUrl} alt="productImg" /> 
                         : <div className={style.txtAndImgCont}>
                             <h2 className={style.imgTxt}>Subir Imagen</h2>
                             <UploadWidget className={style.uploadButton} onImageUpload={handleImageUpload}/>
                           </div>
-                    
                     }
                 </div>
                 <div className={style.infoProduct}>
-                    <input className={style.productName} placeholder="Nombre del Producto"></input>
-                    <textarea className={style.productDescription} placeholder="Descripción del producto"></textarea>
+                    <input name="name" onChange={handleInputChange} className={style.productName} placeholder="Nombre del Producto"></input>
+                    <textarea onChange={handleInputChange} name="description" className={style.productDescription} placeholder="Descripción del producto"></textarea>
                     <div className={style.priceAndCatContainer}>
                         <div className={style.priceAndDollarContainer}>
-                            <p className={style.dollarSign}>$</p> <input className={style.productPrice} placeholder="100.99" type="number"></input>
+                            <p className={style.dollarSign}>$</p> <input name="price" onChange={handleInputChange} className={style.productPrice} placeholder="100.99" type="number"></input>
                         </div>
-                        <select className={style.productCategories}>
+                        <select name="category" onChange={handleInputChange} className={style.productCategories}>
                             <option className={style.casillero} value="Todos">Categoría del producto</option>
                             {categ.map((category) => (
-                                <option className={style.catOpciones} key={category} value={category}>
-                                    {capitalizeFirstLetter(category)}
+                                <option className={style.catOpciones} key={category.id} value={category.id}>
+                                    {capitalizeFirstLetter(category.name)}
                                 </option>
                             ))}
                         </select>
                     </div>
+                    <div className={style.stockContainer}>
+                        <p className={style.dollarSign}>Stock:</p><input name="stock" onChange={handleInputChange} className={style.productStock} type="number" placeholder="1000"></input>
+                    </div>
                     <div className={style.buyCont}>
-                        <button className={style.btnBuy} disabled={isDisabled} type="submit">Crear Producto</button>
+                        <button className={style.btnBuy} onClick={handleFormSubmit} disabled={isDisabled} type="submit">Crear Producto</button>
                     </div>
                 </div>
             </div>
+            <ToastContainer />
         </div>
     );
 }
