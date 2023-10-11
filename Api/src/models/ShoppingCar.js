@@ -8,7 +8,7 @@ module.exports = (sequelize) => {
       defaultValue: UUIDV4,
     },
     products: {
-      type: DataTypes.ARRAY,
+      type: DataTypes.ARRAY(DataTypes.STRING),
       allowNull: false
     },
     state: {
