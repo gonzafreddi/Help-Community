@@ -1,12 +1,12 @@
 .conteiner{
-    margin-top: 5%;
+    padding-top: 5%;
     height: auto;
     width: 99vw;
     display: flex;
     flex-direction: column;
     /* justify-content: center;
     align-items: center; */
-    background-color: rgb(229, 230, 230);
+    background-color: rgba(241, 241, 241, 0.623);
 }
 .productCont{
     width: 70vw;
@@ -19,6 +19,7 @@
     background-color: #ffff;
     border-radius: 10px;
     margin-left: 15%;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.116);
 }
 
 .imgCont{
@@ -138,10 +139,11 @@
 
 .review{
     width: 40%;
-    background-color: rgba(255, 255, 255, 0.767);
+    background-color: rgba(255, 255, 255, 0.911);
     margin-bottom: 30px;
     padding: 10px 20px;
     border-radius: 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.116);
 }
 
 .modalBackground {
@@ -191,7 +193,7 @@
     font-weight: 400;
     border: 1px solid rgba(219, 220, 221, 1);
     box-shadow: none;
-    border-radius: 3px;
+    border-radius: 10px;
     margin-bottom: 1.5rem;
     height: 40px;
     width: 50%;
@@ -227,7 +229,7 @@
     font-weight: 400;
     border: 1px solid rgba(219, 220, 221, 1);
     box-shadow: none;
-    border-radius: 3px;
+    border-radius: 10px;
     margin-bottom: 1.5rem;
     height: 40px;
     width: 30%;
@@ -262,7 +264,7 @@
     font-weight: 400;
     border: 1px solid rgba(219, 220, 221, 1);
     box-shadow: none;
-    border-radius: 3px;
+    border-radius: 10px;
     margin-bottom: 1.5rem;
     height: 100px;
     width: 99%;
