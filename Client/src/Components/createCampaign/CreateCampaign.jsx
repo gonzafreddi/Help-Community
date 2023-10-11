@@ -79,12 +79,14 @@ export default function CreateCampaign(){
                 <textarea onChange={handleInputChange} name="long_description" id="" cols="30" rows="10" readonly placeholder="Descripción completa de su campaña"></textarea>
                 
                 <label className={style.title}  htmlFor=""><h3>Añada una imagen a su campaña</h3></label>
-                <UploadWidget onImageUpload={handleImageUpload}/>
-                {
-                  imageUrl !== "" 
-                  ? <img className={style.campaignImg} src={imageUrl} alt="campaignImg" /> 
-                  : null
-                }
+                <div className={style.prodImgContainer}>
+                  <UploadWidget onImageUpload={handleImageUpload}/>
+                  {
+                    imageUrl !== "" 
+                    ? <img className={style.campaignImg} src={imageUrl} alt="campaignImg" /> 
+                    : null
+                  }
+                </div>
 
                <div className={style.selectsConteiner}>
                 <div className={style.state}>
