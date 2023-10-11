@@ -127,8 +127,41 @@ const postProduct = async (
   return newProduct;
 };
 
+const putProduct = async (
+  id,
+  name,
+  description,
+  image,
+  price,
+  brand,
+  stock,
+  rating,
+  state,
+  CategoryProductId
+) => {
+  await Product.update(
+    {
+      name,
+      description,
+      image,
+      price,
+      brand,
+      stock,
+      rating,
+      state,
+      CategoryProductId,
+    },
+    {
+      where: {
+        id,
+      },
+    }
+  );
+};
+
 module.exports = {
   getAllProducts,
   postProduct,
   getProductByName,
+  putProduct,
 };

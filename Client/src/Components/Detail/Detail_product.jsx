@@ -10,7 +10,10 @@ import { useAuth } from "../../context/AuthContext";
 import Loader from "../loader/loader";
 export const DetailProduct = () => {
     const detailProduct = useSelector((state) => state.detailProduct);
-    const auth = useAuth();
+    const auth = useAuth()
+    const { email } = auth.user;
+    const emailUser = {email: email}
+    
     const dispatch = useDispatch();
     const { name } = useParams();
     const [loading, setLoading] = useState(true);
@@ -112,9 +115,12 @@ export const DetailProduct = () => {
     console.log("getReviews: ", getReviews)
 
     const handleSubmit=(detailProduct)=>{
-        // console.log(detailProduct)
-        dispatch(createOrder(detailProduct))
+        const allData = [{...product, email}]
+        console.log(allData)
+        dispatch(createOrder(allData))
     }
+    const allData =  [{...product, email}]
+    console.log(allData)
 
     const openReviewPopup = () => {
         setReviewPopupOpen(true);
