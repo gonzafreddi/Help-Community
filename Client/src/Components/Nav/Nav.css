@@ -28,6 +28,9 @@
 .sb{
     /* margin-left: auto; */
     margin-right: 3rem;
+
+    display: flex;
+    align-items: center;
 }
 
 .nav-button-container{

@@ -1,0 +1,19 @@
+.conteiner{
+    display: flex;
+    color:#ffff;
+    height: 6rem;
+    cursor: pointer;
+}
+.icon{
+    margin-right: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+}
+.user h4{
+    margin-top: 40%;
+}
+.user p{
+margin-top: -30% ;
+}

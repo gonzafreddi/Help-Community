@@ -16,6 +16,11 @@ import Landing from './Components/landing/Landing'
 import { setItem } from './utils/localStorage'
 import { useSelector } from 'react-redux'
 import './App.css'
+import UserProfile from './Components/userComponents/userProfile/userProfile'
+import Admin from './Components/adminComponents/admin/admin'
+
+
+
 function App(){
   const dispatch = useDispatch()
   const location = useLocation()
@@ -40,6 +45,18 @@ function App(){
         <Route path='/products/detail/:name' element={<DetailProduct/>}/>
         <Route path="/shoppingCart" element={<ShoppingCart />} />
         <Route path="/products" element={<Products />} />
+        <Route path='/userProfile' element={<UserProfile/>}/>
+
+        
+        <Route path="/admin" element={<Admin />} />
+        {/* <Route path="/admin/users" element={<Users />} />
+        <Route path="/admin/products" element={<adminProducts />} />
+        <Route path="/admin/products/create" element={<createProduct />} />
+        <Route path="/admin/products/:id" element={<editProduct />} />
+        <Route path='/admin/create/campaign' element={<CreateCampaign/>}/>
+        <Route path="/admin/dashboard" element={<Dashboard />} />
+        <Route path="/admin/mailing" element={<Mailing />} /> */}
+
          {/* <Route path="/login" element={<Login />} /> */}
       </Routes>
     {location.pathname !== "/" && <Footer />}
