@@ -13,12 +13,12 @@ const getShoppingCarController = async (req, res) => {
 };
 
 const addShoppinCarController = async (req, res) => {
-    const { email, product } = req.body;
+    const { email, products } = req.body;
     const userId = await getUserByEmail(email);
     try {
         await ShoppingCar.create({
             userId,
-            product,
+            products,
             state
         });
         res.send('Shopping card create successfull');
@@ -28,11 +28,11 @@ const addShoppinCarController = async (req, res) => {
 };
 
 const editShoppingCarController = async (req, res) => {
-    const { product, state } = req.body;
+    const { products, state } = req.body;
     const { id } = req.params;
     try {
         await ShoppingCar.update({
-            product,
+            products,
             state
         }, {
             where: {
