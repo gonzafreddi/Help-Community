@@ -15,6 +15,8 @@ export const FILTROS_PRECIO = "FILTROS_PRECIO";
 export const RESET = "RESET";
 
 export const GET_USERS = "GET_USERS";
+export const CREATE_REVIEW = "CREATE_REVIEW";
+export const GET_REVIEWS = "GET_REVIEWS";
 
 
 
@@ -26,6 +28,7 @@ if (process.env.NODE_ENV === 'development') {
     // En otros entornos (por ejemplo, producción)
     axios.defaults.baseURL  = "https://help-community-production-ad63.up.railway.app";
   }
+
 export const getCampaign = () => {
     return async function (dispatch){
         try{
@@ -50,7 +53,17 @@ export const getStates = () => {
     };
 };
 
-
+export const getReviews = () => {
+    return async function (dispatch){
+        try{
+            const reviewsData = await axios("/review");
+            const review = reviewsData.data;
+            dispatch({type: GET_REVIEWS, payload: review});
+        } catch (error){
+            console.log("error en devolver la action", error.message)
+        }
+    };
+};
 
 export const getCategory = () => {
     return async function (dispatch){
@@ -280,3 +293,6 @@ export const getUsers = () => {
   };
 };
 
+export const createReview = (review) => {
+    return { type: CREATE_REVIEW, payload: review };
+};
