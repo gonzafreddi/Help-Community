@@ -29,10 +29,10 @@ export function handleSubmit(product, imageUrl, dispatch, postProduct) {
 
 }
   
-export function handleChange(product, setProduct, setErrors) {
+export function handleChange(product, setErrors) {
     
-    setProduct(product);
     setErrors(validateProduct(product));
+
 }
   
 export function disableFunction(errors) {

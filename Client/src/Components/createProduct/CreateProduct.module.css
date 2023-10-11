@@ -75,7 +75,7 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .productName::placeholder{
-    color:rgb(1, 41, 74);
+    color:rgba(1, 41, 74, 0.54);
     font-size: 2rem;
     font-family: 'DM Sans', sans-serif;
     transition: all 0.15s;
@@ -102,7 +102,7 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .productDescription::placeholder{
-    color:rgb(12, 12, 12);
+    color:rgba(12, 12, 12, 0.541);
     font-family: 'DM Sans', sans-serif;
     transition: all 0.15s;
 }
@@ -134,7 +134,7 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .productPrice::placeholder{
-    color:rgb(12, 12, 12);
+    color:rgba(12, 12, 12, 0.541);
     font-family: 'DM Sans', sans-serif;
     transition: all 0.15s;
 }
@@ -191,7 +191,7 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .productStock::placeholder{
-    color:rgb(12, 12, 12);
+    color:rgba(12, 12, 12, 0.541);
     font-family: 'DM Sans', sans-serif;
     transition: all 0.15s;
 }
@@ -219,6 +219,21 @@ input[type="number"]::-webkit-outer-spin-button {
     transition: all ease .3s;
     font-size: 1.1rem;
 
+}
+
+.btnBuy:disabled{
+    padding: 10px 30px 10px 30px;
+    border-radius: 10px;
+    background-color: rgba(91, 107, 133, 0.418);
+    color: #505050;
+    border: none;
+    transition: all ease .3s;
+    font-size: 1.1rem;
+
+}
+.btnBuy:disabled:hover{
+    background-color: rgba(91, 107, 133, 0.808);
+    cursor:not-allowed;
 }
 .btnBuy:hover{
     background-color: #0963f5;

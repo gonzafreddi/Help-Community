@@ -43,7 +43,6 @@ export default function CreateProduct(){
         dispatch(getCateg())
     },[dispatch])
     
-    
     const categ = useSelector(state => state.categ);
   
     const [imageUrl, setImageUrl] = useState(""); // Estado para almacenar la URL
@@ -51,7 +50,7 @@ export default function CreateProduct(){
     const [product, setProduct] = useState({
         name: "",
         description: "",
-        image: `${imageUrl}`,
+        image: "",
         price:"",
         category:"",
         stock: ""
@@ -71,7 +70,7 @@ export default function CreateProduct(){
         setImageUrl(url);
         setProduct({
             ...product,
-            image: imageUrl
+            image: url
         })
     }
 
@@ -89,13 +88,12 @@ export default function CreateProduct(){
     };
 
     const handleInputChange = (e) => {
-        const updatedInfo = {
+        setProduct({
             ...product,
-            [e.target.name]: e.target.value,
-            image: imageUrl, // Establecer image con imageUrl
-        };
+            [e.target.name]: e.target.value
+        })
     
-        handleChange(updatedInfo, setProduct, setErrors); // Pasar updatedInfo en lugar de info
+        handleChange(product, setErrors); // Pasar updatedInfo en lugar de info
     };
 
     const capitalizeFirstLetter = (str) => {
@@ -109,11 +107,7 @@ export default function CreateProduct(){
         return firstLetter + restOfString;
     };
 
-
-  
-    // const isDisabled = disableFunction(errors);
-    const isDisabled = false;
-
+    const isDisabled = disableFunction(errors);
  
     return (
         <div className={style.conteiner}>
