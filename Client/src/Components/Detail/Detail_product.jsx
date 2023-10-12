@@ -10,6 +10,7 @@ import { useAuth } from "../../context/AuthContext";
 import Loader from "../loader/loader";
 export const DetailProduct = () => {
     const detailProduct = useSelector((state) => state.detailProduct);
+    const review = useSelector((state)=> state.review);
     const auth = useAuth()
     const { email } = auth.user;
     const emailUser = {email: email}
@@ -22,7 +23,7 @@ export const DetailProduct = () => {
     
     // const displayName = auth.user.displayName;
     // const firstName = displayName.split(' ')[0];
-    console.log("auth: ", auth.user.email)
+    console.log("auth: ", email)
 
 
       const [reviewCreated, setReviewCreated] = useState(false);
@@ -40,15 +41,15 @@ export const DetailProduct = () => {
     console.log("product: ", product)
 
     const [form, setForm] = useState({    
-        email: auth.user.email,
-        ProductId: product.id,
+      // email: allData.email,
+      // ProductId: product.id,
         rating: 0,
         comment: "",
         // dateReview: new Date().toISOString(),
       });
     const [error, setError] = useState({
-        email: auth.user.email,
-        ProductId: product.id,
+        // email: allData.email,
+        // ProductId: product.id,
         rating: 0,
         comment: "",
         // dateReview: "",
@@ -112,7 +113,7 @@ export const DetailProduct = () => {
         dispatch(getReviews())
     },[dispatch])
 
-    console.log("getReviews: ", getReviews)
+    // console.log("getReviews: ", getReviews)
 
     const handleSubmit=(detailProduct)=>{
         const allData = [{...product, email}]
@@ -120,7 +121,7 @@ export const DetailProduct = () => {
         dispatch(createOrder(allData))
     }
     const allData =  [{...product, email}]
-    console.log(allData)
+    console.log("allData", allData)
 
     const openReviewPopup = () => {
         setReviewPopupOpen(true);
@@ -208,14 +209,14 @@ export const DetailProduct = () => {
                             </div>
                             )}
                             <div className={style.rev2}>
-                            {/* {form?.map((form, index) => ( */}
-                                    <div className={style.review}>
-                                        {/* <h5>{form.dateReview}</h5> */}
-                                        <h3>{form.nombre}</h3>
-                                        <h4>Puntaje: {form.rating} / 5</h4>
-                                        <p>{form.comment}</p>
+                            {review?.map((review, index) => (
+                                    <div className={style.review} key={index}>
+                                        <h5>{review.dateReview}</h5>
+                                        <h3>{review.nombre}</h3>
+                                        <h4>Puntaje: {review.rating} / 5</h4>
+                                        <p>{review.comment}</p>
                                     </div>
-                                {/* ))} */}
+                               ))}
                             </div>
                         </div>
                     </div>
