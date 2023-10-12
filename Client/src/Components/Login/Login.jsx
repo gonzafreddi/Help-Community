@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 import style from './Login.module.css';
 import { useAuth } from '../../context/AuthContext';
@@ -11,6 +12,65 @@ const Login = ({closeLogin}) => {
     const auth = useAuth();
 
     const dispatch = useDispatch();
+
+    const notify = (type) => {
+        if (type === 'logError') {
+            toast.error('Ocurrio un error al iniciar sesión', {
+                position: "bottom-right",
+                autoClose: 4000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+        } else if (type === 'regSuccess') {
+            toast.success('Registro completado', {
+                position: "bottom-right",
+                autoClose: 4000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+        } else if (type === 'logSuccess') {
+            toast.success('Sesión iniciada correctamente', {
+                position: "bottom-right",
+                autoClose: 4000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+        } else if (type === 'regError') {
+            toast.error('Ocurrio un error en el registro, intentelo nuevamente', {
+                position: "bottom-right",
+                autoClose: 4000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+        } else if (type === 'googleSuccess') {
+            toast.success('Ingreso con Google realizado correctamente', {
+                position: "bottom-right",
+                autoClose: 4000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+        }
+    };
 
     //Estados de errores
     const [errors, setErrors] = useState({
@@ -29,8 +89,8 @@ const Login = ({closeLogin}) => {
     //Estados locales de logueo
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
-
+    
+    
     //Manejo de registro
     const handleRegister = async (e) => {
         e.preventDefault();
@@ -38,39 +98,70 @@ const Login = ({closeLogin}) => {
         try {
             await auth.register(emailRegister, passwordRegister);
             const userToPost = {
-                name:"Fernando",
+                name:nameRegister,
                 email: emailRegister
             }
             dispatch(postUser(userToPost))
             closeLogin();
         } catch (error) {
+            notify('regError');
             setErrors({...errors, other:error.message})
         }
     };
 
     //Manejo de logueo
     const handleLogin = async (e) => {
-      e.preventDefault();
-      try {
-        await auth.login(email, password);
-        closeLogin();
-      } catch (error) {
-        console.log(error);
-        if (error.code === 'auth/invalid-login-credentials') {
-          // Manejar intento de inicio de sesión con contraseña incorrecta
-          setErrors({...errors, password:'Contraseña incorrecta. Inténtalo de nuevo.'});
+        e.preventDefault();
+        try {
+
+            await auth.login(email, password);
+            notify('logSuccess');
+            closeLogin();
+
+        } catch (error) {
+
+            if (error.code === 'auth/invalid-login-credentials') {
+
+            // Manejar intento de inicio de sesión con contraseña incorrecta
+            setErrors({...errors, password:'Contraseña incorrecta. Inténtalo de nuevo.'});
+
         } else {
-          // Otro tipo de error, como cuenta inactiva, etc.
-          console.error(error.message);
+
+            // Otro tipo de error, como cuenta inactiva, etc.
+            notify('logError');
+            console.error(error.message);
+
         }
-      }
+        }
     };
 
     //Manejo de logueo/registro con google
     const handleGoogle = async (e) => {
-      e.preventDefault();
-      await auth.loginWithGoogle();
-      closeLogin();
+        e.preventDefault();
+        const result = await auth.loginWithGoogle();
+
+
+        try {
+            
+            const { displayName } = result.user;
+            const { email } = result.user;
+            const userToPost = {
+                name: displayName,
+                email
+            }
+            console.log(userToPost);
+
+            //TODO          Descomentar el dispatch cuando la funcion post este lista para recibir usuarios iguales
+            dispatch(postUser(userToPost))
+
+            notify('googleSuccess');
+
+        } catch (error) {
+            setErrors({...errors, other:error.message})
+        }
+
+
+        closeLogin();
     };
 
     const disableRegister = () => {
@@ -98,7 +189,6 @@ const Login = ({closeLogin}) => {
         isRegDisabled = disableRegister();
     }
 
-
     
 
 
@@ -112,6 +202,7 @@ const Login = ({closeLogin}) => {
                     <div className={style.login}>
                         <div>
                             <h1 className={style.textoLI}>Inicie Sesión</h1>
+                            <h1 className={style.textoLI}>{auth.user.email}</h1>
                         </div>
 
                         <div className={style.formContainer}>
@@ -147,7 +238,7 @@ const Login = ({closeLogin}) => {
                                     type="password"
                                     placeholder='Contraseña'
                                 />
-                                <span className={style.errorMsg}>{errors.password}</span>
+                                <span className={style.wrongPass}>{errors.password}</span>
                                 <div className={style.forgotPassContainer}>
                                     <Link>
                                         <a className={style.forgotPass}>¿Has olvidado tu contraseña?</a>
@@ -157,6 +248,7 @@ const Login = ({closeLogin}) => {
                                 <button onClick={(e) => handleLogin(e)} className={style.submitBtn} disabled={isLogDisabled}>
                                     Iniciar Sesión
                                 </button>
+
                             </form>
                         </div>
 
@@ -244,6 +336,7 @@ const Login = ({closeLogin}) => {
                     </div>
                 </section>
             </div>
+            <ToastContainer />
         </div>
     )
 }
