@@ -56,7 +56,7 @@ export const DetailProduct = () => {
 
     const [form, setForm] = useState({    
         // email: userMail,
-        ProductId: "fa671609-0c1e-4694-85a5-0062ce4bba78",
+        ProductId: productId,
         userId: "4e45c399-125f-4836-87fe-9c2a7418aa00",
         // nombre: "",
         rating: 0,
