@@ -1,9 +1,10 @@
 const { Router } = require("express");
-const { getbuysHandler, postbuysHandler } = require("../handlers/buysHandler");
+const { getbuysHandler, getBuysForUserHandler } = require("../handlers/buysHandler");
 
 const buysRouter = Router();
 
 buysRouter.get("/", getbuysHandler);
-buysRouter.post("/", postbuysHandler);
+buysRouter.get("/user/:email", getBuysForUserHandler);
+// buysRouter.post("/", postbuysHandler);
 
 module.exports = buysRouter;
