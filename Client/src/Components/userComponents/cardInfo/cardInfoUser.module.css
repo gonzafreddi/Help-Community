@@ -46,3 +46,7 @@
     font-size: 1.5em;
     cursor: pointer;
 }
+.button img{
+    height: 30%;
+    width: 30%;
+}
