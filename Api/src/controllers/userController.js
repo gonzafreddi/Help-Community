@@ -44,10 +44,10 @@ const postUser = async (
   userSuperadmin
 ) => {
   console.log(email);
-  const newUser = await User.findOrCreate({
-    where: {
+  const [newUser, created] = await User.findOrCreate({
+    where: { email },
+    defaults: {
       name,
-      email,
       image,
       userState,
       userAdmin,
@@ -58,8 +58,21 @@ const postUser = async (
   return newUser;
 };
 
+const updateUser = async (id, userState, userAdmin, userSuperadmin) => {
+  const user = await User.findOne({ where: { id } });
+  if (user) {
+    await user.update({
+      userState,
+      userAdmin,
+      userSuperadmin,
+    });
+  }
+  return user;
+};
+  
 module.exports = {
   postUser,
   getAllUser,
   getUserByName,
+  updateUser,
 };

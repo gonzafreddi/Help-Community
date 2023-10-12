@@ -18,7 +18,7 @@ export const authContext = createContext();
 export const useAuth = () => {
   const context = useContext(authContext);
   if (!context) {
-    console.log("error creating auth context");
+    console.log("error al crear el auth context");
   }
   return context;
 };
@@ -29,7 +29,6 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     const subscribed = onAuthStateChanged(auth, (currentUser) => {
       if (!currentUser) {
-        console.log("no hay usuario suscrito");
         setUser("");
       } else {
         setUser(currentUser);
