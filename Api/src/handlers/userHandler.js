@@ -1,4 +1,4 @@
-const { postUser, getAllUser, getUserByName, updateUser } = require("../controllers/userController");
+const { postUser, getAllUser, getUserByName, updateUser, getUserByEmail } = require("../controllers/userController");
   
 const getUserHandler = async (req, res) => {
   const { name } = req.query;
@@ -53,5 +53,19 @@ const putUserHandler = async (req, res) => {
   }
 };
 
-module.exports = { postUserHandler, getUserHandler, putUserHandler
+const getUserEmailHandler = async (req, res) => {
+  const { email } = req.query;
+  try {
+    const result = email
+      ? await getUserByEmail(email)
+      : await getAllUser();
+
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+
+module.exports = { postUserHandler, getUserHandler, putUserHandler, getUserEmailHandler
 };
