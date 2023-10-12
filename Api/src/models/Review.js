@@ -8,10 +8,10 @@ module.exports = (sequelize) => {
       defaultValue: UUIDV4,
     },
     rating: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.REAL,
         validate: {
           min: 0,
-          max: 5
+          max: 10
         },
       allowNull: false,
     },

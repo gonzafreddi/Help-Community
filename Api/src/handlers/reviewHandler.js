@@ -20,7 +20,7 @@ const { getAllreviews, postreviews, updatereviews } = require("../controllers/re
     } = req.body;
   
     try {
-      await postreviews(ProductId, rating, comment, userId);
+      await postreviews(ProductId, comment, rating, userId);
 
       res.status(200).json(`The Review was successfully created`);
     } catch (error) {
