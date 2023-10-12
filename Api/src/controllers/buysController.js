@@ -4,7 +4,7 @@ const { Op } = require("sequelize");
 
 
 const getAllbuys = async function () {
-  
+
 };
 
 

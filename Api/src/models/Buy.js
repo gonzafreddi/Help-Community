@@ -10,7 +10,7 @@ module.exports = (sequelize) => {
     
 
     products: {
-      type: DataTypes.ARRAY(DataTypes.STRING),
+      type: DataTypes.ARRAY(DataTypes.STRING(10000)),
       allowNull: false
     },
   });

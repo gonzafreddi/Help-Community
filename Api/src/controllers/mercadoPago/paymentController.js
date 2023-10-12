@@ -63,8 +63,8 @@ const createOrder = async(req, res)=>{
             failure:'http://localhost:3001/payment/failure',
             pending: 'http://localhost:3001/payment/pending', //cuando el usuario no ha pagado
             },
-        notification_url:`https://3fcs1ln7-3001.brs.devtunnels.ms/payment/webhook?email=${req.body[0].email}`,
-        //notification_url:`https://pmcmwdd1-3001.brs.devtunnels.ms/payment/webhook?email=${req.body[0].email}`,
+        // notification_url:`https://3fcs1ln7-3001.brs.devtunnels.ms/payment/webhook?email=${req.body[0].email}`,
+        notification_url:`https://pmcmwdd1-3001.brs.devtunnels.ms/payment/webhook?email=lucas.caruso27@gmail.com`,
 
     })
     // console.log(result.body);
