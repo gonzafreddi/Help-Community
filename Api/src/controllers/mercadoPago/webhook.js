@@ -1,6 +1,7 @@
 // * La información que envía mercado pago, la envía por query
 const mercadopago = require('mercadopago');
 const getUserByEmail = require("../getUserByEmail")
+const createBuys = require("../createBuys")
 require('dotenv').config();
 
 // crear funcion para crear la compra en base al id del usuario 
@@ -33,9 +34,10 @@ const receiveWebhook = async(req,res) => {
         // const function almacenar(allData) {
         //     llamar a la funcion de crear compra
         // }
-      
-        console.log(allData)
         
+
+        console.log(allData)
+        createBuys(allData)
         res.sendStatus(204)
     }
     } catch (error) {
