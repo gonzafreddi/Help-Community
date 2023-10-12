@@ -8,12 +8,17 @@ const getAllreviews = async function () {
   };
 
 const postreviews = async (
-    rating,
-    comment,    
+      ProductId,
+      comment,
+      rating,
+      userId,      
+      
 ) => {
   const newReview = await Review.create({
-    rating,
-    comment,    
+      ProductId,
+      comment,
+      rating,
+      userId,     
     });
   
   return newReview;
