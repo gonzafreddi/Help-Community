@@ -17,7 +17,9 @@ module.exports = (sequelize) => {
     },
     image: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
+      defaultValue:
+        "https://res.cloudinary.com/dauipbxlu/image/upload/f_auto,q_auto/fbqiqcdi52eakjlvivvb",
     },
     price: {
       type: DataTypes.REAL,

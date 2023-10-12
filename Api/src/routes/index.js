@@ -11,6 +11,7 @@ const paymentRouter = require("./paymentRouter");
 const CategoryProductRouter = require("./categoryProductRouter");
 const buysRouter = require("./buysRouter");
 // const reviewRouter = require("./reviewRouter");
+const shoppingCarRouter = require("./shoppingCarRouter");
 
 const router = Router();
 
@@ -24,6 +25,7 @@ router.use("/product", productRouter);
 // router.use("/review", reviewRouter);
 router.use("/categoryProduct", CategoryProductRouter);
 router.use("/buys", buysRouter);
+router.use("/shoppingCar", shoppingCarRouter);
 
 router.use(express.json());
 
