@@ -14,7 +14,7 @@ export const DetailProduct = () => {
     const auth = useAuth()
     const { email } = auth.user;
     const emailUser = {email: email}
-    
+    console.log("review: ", review)
     const dispatch = useDispatch();
     const { name } = useParams();
     const [loading, setLoading] = useState(true);
@@ -24,7 +24,7 @@ export const DetailProduct = () => {
     // const displayName = auth.user.displayName;
     // const firstName = displayName.split(' ')[0];
     console.log("auth: ", email)
-
+   
 
       const [reviewCreated, setReviewCreated] = useState(false);
         
@@ -36,24 +36,41 @@ export const DetailProduct = () => {
         fetchData();
     }, [name]);
 
-    let product = detailProduct[0];
+    let product = detailProduct[1];
+    const allData =  [{...product, email}]
+    console.log("allData", allData)
 
     console.log("product: ", product)
 
+    function removeQuotes(input) {
+        if (typeof input === 'string' && input.match(/^"\d+"$/)) {
+          // Si la entrada es una cadena con comillas dobles alrededor de números
+          return parseInt(input.replace(/^"(.*)"$/, '$1'), 10); // Devuelve el número como entero
+        } else {
+          return input; // Si no es una cadena con comillas dobles alrededor de números, devuelve la entrada sin cambios
+        }
+      }
+      const productId = removeQuotes(allData[0].id)
+      const userMail = removeQuotes(allData[0].email)
+      console.log("productId: ", productId, userMail)
+
     const [form, setForm] = useState({    
-      // email: allData.email,
-      // ProductId: product.id,
+        // email: userMail,
+        ProductId: "fa671609-0c1e-4694-85a5-0062ce4bba78",
+        userId: "4e45c399-125f-4836-87fe-9c2a7418aa00",
+        // nombre: "",
         rating: 0,
         comment: "",
         // dateReview: new Date().toISOString(),
       });
-    const [error, setError] = useState({
-        // email: allData.email,
-        // ProductId: product.id,
-        rating: 0,
-        comment: "",
-        // dateReview: "",
-      });
+    // const [error, setError] = useState({
+    //     email: userMail,
+    //     ProductId: productId,
+    //     // nombre: "",
+    //     rating: 0,
+    //     comment: "",
+    //     // dateReview: "",
+    //   });
 
       console.log("form", form)
     const hancleAddtoCart = ()=>{
@@ -66,7 +83,7 @@ export const DetailProduct = () => {
         const value = event.target.value; //valor ingresado
         setForm({ ...form, [property]: value });
         //llama a la funcion para validar los campos actualizados en tiempo real
-        validate({ ...form, [property]: value }, property);
+        // validate({ ...form, [property]: value }, property);
       }; 
 
         const validate = (form) => {
@@ -75,11 +92,11 @@ export const DetailProduct = () => {
         const patternNumeros = /^[0-9]+$/;
         const newError = { ...error }; // copia del estado de error existente
       
-        if (!patternNombre.test(form.nombre) || !form.nombre) {
-          newError.nombre = "Ingrese solo letras A-Z";
-        } else {
-          newError.nombre = "";
-        }
+        // if (!patternNombre.test(form.nombre) || !form.nombre) {
+        //   newError.nombre = "Ingrese solo letras A-Z";
+        // } else {
+        //   newError.nombre = "";
+        // }
       
         if (!patternNumeros.test(form.rating) || !form.rating) {
           newError.rating = "Debe ingresar solo Numeros";
@@ -97,17 +114,17 @@ export const DetailProduct = () => {
       };
 
 
-      const disable = () => { //para verificar si se deshabilita el boton submit, iterando las props del objeto error
-        let auxDisabled = true; //si la variable es true se deshabilita, si es false se habilita
-        for (let err in error){
-          if(error[err] === "") auxDisabled = false;
-          else{ 
-          auxDisabled = true //cualquier input q este con error, es true y se deshabilita
-          break;
-         }
-        }
-        return auxDisabled;
-      }
+    //   const disable = () => { //para verificar si se deshabilita el boton submit, iterando las props del objeto error
+    //     let auxDisabled = true; //si la variable es true se deshabilita, si es false se habilita
+    //     for (let err in error){
+    //       if(error[err] === "") auxDisabled = false;
+    //       else{ 
+    //       auxDisabled = true //cualquier input q este con error, es true y se deshabilita
+    //       break;
+    //      }
+    //     }
+    //     return auxDisabled;
+    //   }
 
       useEffect(()=>{
         dispatch(getReviews())
@@ -117,11 +134,9 @@ export const DetailProduct = () => {
 
     const handleSubmit=(detailProduct)=>{
         const allData = [{...product, email}]
-        console.log(allData)
+        console.log("allData de handleSubmit: ", allData)
         dispatch(createOrder(allData))
     }
-    const allData =  [{...product, email}]
-    console.log("allData", allData)
 
     const openReviewPopup = () => {
         setReviewPopupOpen(true);
@@ -202,7 +217,8 @@ export const DetailProduct = () => {
                                 </div>
                                 <textarea className={style.escribirRev} type="text" value={form.comment} onChange={changeHandler} name="comment" placeholder="Escribe tu opinión" />
                                 <div className={style.botonesReview}>
-                                <button disabled={disable() || reviewCreated} className={style.enviar} onClick={submitReview} type="submit">Enviar</button>
+                                <button className={style.enviar} onClick={submitReview} type="submit">Enviar</button>
+                                {/* disabled={disable() || reviewCreated} */}
                                 <button className={style.cancelar} onClick={closeReviewPopup}>Cancelar</button>
                                 </div>
                                 </div>
@@ -211,7 +227,7 @@ export const DetailProduct = () => {
                             <div className={style.rev2}>
                             {review?.map((review, index) => (
                                     <div className={style.review} key={index}>
-                                        <h5>{review.dateReview}</h5>
+                                        <h5>{review.createdAt}</h5>
                                         <h3>{review.nombre}</h3>
                                         <h4>Puntaje: {review.rating} / 5</h4>
                                         <p>{review.comment}</p>
