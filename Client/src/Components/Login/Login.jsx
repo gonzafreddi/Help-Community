@@ -98,13 +98,16 @@ const Login = ({closeLogin}) => {
         try {
             await auth.register(emailRegister, passwordRegister);
             const userToPost = {
-                name:nameRegister,
-                email: emailRegister
+                name: nameRegister,
+                email: emailRegister,
+                image: "https://res.cloudinary.com/dauipbxlu/image/upload/v1697131213/uprwps0euakltzyee3zj.jpg"
             }
-            dispatch(postUser(userToPost))
+            await dispatch(postUser(userToPost))
+            notify('regSuccess');
             closeLogin();
         } catch (error) {
             notify('regError');
+            console.log(error);
             setErrors({...errors, other:error.message})
         }
     };
@@ -140,14 +143,15 @@ const Login = ({closeLogin}) => {
         e.preventDefault();
         const result = await auth.loginWithGoogle();
 
-
         try {
             
             const { displayName } = result.user;
             const { email } = result.user;
+            const { photoURL } = result.user;
             const userToPost = {
                 name: displayName,
-                email
+                email: email,
+                image: photoURL ? photoURL : "https://res.cloudinary.com/dauipbxlu/image/upload/v1697131213/uprwps0euakltzyee3zj.jpg"
             }
             console.log(userToPost);
 
