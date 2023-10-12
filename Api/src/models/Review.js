@@ -18,9 +18,5 @@ module.exports = (sequelize) => {
     comment: {
         type: DataTypes.STRING,
         allowNull: true,
-      },
-    dateReview: {
-        type: DataTypes.STRING,
-        allowNull: true,
-         },
+    },   
 })};

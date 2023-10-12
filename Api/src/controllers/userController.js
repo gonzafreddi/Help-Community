@@ -10,7 +10,7 @@ const getAllUser = async function () {
       attributes: ["name"],
     },
   });
-    return rawArrayDB;
+  return rawArrayDB;
 };
 
 const getUserByName = async function (name) {
@@ -27,7 +27,7 @@ const getUserByName = async function (name) {
       include: {
         model: Product,
         attributes: ["name"],
-      }, 
+      },
     });
 
     if (rawArrayDB.length > 0) return rawArrayDB;
@@ -38,21 +38,28 @@ const getUserByName = async function (name) {
 const postUser = async (
   name,
   email,
-  ) => {
+  image,
+  userState,
+  userAdmin,
+  userSuperadmin
+) => {
   console.log(email);
   const newUser = await User.findOrCreate({
     where: {
-        name,
-        email,
+      name,
+      email,
+      image,
+      userState,
+      userAdmin,
+      userSuperadmin,
     },
-   
   });
-  
+
   return newUser;
 };
 
-  module.exports = {
-    postUser,
-    getAllUser,
-    getUserByName,
-    };
+module.exports = {
+  postUser,
+  getAllUser,
+  getUserByName,
+};
