@@ -10,7 +10,7 @@ const getAllUser = async function () {
       attributes: ["name"],
     },
   });
-    return rawArrayDB;
+  return rawArrayDB;
 };
 
 const getUserByName = async function (name) {
@@ -27,7 +27,7 @@ const getUserByName = async function (name) {
       include: {
         model: Product,
         attributes: ["name"],
-      }, 
+      },
     });
 
     if (rawArrayDB.length > 0) return rawArrayDB;
@@ -38,17 +38,63 @@ const getUserByName = async function (name) {
 const postUser = async (
   name,
   email,
-  ) => {
-  const newUser = await User.create({
-  name,
-  email,
+  image,
+  userState,
+  userAdmin,
+  userSuperadmin
+) => {
+  console.log(email);
+  const [newUser, created] = await User.findOrCreate({
+    where: { email },
+    defaults: {
+      name,
+      image,
+      userState,
+      userAdmin,
+      userSuperadmin,
+    },
   });
-  
+
   return newUser;
 };
 
-  module.exports = {
-    postUser,
-    getAllUser,
-    getUserByName,
-    };
+const updateUser = async (id, userState, userAdmin, userSuperadmin) => {
+  const user = await User.findOne({ where: { id } });
+  if (user) {
+    await user.update({
+      userState,
+      userAdmin,
+      userSuperadmin,
+    });
+  }
+  return user;
+};
+
+const getUserByEmail = async function (email) {
+  console.log(email);
+  if (email) {
+    
+    console.log(email);
+    const rawArrayDB = await User.findAll({
+      where: {
+        email: {
+          [Op.iLike]: `%${email}%`,
+        },
+      },
+      include: {
+        model: Product,
+        attributes: ["name"],
+      },
+    })
+    return rawArrayDB;
+    }
+    
+  };
+
+module.exports = {
+  postUser,
+  getAllUser,
+  getUserByName,
+  updateUser,
+  getUserByEmail
+};

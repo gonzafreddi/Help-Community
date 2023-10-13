@@ -13,7 +13,7 @@ export const Detail = () => {
 const dispatch = useDispatch()
 const name = useParams()
 const campDetail = useSelector((state)=>state.detailCampaign)
-console.log(name.id)
+console.log("name.id: ", name.id)
 
   useEffect(()=>{
     dispatch(getDetailCampaign(name.id))
@@ -25,10 +25,17 @@ console.log(name.id)
 
  
   
-  console.log(campDetail)
+  console.log("campdDetail: ", campDetail)
   //me susubribo al estdo global para consumir la info del detalle
   
-  
+  const capitalizeFirstLetter = (str) => { //para poner la primera letra de la lista de categs en mayuscula
+    if (str.length === 0) {
+        return str; // Devuelve una cadena vacía si la cadena de entrada es vacía
+    }
+    const firstLetter = str.charAt(0).toUpperCase(); // Convierte la primera letra en mayúscula
+    const restOfString = str.slice(1).toLowerCase(); // Convierte el resto de la cadena en minúscula
+    return firstLetter + restOfString; // Devuelve la cadena resultante
+    };
 
 
   return (
@@ -42,7 +49,7 @@ console.log(name.id)
         
         </div>
         <div className={style.infoCont}>
-          <div className={style.title}><h1>Nombre de la ONG</h1></div>
+          <div className={style.title}><h1>{capitalizeFirstLetter(campDetail[0]?.ong)}</h1></div>
           {/* <div className={style.hoursCont}>
             <div className={style.counter}></div>
           </div> */}

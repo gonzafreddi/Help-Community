@@ -18,15 +18,23 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    image: {
+      type: DataTypes.STRING,
+      allowNull: true,},
     userState: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: true
     },
-    userType: {
-      type: DataTypes.ENUM('user', 'admin'),
+    userAdmin: {
+      type: DataTypes.BOOLEAN,
       allowNull: false,
-      defaultValue: "user"
+      defaultValue: false
+    },
+    userSuperadmin: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false
     },
   });
 };
