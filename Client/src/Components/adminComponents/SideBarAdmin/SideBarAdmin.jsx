@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from './sidebarAdmin.module.css';
+import styles from './sideBarAdmin.module.css';
 import { FaUsers, FaBox, FaLayerGroup, FaChartBar, FaEnvelope } from 'react-icons/fa';
 
 const SideBarAdmin = () => {
