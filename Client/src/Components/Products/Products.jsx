@@ -23,12 +23,12 @@ const categ = useSelector(state => state.categ);
 
 const products = useSelector((state) => state.products);
 
-
+console.log("products: ", products);
 const [page, setPage] = useState(1);
 
 // Número de tarjetas por página
 const cardsPerPage = 20;
-
+console.log(products)
 const totalItems = products.length;
 
 
@@ -66,9 +66,9 @@ const currentCards = getCurrentPageCampaigns();
         return  <Product
                   key={producto.id}
                   id={producto.id}
-                  name={producto.title}
+                  name={producto.name}
                   description={producto.description}
-                  image={producto.images[0]}
+                  image={producto.image}
                   price={producto.price}
                   category={producto.category}
                 />

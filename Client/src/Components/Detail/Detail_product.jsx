@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createOrder, getProductByName, createReview, getReviews } from "../../redux/actions/action";
+imp
 import style from "./detail_campain.module.css";
 import { addToCart } from "../../redux/actions/action";
 import { useParams } from "react-router-dom";
@@ -10,20 +11,23 @@ import { useAuth } from "../../context/AuthContext";
 import Loader from "../loader/loader";
 export const DetailProduct = () => {
     const detailProduct = useSelector((state) => state.detailProduct);
+    const review = useSelector((state)=> state.review);
     const auth = useAuth()
     const { email } = auth.user;
-    const emailUser = {email: email}
+    const emailUser = {email: email};
     
+
     const dispatch = useDispatch();
     const { name } = useParams();
     const [loading, setLoading] = useState(true);
     const [isReviewPopupOpen, setReviewPopupOpen] = useState(false);
     const [reviews, setReviews] = useState([]);
-    
-    // const displayName = auth.user.displayName;
-    // const firstName = displayName.split(' ')[0];
-    console.log("auth: ", auth.user.email)
 
+     
+    const displayName = auth.user.displayName;
+    // const firstName = displayName.split(' ')[0];
+    console.log("auth: ", displayName)
+   
 
       const [reviewCreated, setReviewCreated] = useState(false);
         
@@ -35,24 +39,27 @@ export const DetailProduct = () => {
         fetchData();
     }, [name]);
 
-    let product = detailProduct[0];
-
-    console.log("product: ", product)
+    let product = detailProduct[1];
+    const allData =  [{...product, email}]
+    console.log("allData", allData)
 
     const [form, setForm] = useState({    
-        email: auth.user.email,
-        ProductId: product.id,
+        email: allData[0].email,
+        ProductId: product?.id,
+        // userId: "11255acc-186d-409c-a16e-168e1c730253",
+        name: displayName,
         rating: 0,
         comment: "",
         // dateReview: new Date().toISOString(),
       });
-    const [error, setError] = useState({
-        email: auth.user.email,
-        ProductId: product.id,
-        rating: 0,
-        comment: "",
-        // dateReview: "",
-      });
+    // const [error, setError] = useState({
+    //     email: userMail,
+    //     ProductId: productId,
+    //     // nombre: "",
+    //     rating: 0,
+    //     comment: "",
+    //     // dateReview: "",
+    //   });
 
       console.log("form", form)
     const hancleAddtoCart = ()=>{
@@ -65,62 +72,59 @@ export const DetailProduct = () => {
         const value = event.target.value; //valor ingresado
         setForm({ ...form, [property]: value });
         //llama a la funcion para validar los campos actualizados en tiempo real
-        validate({ ...form, [property]: value }, property);
+        // validate({ ...form, [property]: value }, property);
       }; 
 
-        const validate = (form) => {
+    //     const validate = (form) => {
 
-        const patternNombre = /^[A-Za-z\s]+$/;
-        const patternNumeros = /^[0-9]+$/;
-        const newError = { ...error }; // copia del estado de error existente
+    //     const patternNombre = /^[A-Za-z\s]+$/;
+    //     const patternNumeros = /^[0-9]+$/;
+    //     const newError = { ...error }; // copia del estado de error existente
       
-        if (!patternNombre.test(form.nombre) || !form.nombre) {
-          newError.nombre = "Ingrese solo letras A-Z";
-        } else {
-          newError.nombre = "";
-        }
+    //     // if (!patternNombre.test(form.nombre) || !form.nombre) {
+    //     //   newError.nombre = "Ingrese solo letras A-Z";
+    //     // } else {
+    //     //   newError.nombre = "";
+    //     // }
       
-        if (!patternNumeros.test(form.rating) || !form.rating) {
-          newError.rating = "Debe ingresar solo Numeros";
-        } else {
-          newError.rating = "";
-        }
+    //     if (!patternNumeros.test(form.rating) || !form.rating) {
+    //       newError.rating = "Debe ingresar solo Numeros";
+    //     } else {
+    //       newError.rating = "";
+    //     }
 
-        if (!patternNombre.test(form.comment) || !form.comment) {
-            newError.comment = "Ingrese solo letras A-Z";
-          } else {
-            newError.comment = "";
-          }
+    //     if (!patternNombre.test(form.comment) || !form.comment) {
+    //         newError.comment = "Ingrese solo letras A-Z";
+    //       } else {
+    //         newError.comment = "";
+    //       }
   
-        setError(newError); // Actualiza el estado de error
-      };
+    //     setError(newError); // Actualiza el estado de error
+    //   };
 
 
-      const disable = () => { //para verificar si se deshabilita el boton submit, iterando las props del objeto error
-        let auxDisabled = true; //si la variable es true se deshabilita, si es false se habilita
-        for (let err in error){
-          if(error[err] === "") auxDisabled = false;
-          else{ 
-          auxDisabled = true //cualquier input q este con error, es true y se deshabilita
-          break;
-         }
-        }
-        return auxDisabled;
-      }
+    //   const disable = () => { //para verificar si se deshabilita el boton submit, iterando las props del objeto error
+    //     let auxDisabled = true; //si la variable es true se deshabilita, si es false se habilita
+    //     for (let err in error){
+    //       if(error[err] === "") auxDisabled = false;
+    //       else{ 
+    //       auxDisabled = true //cualquier input q este con error, es true y se deshabilita
+    //       break;
+    //      }
+    //     }
+    //     return auxDisabled;
+    //   }
 
-      useEffect(()=>{
-        dispatch(getReviews())
-    },[dispatch])
+ 
 
-    console.log("getReviews: ", getReviews)
+    // console.log("getReviews: ", getReviews)
 
     const handleSubmit=(detailProduct)=>{
         const allData = [{...product, email}]
-        console.log(allData)
+        console.log("allData de handleSubmit: ", allData)
         dispatch(createOrder(allData))
     }
-    const allData =  [{...product, email}]
-    console.log(allData)
+
 
     const openReviewPopup = () => {
         setReviewPopupOpen(true);
@@ -151,8 +155,17 @@ export const DetailProduct = () => {
 
         closeReviewPopup();
         };
-      
+    //   console.log("reviewsProductId: ", review.ProductId)
         // console.log("reviews: ", reviews)
+        useEffect(()=>{
+            dispatch(getReviews())
+        },[dispatch])
+
+        console.log("product: ", product)
+        console.log("allData[0].id: ", allData[0].id)
+        console.log("review: ", review)
+        console.log("review[0].ProductId: ", review.ProductId)
+
     return (
         <div className={style.conteiner}>
             {loading ? (
@@ -196,26 +209,33 @@ export const DetailProduct = () => {
                                 <img className={style.imgReview} src={product?.image} alt="" />
                                 </div>
                                 <div className={style.areaNombres}>
-                                <input className={style.nombreRev} type="text" value={form.nombre} onChange={changeHandler} name="nombre" placeholder="Nombre de Usuario" />
+                                <input disabled={true} className={style.nombreRev} type="text" value={form.nombre} onChange={changeHandler} name="nombre" placeholder={displayName} />
                                 <input className={style.puntajeRev} type="number" value={form.rating} onChange={changeHandler} name="rating" min="0" max="5" placeholder="Puntaje (0-5)" />
                                 </div>
                                 <textarea className={style.escribirRev} type="text" value={form.comment} onChange={changeHandler} name="comment" placeholder="Escribe tu opinión" />
                                 <div className={style.botonesReview}>
-                                <button disabled={disable() || reviewCreated} className={style.enviar} onClick={submitReview} type="submit">Enviar</button>
+                                <button className={style.enviar} onClick={submitReview} type="submit">Enviar</button>
+                                {/* disabled={disable() || reviewCreated} */}
                                 <button className={style.cancelar} onClick={closeReviewPopup}>Cancelar</button>
                                 </div>
                                 </div>
                             </div>
                             )}
                             <div className={style.rev2}>
-                            {/* {form?.map((form, index) => ( */}
-                                    <div className={style.review}>
-                                        {/* <h5>{form.dateReview}</h5> */}
-                                        <h3>{form.nombre}</h3>
-                                        <h4>Puntaje: {form.rating} / 5</h4>
-                                        <p>{form.comment}</p>
-                                    </div>
-                                {/* ))} */}
+                                {review.map((review, index) => {
+                                    if (review.ProductId === allData[0].id) {
+                                        return (
+                                            <div className={style.review} key={index}>
+                                                <h5>{review.createdAt}</h5>
+                                                <h3>{review.name}</h3>
+                                                <h4>Puntaje: {review.rating} / 5</h4>
+                                                <p>{review.comment}</p>
+                                            </div>
+                                        );
+                                    } else {
+                                        return null;
+                                    }
+                                })}
                             </div>
                         </div>
                     </div>

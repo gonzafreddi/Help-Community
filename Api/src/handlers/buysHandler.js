@@ -15,9 +15,11 @@ const getsUserByEmail = require("../controllers/getUserByEmail")
 const getBuysForUserHandler = async(req, res)=>{
   try {
     const email = req.params.email
-    console.log(email)
+    console.log(email, "buscar compra de usueario")
     const userId = await  getsUserByEmail(email)
+    console.log(userId, "id del usuario")
     const result = await getAllBuysForUser(userId)
+    console.log(result)
     res.status(200).send(result)
   } catch (error) {
     res.status(400).json({ error: error.message });

@@ -10,7 +10,8 @@ const createOrder = async(req, res)=>{
         access_token:"TEST-6850757546672488-100711-50177e634a355fb71db241599efdb0f3-1503945548"
     })
     // console.log(req.body[0].price)
-    console.log(req.body)
+    console.log(req.body[0].image)
+    const pictureUrl = req.body[0].image;
 
     const result = await mercadopago.preferences.create({
         items:[{
@@ -19,7 +20,9 @@ const createOrder = async(req, res)=>{
             unit_price: req.body[0].price,
             currency_id: "ARS",
             quantity: req.body.quantity || 1,
-            userEmail: req.body[0].email
+            userEmail: req.body[0].email,
+            picture_url: pictureUrl,
+            
         }],
 
     // ? Darle el control a mercado pago...
