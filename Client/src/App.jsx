@@ -20,7 +20,6 @@ import UserProfile from './Components/userComponents/userProfile/userProfile'
 import Admin from './Components/adminComponents/admin/admin'
 import UserBuys from './Components/buys/UserBuys'
 import { AllBuys } from './Components/buys/allBuysAdmin'
-import Admin from './Components/adminComponents/admin/admin'
 import { BrowserRouter as Switch } from 'react-router-dom';
 import SideBarAdmin from './Components/adminComponents/SideBarAdmin/SideBarAdmin'
 
