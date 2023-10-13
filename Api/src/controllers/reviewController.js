@@ -1,10 +1,19 @@
 const axios = require("axios");
-const { Campaign, Category, Buy, State, Review } = require("../db");
+const { Campaign, Category, Buy, State, Review, User } = require("../db");
 const getUserByEmail = require("../controllers/getUserByEmail");
 
 const getAllreviews = async function () {
-    const rawArrayDB = await Review.findAll();
-      return rawArrayDB;
+    const rawArrayDB = await Review.findAll({
+      include: [
+        {
+          model: User,
+          attributes: [  
+            "name",   
+          ]
+        }
+      ],
+    })
+    return rawArrayDB;
   };
 
 const postreviews = async (
