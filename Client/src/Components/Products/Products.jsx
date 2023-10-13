@@ -23,7 +23,7 @@ const categ = useSelector(state => state.categ);
 
 const products = useSelector((state) => state.products);
 
-
+console.log("products: ", products);
 const [page, setPage] = useState(1);
 
 // Número de tarjetas por página

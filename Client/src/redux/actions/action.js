@@ -155,9 +155,8 @@ export const resetProducts = () => {
 export const getProduct = () => {
     return async function (dispatch){
         try{
-            const productData = await axios("/product");
-            const products =  productData.data;
-            console.log(productData.data)
+            const productData = await axios("https://dummyjson.com/products?limit=0");
+            const products = productData.data.products;
             dispatch({type: GET_PRODUCT, payload: products});
         } catch (error){
             console.log("error en devolver los productos", error.message)
@@ -303,14 +302,16 @@ export const getAllBuys =async()=>{
         console.log(error)
     }
 }
+
 export const getAllBuysForUser =async(email)=>{
-    console.log(email)
     try {
         const response = await axios(`/buys/user/${email}`)
-        console.log(response.data)
         return response.data
     } catch (error) {
         console.log(error)
     }
 }
 
+export const createReview = (review) => {
+    return { type: CREATE_REVIEW, payload: review };
+};

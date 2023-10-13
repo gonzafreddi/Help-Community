@@ -13,12 +13,14 @@ const { getAllreviews, postreviews, updatereviews } = require("../controllers/re
 
   const postreviewHandler = async (req, res) => {
     const {
+      ProductId,
+      comment,
       rating,
-      comment,      
+      userId      
     } = req.body;
   
     try {
-      await postreviews(rating, comment);
+      await postreviews(ProductId, comment, rating, userId);
 
       res.status(200).json(`The Review was successfully created`);
     } catch (error) {
@@ -29,10 +31,10 @@ const { getAllreviews, postreviews, updatereviews } = require("../controllers/re
 
   const putreviewHandler = async (req, res) => {
     const { id } = req.params;
-    const { rating, comment } = req.body;
+    const { ProductId, rating, comment, userId } = req.body;
   
     try {
-      await updatereviews(id, rating, comment);
+      await updatereviews(id, ProductId, rating, comment, userId);
   
       res.status(200).json(`The review was successfully updated`);
     } catch (error) {
