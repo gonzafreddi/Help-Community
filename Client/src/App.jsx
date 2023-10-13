@@ -66,7 +66,7 @@ function App(){
 function AdminLayout() {
   return (
     <>
-    <div className="containerr">
+    <div className="coco">
       <SideBarAdmin />
     <div className="content">
       <Routes>
