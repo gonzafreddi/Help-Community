@@ -11,7 +11,6 @@ const getShoppingCarController = async (req, res) => {
                 userId,
             }
         });
-        console.log(user);
         if(user.length > 1) res.json(user);
         res.send("No data exists");
     } catch (error) {
@@ -22,8 +21,6 @@ const getShoppingCarController = async (req, res) => {
 const addShoppingCarController = async (req, res) => {
     const { email, products, state } = req.body;
     const userId = await getUserByEmail(email);
-    console.log(userId);
-
     try {
         await ShoppingCar.create({
             userId,
