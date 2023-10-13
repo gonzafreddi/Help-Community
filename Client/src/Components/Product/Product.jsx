@@ -11,7 +11,7 @@ export const Product = (props) => {
   const { name, description, image, price, category } = props;
   const dispatch = useDispatch()
   
- 
+ console.log(name)
 
   const hancleAddtoCart = ()=>{
     const quantityToadd = 1

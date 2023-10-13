@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ADD_ONE_TO_CART, ADD_TO_CART, CLEART_CART, GET_DETAIL_CAMPAIGN , GET_STATE, REMOVE_ONE_TO_CART, REMOVE_TO_CART, GET_PRODUCT_BY_NAME} from "./action_type";
+import { ADD_ONE_TO_CART, ADD_TO_CART, CLEART_CART, GET_DETAIL_CAMPAIGN , GET_STATE, REMOVE_ONE_TO_CART, REMOVE_TO_CART, GET_PRODUCT_BY_NAME, GET_ALL_BUYS} from "./action_type";
 export const GET_CAMPAIGN = "GET_CAMPAIGN";
 export const FILTER_BY_STATE = "FILTER_BY_STATE";
 export const GET_STATES = "GET_STATES";
@@ -13,10 +13,9 @@ export const GET_CATEG = "GET_CATEG";
 export const FILTER_BY_CATEG = "FILTER_BY_CATEG";
 export const FILTROS_PRECIO = "FILTROS_PRECIO";
 export const RESET = "RESET";
-
-export const GET_USERS = "GET_USERS";
 export const CREATE_REVIEW = "CREATE_REVIEW";
 export const GET_REVIEWS = "GET_REVIEWS";
+export const GET_USERS = "GET_USERS";
 
 
 
@@ -28,7 +27,6 @@ if (process.env.NODE_ENV === 'development') {
     // En otros entornos (por ejemplo, producción)
     axios.defaults.baseURL  = "https://help-community-production-ad63.up.railway.app";
   }
-
 export const getCampaign = () => {
     return async function (dispatch){
         try{
@@ -53,6 +51,9 @@ export const getStates = () => {
     };
 };
 
+
+
+
 export const getReviews = () => {
     return async function (dispatch){
         try{
@@ -64,6 +65,8 @@ export const getReviews = () => {
         }
     };
 };
+
+
 
 export const getCategory = () => {
     return async function (dispatch){
@@ -168,8 +171,8 @@ export const resetProducts = () => {
 export const getProduct = () => {
     return async function (dispatch){
         try{
-            const productData = await axios("/product");
-            const products = productData.data;
+            const productData = await axios("https://dummyjson.com/products?limit=0");
+            const products = productData.data.products;
             dispatch({type: GET_PRODUCT, payload: products});
         } catch (error){
             console.log("error en devolver los productos", error.message)
@@ -260,6 +263,7 @@ export const removeOneToCart=(id)=>{
 }
 
 export const getProductByName=(name)=>{
+    console.log(name)
     return async (dispatch)=>{
         try {
             const response = await axios(`/product?name=${name}`)
@@ -304,6 +308,25 @@ export const getUsers = () => {
     }
   };
 };
+
+
+export const getAllBuys =async()=>{
+    try {
+        const response = await axios("/buys")
+        return response.data
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const getAllBuysForUser =async(email)=>{
+    try {
+        const response = await axios(`/buys/user/${email}`)
+        return response.data
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 export const createReview = (review) => {
     return { type: CREATE_REVIEW, payload: review };
