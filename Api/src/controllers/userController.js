@@ -44,7 +44,7 @@ const postUser = async (
   // userSuperadmin
 ) => {
   console.log(email);
-<<<<<<< HEAD
+
   try {
     const newUser = await User.findOrCreate({
       where: {
@@ -60,7 +60,7 @@ const postUser = async (
   } catch (error) {
     console.log(error.message)
   }
-=======
+
   const [newUser, created] = await User.findOrCreate({
     where: { email },
     defaults: {
@@ -71,7 +71,7 @@ const postUser = async (
       userSuperadmin,
     },
   });
->>>>>>> 9b9713d7f4910e62c85511156d1bf23bf2157a3a
+// 9b9713d7f4910e62c85511156d1bf23bf2157a3a
 
   return newUser;
 };
