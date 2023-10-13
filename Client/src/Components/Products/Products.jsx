@@ -66,9 +66,9 @@ const currentCards = getCurrentPageCampaigns();
         return  <Product
                   key={producto.id}
                   id={producto.id}
-                  name={producto.name}
+                  name={producto.title}
                   description={producto.description}
-                  image={producto.image}
+                  image={producto.images[0]}
                   price={producto.price}
                   category={producto.category}
                 />
