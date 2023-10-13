@@ -10,7 +10,7 @@ import { useAuth } from "../../context/AuthContext";
 import Loader from "../loader/loader";
 export const DetailProduct = () => {
     const detailProduct = useSelector((state) => state.detailProduct);
-    const review = useSelector((state)=> state.review);
+    const review = useSelector((state)=> state.review) || [];
     const auth = useAuth()
     const { email } = auth.user;
     const emailUser = {email: email};
@@ -39,7 +39,7 @@ export const DetailProduct = () => {
     console.log("allData", allData)
 
     const [form, setForm] = useState({    
-        email: allData[0].email,
+        emailUser: allData[0].email,
         ProductId: allData[0].id,
         name: displayName,
         rating: 0,
@@ -254,7 +254,7 @@ export const DetailProduct = () => {
                             </div>
                             )}
                             <div className={style.rev2}>
-                                {review.map((review, index) => {
+                                {Array.isArray(review) && review.map((review, index) => {
                                     if (review.ProductId === allData[0].id) {
                                         return (
                                             <div className={style.review} key={index}>
