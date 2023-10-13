@@ -13,17 +13,19 @@ export const DetailProduct = () => {
     const review = useSelector((state)=> state.review);
     const auth = useAuth()
     const { email } = auth.user;
-    const emailUser = {email: email}
-    console.log("review: ", review)
+    const emailUser = {email: email};
+    
+
     const dispatch = useDispatch();
     const { name } = useParams();
     const [loading, setLoading] = useState(true);
     const [isReviewPopupOpen, setReviewPopupOpen] = useState(false);
     const [reviews, setReviews] = useState([]);
-    
-    // const displayName = auth.user.displayName;
+
+     
+    const displayName = auth.user.displayName;
     // const firstName = displayName.split(' ')[0];
-    console.log("auth: ", email)
+    console.log("auth: ", displayName)
    
 
       const [reviewCreated, setReviewCreated] = useState(false);
@@ -40,25 +42,11 @@ export const DetailProduct = () => {
     const allData =  [{...product, email}]
     console.log("allData", allData)
 
-    console.log("product: ", product)
-
-    function removeQuotes(input) {
-        if (typeof input === 'string' && input.match(/^"\d+"$/)) {
-          // Si la entrada es una cadena con comillas dobles alrededor de números
-          return parseInt(input.replace(/^"(.*)"$/, '$1'), 10); // Devuelve el número como entero
-        } else {
-          return input; // Si no es una cadena con comillas dobles alrededor de números, devuelve la entrada sin cambios
-        }
-      }
-      const productId = removeQuotes(allData[0].id)
-      const userMail = removeQuotes(allData[0].email)
-      console.log("productId: ", productId, userMail)
-
     const [form, setForm] = useState({    
-        // email: userMail,
-        ProductId: productId,
-        userId: "4e45c399-125f-4836-87fe-9c2a7418aa00",
-        // nombre: "",
+        email: allData[0].email,
+        ProductId: product?.id,
+        // userId: "11255acc-186d-409c-a16e-168e1c730253",
+        name: displayName,
         rating: 0,
         comment: "",
         // dateReview: new Date().toISOString(),
@@ -86,32 +74,32 @@ export const DetailProduct = () => {
         // validate({ ...form, [property]: value }, property);
       }; 
 
-        const validate = (form) => {
+    //     const validate = (form) => {
 
-        const patternNombre = /^[A-Za-z\s]+$/;
-        const patternNumeros = /^[0-9]+$/;
-        const newError = { ...error }; // copia del estado de error existente
+    //     const patternNombre = /^[A-Za-z\s]+$/;
+    //     const patternNumeros = /^[0-9]+$/;
+    //     const newError = { ...error }; // copia del estado de error existente
       
-        // if (!patternNombre.test(form.nombre) || !form.nombre) {
-        //   newError.nombre = "Ingrese solo letras A-Z";
-        // } else {
-        //   newError.nombre = "";
-        // }
+    //     // if (!patternNombre.test(form.nombre) || !form.nombre) {
+    //     //   newError.nombre = "Ingrese solo letras A-Z";
+    //     // } else {
+    //     //   newError.nombre = "";
+    //     // }
       
-        if (!patternNumeros.test(form.rating) || !form.rating) {
-          newError.rating = "Debe ingresar solo Numeros";
-        } else {
-          newError.rating = "";
-        }
+    //     if (!patternNumeros.test(form.rating) || !form.rating) {
+    //       newError.rating = "Debe ingresar solo Numeros";
+    //     } else {
+    //       newError.rating = "";
+    //     }
 
-        if (!patternNombre.test(form.comment) || !form.comment) {
-            newError.comment = "Ingrese solo letras A-Z";
-          } else {
-            newError.comment = "";
-          }
+    //     if (!patternNombre.test(form.comment) || !form.comment) {
+    //         newError.comment = "Ingrese solo letras A-Z";
+    //       } else {
+    //         newError.comment = "";
+    //       }
   
-        setError(newError); // Actualiza el estado de error
-      };
+    //     setError(newError); // Actualiza el estado de error
+    //   };
 
 
     //   const disable = () => { //para verificar si se deshabilita el boton submit, iterando las props del objeto error
@@ -126,9 +114,7 @@ export const DetailProduct = () => {
     //     return auxDisabled;
     //   }
 
-      useEffect(()=>{
-        dispatch(getReviews())
-    },[dispatch])
+ 
 
     // console.log("getReviews: ", getReviews)
 
@@ -137,6 +123,7 @@ export const DetailProduct = () => {
         console.log("allData de handleSubmit: ", allData)
         dispatch(createOrder(allData))
     }
+
 
     const openReviewPopup = () => {
         setReviewPopupOpen(true);
@@ -167,8 +154,17 @@ export const DetailProduct = () => {
 
         closeReviewPopup();
         };
-      
+    //   console.log("reviewsProductId: ", review.ProductId)
         // console.log("reviews: ", reviews)
+        useEffect(()=>{
+            dispatch(getReviews())
+        },[dispatch])
+
+        console.log("product: ", product)
+        console.log("allData[0].id: ", allData[0].id)
+        console.log("review: ", review)
+        console.log("review[0].ProductId: ", review.ProductId)
+
     return (
         <div className={style.conteiner}>
             {loading ? (
@@ -212,7 +208,7 @@ export const DetailProduct = () => {
                                 <img className={style.imgReview} src={product?.image} alt="" />
                                 </div>
                                 <div className={style.areaNombres}>
-                                <input className={style.nombreRev} type="text" value={form.nombre} onChange={changeHandler} name="nombre" placeholder="Nombre de Usuario" />
+                                <input disabled={true} className={style.nombreRev} type="text" value={form.nombre} onChange={changeHandler} name="nombre" placeholder={displayName} />
                                 <input className={style.puntajeRev} type="number" value={form.rating} onChange={changeHandler} name="rating" min="0" max="5" placeholder="Puntaje (0-5)" />
                                 </div>
                                 <textarea className={style.escribirRev} type="text" value={form.comment} onChange={changeHandler} name="comment" placeholder="Escribe tu opinión" />
@@ -225,14 +221,20 @@ export const DetailProduct = () => {
                             </div>
                             )}
                             <div className={style.rev2}>
-                            {review?.map((review, index) => (
-                                    <div className={style.review} key={index}>
-                                        <h5>{review.createdAt}</h5>
-                                        <h3>{review.nombre}</h3>
-                                        <h4>Puntaje: {review.rating} / 5</h4>
-                                        <p>{review.comment}</p>
-                                    </div>
-                               ))}
+                                {review.map((review, index) => {
+                                    if (review.ProductId === allData[0].id) {
+                                        return (
+                                            <div className={style.review} key={index}>
+                                                <h5>{review.createdAt}</h5>
+                                                <h3>{review.name}</h3>
+                                                <h4>Puntaje: {review.rating} / 5</h4>
+                                                <p>{review.comment}</p>
+                                            </div>
+                                        );
+                                    } else {
+                                        return null;
+                                    }
+                                })}
                             </div>
                         </div>
                     </div>
