@@ -12,3 +12,8 @@
     margin-bottom: 20px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+.pagination{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}

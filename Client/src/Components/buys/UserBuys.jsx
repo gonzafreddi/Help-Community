@@ -38,7 +38,7 @@ console.log(buys)
               icon={buy.products.items[0].picture_url}
               h5={buy.products.items[0].title}
               p={`Cantidad: ${buy.products.items[0].quantity} Precio unitario: ${buy.products.items[0].unit_price}`}
-              check={buy.products.statusDetail}
+              check={buy.products.status}
               />
             ))
           ) : (
