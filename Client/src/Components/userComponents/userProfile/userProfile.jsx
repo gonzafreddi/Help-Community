@@ -27,7 +27,7 @@ export default function UserProfile(){
 
             <div className={style.imgUserCont}>
                 <div className={style.imgsize}>
-                <img src={photoURL} alt="" />
+                <img src={photoURL ? photoURL : "https://cdn-icons-png.flaticon.com/256/3682/3682323.png"} alt="" />
                 </div>
             </div>
 

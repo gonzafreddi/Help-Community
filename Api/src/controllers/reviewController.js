@@ -1,6 +1,6 @@
 const axios = require("axios");
 const { Campaign, Category, Buy, State, Review } = require("../db");
-
+const getUserByEmail = require("../controllers/getUserByEmail");
 
 const getAllreviews = async function () {
     const rawArrayDB = await Review.findAll();
@@ -11,9 +11,16 @@ const postreviews = async (
       ProductId,
       comment,
       rating,
-      userId,      
+      emailUser,
+      
       
 ) => {
+  //console.log(emailUser)
+
+  const userId = await getUserByEmail(emailUser)
+  //let userUuId = userId
+  console.log(userId)
+
   const newReview = await Review.create({
       ProductId,
       comment,
