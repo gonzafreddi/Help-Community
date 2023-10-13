@@ -1,0 +1,66 @@
+.sidebar {
+    width: 60px;
+    background-color: #333;
+    color: #fff;
+    overflow-y: auto;
+    transition: width 0.3s;
+  }
+  
+  .expanded {
+    width: 200px;
+  }
+  
+  .collapsed .submenu {
+    display: none;
+  }
+  
+  .menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .menu li {
+    padding: 10px;
+  }
+  
+  .submenu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .submenu li {
+    padding: 10px;
+  }
+  
+  .toggleButton {
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .toggleButton span {
+    font-size: 24px;
+  }
+  
+  
+  .menu a, .submenu a {
+    text-decoration: none;
+    color: #fff;
+    margin-left: 10px; /* Espacio entre el icono y el texto */
+    display: flex;
+    align-items: center;
+  }
+  
+  .menu a:hover, .submenu a:hover {
+    /* background-color: #444;  */
+    color: #85b3f7; 
+  }
+  
+  /* Estilos para el elemento seleccionado */
+  .menu a.selected, .submenu a.selected {
+    background-color: #444; /* Cambia el fondo del elemento seleccionado */
+    border-radius: 10px;
+    color: #fff; /* Cambia el color del texto del elemento seleccionado */
+  }
