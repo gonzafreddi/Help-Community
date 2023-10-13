@@ -1,12 +1,12 @@
 const {     
-    addShoppinCarController,
+    addShoppingCarController,
     editShoppingCarController,
     getShoppingCarController,
     deleteShoppingCarController } = require('../controllers/shoppingCarController');
 
-const addShoppinCarHandler = async (req, res) => {
+const addShoppingCarHandler = async (req, res) => {
     try {
-      const result = await addShoppinCarController();
+      const result = await addShoppingCarController(req, res);
   
       res.status(200).json(result);
     } catch (error) {
@@ -16,7 +16,7 @@ const addShoppinCarHandler = async (req, res) => {
 
 const editShoppingCarHandler = async (req, res) => {
     try {
-        const result = await editShoppingCarController();
+        const result = await editShoppingCarController(req, res);
     
         res.status(200).json(result);
       } catch (error) {
@@ -26,7 +26,7 @@ const editShoppingCarHandler = async (req, res) => {
 
 const getShoppingCarHandler = async (req, res) => {
     try {
-        const result = await getShoppingCarController();
+        const result = await getShoppingCarController(req, res);
     
         res.status(200).json(result);
       } catch (error) {
@@ -36,7 +36,7 @@ const getShoppingCarHandler = async (req, res) => {
 
 const deleteShoppingCarHandler = async (req, res) => {
     try {
-        const result = await deleteShoppingCarController();
+        const result = await deleteShoppingCarController(req, res);
     
         res.status(200).json(result);
       } catch (error) {
@@ -45,7 +45,7 @@ const deleteShoppingCarHandler = async (req, res) => {
 };
 
 module.exports = {
-    addShoppinCarHandler,
+    addShoppingCarHandler,
     editShoppingCarHandler,
     getShoppingCarHandler,
     deleteShoppingCarHandler
