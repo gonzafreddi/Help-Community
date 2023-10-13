@@ -1,7 +1,7 @@
 
 .userConteiner{
     width: 100%;
-
+    cursor: pointer;
   
 }
 
@@ -43,7 +43,8 @@
     background: #fff;
     border: none;
     color: #12121273;
-    font-size: 1.5em;
+    font-size: 1.2em;
+    margin-right: 20px;
     cursor: pointer;
 }
 .button img{

@@ -18,7 +18,7 @@ import { useSelector } from 'react-redux'
 import './App.css'
 import UserProfile from './Components/userComponents/userProfile/userProfile'
 import Admin from './Components/adminComponents/admin/admin'
-import { Buys } from './Components/buys/buys'
+import UserBuys from './Components/buys/UserBuys'
 import { AllBuys } from './Components/buys/allBuysAdmin'
 
 
@@ -49,7 +49,7 @@ function App(){
         <Route path="/shoppingCart" element={<ShoppingCart />} />
         <Route path="/products" element={<Products />} />
         <Route path='/userProfile' element={<UserProfile/>}/>
-        <Route path='/buys' element={<Buys/>}/>
+        <Route path='/buys' element={<UserBuys/>}/>
         <Route path='/allbuys' element={<AllBuys/>}/>
 
         

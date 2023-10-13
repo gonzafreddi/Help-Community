@@ -2,6 +2,7 @@ import style from "./userProfile.module.css"
 import { useAuth } from "../../../context/AuthContext";
 import { CardInfoUser } from "../cardInfo/cardInfoUser"
 import Login from "../../Login/Login";
+import { Link } from "react-router-dom";
 export default function UserProfile(){
 
   const auth = useAuth();
@@ -48,11 +49,15 @@ export default function UserProfile(){
          p={"Estado actual de tu cuenta"}
          icon={"https://cdn-icons-png.flaticon.com/256/10340/10340112.png"}
          />
+         
+          <Link to={`/buys?email=${email}`}>
           <CardInfoUser
          h5={"Historial"}
          p={"Historial de todas tus transacciones"}
          icon={"https://cdn-icons-png.flaticon.com/256/10994/10994652.png"}
          />
+
+          </Link>
           <CardInfoUser
          h5={"Comunicaciones"}
          p={"Elegi que tipo de informacion deseas recibir"}

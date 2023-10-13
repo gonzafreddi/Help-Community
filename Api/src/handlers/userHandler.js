@@ -22,16 +22,27 @@ const postUserHandler = async (req, res) => {
     userAdmin,
     userSuperadmin,
   } = req.body;
-  //console.log(email);
+  // console.log(email);
   try {
-    await postUser(
-    name,
-    email,
-    image,
-    userState,
-    userAdmin,
-    userSuperadmin,
-    );
+    if (image !== undefined) {
+      await postUser(
+        name,
+        email,
+        image,
+        userState,
+        userAdmin,
+        userSuperadmin
+      );
+    } else {
+      await postUser(
+        name,
+        email,
+        null, // O cualquier otro valor por defecto si 'image' es opcional
+        userState,
+        userAdmin,
+        userSuperadmin
+      );
+    }
     res.status(200).json(`The User ${name} was successfully created`);
   } catch (error) {
     res.status(400).json({ error: error.message });

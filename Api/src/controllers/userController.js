@@ -39,21 +39,26 @@ const postUser = async (
   name,
   email,
   image,
-  userState,
-  userAdmin,
-  userSuperadmin
+  // userState,
+  // userAdmin,
+  // userSuperadmin
 ) => {
   console.log(email);
-  const newUser = await User.findOrCreate({
-    where: {
-      name,
-      email,
-      image,
-      userState,
-      userAdmin,
-      userSuperadmin,
-    },
-  });
+  try {
+    const newUser = await User.findOrCreate({
+      where: {
+        name,
+        email,
+        image,
+        // userState,
+        // userAdmin,
+        // userSuperadmin,
+      },
+    });
+    res.status(200).send(newUser)
+  } catch (error) {
+    console.log(error.message)
+  }
 
   return newUser;
 };
