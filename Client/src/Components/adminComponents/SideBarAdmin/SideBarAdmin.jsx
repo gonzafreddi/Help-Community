@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from './sideBarAdmin.module.css';
-import { FaUsers, FaBox, FaLayerGroup, FaChartBar, FaEnvelope } from 'react-icons/fa';
+import { FaUsers, FaBox, FaLayerGroup, FaChartBar, FaEnvelope, FaShoppingBag } from 'react-icons/fa';
 
 const SideBarAdmin = () => {
   const [expanded, setExpanded] = useState(false);
@@ -48,6 +48,22 @@ const SideBarAdmin = () => {
             )}
           </a>
         </li>
+
+        <li>
+          <a href="/admin/allbuys" onClick={() => handleItemClick('Ventas')}
+            className={selectedItem === 'Ventas' ? styles.selected : ''}
+          >
+          {expanded ? (
+              <>
+                <FaShoppingBag size={20} />
+                <span id={styles.blanco} >Ventas</span>
+              </>
+            ) : (
+              <FaShoppingBag size={20} />
+            )}
+          </a>
+        </li>
+
         <li>
         <a href="/admin/products"   onClick={() => handleItemClick('Productos')}
             className={selectedItem === 'Productos' ? styles.selected : ''}>
