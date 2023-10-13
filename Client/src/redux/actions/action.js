@@ -328,6 +328,23 @@ export const getAllBuysForUser =async(email)=>{
     }
 }
 
+export const getUserByEmail = (email) => {
+    return async (dispatch) => {
+      try {
+        const response = await axios(`/user/email/?email=${email}`);
+        const userData = response.data;
+  
+        // Despacha una acción para actualizar el estado con los datos obtenidos
+        // dispatch({ type: 'GET_USER_DATA', payload: userData });
+        
+        return userData;
+      } catch (error) {
+        console.error(error);
+        return null;
+      }
+    };
+  };
+
 export const createReview = (review) => {
     return { type: CREATE_REVIEW, payload: review };
 };

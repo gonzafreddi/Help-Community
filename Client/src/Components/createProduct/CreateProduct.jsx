@@ -1,5 +1,6 @@
 import style from "./CreateProduct.module.css"
 import UploadWidget from "../UploadWidget/UploadWidget";
+import PropTypes from 'prop-types'
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react"
 import { getCateg, postProduct } from "../../redux/actions/action";
@@ -9,7 +10,7 @@ import { disableFunction, handleChange, handleSubmit } from "./productCreateOrEd
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-export default function CreateProduct(){
+export default function CreateProduct({isEditing, productData}){
 
     const dispatch = useDispatch();
 
@@ -36,12 +37,47 @@ export default function CreateProduct(){
                 progress: undefined,
                 theme: "light",
             });
+        } else if (type === 'editSuccess') {
+            toast.success('Producto editado correctamente', {
+                position: "bottom-right",
+                autoClose: 4000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+        } else if (type === 'editError') {
+            toast.error('Ocurrio un error al editar el producto', {
+                position: "bottom-right",
+                autoClose: 4000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
         }
     };
 
     useEffect(()=>{
         dispatch(getCateg())
-    },[dispatch])
+    },[dispatch]);
+
+    useEffect(()=>{
+        if (isEditing && productData) {
+            setProduct({
+                name: productData.name,
+                description: productData.description,
+                image: productData.image,
+                price: productData.price,
+                category: productData.category,
+                stock: productData.stock
+            });
+        }
+    }, [isEditing, productData]);
     
     const categ = useSelector(state => state.categ);
   
@@ -71,6 +107,14 @@ export default function CreateProduct(){
         setProduct({
             ...product,
             image: url
+        })
+    }
+
+    const handleImageDelete = () => {
+        setImageUrl("");
+        setProduct({
+            ...product,
+            image: ""
         })
     }
 
@@ -115,6 +159,11 @@ export default function CreateProduct(){
                 <div className={style.imgCont}>
                     {
                         imageUrl !== ""
+                        ? <button className={style.closeImgBtn} ><span className='material-icons' onClick={handleImageDelete} >close</span></button>
+                        : null
+                    }
+                    {
+                        imageUrl !== ""
                         ? <img className={style.productImg} src={imageUrl} alt="productImg" /> 
                         : <div className={style.txtAndImgCont}>
                             <h2 className={style.imgTxt}>Subir Imagen</h2>
@@ -150,3 +199,8 @@ export default function CreateProduct(){
         </div>
     );
 }
+
+CreateProduct.propTypes = {
+    isEditing: PropTypes.bool.isRequired, // 'isEditing' debe ser un booleano y es requerido.
+    productData: PropTypes.object, // 'productData' debe ser un objeto, pero no es requerido.
+};
