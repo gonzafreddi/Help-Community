@@ -13,7 +13,8 @@ export const GET_CATEG = "GET_CATEG";
 export const FILTER_BY_CATEG = "FILTER_BY_CATEG";
 export const FILTROS_PRECIO = "FILTROS_PRECIO";
 export const RESET = "RESET";
-
+export const CREATE_REVIEW = "CREATE_REVIEW";
+export const GET_REVIEWS = "GET_REVIEWS";
 export const GET_USERS = "GET_USERS";
 
 
@@ -44,6 +45,21 @@ export const getStates = () => {
             const statesData = await axios("/state");
             const states = statesData.data;
             dispatch({type: GET_STATES, payload: states});
+        } catch (error){
+            console.log("error en devolver la action", error.message)
+        }
+    };
+};
+
+
+
+
+export const getReviews = () => {
+    return async function (dispatch){
+        try{
+            const reviewsData = await axios("/review");
+            const review = reviewsData.data;
+            dispatch({type: GET_REVIEWS, payload: review});
         } catch (error){
             console.log("error en devolver la action", error.message)
         }
