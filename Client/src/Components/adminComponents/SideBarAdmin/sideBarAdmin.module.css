@@ -27,7 +27,7 @@
   .submenu {
     list-style: none;
     padding: 0;
-    margin: 0;
+    margin-left: 18px;
   }
   
   .submenu li {
@@ -51,6 +51,7 @@
     margin-left: 10px; /* Espacio entre el icono y el texto */
     display: flex;
     align-items: center;
+    font-size: 12px;
   }
   
   .menu a:hover, .submenu a:hover {
@@ -63,4 +64,9 @@
     background-color: #444; /* Cambia el fondo del elemento seleccionado */
     border-radius: 10px;
     color: #fff; /* Cambia el color del texto del elemento seleccionado */
+  }
+
+  #blanco{
+    color: white;
+    font-size: bold;
   }

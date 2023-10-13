@@ -26,7 +26,7 @@ const SideBarAdmin = () => {
         {expanded ? (
               <>
                 <FaChartBar size={20} />
-                <span>Dashboard</span>
+                <span id={styles.blanco}>Dashboard</span>
               </>
             ) : (
               <FaChartBar size={20} />
@@ -41,7 +41,7 @@ const SideBarAdmin = () => {
           {expanded ? (
               <>
                 <FaUsers size={20} />
-                <span >Usuarios</span>
+                <span id={styles.blanco} >Usuarios</span>
               </>
             ) : (
               <FaUsers size={20} />
@@ -54,7 +54,7 @@ const SideBarAdmin = () => {
         {expanded ? (
               <>
                 <FaBox size={20} />
-                <span>Productos</span>
+                <span id={styles.blanco}>Productos</span>
               </>
             ) : (
               <FaBox size={20} />
@@ -81,7 +81,7 @@ const SideBarAdmin = () => {
         {expanded ? (
               <>
                 <FaLayerGroup size={20} />
-                <span>Campañas</span>
+                <span id={styles.blanco}>Campañas</span>
               </>
             ) : (
               <FaLayerGroup size={20} />
@@ -109,7 +109,7 @@ const SideBarAdmin = () => {
         {expanded ? (
               <>
                 <FaEnvelope size={20} />
-                <span>Mailing</span>
+                <span id={styles.blanco}>Mailing</span>
               </>
             ) : (
               <FaEnvelope size={20} />
