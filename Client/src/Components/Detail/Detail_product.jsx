@@ -22,7 +22,10 @@ export const DetailProduct = () => {
     const [isReviewPopupOpen, setReviewPopupOpen] = useState(false);
     const [reviews, setReviews] = useState([]);
 
-     
+    console.log("name: ", name)
+    console.log("email: ", email)
+    // console.log("product.id: ", product.id)
+
     const displayName = auth.user.displayName;
     // const firstName = displayName.split(' ')[0];
     console.log("auth: ", displayName)
@@ -30,6 +33,21 @@ export const DetailProduct = () => {
 
       const [reviewCreated, setReviewCreated] = useState(false);
         
+      
+    let product = detailProduct[1];
+    const allData =  [{...product, email}]
+    console.log("allData", allData)
+
+    const [form, setForm] = useState({    
+        email: allData[0].email,
+        ProductId: allData[0].id,
+        name: displayName,
+        rating: 0,
+        comment: "",
+        // userId: "11255acc-186d-409c-a16e-168e1c730253",
+        // dateReview: new Date().toISOString(),
+      });
+
       useEffect(() => {
         const fetchData = async () => {
             await dispatch(getProductByName(name));
@@ -38,19 +56,34 @@ export const DetailProduct = () => {
         fetchData();
     }, [name]);
 
-    let product = detailProduct[1];
-    const allData =  [{...product, email}]
-    console.log("allData", allData)
 
-    const [form, setForm] = useState({    
-        email: allData[0].email,
-        ProductId: product?.id,
-        // userId: "11255acc-186d-409c-a16e-168e1c730253",
-        name: displayName,
-        rating: 0,
-        comment: "",
-        // dateReview: new Date().toISOString(),
-      });
+    useEffect(() => {
+        if (product) {
+            // Verifica si ProductId necesita ser actualizado
+            if (form.ProductId !== allData[0].id) {
+                setForm((prevForm) => ({
+                    ...prevForm,
+                    ProductId: allData[0].id,
+                }));
+            }
+        }
+    }, [product, allData]);
+    
+    // useEffect(() => {
+    //     if (allData.length > 0) {
+    //         setForm((prevForm) => ({
+    //             ...prevForm,
+    //             email: allData[0].email,
+    //         }));
+    //     }
+    // }, [allData]);
+
+    // useEffect(() => {
+    //     setForm((prevForm) => ({
+    //         ...prevForm,
+    //         name: displayName,
+    //     }));
+    // }, [displayName]);
     // const [error, setError] = useState({
     //     email: userMail,
     //     ProductId: productId,
@@ -163,7 +196,7 @@ export const DetailProduct = () => {
         console.log("product: ", product)
         console.log("allData[0].id: ", allData[0].id)
         console.log("review: ", review)
-        console.log("review[0].ProductId: ", review.ProductId)
+        // console.log("review[0].ProductId: ", review.ProductId)
 
     return (
         <div className={style.conteiner}>
@@ -202,8 +235,8 @@ export const DetailProduct = () => {
                             {isReviewPopupOpen && (
                             <div className={style.modalBackground}>
                                 <div className={style.reviewPopup}>
-                                {/* Contenido del popup aquí */}
                                 <h2 className={style.queOpinas}>¿Que opinas sobre este producto?</h2>
+                                <span className={style.productName}>{name}</span>
                                 <div className={style.imgReviewCont} >
                                 <img className={style.imgReview} src={product?.image} alt="" />
                                 </div>

@@ -113,6 +113,7 @@
   color: #011431cc;
 }
 
+
 .añadir{
     height: 40px;
     padding: 0px 20px;
@@ -138,7 +139,7 @@
 }
 
 .review{
-    width: 120%;
+    width: 25em;
     background-color: rgba(255, 255, 255, 0.911);
     margin-bottom: 30px;
     padding: 10px 20px;
@@ -164,6 +165,13 @@
     color: #011431cc;
   }
 
+  .productName{
+    color: #1055c4;
+    font-weight: 500;
+    font-size: large;
+    margin-bottom: 20px;
+  }
+
   .imgReviewCont{
     align-items: center;
     justify-content: center;
@@ -173,9 +181,9 @@
   }
 
   .imgReview{
-    width: 160px;
-    height: 160px;
-    object-fit:contain;
+    width: 120px;
+    height: 120px;
+    object-fit:cover;
     border-radius: 10%;
     /* box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.37); */
   }
