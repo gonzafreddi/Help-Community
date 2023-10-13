@@ -69,10 +69,32 @@ const updateUser = async (id, userState, userAdmin, userSuperadmin) => {
   }
   return user;
 };
-  
+
+const getUserByEmail = async function (email) {
+  console.log(email);
+  if (email) {
+    
+    console.log(email);
+    const rawArrayDB = await User.findAll({
+      where: {
+        email: {
+          [Op.iLike]: `%${email}%`,
+        },
+      },
+      include: {
+        model: Product,
+        attributes: ["name"],
+      },
+    })
+    return rawArrayDB;
+    }
+    
+  };
+
 module.exports = {
   postUser,
   getAllUser,
   getUserByName,
   updateUser,
+  getUserByEmail
 };
