@@ -36,5 +36,10 @@ module.exports = (sequelize) => {
       allowNull: false,
       defaultValue: false
     },
+    password: {
+      type: DataTypes.STRING, // Utiliza TEXT para almacenar el hash de la contraseña
+      allowNull: false,
+    },
+
   });
 };

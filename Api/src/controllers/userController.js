@@ -42,6 +42,7 @@ const postUser = async (
   userState,
   userAdmin,
   userSuperadmin,
+  password,
   ) => {
 
  
@@ -56,6 +57,7 @@ const postUser = async (
   userState,
   userAdmin,
   userSuperadmin,
+  password,
     },
    
 

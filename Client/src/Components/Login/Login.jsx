@@ -39,7 +39,8 @@ const Login = ({closeLogin}) => {
             await auth.register(emailRegister, passwordRegister);
             const userToPost = {
                 name:"Fernando",
-                email: emailRegister
+                email: emailRegister,
+                password: passwordRegister,
             }
             dispatch(postUser(userToPost))
             closeLogin();
@@ -50,21 +51,44 @@ const Login = ({closeLogin}) => {
 
     //Manejo de logueo
     const handleLogin = async (e) => {
-      e.preventDefault();
-      try {
-        await auth.login(email, password);
-        closeLogin();
-      } catch (error) {
-        console.log(error);
-        if (error.code === 'auth/invalid-login-credentials') {
-          // Manejar intento de inicio de sesión con contraseña incorrecta
-          setErrors({...errors, password:'Contraseña incorrecta. Inténtalo de nuevo.'});
-        } else {
-          // Otro tipo de error, como cuenta inactiva, etc.
-          console.error(error.message);
+        e.preventDefault();
+
+        try {
+            // Realizar una solicitud HTTP POST al backend para autenticar al usuario
+            const response = await axios('/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email, password }),
+            });
+
+            if (response.status === 200) {
+            // El inicio de sesión fue exitoso
+            const data = await response.json();
+            const authToken = data.token;
+
+            // Almacena el token en el local storage
+            localStorage.setItem('authToken', authToken);
+
+            // Redirige al usuario o actualiza la interfaz de usuario
+            } else {
+            // El inicio de sesión falló; muestra un mensaje de error
+            const errorData = await response.json();
+            console.log(errorData.message);
+            }
+        } catch (error) {
+            console.error('Error al iniciar sesión:', error);
         }
-      }
-    };
+        };
+
+        // Para cerrar la sesión
+        const handleLogout = () => {
+        // Borra el token del local storage
+        localStorage.removeItem('authToken');
+
+        // Realiza otras acciones, como redirigir al usuario a la página de inicio
+            };
 
     //Manejo de logueo/registro con google
     const handleGoogle = async (e) => {

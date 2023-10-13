@@ -21,6 +21,7 @@ const postUserHandler = async (req, res) => {
     userState,
     userAdmin,
     userSuperadmin,
+    password,
   } = req.body;
   //console.log(email);
   try {
@@ -31,6 +32,7 @@ const postUserHandler = async (req, res) => {
     userState,
     userAdmin,
     userSuperadmin,
+    password,
     );
     res.status(200).json(`The User ${name} was successfully created`);
   } catch (error) {
