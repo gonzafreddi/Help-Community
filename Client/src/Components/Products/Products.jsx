@@ -28,7 +28,7 @@ const [page, setPage] = useState(1);
 
 // Número de tarjetas por página
 const cardsPerPage = 20;
-
+console.log(products)
 const totalItems = products.length;
 
 

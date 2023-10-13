@@ -1,5 +1,6 @@
 import style from "./cardInfoUser.module.css"
 export function CardInfoUser({h5, p, icon, check}){
+    console.log(icon)
     return(<div className={style.userConteiner}>
         
         <div className={style.userData}>
@@ -8,7 +9,7 @@ export function CardInfoUser({h5, p, icon, check}){
             <h5>{h5}</h5>
             <p>{p}</p>
             </div>
-            <div className={style.button}><button>{check? <img src={check} alt="" /> : ">"}</button></div>
+            <div className={style.button}><button>{check}</button></div>
         </div>
     </div>)
 }

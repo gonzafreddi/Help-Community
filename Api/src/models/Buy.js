@@ -7,8 +7,6 @@ module.exports = (sequelize) => {
       primaryKey: true,
       defaultValue: UUIDV4,
     },
-    
-
     products: {
       type: DataTypes.ARRAY(DataTypes.STRING(10000)),
       allowNull: false

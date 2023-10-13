@@ -1,4 +1,5 @@
 const { getAllreviews, postreviews, updatereviews } = require("../controllers/reviewController");
+//const getUserByEmail = require("../controllers/getUserByEmail");
   
   const getreviewHandler = async (req, res) => {
    
@@ -16,11 +17,12 @@ const { getAllreviews, postreviews, updatereviews } = require("../controllers/re
       ProductId,
       comment,
       rating,
-      userId      
+      emailUser      
     } = req.body;
   
     try {
-      await postreviews(ProductId, comment, rating, userId);
+      //const userId = await getUserByEmail(emailUser)
+      await postreviews(ProductId, comment, rating, emailUser);
 
       res.status(200).json(`The Review was successfully created`);
     } catch (error) {

@@ -39,11 +39,28 @@ const postUser = async (
   name,
   email,
   image,
-  userState,
-  userAdmin,
-  userSuperadmin
+  // userState,
+  // userAdmin,
+  // userSuperadmin
 ) => {
   console.log(email);
+
+  try {
+    const newUser = await User.findOrCreate({
+      where: {
+        name,
+        email,
+        image,
+        // userState,
+        // userAdmin,
+        // userSuperadmin,
+      },
+    });
+    res.status(200).send(newUser)
+  } catch (error) {
+    console.log(error.message)
+  }
+
   const [newUser, created] = await User.findOrCreate({
     where: { email },
     defaults: {
@@ -54,6 +71,7 @@ const postUser = async (
       userSuperadmin,
     },
   });
+// 9b9713d7f4910e62c85511156d1bf23bf2157a3a
 
   return newUser;
 };
@@ -69,10 +87,32 @@ const updateUser = async (id, userState, userAdmin, userSuperadmin) => {
   }
   return user;
 };
-  
+
+const getUserByEmail = async function (email) {
+  console.log(email);
+  if (email) {
+    
+    console.log(email);
+    const rawArrayDB = await User.findAll({
+      where: {
+        email: {
+          [Op.iLike]: `%${email}%`,
+        },
+      },
+      include: {
+        model: Product,
+        attributes: ["name"],
+      },
+    })
+    return rawArrayDB;
+    }
+    
+  };
+
 module.exports = {
   postUser,
   getAllUser,
   getUserByName,
   updateUser,
+  getUserByEmail
 };

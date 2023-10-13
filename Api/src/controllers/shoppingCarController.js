@@ -5,16 +5,25 @@ const getShoppingCarController = async (req, res) => {
     const { email } = req.params;
     try {
         const userId = await getUserByEmail(email);
-        const user = await ShoppingCar.findByPk(userId);
-        res.json(user);
+        console.log(userId);
+        const user = await ShoppingCar.findAll({
+            where: {
+                userId,
+            }
+        });
+        console.log(user);
+        if(user.length > 1) res.json(user);
+        res.send("No data exists");
     } catch (error) {
         res.status(400).json(error.message);
     }
 };
 
-const addShoppinCarController = async (req, res) => {
-    const { email, products } = req.body;
+const addShoppingCarController = async (req, res) => {
+    const { email, products, state } = req.body;
     const userId = await getUserByEmail(email);
+    console.log(userId);
+
     try {
         await ShoppingCar.create({
             userId,
@@ -60,7 +69,7 @@ const deleteShoppingCarController = async (req, res) => {
 };
 
 module.exports = {
-    addShoppinCarController,
+    addShoppingCarController,
     editShoppingCarController,
     getShoppingCarController,
     deleteShoppingCarController
