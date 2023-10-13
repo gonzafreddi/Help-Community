@@ -67,6 +67,7 @@ const putUserHandler = async (req, res) => {
 const getUserEmailHandler = async (req, res) => {
   const { email } = req.query;
   try {
+    console.log("Hnadler",email)
     const result = email
       ? await getUserByEmail(email)
       : await getAllUser();
