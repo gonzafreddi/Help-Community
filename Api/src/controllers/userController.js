@@ -60,6 +60,18 @@ const postUser = async (
     console.log(error.message)
   }
 
+  const [newUser, created] = await User.findOrCreate({
+    where: { email },
+    defaults: {
+      name,
+      image,
+      userState,
+      userAdmin,
+      userSuperadmin,
+    },
+  });
+
+
   return newUser;
 };
 

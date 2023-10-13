@@ -89,7 +89,7 @@ Review.belongsTo(Product);
 Product.belongsToMany(User, { through: "Buys" });
 User.belongsToMany(Product, { through: "Buys" });
 
-ShoppingCar.hasMany(User);
+ShoppingCar.belongsTo(User);
 User.belongsTo(ShoppingCar);
 
 module.exports = {
