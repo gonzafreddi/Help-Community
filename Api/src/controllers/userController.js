@@ -39,20 +39,20 @@ const postUser = async (
   name,
   email,
   image,
-  // userState,
-  // userAdmin,
-  // userSuperadmin
+  userState,
+  userAdmin,
+  userSuperadmin,
 ) => {
   console.log(email);
   try {
     const newUser = await User.findOrCreate({
-      where: {
-        name,
-        email,
-        image,
-        // userState,
-        // userAdmin,
-        // userSuperadmin,
+      where: { email },
+    defaults: {
+      name,
+      image,
+      userState,
+      userAdmin,
+      userSuperadmin,
       },
     });
     res.status(200).send(newUser)
@@ -60,6 +60,7 @@ const postUser = async (
     console.log(error.message)
   }
 
+//<<<<<<< HEAD
   const [newUser, created] = await User.findOrCreate({
     where: { email },
     defaults: {
@@ -72,6 +73,18 @@ const postUser = async (
   });
 
   return newUser;
+  //const [newUser, created] = await User.findOrCreate({
+  //  where: { email },
+  //  defaults: {
+  //    name,
+  //    image,
+  //    userState,
+  //    userAdmin,
+  //    userSuperadmin,
+  //  },
+  //});
+  //return newUser;
+//>>>>>>> c416c06372a5a92161d01affa56936941c78b06b
 };
 
 const updateUser = async (id, userState, userAdmin, userSuperadmin) => {
