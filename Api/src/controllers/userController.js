@@ -71,7 +71,6 @@ const postUser = async (
     },
   });
 
-
   return newUser;
 };
 
