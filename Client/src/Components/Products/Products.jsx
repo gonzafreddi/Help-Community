@@ -5,6 +5,7 @@ import { Product } from "../Product/Product";
 import style from "./Products.module.css"
 // import FilterProducts from '../FilterProducts/FilterProducts';
 import Pagination from "../Pagination/Pagination";
+import Kv from "../../assets/compra-dona-4.png";
 
 
 export const Products = () => {
@@ -53,6 +54,10 @@ const currentCards = getCurrentPageCampaigns();
 
     return (
       <div>
+
+        <div>
+        <img className={style.KeyVisual} src={Kv} alt="image-donaciones" width="100%" height="10px"/>
+        </div>
 
         <div className={style.barra}>
         {/* <FilterProducts categ={categ}/> */}
