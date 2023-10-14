@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createOrder, getProductByName, createReview, getReviews } from "../../redux/actions/action";
+import { createOrder, getProductByName, createReview, getReviews, getAllBuys } from "../../redux/actions/action";
 import style from "./detail_campain.module.css";
 import { addToCart } from "../../redux/actions/action";
 import { useParams } from "react-router-dom";
@@ -25,6 +25,26 @@ export const DetailProduct = () => {
     console.log("name: ", name)
     console.log("email: ", email)
     // console.log("product.id: ", product.id)
+    
+    // useEffect(()=>{
+    //     dispatch(getAllBuys())
+    // },[dispatch])
+    const [buys, setBuys ] = useState("")
+
+    useEffect(() => {
+        // Realiza una solicitud GET para obtener la lista de temperamentos desde el servidor
+        axios
+          .get("http://localhost:3001/buys")
+          .then((response) => {
+            // Actualiza el estado con los temperamentos disponibles
+            setBuys(response.data);
+          })
+          .catch((error) => {
+            console.error("Error al obtener los temperamentos:", error);
+          });
+      }, []);
+
+      console.log("buys: ", buys)
 
     const displayName = auth.user.displayName;
     // const firstName = displayName.split(' ')[0];
@@ -41,7 +61,7 @@ export const DetailProduct = () => {
     const [form, setForm] = useState({    
         emailUser: allData[0].email,
         ProductId: allData[0].id,
-        name: displayName,
+        // name: displayName,
         rating: 0,
         comment: "",
         // userId: "11255acc-186d-409c-a16e-168e1c730253",
@@ -56,6 +76,18 @@ export const DetailProduct = () => {
         fetchData();
     }, [name]);
 
+
+    useEffect(() => {
+        if (product) {
+            // Verifica si ProductId necesita ser actualizado
+            if (form.emailUser !== allData[0].email) {
+                setForm((prevForm) => ({
+                    ...prevForm,
+                    emailUser: allData[0].email,
+                }));
+            }
+        }
+    }, [product, allData]);
 
     useEffect(() => {
         if (product) {
@@ -178,21 +210,20 @@ export const DetailProduct = () => {
             setReviewCreated(true); 
             // actualiza el estado cuando se crea el perro con exito
             alert("Review creada con éxito!!!");
-          } catch (error) {
+            dispatch(getReviews());
+        } catch (error) {
             alert(error.response.data.error);
             //con este alert muestro los errores del back
-          } if(reviewCreated === false){
+        } if(reviewCreated === false){
             event.preventDefault()
-          }
-
+        }
         closeReviewPopup();
         };
-    //   console.log("reviewsProductId: ", review.ProductId)
-        // console.log("reviews: ", reviews)
-        useEffect(()=>{
-            dispatch(getReviews())
-        },[dispatch])
-
+    // //   console.log("reviewsProductId: ", review.ProductId)
+    //     // console.log("reviews: ", reviews)
+    //     useEffect(()=>{
+    //         dispatch(getReviews())
+    //     },[dispatch])
         console.log("product: ", product)
         console.log("allData[0].id: ", allData[0].id)
         console.log("review: ", review)
@@ -241,7 +272,8 @@ export const DetailProduct = () => {
                                 <img className={style.imgReview} src={product?.image} alt="" />
                                 </div>
                                 <div className={style.areaNombres}>
-                                <input disabled={true} className={style.nombreRev} type="text" value={form.nombre} onChange={changeHandler} name="nombre" placeholder={displayName} />
+                                <h2 className={style.nombreRev}>Puntaje: </h2>
+                                {/* <input disabled={true} className={style.nombreRev} type="text" value={form.nombre} onChange={changeHandler} name="nombre" placeholder={displayName} /> */}
                                 <input className={style.puntajeRev} type="number" value={form.rating} onChange={changeHandler} name="rating" min="0" max="5" placeholder="Puntaje (0-5)" />
                                 </div>
                                 <textarea className={style.escribirRev} type="text" value={form.comment} onChange={changeHandler} name="comment" placeholder="Escribe tu opinión" />
@@ -256,11 +288,18 @@ export const DetailProduct = () => {
                             <div className={style.rev2}>
                                 {Array.isArray(review) && review.map((review, index) => {
                                     if (review.ProductId === allData[0].id) {
+                                        const formattedDateTime = new Date(review.createdAt).toLocaleString('es-ES', {
+                                            year: 'numeric',
+                                            month: '2-digit',
+                                            day: '2-digit',
+                                            hour: '2-digit',
+                                            minute: '2-digit'
+                                        });
                                         return (
                                             <div className={style.review} key={index}>
-                                                <h5>{review.createdAt}</h5>
-                                                <h3>{review.name}</h3>
-                                                <h4>Puntaje: {review.rating} / 5</h4>
+                                                <h5>{formattedDateTime}</h5>
+                                                <h3>{review.user.name}</h3>
+                                                <h4>Puntaje: {review.rating} / 10</h4>
                                                 <p>{review.comment}</p>
                                             </div>
                                         );
