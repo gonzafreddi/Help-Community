@@ -4,12 +4,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, Outlet } from "react-router-dom";
 import { getUsers } from "../../../redux/actions/action.js";    //hay que hacer un redux para traer usuarios, asi revisamos si son admin o no
 // import { authContext } from "../Context/authContext";
+import Dashboard from "../dashboard/Dashboard";
 
 function Admin() {
   const navigate = useNavigate();
 
   return (
     <div>
+    <Dashboard/> 
       <Outlet />
     </div>
   );
