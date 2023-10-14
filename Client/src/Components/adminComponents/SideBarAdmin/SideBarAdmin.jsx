@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from './sideBarAdmin.module.css';
-import { FaUsers, FaBox, FaLayerGroup, FaChartBar, FaEnvelope } from 'react-icons/fa';
+import { FaUsers, FaBox, FaLayerGroup, FaChartBar, FaEnvelope, FaShoppingBag } from 'react-icons/fa';
 
 const SideBarAdmin = () => {
   const [expanded, setExpanded] = useState(false);
@@ -26,7 +26,7 @@ const SideBarAdmin = () => {
         {expanded ? (
               <>
                 <FaChartBar size={20} />
-                <span>Dashboard</span>
+                <span id={styles.blanco}>Dashboard</span>
               </>
             ) : (
               <FaChartBar size={20} />
@@ -41,20 +41,36 @@ const SideBarAdmin = () => {
           {expanded ? (
               <>
                 <FaUsers size={20} />
-                <span >Usuarios</span>
+                <span id={styles.blanco} >Usuarios</span>
               </>
             ) : (
               <FaUsers size={20} />
             )}
           </a>
         </li>
+
+        <li>
+          <a href="/admin/allbuys" onClick={() => handleItemClick('Ventas')}
+            className={selectedItem === 'Ventas' ? styles.selected : ''}
+          >
+          {expanded ? (
+              <>
+                <FaShoppingBag size={20} />
+                <span id={styles.blanco} >Ventas</span>
+              </>
+            ) : (
+              <FaShoppingBag size={20} />
+            )}
+          </a>
+        </li>
+
         <li>
         <a href="/admin/products"   onClick={() => handleItemClick('Productos')}
             className={selectedItem === 'Productos' ? styles.selected : ''}>
         {expanded ? (
               <>
                 <FaBox size={20} />
-                <span>Productos</span>
+                <span id={styles.blanco}>Productos</span>
               </>
             ) : (
               <FaBox size={20} />
@@ -81,7 +97,7 @@ const SideBarAdmin = () => {
         {expanded ? (
               <>
                 <FaLayerGroup size={20} />
-                <span>Campañas</span>
+                <span id={styles.blanco}>Campañas</span>
               </>
             ) : (
               <FaLayerGroup size={20} />
@@ -109,7 +125,7 @@ const SideBarAdmin = () => {
         {expanded ? (
               <>
                 <FaEnvelope size={20} />
-                <span>Mailing</span>
+                <span id={styles.blanco}>Mailing</span>
               </>
             ) : (
               <FaEnvelope size={20} />
