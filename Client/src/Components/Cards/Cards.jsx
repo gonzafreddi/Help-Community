@@ -4,6 +4,7 @@ import { Card } from "../Card/Card"
 import style from "./Cards.module.css"
 import { getCampaign } from "../../redux/actions/action";
 import { Link } from "react-router-dom";
+import Logo from "../../assets/Logo2.png";
 
 
 
@@ -21,7 +22,9 @@ export const Cards = ({data}) => {
     return (
       <div>
         <Link className={style.ingresarLink} to="/products">INGRESAR</Link>
-        <h2 className={style.bienvenidos}>BIENVENIDOS</h2>
+        {/* <h2 className={style.bienvenidos}>BIENVENIDOS</h2> */}
+        <img className={style.Logo} src={Logo} alt="image-donaciones" width="150" height="10px"/>
+        <span className={style.bajada}> Donde tus compras apoyan el desarrollo de distintas ONGs</span>
         <div className={style.cardsContainer}>
         <div className={style.header}>
           <div className={style.pregunta}>¿Te gustaría ayudar con una donación?</div>

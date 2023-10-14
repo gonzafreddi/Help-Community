@@ -39,10 +39,25 @@
         color: black;
       }
 
-.bienvenidos{
+/* .bienvenidos{
     position: absolute;
     font-size: 60px;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     margin-left: 220px;
     margin-top: 170px;
+} */
+
+.bajada{
+    position: absolute;
+    font-size: 20px;
+    margin-left: 180px;
+    margin-top: 210px;
+    color: black;
+}
+
+.Logo{
+    position:absolute;
+    margin-left: 330px;
+    margin-top: 30px;
+    border-radius: 20px;
 }
