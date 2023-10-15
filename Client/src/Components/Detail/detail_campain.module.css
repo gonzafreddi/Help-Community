@@ -114,20 +114,32 @@
 }
 
 
-.añadir{
-    height: 40px;
-    padding: 0px 20px;
-    border-radius: 10px;
-    background-color: #3A86FF;
-    color: #ffff;
-    border: none;
-    transition: all ease .3s;
-    font-size: 1.1rem;
+.añadir {
+  height: 40px;
+  padding: 0px 20px;
+  border-radius: 10px;
+  background-color: #3A86FF;
+  color: #ffffff;
+  border: none;
+  transition: all ease 0.3s;
+  font-size: 1.1rem;
 }
 
-.añadir:hover{
-    background-color: #1055c4;
-    cursor: pointer;
+/* Estilo para el botón "Añadir" cuando está deshabilitado */
+.añadir:disabled {
+  background-color: #ccc; /* Fondo gris */
+  color: #666; /* Texto más claro */
+  cursor: not-allowed; /* Cambia el cursor a "no permitido" */
+}
+.añadir:disabled:hover {
+  background-color: #ccc;
+  color: #666;
+  cursor: default;
+}
+/* Estilo para el botón "Añadir" cuando se está pasando el mouse sobre él */
+.añadir:hover {
+  background-color: #1055c4;
+  cursor: pointer;
 }
 
 .rev2{
@@ -142,10 +154,41 @@
     width: 25em;
     background-color: rgba(255, 255, 255, 0.911);
     margin-bottom: 30px;
-    padding: 10px 20px;
+    padding: 0px 15px;
     border-radius: 10px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.116);
 }
+
+
+.nombreFecha{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /* justify-content: center; */
+  /* text-align: justify; */
+  gap: 11em;
+}
+
+.fecha{
+  font-size: small;
+}
+
+.user{
+  font-size: large;
+  font-weight: 500;
+  color: #001435a8;
+}
+
+.puntaje{
+  font-size: 14px;
+}
+
+.comment{
+  margin-top: -1%;
+  font-size: medium;
+}
+
+
 
 .modalBackground {
     position: fixed;
@@ -234,6 +277,9 @@
     width: 20em;
   } */
   .puntajeRev {
+    /* align-items: center; */
+    /* text-align: center; */
+    justify-content: center;
     font-family: 'DM Sans', sans-serif;
     font-size: 17px;
     font-weight: 400;
@@ -242,7 +288,7 @@
     border-radius: 10px;
     margin-bottom: 1.5rem;
     height: 40px;
-    width: 30%;
+    width: 15%;
     text-indent: 12px;
     transition: all 0.5s;
     color: rgb(36, 36, 36);

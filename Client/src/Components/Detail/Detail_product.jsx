@@ -15,21 +15,21 @@ export const DetailProduct = () => {
     const { email } = auth.user;
     const emailUser = {email: email};
     
+    console.log("detailProduct: ", detailProduct)
 
     const dispatch = useDispatch();
     const { name } = useParams();
     const [loading, setLoading] = useState(true);
     const [isReviewPopupOpen, setReviewPopupOpen] = useState(false);
     const [reviews, setReviews] = useState([]);
+    const [users, setUsers] = useState([]);
 
-    console.log("name: ", name)
-    console.log("email: ", email)
-    // console.log("product.id: ", product.id)
-    
-    // useEffect(()=>{
-    //     dispatch(getAllBuys())
-    // },[dispatch])
+    // console.log("name: ", name)
+    // console.log("email: ", email)
+
     const [buys, setBuys ] = useState("")
+    const [userData, setUserData] = useState([]);
+    const [isReviewButtonEnabled, setReviewButtonEnabled] = useState(false);
 
     useEffect(() => {
         // Realiza una solicitud GET para obtener la lista de temperamentos desde el servidor
@@ -46,9 +46,43 @@ export const DetailProduct = () => {
 
       console.log("buys: ", buys)
 
+      useEffect(() => {
+        // Realiza una solicitud GET para obtener la lista de temperamentos desde el servidor
+        axios
+          .get('/user/email', {
+            params: {
+              email: email, // Correo electrónico que deseas buscar
+            },
+          })
+          .then((response) => {
+            // Actualiza el estado con los temperamentos disponibles
+            setUserData(response.data);
+          })
+          .catch((error) => {
+            console.error("Error al obtener los temperamentos:", error);
+          });
+      }, []);
+
+      console.log("userData: ", userData)
+
+    //   useEffect(() => {
+    //     // Realiza una solicitud GET para obtener la lista de temperamentos desde el servidor
+    //     axios
+    //       .get("http://localhost:3001/user")
+    //       .then((response) => {
+    //         // Actualiza el estado con los temperamentos disponibles
+    //         setUsers(response.data);
+    //       })
+    //       .catch((error) => {
+    //         console.error("Error al obtener los temperamentos:", error);
+    //       });
+    //   }, []);
+
+    //   console.log("users: ", users)
+
     const displayName = auth.user.displayName;
     // const firstName = displayName.split(' ')[0];
-    console.log("auth: ", displayName)
+    // console.log("auth.user.email: ", auth.user.email)
    
 
       const [reviewCreated, setReviewCreated] = useState(false);
@@ -56,21 +90,28 @@ export const DetailProduct = () => {
       
     let product = detailProduct[1];
     const allData =  [{...product, email}]
-    console.log("allData", allData)
+    // console.log("allData", allData)
 
     const [form, setForm] = useState({    
         emailUser: allData[0].email,
         ProductId: allData[0].id,
-        // name: displayName,
         rating: 0,
-        comment: "",
-        // userId: "11255acc-186d-409c-a16e-168e1c730253",
-        // dateReview: new Date().toISOString(),
+        comment: ""
       });
+
+    // const [error, setError] = useState({
+    //     email: userMail,
+    //     ProductId: productId,
+    //     // nombre: "",
+    //     rating: 0,
+    //     comment: "",
+    //     // dateReview: "",
+    //   });
 
       useEffect(() => {
         const fetchData = async () => {
             await dispatch(getProductByName(name));
+            dispatch(getReviews());
             setLoading(false);
         };
         fetchData();
@@ -79,7 +120,7 @@ export const DetailProduct = () => {
 
     useEffect(() => {
         if (product) {
-            // Verifica si ProductId necesita ser actualizado
+            // Verifica si emailUser necesita ser actualizado
             if (form.emailUser !== allData[0].email) {
                 setForm((prevForm) => ({
                     ...prevForm,
@@ -100,30 +141,8 @@ export const DetailProduct = () => {
             }
         }
     }, [product, allData]);
-    
-    // useEffect(() => {
-    //     if (allData.length > 0) {
-    //         setForm((prevForm) => ({
-    //             ...prevForm,
-    //             email: allData[0].email,
-    //         }));
-    //     }
-    // }, [allData]);
 
-    // useEffect(() => {
-    //     setForm((prevForm) => ({
-    //         ...prevForm,
-    //         name: displayName,
-    //     }));
-    // }, [displayName]);
-    // const [error, setError] = useState({
-    //     email: userMail,
-    //     ProductId: productId,
-    //     // nombre: "",
-    //     rating: 0,
-    //     comment: "",
-    //     // dateReview: "",
-    //   });
+
 
       console.log("form", form)
     const hancleAddtoCart = ()=>{
@@ -182,6 +201,32 @@ export const DetailProduct = () => {
  
 
     // console.log("getReviews: ", getReviews)
+    useEffect(() => {
+        if (buys && buys.length > 0) {
+          // Verifica si todos los elementos en `buys` coinciden con `allData[0].id`
+          const allMatchProductId = buys.every((buy) => {
+            return buy.products.items.some(
+              (item) => item.id === allData[0].id
+            );
+          });
+    
+          // Verifica si todos los elementos en `buys` tienen `statusDetail` igual a "accredited"
+          const allAccredited = buys.every((buy) => {
+            return buy.statusDetail === "accredited";
+          });
+    
+          // Verifica si `userData.id` coincide con `userId` en `buys`
+          const userIdMatches = buys.some((buy) => {
+            return buy.userId === userData.id;
+          });
+    
+          // Habilita el botón si todas las condiciones se cumplen
+          setReviewButtonEnabled(allMatchProductId && allAccredited && userIdMatches);
+        } else {
+          // Deshabilita el botón si no hay compras disponibles
+          setReviewButtonEnabled(false);
+        }
+      }, [buys, allData, userData]);
 
     const handleSubmit=(detailProduct)=>{
         const allData = [{...product, email}]
@@ -224,9 +269,9 @@ export const DetailProduct = () => {
     //     useEffect(()=>{
     //         dispatch(getReviews())
     //     },[dispatch])
-        console.log("product: ", product)
-        console.log("allData[0].id: ", allData[0].id)
-        console.log("review: ", review)
+        // console.log("product: ", product)
+        // console.log("allData[0].id: ", allData[0].id)
+        // console.log("review: ", review)
         // console.log("review[0].ProductId: ", review.ProductId)
 
     return (
@@ -261,7 +306,7 @@ export const DetailProduct = () => {
                         <div className={style.reviewsCont}>
                             <div className={style.contTitulos}>
                             <h2 className={style.tituloReviews}>Product Reviews</h2>
-                            <button className={style.añadir} onClick={openReviewPopup}>Añadir review</button>
+                            <button className={style.añadir} onClick={openReviewPopup} disabled={!isReviewButtonEnabled}>Añadir review</button>
                             </div>
                             {isReviewPopupOpen && (
                             <div className={style.modalBackground}>
@@ -274,7 +319,7 @@ export const DetailProduct = () => {
                                 <div className={style.areaNombres}>
                                 <h2 className={style.nombreRev}>Puntaje: </h2>
                                 {/* <input disabled={true} className={style.nombreRev} type="text" value={form.nombre} onChange={changeHandler} name="nombre" placeholder={displayName} /> */}
-                                <input className={style.puntajeRev} type="number" value={form.rating} onChange={changeHandler} name="rating" min="0" max="5" placeholder="Puntaje (0-5)" />
+                                <input className={style.puntajeRev} type="number" value={form.rating} onChange={changeHandler} name="rating" min="0" max="5" placeholder="0-10" />
                                 </div>
                                 <textarea className={style.escribirRev} type="text" value={form.comment} onChange={changeHandler} name="comment" placeholder="Escribe tu opinión" />
                                 <div className={style.botonesReview}>
@@ -297,10 +342,12 @@ export const DetailProduct = () => {
                                         });
                                         return (
                                             <div className={style.review} key={index}>
-                                                <h5>{formattedDateTime}</h5>
-                                                <h3>{review.user.name}</h3>
-                                                <h4>Puntaje: {review.rating} / 10</h4>
-                                                <p>{review.comment}</p>
+                                                <div className={style.nombreFecha}>
+                                                <p className={style.user}>{review.user?.name}</p>
+                                                <p className={style.fecha}>{formattedDateTime}</p>
+                                                </div>
+                                                <p className={style.comment}>"{review.comment}"</p>
+                                                <p className={style.puntaje}>Puntaje: {review.rating} / 10</p>
                                             </div>
                                         );
                                     } else {
