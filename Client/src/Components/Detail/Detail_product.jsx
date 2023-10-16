@@ -11,8 +11,12 @@ import Loader from "../loader/loader";
 export const DetailProduct = () => {
   const detailProduct = useSelector((state) => state.detailProduct);
   const review = useSelector((state)=> state.review);
+  const userData = useSelector((state) => state.userData);
   const auth = useAuth()
   const { email } = auth.user;
+
+  const isAdmin = userData.userAdmin;
+
 
   const dispatch = useDispatch();
   const { name } = useParams();
@@ -34,28 +38,6 @@ export const DetailProduct = () => {
     };
     fetchData();
   }, [name]);
-
-  const getUserInfo = async (email) => {
-    try {
-      const userInfo = await dispatch(getUserByEmail(email));
-      return userInfo;
-    } catch (error) {
-      console.error(error);
-      return null;
-    }
-  }
-
-  // Llama a getUserInfo
-  getUserInfo(email)
-  .then(userInfo => {
-    
-    console.log(userInfo)
-  })
-  .catch(error => console.error(error));
-
-  const user = getUserInfo(email);
-
-  console.log(`isTheUserAdmin:::::::::::::::::::::${user}------------`);
 
   let product = detailProduct[1];
   const allData =  [{...product, email}]
@@ -190,7 +172,8 @@ export const DetailProduct = () => {
                       <div className={`${style.column} ${style.infoProduct}`}>
                           <div className={style.stockEdit}>
                             <p>Stock: {product?.stock}</p>
-                            {user === true ? <button><span className="material-icons">edit</span></button> : null}
+                            <button onClick={()=>console.log(userData)}>userData</button>
+                            { isAdmin === true ? <button><span className="material-icons">edit</span></button> : null}
                           </div>
                           <h1>{product?.name}</h1>
                           <p>{product?.description}</p>
