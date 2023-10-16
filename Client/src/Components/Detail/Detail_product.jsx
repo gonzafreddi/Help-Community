@@ -1,21 +1,20 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createOrder, getProductByName, createReview, getReviews, getAllBuys } from "../../redux/actions/action";
+import { createOrder, getProductByName, createReview, getReviews, getAllBuys, getAllBuysForUser } from "../../redux/actions/action";
 import style from "./detail_campain.module.css";
 import { addToCart } from "../../redux/actions/action";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "../../context/AuthContext";
-
 import Loader from "../loader/loader";
+
+
 export const DetailProduct = () => {
     const detailProduct = useSelector((state) => state.detailProduct);
     const review = useSelector((state)=> state.review) || [];
     const auth = useAuth()
     const { email } = auth.user;
     const emailUser = {email: email};
-    
-    console.log("detailProduct: ", detailProduct)
 
     const dispatch = useDispatch();
     const { name } = useParams();
@@ -24,30 +23,29 @@ export const DetailProduct = () => {
     const [reviews, setReviews] = useState([]);
     const [users, setUsers] = useState([]);
 
-    // console.log("name: ", name)
-    // console.log("email: ", email)
-
-    const [buys, setBuys ] = useState("")
     const [userData, setUserData] = useState([]);
     const [isReviewButtonEnabled, setReviewButtonEnabled] = useState(false);
 
-    useEffect(() => {
-        // Realiza una solicitud GET para obtener la lista de temperamentos desde el servidor
-        axios
-          .get("http://localhost:3001/buys")
-          .then((response) => {
-            // Actualiza el estado con los temperamentos disponibles
-            setBuys(response.data);
-          })
-          .catch((error) => {
-            console.error("Error al obtener los temperamentos:", error);
-          });
-      }, []);
+    const [buys, setBuys ] = useState([]);
+    const [ratingError, setRatingError] = useState("");
+    const [commentError, setCommentError] = useState("");
 
-      console.log("buys: ", buys)
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const buyData = await getAllBuysForUser(email);
+            setBuys(buyData);
+          } catch (error) {
+            console.error(error);
+          }
+        };
+    
+        fetchData();
+      }, []);
+   
 
       useEffect(() => {
-        // Realiza una solicitud GET para obtener la lista de temperamentos desde el servidor
+        // Para que al enviar email como parametro, me devuelva la info del usuario, incluido el userId
         axios
           .get('/user/email', {
             params: {
@@ -55,42 +53,28 @@ export const DetailProduct = () => {
             },
           })
           .then((response) => {
-            // Actualiza el estado con los temperamentos disponibles
+            // Actualiza el estado con la info del usuario
             setUserData(response.data);
           })
           .catch((error) => {
-            console.error("Error al obtener los temperamentos:", error);
+            console.error("Error al obtener la info:", error);
           });
       }, []);
 
-      console.log("userData: ", userData)
-
-    //   useEffect(() => {
-    //     // Realiza una solicitud GET para obtener la lista de temperamentos desde el servidor
-    //     axios
-    //       .get("http://localhost:3001/user")
-    //       .then((response) => {
-    //         // Actualiza el estado con los temperamentos disponibles
-    //         setUsers(response.data);
-    //       })
-    //       .catch((error) => {
-    //         console.error("Error al obtener los temperamentos:", error);
-    //       });
-    //   }, []);
-
-    //   console.log("users: ", users)
 
     const displayName = auth.user.displayName;
     // const firstName = displayName.split(' ')[0];
     // console.log("auth.user.email: ", auth.user.email)
    
 
-      const [reviewCreated, setReviewCreated] = useState(false);
+    const [reviewCreated, setReviewCreated] = useState(false);
         
       
     let product = detailProduct[1];
     const allData =  [{...product, email}]
     // console.log("allData", allData)
+
+    console.log("allData[0].id: ", allData[0].id)
 
     const [form, setForm] = useState({    
         emailUser: allData[0].email,
@@ -99,14 +83,12 @@ export const DetailProduct = () => {
         comment: ""
       });
 
-    // const [error, setError] = useState({
-    //     email: userMail,
-    //     ProductId: productId,
-    //     // nombre: "",
-    //     rating: 0,
-    //     comment: "",
-    //     // dateReview: "",
-    //   });
+    const [error, setError] = useState({
+        email: "",
+        ProductId: "",
+        rating: 0,
+        comment: "",
+      });
 
       useEffect(() => {
         const fetchData = async () => {
@@ -154,79 +136,72 @@ export const DetailProduct = () => {
         const property = event.target.name; //inputs
         const value = event.target.value; //valor ingresado
         setForm({ ...form, [property]: value });
+
+        if (property === "rating") {
+            if (value < 1 || value > 10) {
+              setRatingError("El puntaje debe estar entre 1 y 10");
+            } else {
+              setRatingError("");
+            }
+          }
+        
+          if (property === "comment") {
+            if (value.length > 250) {
+              setCommentError("El comentario no debe exceder los 250 caracteres");
+            } else {
+              setCommentError("");
+            }
+          }
         //llama a la funcion para validar los campos actualizados en tiempo real
-        // validate({ ...form, [property]: value }, property);
+        validate({ ...form, [property]: value }, property);
       }; 
 
-    //     const validate = (form) => {
+        const validate = (form) => {
 
-    //     const patternNombre = /^[A-Za-z\s]+$/;
-    //     const patternNumeros = /^[0-9]+$/;
-    //     const newError = { ...error }; // copia del estado de error existente
+        const patternNombre = /^[A-Za-z\s]+$/;
+        const patternNumeros = /^[0-9]+$/;
+        const newError = { ...error }; // copia del estado de error existente
       
-    //     // if (!patternNombre.test(form.nombre) || !form.nombre) {
-    //     //   newError.nombre = "Ingrese solo letras A-Z";
-    //     // } else {
-    //     //   newError.nombre = "";
-    //     // }
-      
-    //     if (!patternNumeros.test(form.rating) || !form.rating) {
-    //       newError.rating = "Debe ingresar solo Numeros";
-    //     } else {
-    //       newError.rating = "";
-    //     }
+        if (!patternNumeros.test(form.rating) || !form.rating) {
+          newError.rating = "Debe ingresar solo Numeros";
+        } else {
+          newError.rating = "";
+        }
 
-    //     if (!patternNombre.test(form.comment) || !form.comment) {
-    //         newError.comment = "Ingrese solo letras A-Z";
-    //       } else {
-    //         newError.comment = "";
-    //       }
+        if (!patternNombre.test(form.comment) || !form.comment) {
+            newError.comment = "Ingrese solo letras A-Z";
+          } else {
+            newError.comment = "";
+          }
   
-    //     setError(newError); // Actualiza el estado de error
-    //   };
+        setError(newError); // Actualiza el estado de error
+      };
 
 
-    //   const disable = () => { //para verificar si se deshabilita el boton submit, iterando las props del objeto error
-    //     let auxDisabled = true; //si la variable es true se deshabilita, si es false se habilita
-    //     for (let err in error){
-    //       if(error[err] === "") auxDisabled = false;
-    //       else{ 
-    //       auxDisabled = true //cualquier input q este con error, es true y se deshabilita
-    //       break;
-    //      }
-    //     }
-    //     return auxDisabled;
-    //   }
+        const disable = () => {
+        if (ratingError || commentError) {
+            return true;
+        }
+        return false;
+        };
 
- 
-
-    // console.log("getReviews: ", getReviews)
     useEffect(() => {
-        if (buys && buys.length > 0) {
-          // Verifica si todos los elementos en `buys` coinciden con `allData[0].id`
-          const allMatchProductId = buys.every((buy) => {
-            return buy.products.items.some(
-              (item) => item.id === allData[0].id
+        if (buys && buys.length > 0 && userData && userData.length > 0) {
+          const allMatchProductId = buys.some((buy) => {
+            return (
+              buy.products.items &&
+              buy.products.items.some((item) => item.id === allData[0].id) &&
+              buy.products.statusDetail === "accredited" &&
+              buy.userId === userData[0].id
             );
           });
     
-          // Verifica si todos los elementos en `buys` tienen `statusDetail` igual a "accredited"
-          const allAccredited = buys.every((buy) => {
-            return buy.statusDetail === "accredited";
-          });
-    
-          // Verifica si `userData.id` coincide con `userId` en `buys`
-          const userIdMatches = buys.some((buy) => {
-            return buy.userId === userData.id;
-          });
-    
-          // Habilita el botón si todas las condiciones se cumplen
-          setReviewButtonEnabled(allMatchProductId && allAccredited && userIdMatches);
+          setReviewButtonEnabled(allMatchProductId);
         } else {
-          // Deshabilita el botón si no hay compras disponibles
           setReviewButtonEnabled(false);
         }
       }, [buys, allData, userData]);
+
 
     const handleSubmit=(detailProduct)=>{
         const allData = [{...product, email}]
@@ -241,6 +216,10 @@ export const DetailProduct = () => {
       
       const closeReviewPopup = () => {
         setReviewPopupOpen(false);
+      };
+
+      const handlePuntajeChange = (newPuntaje) => {
+        setForm({ ...form, rating: newPuntaje });
       };
 
       const submitReview = async (event) => {
@@ -259,20 +238,13 @@ export const DetailProduct = () => {
         } catch (error) {
             alert(error.response.data.error);
             //con este alert muestro los errores del back
-        } if(reviewCreated === false){
+        } 
+        if(reviewCreated === false){
             event.preventDefault()
         }
         closeReviewPopup();
         };
-    // //   console.log("reviewsProductId: ", review.ProductId)
-    //     // console.log("reviews: ", reviews)
-    //     useEffect(()=>{
-    //         dispatch(getReviews())
-    //     },[dispatch])
-        // console.log("product: ", product)
-        // console.log("allData[0].id: ", allData[0].id)
-        // console.log("review: ", review)
-        // console.log("review[0].ProductId: ", review.ProductId)
+
 
     return (
         <div className={style.conteiner}>
@@ -318,12 +290,24 @@ export const DetailProduct = () => {
                                 </div>
                                 <div className={style.areaNombres}>
                                 <h2 className={style.nombreRev}>Puntaje: </h2>
+                                <p className={style.numeros}>{form.rating}</p>
                                 {/* <input disabled={true} className={style.nombreRev} type="text" value={form.nombre} onChange={changeHandler} name="nombre" placeholder={displayName} /> */}
-                                <input className={style.puntajeRev} type="number" value={form.rating} onChange={changeHandler} name="rating" min="0" max="5" placeholder="0-10" />
+                                <input
+                                    type="range"
+                                    min="1"
+                                    max="10"
+                                    step="0.1" // Para permitir decimales
+                                    value={form.rating}
+                                    onChange={changeHandler}
+                                    name="rating"
+                                    className={`${style.puntajeRange} ${style.customRange}`}
+                                    />                          
+                                {ratingError && <span className={style.error}>{ratingError}</span>}
                                 </div>
                                 <textarea className={style.escribirRev} type="text" value={form.comment} onChange={changeHandler} name="comment" placeholder="Escribe tu opinión" />
+                                {commentError && <span className={style.error}>{commentError}</span>}
                                 <div className={style.botonesReview}>
-                                <button className={style.enviar} onClick={submitReview} type="submit">Enviar</button>
+                                <button disabled={disable() || reviewCreated} className={style.enviar} onClick={submitReview} type="submit">Enviar</button>
                                 {/* disabled={disable() || reviewCreated} */}
                                 <button className={style.cancelar} onClick={closeReviewPopup}>Cancelar</button>
                                 </div>

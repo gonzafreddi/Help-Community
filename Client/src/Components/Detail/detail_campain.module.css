@@ -253,6 +253,7 @@
     color: rgb(36, 36, 36);
     align-content: center;
     justify-content: center;
+    text-align: center;
 }
 
 /* .nombreRev:focus{
@@ -276,10 +277,10 @@
     height: 2em;
     width: 20em;
   } */
-  .puntajeRev {
+  /* .puntajeRev {
     /* align-items: center; */
     /* text-align: center; */
-    justify-content: center;
+    /* justify-content: center;
     font-family: 'DM Sans', sans-serif;
     font-size: 17px;
     font-weight: 400;
@@ -292,9 +293,9 @@
     text-indent: 12px;
     transition: all 0.5s;
     color: rgb(36, 36, 36);
-}
+} */
 
-.puntajeRev:focus{
+/* .puntajeRev:focus{
     transition: all 0.2s;
     box-shadow: none;
     border: 1px solid rgba(1, 42, 74, 0.6);
@@ -309,7 +310,7 @@
     text-indent: 15px;
     transition: all 0.1s;
     font-weight: 400;
-}
+} */
   /* .puntajeRev{
     height: 2em;
     width: 10em
@@ -373,6 +374,86 @@
     background-color: #8aaee9ee;
   }
 
+  /* Estilo para el botón "Añadir" cuando está deshabilitado */
+.enviar:disabled {
+  background-color: #ccc; /* Fondo gris */
+  color: #666; /* Texto más claro */
+  cursor: not-allowed; /* Cambia el cursor a "no permitido" */
+}
+.enviar:disabled:hover {
+  background-color: #ccc;
+  color: #666;
+  cursor: default;
+}
+/* Estilo para el botón "Añadir" cuando se está pasando el mouse sobre él */
+.enviar:hover {
+  background-color: #1055c4;
+  cursor: pointer;
+}
+
+/* Estilo para el rango de entrada */
+.puntajeRange {
+  width: 20%;
+  position: absolute;
+  margin-left: 9%;
+  margin-top: 1.2%;
+  background-color: #007bff;
+  
+}
+
+.puntajeRange:hover {
+cursor: pointer;
+}
+
+/* Estilo para el valor seleccionado */
+.ratingValue {
+  display: block;
+  text-align: center;
+  background-color: #007bff;
+}
+.numeros{
+  margin-top: 0%;
+  margin-left: -2%;
+  display: flex;
+  color: #007bff;
+  font-size: 24px;
+  align-items: center;
+  text-align: center;
+  justify-content: left;
+}
+.customRange {
+  background: #2196F3; /* Cambia el color de fondo de la barra a azul (#2196F3) */
+}
+/* .puntajeButtonsContainer{
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+  justify-items: center;
+  margin-top: 2%;
+} */
+
+/* Estilo para los botones no seleccionados */
+.puntajeButton {
+  background-color: #ffffff; /* Color de fondo no seleccionado */
+  color: #004175bd; /* Color del texto no seleccionado */
+  border-radius: 50px;
+  border: 1px solid #007bff;
+  margin: 5px;
+  font-size: 18px;
+  /* box-shadow: 1px 1px 10px; */
+}
+
+.puntajeButton:hover{
+  cursor: pointer;
+}
+
+/* Estilo para los botones seleccionados */
+.puntajeButton.selected {
+  background-color: #007bff; /* Color de fondo seleccionado */
+  color: #fff; /* Color del texto seleccionado */
+}
+
   .enviar{
     height: 40px;
     padding: 0px 20px;
@@ -384,9 +465,8 @@
     font-size: 1.1rem;
   }
 
-  .enviar:hover{
-    background-color: #1055c4;
-    cursor: pointer;
+  .noCommentsMessage{
+    color: #1055c4;
   }
 
   .reviewPopup {
