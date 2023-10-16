@@ -2,7 +2,6 @@ const mercadopago = require("mercadopago");
 require("dotenv").config();
 
 const { ACCESS_TOKEN } = process.env;
-
 // * Configurar mercado pago
 // esto vendria a ser un post de creae una orden
 const createOrder = async (req, res) => {
@@ -10,16 +9,10 @@ const createOrder = async (req, res) => {
     access_token:
       "TEST-6850757546672488-100711-50177e634a355fb71db241599efdb0f3-1503945548",
   });
-  // console.log(req.body[0].price)
-  
   const pictureUrl = req.body[0].image;
   const products = req.body[0]
-  console.log(products)
   let items = [];
-  console.log(products.length)
-  if(products.length > 1){
-
-
+   if(products.length > 1){ 
     for (const prod of products) {
         const pictureUrl = prod.product.image;
         const item = {
@@ -32,7 +25,6 @@ const createOrder = async (req, res) => {
         };
         items.push(item);
       }
-
   }else{
   items = [{
     title: req.body[0].name,
@@ -44,8 +36,6 @@ const createOrder = async (req, res) => {
     picture_url: pictureUrl,
   }]
   }
-
-
   console.log(items)
   const result = await mercadopago.preferences.create({
     items: items,
@@ -59,7 +49,6 @@ const createOrder = async (req, res) => {
     // notification_url: `https://mvrmrv5j-3001.brs.devtunnels.ms/payment/webhook?email=${req.body[0].email}`,
     notification_url:`https://pmcmwdd1-3001.brs.devtunnels.ms/payment/webhook?email=${req.body[0].email}`, // Puerto de gonzalo freddi si quieren probar cambien la url con su puerto https
   });
-  // console.log(result.body);
   res.send(result.body);
 };
 
