@@ -53,7 +53,7 @@ function App(){
         <Route path="/products" element={<Products />} />
         <Route path='/userProfile' element={<UserProfile/>}/>
         <Route path='/buys' element={<UserBuys/>}/>
-        <Route path='/allbuys' element={<AllBuys/>}/>
+        
 
 
         <Route path="/admin/*" element={<AdminLayout />} />
@@ -79,6 +79,7 @@ function AdminLayout() {
         <Route path="/products" element={<Products />} />
         <Route path="/products/create" element={<CreateProduct />} />
         <Route path='/create/campaign' element={<CreateCampaign/>}/>
+        <Route path='/allbuys' element={<AllBuys/>}/>
         {/* Agrega otras rutas de admin según sea necesario */}
       </Routes>
       </div>
