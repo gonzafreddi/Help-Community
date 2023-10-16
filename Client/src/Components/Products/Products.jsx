@@ -5,7 +5,7 @@ import { Product } from "../Product/Product";
 import styles from "./Products.module.css"
 // import FilterProducts from '../FilterProducts/FilterProducts';
 import Pagination from "../Pagination/Pagination";
-import Kv from "../../assets/compra-dona-4.png";
+import Kv from "../../assets/Compra-dona-4.png";
 
 
 export const Products = () => {
