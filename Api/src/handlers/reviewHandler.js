@@ -1,4 +1,4 @@
-const { getAllreviews, postreviews, updatereviews } = require("../controllers/reviewController");
+const { getAllreviews, postreviews, updatereviews,  getUserreviews } = require("../controllers/reviewController");
 //const getUserByEmail = require("../controllers/getUserByEmail");
   
   const getreviewHandler = async (req, res) => {
@@ -44,5 +44,17 @@ const { getAllreviews, postreviews, updatereviews } = require("../controllers/re
       res.status(400).json({ error: error.message });
     }
   };  
+ 
+  const userreviewHandler = async (req, res) => {
+   
+    try {
+      const result = await getUserreviews(req, res);
   
-  module.exports = { getreviewHandler, postreviewHandler, putreviewHandler };
+      res.status(200).json(result);
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
+  };
+
+
+  module.exports = { getreviewHandler, postreviewHandler, putreviewHandler, userreviewHandler };
