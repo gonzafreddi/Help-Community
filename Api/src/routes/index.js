@@ -12,6 +12,7 @@ const CategoryProductRouter = require("./categoryProductRouter");
 const buysRouter = require("./buysRouter");
 const reviewRouter = require("./reviewRouter");
 const shoppingCarRouter = require("./shoppingCarRouter");
+const nodemailerRouter = require("./nodemailerRouter");
 
 const router = Router();
 
@@ -26,6 +27,7 @@ router.use("/review", reviewRouter);
 router.use("/categoryProduct", CategoryProductRouter);
 router.use("/buys", buysRouter);
 router.use("/shoppingCar", shoppingCarRouter);
+router.use("/nodemailer", nodemailerRouter);
 
 router.use(express.json());
 
