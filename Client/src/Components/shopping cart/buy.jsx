@@ -24,7 +24,7 @@ export default function Buy() {
 }
 
   useEffect(()=>{
-    window.localStorage.setItem("dataCart", JSON.stringify(cart))
+    // window.localStorage.setItem("dataCart", JSON.stringify(cart))
   },[cart])
 
   console.log(cart)

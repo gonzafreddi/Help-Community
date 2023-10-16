@@ -330,3 +330,9 @@ export const getAllBuysForUser =async(email)=>{
 export const createReview = (review) => {
     return { type: CREATE_REVIEW, payload: review };
 };
+
+export const clearCart = ()=>{
+    return {
+        type: CLEART_CART
+    }
+}

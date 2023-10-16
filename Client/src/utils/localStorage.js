@@ -17,6 +17,8 @@ export const saveCartDb = async(email) => {
    if (emailUser) {
       let cart = getItem("cartShop");
       const request = [...cart, {email:email}]
+      console.log("me ejectute")
+      console.log(request)
       const data = await axios.post(`http://localhost:3001/shoppingCar`, request)
      
       console.log(data)

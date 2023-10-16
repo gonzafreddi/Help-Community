@@ -15,7 +15,7 @@ import {
     CREATE_REVIEW,
     GET_REVIEWS
   } from "../actions/action";
-  import { ADD_ONE_TO_CART, ADD_TO_CART, GET_DETAIL_CAMPAIGN, GET_PRODUCT_BY_NAME, GET_STATE, REMOVE_ONE_TO_CART, REMOVE_TO_CART } from "../actions/action_type";
+  import { ADD_ONE_TO_CART, ADD_TO_CART, CLEART_CART, GET_DETAIL_CAMPAIGN, GET_PRODUCT_BY_NAME, GET_STATE, REMOVE_ONE_TO_CART, REMOVE_TO_CART } from "../actions/action_type";
   
   const initialState = {
     campaign: [],
@@ -348,6 +348,11 @@ const reducer = (state = initialState, action)=> {
                             ...state,
                             cartShop: updtedRemoveCart
                         }
+                case CLEART_CART:
+                    return{
+                        ...state, 
+                        cartShop: []
+                    }
                 case GET_PRODUCT_BY_NAME:
                     return{
                         ...state, 

@@ -9,31 +9,30 @@ import SearchBar from '../SearchBar/SearchBar';
 import { UserNav } from '../userComponents/userNav/userNav';
 import './Nav.css';
 import { verifyLog } from '../../utils/verifyLog';
-
+import { saveCartDb } from '../../utils/localStorage';
+import { clearCart } from '../../redux/actions/action';
+import { useDispatch } from 'react-redux';
 export const Nav = () => {
+    const dispatch = useDispatch()
     const cart = useSelector((state) => state.cartShop);
     const totalProduct = cart.length;
-  
     const auth = useAuth();
-    
     const { email } = auth.user;
     verifyLog(email)
+    saveCartDb(email)
     const [loginOpen, setLoginOpen] = useState(false);
-    
     const openLogin = () => {
       setLoginOpen(true);
       document.body.style.overflow = 'hidden';
     };
-  
     const closeLogin = () => {
       setLoginOpen(false);
       document.body.style.overflow = 'unset';
     };
-
-    const handleLogout = () => {
+    function handleLogout() {
         auth.logout();
+        dispatch(clearCart())
     }
-
     return (
         <nav className='Nav'>
             

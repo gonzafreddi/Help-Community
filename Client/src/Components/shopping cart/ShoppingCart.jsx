@@ -10,9 +10,8 @@ export default function ShoppingCart() {
   const cart = useSelector((state) => state.cartShop);
 
   useEffect(() => {
-    // setItem("cartShop", cart);
   }, [cart]);
-
+console.log(cart)
   return (
     <div className={style.conteiner}>
       <div className={style.cont}>

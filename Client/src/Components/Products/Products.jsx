@@ -12,12 +12,13 @@ export const Products = () => {
 
 const dispatch = useDispatch();
 const auth = useAuth()
+const cart = useSelector((state)=>{state.cartShop})
 const {email} = auth.user
 useEffect(()=>{
     dispatch(getProduct());
-    saveCartDb(email)
+   
     dispatch(getCateg())
-},[email])
+},[email, cart])
 
 
 

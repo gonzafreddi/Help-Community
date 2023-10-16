@@ -12,6 +12,7 @@ export const Product = (props) => {
   const dispatch = useDispatch()
   
 
+  
 
   const hancleAddtoCart = ()=>{
     const quantityToadd = 1
