@@ -113,20 +113,33 @@
   color: #011431cc;
 }
 
-.añadir{
-    height: 40px;
-    padding: 0px 20px;
-    border-radius: 10px;
-    background-color: #3A86FF;
-    color: #ffff;
-    border: none;
-    transition: all ease .3s;
-    font-size: 1.1rem;
+
+.añadir {
+  height: 40px;
+  padding: 0px 20px;
+  border-radius: 10px;
+  background-color: #3A86FF;
+  color: #ffffff;
+  border: none;
+  transition: all ease 0.3s;
+  font-size: 1.1rem;
 }
 
-.añadir:hover{
-    background-color: #1055c4;
-    cursor: pointer;
+/* Estilo para el botón "Añadir" cuando está deshabilitado */
+.añadir:disabled {
+  background-color: #ccc; /* Fondo gris */
+  color: #666; /* Texto más claro */
+  cursor: not-allowed; /* Cambia el cursor a "no permitido" */
+}
+.añadir:disabled:hover {
+  background-color: #ccc;
+  color: #666;
+  cursor: default;
+}
+/* Estilo para el botón "Añadir" cuando se está pasando el mouse sobre él */
+.añadir:hover {
+  background-color: #1055c4;
+  cursor: pointer;
 }
 
 .rev2{
@@ -138,13 +151,44 @@
 }
 
 .review{
-    width: 120%;
+    width: 25em;
     background-color: rgba(255, 255, 255, 0.911);
     margin-bottom: 30px;
-    padding: 10px 20px;
+    padding: 0px 15px;
     border-radius: 10px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.116);
 }
+
+
+.nombreFecha{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /* justify-content: center; */
+  /* text-align: justify; */
+  gap: 11em;
+}
+
+.fecha{
+  font-size: small;
+}
+
+.user{
+  font-size: large;
+  font-weight: 500;
+  color: #001435a8;
+}
+
+.puntaje{
+  font-size: 14px;
+}
+
+.comment{
+  margin-top: -1%;
+  font-size: medium;
+}
+
+
 
 .modalBackground {
     position: fixed;
@@ -164,6 +208,13 @@
     color: #011431cc;
   }
 
+  .productName{
+    color: #1055c4;
+    font-weight: 500;
+    font-size: large;
+    margin-bottom: 20px;
+  }
+
   .imgReviewCont{
     align-items: center;
     justify-content: center;
@@ -173,9 +224,9 @@
   }
 
   .imgReview{
-    width: 160px;
-    height: 160px;
-    object-fit:contain;
+    width: 120px;
+    height: 120px;
+    object-fit:cover;
     border-radius: 10%;
     /* box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.37); */
   }
@@ -191,18 +242,21 @@
     font-family: 'DM Sans', sans-serif;
     font-size: 17px;
     font-weight: 400;
-    border: 1px solid rgba(219, 220, 221, 1);
+    /* border: 1px solid rgba(219, 220, 221, 1); */
     box-shadow: none;
     border-radius: 10px;
     margin-bottom: 1.5rem;
     height: 40px;
-    width: 50%;
+    /* width: 50%; */
     text-indent: 12px;
     transition: all 0.5s;
     color: rgb(36, 36, 36);
+    align-content: center;
+    justify-content: center;
+    text-align: center;
 }
 
-.nombreRev:focus{
+/* .nombreRev:focus{
     transition: all 0.2s;
     box-shadow: none;
     border: 1px solid rgba(1, 42, 74, 0.6);
@@ -210,20 +264,23 @@
 .nombreRev:focus::placeholder{
     transition: all 0.1s;
     opacity: 0;
-}
+} */
 
-.nombreRev::placeholder{
+/* .nombreRev::placeholder{
     font-family: 'DM Sans', sans-serif;
     text-indent: 15px;
     transition: all 0.1s;
     font-weight: 400;
-}
+} */
 
   /* .nombreRev{
     height: 2em;
     width: 20em;
   } */
-  .puntajeRev {
+  /* .puntajeRev {
+    /* align-items: center; */
+    /* text-align: center; */
+    /* justify-content: center;
     font-family: 'DM Sans', sans-serif;
     font-size: 17px;
     font-weight: 400;
@@ -232,13 +289,13 @@
     border-radius: 10px;
     margin-bottom: 1.5rem;
     height: 40px;
-    width: 30%;
+    width: 15%;
     text-indent: 12px;
     transition: all 0.5s;
     color: rgb(36, 36, 36);
-}
+} */
 
-.puntajeRev:focus{
+/* .puntajeRev:focus{
     transition: all 0.2s;
     box-shadow: none;
     border: 1px solid rgba(1, 42, 74, 0.6);
@@ -253,7 +310,7 @@
     text-indent: 15px;
     transition: all 0.1s;
     font-weight: 400;
-}
+} */
   /* .puntajeRev{
     height: 2em;
     width: 10em
@@ -317,6 +374,86 @@
     background-color: #8aaee9ee;
   }
 
+  /* Estilo para el botón "Añadir" cuando está deshabilitado */
+.enviar:disabled {
+  background-color: #ccc; /* Fondo gris */
+  color: #666; /* Texto más claro */
+  cursor: not-allowed; /* Cambia el cursor a "no permitido" */
+}
+.enviar:disabled:hover {
+  background-color: #ccc;
+  color: #666;
+  cursor: default;
+}
+/* Estilo para el botón "Añadir" cuando se está pasando el mouse sobre él */
+.enviar:hover {
+  background-color: #1055c4;
+  cursor: pointer;
+}
+
+/* Estilo para el rango de entrada */
+.puntajeRange {
+  width: 20%;
+  position: absolute;
+  margin-left: 9%;
+  margin-top: 1.2%;
+  background-color: #007bff;
+  
+}
+
+.puntajeRange:hover {
+cursor: pointer;
+}
+
+/* Estilo para el valor seleccionado */
+.ratingValue {
+  display: block;
+  text-align: center;
+  background-color: #007bff;
+}
+.numeros{
+  margin-top: 0%;
+  margin-left: -2%;
+  display: flex;
+  color: #007bff;
+  font-size: 24px;
+  align-items: center;
+  text-align: center;
+  justify-content: left;
+}
+.customRange {
+  background: #2196F3; /* Cambia el color de fondo de la barra a azul (#2196F3) */
+}
+/* .puntajeButtonsContainer{
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+  justify-items: center;
+  margin-top: 2%;
+} */
+
+/* Estilo para los botones no seleccionados */
+.puntajeButton {
+  background-color: #ffffff; /* Color de fondo no seleccionado */
+  color: #004175bd; /* Color del texto no seleccionado */
+  border-radius: 50px;
+  border: 1px solid #007bff;
+  margin: 5px;
+  font-size: 18px;
+  /* box-shadow: 1px 1px 10px; */
+}
+
+.puntajeButton:hover{
+  cursor: pointer;
+}
+
+/* Estilo para los botones seleccionados */
+.puntajeButton.selected {
+  background-color: #007bff; /* Color de fondo seleccionado */
+  color: #fff; /* Color del texto seleccionado */
+}
+
   .enviar{
     height: 40px;
     padding: 0px 20px;
@@ -328,9 +465,8 @@
     font-size: 1.1rem;
   }
 
-  .enviar:hover{
-    background-color: #1055c4;
-    cursor: pointer;
+  .noCommentsMessage{
+    color: #1055c4;
   }
 
   .reviewPopup {
