@@ -10,7 +10,7 @@ export default function ShoppingCart() {
   const cart = useSelector((state) => state.cartShop);
 
   useEffect(() => {
-    setItem("cartShop", cart);
+    // setItem("cartShop", cart);
   }, [cart]);
 
   return (

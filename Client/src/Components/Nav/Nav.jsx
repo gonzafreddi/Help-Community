@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 import SearchBar from '../SearchBar/SearchBar';
 import { UserNav } from '../userComponents/userNav/userNav';
 import './Nav.css';
-
+import { verifyLog } from '../../utils/verifyLog';
 
 export const Nav = () => {
     const cart = useSelector((state) => state.cartShop);
@@ -17,6 +17,7 @@ export const Nav = () => {
     const auth = useAuth();
     
     const { email } = auth.user;
+    verifyLog(email)
     const [loginOpen, setLoginOpen] = useState(false);
     
     const openLogin = () => {

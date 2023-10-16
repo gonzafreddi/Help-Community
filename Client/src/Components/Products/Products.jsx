@@ -5,16 +5,20 @@ import { Product } from "../Product/Product";
 import style from "./Products.module.css"
 // import FilterProducts from '../FilterProducts/FilterProducts';
 import Pagination from "../Pagination/Pagination";
-
+import { saveCartDb } from "../../utils/localStorage";
+import { useAuth } from "../../context/AuthContext";
 
 export const Products = () => {
 
 const dispatch = useDispatch();
-
+const auth = useAuth()
+const {email} = auth.user
 useEffect(()=>{
     dispatch(getProduct());
+    saveCartDb(email)
     dispatch(getCateg())
-},[dispatch])
+},[email])
+
 
 
 const categ = useSelector(state => state.categ);
@@ -23,12 +27,10 @@ const categ = useSelector(state => state.categ);
 
 const products = useSelector((state) => state.products);
 
-console.log("products: ", products);
 const [page, setPage] = useState(1);
 
 // Número de tarjetas por página
 const cardsPerPage = 20;
-console.log(products)
 const totalItems = products.length;
 
 

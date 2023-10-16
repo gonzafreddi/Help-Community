@@ -20,6 +20,7 @@ const getShoppingCarController = async (req, res) => {
 
 const addShoppingCarController = async (req, res) => {
     const { email, products, state } = req.body;
+    console.log(req.body)
     const userId = await getUserByEmail(email);
     try {
         await ShoppingCar.create({

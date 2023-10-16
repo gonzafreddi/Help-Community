@@ -15,6 +15,7 @@ import CreateProduct from './Components/createProduct/CreateProduct'
 import ShoppingCart from './Components/shopping cart/ShoppingCart'
 import { setItem } from './utils/localStorage'
 import { useSelector } from 'react-redux'
+import { saveCartDb } from './utils/localStorage'
 import './App.css'
 import UserProfile from './Components/userComponents/userProfile/userProfile'
 import Admin from './Components/adminComponents/admin/admin'
@@ -22,6 +23,7 @@ import UserBuys from './Components/buys/UserBuys'
 import { AllBuys } from './Components/buys/allBuysAdmin'
 import { BrowserRouter as Switch } from 'react-router-dom';
 import SideBarAdmin from './Components/adminComponents/SideBarAdmin/SideBarAdmin'
+
 
 
 
@@ -34,6 +36,7 @@ function App(){
 
   useEffect(()=>{
     setItem("cartShop", cart)
+
     dispatch(getState())
     dispatch(getCategory())
   },[cart])
