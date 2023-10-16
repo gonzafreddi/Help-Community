@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProduct, getCateg } from "../../redux/actions/action";
 import { Product } from "../Product/Product";
-import style from "./Products.module.css"
+import styles from "./Products.module.css"
 // import FilterProducts from '../FilterProducts/FilterProducts';
 import Pagination from "../Pagination/Pagination";
 import Kv from "../../assets/compra-dona-4.png";
@@ -56,17 +56,17 @@ const currentCards = getCurrentPageCampaigns();
       <div>
 
         <div>
-        <img className={style.KeyVisual} src={Kv} alt="image-donaciones" width="100%" height="10px"/>
+        <img className={styles.KeyVisual} src={Kv} alt="image-donaciones" width="100%" />
         </div>
 
-        <div className={style.barra}>
+        <div className={styles.barra}>
         {/* <FilterProducts categ={categ}/> */}
 
         
         </div>
 
 
-        <div className={style.cardsContainer}>
+        <div className={styles.cardsContainer}>
         {currentCards?.map((producto) => {
         return  <Product
                   key={producto.id}
@@ -80,7 +80,7 @@ const currentCards = getCurrentPageCampaigns();
         })}
          
       </div>
-      <div className={style.paginationCont}><Pagination className={style.pagin} page={page} setPage={setPage} itemsPerPage={cardsPerPage} totalItems={totalItems}/></div>
+      <div className={styles.paginationCont}><Pagination className={styles.pagin} page={page} setPage={setPage} itemsPerPage={cardsPerPage} totalItems={totalItems}/></div>
     </div>
     )
   }

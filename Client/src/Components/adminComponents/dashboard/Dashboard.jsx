@@ -1,7 +1,7 @@
 "use client";
 
 import { BadgeDelta, Card, Flex, Metric, ProgressBar, Text, Col, Grid, DonutChart, Title, BarList, Bold } from "@tremor/react";
-
+import styles from "./dashboard.module.css"
 
 const usuariosActivos = [
     {

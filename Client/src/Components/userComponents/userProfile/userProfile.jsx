@@ -1,4 +1,4 @@
-import style from "./userProfile.module.css"
+import styles from "./userProfile.module.css"
 import { useAuth } from "../../../context/AuthContext";
 import { CardInfoUser } from "../cardInfo/cardInfoUser"
 import Login from "../../Login/Login";
@@ -17,28 +17,28 @@ export default function UserProfile(){
 
 
 
-    return(<div className={style.conteiner}>
+    return(<div className={styles.conteiner}>
      {
       email ? 
-      <div className={style.center}>
-     <div className={style.userConteiner} >
+      <div className={styles.center}>
+     <div className={styles.userConteiner} >
         <p>Informacion Personal</p>
-      <div className={style.userData}>
+      <div className={styles.userData}>
 
-            <div className={style.imgUserCont}>
-                <div className={style.imgsize}>
+            <div className={styles.imgUserCont}>
+                <div className={styles.imgsize}>
                 <img src={photoURL ? photoURL : "https://cdn-icons-png.flaticon.com/256/3682/3682323.png"} alt="" />
                 </div>
             </div>
 
-            <div className={style.text}>
+            <div className={styles.text}>
             <h2>{displayName}</h2>
             <p>{email}</p>
             </div>
         </div>
         <p>Datos cuenta</p>
       </div>
-        <div className={style.cardConteiner}>
+        <div className={styles.cardConteiner}>
         <CardInfoUser
          h5={"Mail | Telefono | Nombre del usuario"}
          p={"Datos que representan tu cuenta en helpCommunity"}
