@@ -4,6 +4,7 @@ const getUserByEmail = require("../getUserByEmail");
 const productStockController = require("../productStockController");
 const createBuys = require("../createBuys");
 require("dotenv").config();
+const emailBuyConfirmation = require("../emailBuyConfirmation");
 
 // crear funcion para crear la compra en base al id del usuario
 //llamar a la funcion en webhook y pasarle all data que contiene el comprobante y el id del usuario
@@ -12,10 +13,11 @@ require("dotenv").config();
 
 const receiveWebhook = async (req, res) => {
   const payment = req.query;
+  console.log("PAYMENT", payment);
   const emailUser = req.query.email;
-  console.log(emailUser);
+  console.log("EMAIL", emailUser);
   const userUuId = await getUserByEmail(emailUser);
-  console.log(userUuId);
+  console.log("USER_UUID", userUuId);
 
   try {
     if (payment.type === "payment") {
@@ -42,6 +44,7 @@ const receiveWebhook = async (req, res) => {
       if (status === "approved") {
         productStockController(items);
       }
+      await emailBuyConfirmation(emailUser, items);
       res.sendStatus(204);
     }
   } catch (error) {
