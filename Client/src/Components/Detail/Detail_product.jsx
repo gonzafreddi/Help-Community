@@ -1,64 +1,130 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createOrder, getProductByName, createReview, getReviews } from "../../redux/actions/action";
-import styles from "./detail_campain.module.css";
+import { createOrder, getProductByName, createReview, getReviews, getAllBuys, getAllBuysForUser } from "../../redux/actions/action";
+import style from "./detail_campain.module.css";
 import { addToCart } from "../../redux/actions/action";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "../../context/AuthContext";
-
 import Loader from "../loader/loader";
+
+
 export const DetailProduct = () => {
     const detailProduct = useSelector((state) => state.detailProduct);
-    const review = useSelector((state)=> state.review);
+    const review = useSelector((state)=> state.review) || [];
     const auth = useAuth()
     const { email } = auth.user;
     const emailUser = {email: email};
-    
 
     const dispatch = useDispatch();
     const { name } = useParams();
     const [loading, setLoading] = useState(true);
     const [isReviewPopupOpen, setReviewPopupOpen] = useState(false);
     const [reviews, setReviews] = useState([]);
+    const [users, setUsers] = useState([]);
 
-     
-    const displayName = auth.user.displayName;
-    // const firstName = displayName.split(' ')[0];
-    console.log("auth: ", displayName)
+    const [userData, setUserData] = useState([]);
+    const [isReviewButtonEnabled, setReviewButtonEnabled] = useState(false);
+
+    const [buys, setBuys ] = useState([]);
+    const [ratingError, setRatingError] = useState("");
+    const [commentError, setCommentError] = useState("");
+
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const buyData = await getAllBuysForUser(email);
+            setBuys(buyData);
+          } catch (error) {
+            console.error(error);
+          }
+        };
+    
+        fetchData();
+      }, []);
    
 
-      const [reviewCreated, setReviewCreated] = useState(false);
+      useEffect(() => {
+        // Para que al enviar email como parametro, me devuelva la info del usuario, incluido el userId
+        axios
+          .get('/user/email', {
+            params: {
+              email: email, // Correo electrónico que deseas buscar
+            },
+          })
+          .then((response) => {
+            // Actualiza el estado con la info del usuario
+            setUserData(response.data);
+          })
+          .catch((error) => {
+            console.error("Error al obtener la info:", error);
+          });
+      }, []);
+
+
+    const displayName = auth.user.displayName;
+    // const firstName = displayName.split(' ')[0];
+    // console.log("auth.user.email: ", auth.user.email)
+   
+
+    const [reviewCreated, setReviewCreated] = useState(false);
         
+      
+    let product = detailProduct[1];
+    const allData =  [{...product, email}]
+    // console.log("allData", allData)
+
+    console.log("allData[0].id: ", allData[0].id)
+
+    const [form, setForm] = useState({    
+        emailUser: allData[0].email,
+        ProductId: allData[0].id,
+        rating: 0,
+        comment: ""
+      });
+
+    const [error, setError] = useState({
+        email: "",
+        ProductId: "",
+        rating: 0,
+        comment: "",
+      });
+
       useEffect(() => {
         const fetchData = async () => {
             await dispatch(getProductByName(name));
+            dispatch(getReviews());
             setLoading(false);
         };
         fetchData();
     }, [name]);
 
-    let product = detailProduct[1];
-    const allData =  [{...product, email}]
-    console.log("allData", allData)
 
-    const [form, setForm] = useState({    
-        email: allData[0].email,
-        ProductId: product?.id,
-        // userId: "11255acc-186d-409c-a16e-168e1c730253",
-        name: displayName,
-        rating: 0,
-        comment: "",
-        // dateReview: new Date().toISOString(),
-      });
-    // const [error, setError] = useState({
-    //     email: userMail,
-    //     ProductId: productId,
-    //     // nombre: "",
-    //     rating: 0,
-    //     comment: "",
-    //     // dateReview: "",
-    //   });
+    useEffect(() => {
+        if (product) {
+            // Verifica si emailUser necesita ser actualizado
+            if (form.emailUser !== allData[0].email) {
+                setForm((prevForm) => ({
+                    ...prevForm,
+                    emailUser: allData[0].email,
+                }));
+            }
+        }
+    }, [product, allData]);
+
+    useEffect(() => {
+        if (product) {
+            // Verifica si ProductId necesita ser actualizado
+            if (form.ProductId !== allData[0].id) {
+                setForm((prevForm) => ({
+                    ...prevForm,
+                    ProductId: allData[0].id,
+                }));
+            }
+        }
+    }, [product, allData]);
+
+
 
       console.log("form", form)
     const hancleAddtoCart = ()=>{
@@ -70,53 +136,72 @@ export const DetailProduct = () => {
         const property = event.target.name; //inputs
         const value = event.target.value; //valor ingresado
         setForm({ ...form, [property]: value });
+
+        if (property === "rating") {
+            if (value < 1 || value > 10) {
+              setRatingError("El puntaje debe estar entre 1 y 10");
+            } else {
+              setRatingError("");
+            }
+          }
+        
+          if (property === "comment") {
+            if (value.length > 250) {
+              setCommentError("El comentario no debe exceder los 250 caracteres");
+            } else {
+              setCommentError("");
+            }
+          }
         //llama a la funcion para validar los campos actualizados en tiempo real
-        // validate({ ...form, [property]: value }, property);
+        validate({ ...form, [property]: value }, property);
       }; 
 
-    //     const validate = (form) => {
+        const validate = (form) => {
 
-    //     const patternNombre = /^[A-Za-z\s]+$/;
-    //     const patternNumeros = /^[0-9]+$/;
-    //     const newError = { ...error }; // copia del estado de error existente
+        const patternNombre = /^[A-Za-z\s]+$/;
+        const patternNumeros = /^[0-9]+$/;
+        const newError = { ...error }; // copia del estado de error existente
       
-    //     // if (!patternNombre.test(form.nombre) || !form.nombre) {
-    //     //   newError.nombre = "Ingrese solo letras A-Z";
-    //     // } else {
-    //     //   newError.nombre = "";
-    //     // }
-      
-    //     if (!patternNumeros.test(form.rating) || !form.rating) {
-    //       newError.rating = "Debe ingresar solo Numeros";
-    //     } else {
-    //       newError.rating = "";
-    //     }
+        if (!patternNumeros.test(form.rating) || !form.rating) {
+          newError.rating = "Debe ingresar solo Numeros";
+        } else {
+          newError.rating = "";
+        }
 
-    //     if (!patternNombre.test(form.comment) || !form.comment) {
-    //         newError.comment = "Ingrese solo letras A-Z";
-    //       } else {
-    //         newError.comment = "";
-    //       }
+        if (!patternNombre.test(form.comment) || !form.comment) {
+            newError.comment = "Ingrese solo letras A-Z";
+          } else {
+            newError.comment = "";
+          }
   
-    //     setError(newError); // Actualiza el estado de error
-    //   };
+        setError(newError); // Actualiza el estado de error
+      };
 
 
-    //   const disable = () => { //para verificar si se deshabilita el boton submit, iterando las props del objeto error
-    //     let auxDisabled = true; //si la variable es true se deshabilita, si es false se habilita
-    //     for (let err in error){
-    //       if(error[err] === "") auxDisabled = false;
-    //       else{ 
-    //       auxDisabled = true //cualquier input q este con error, es true y se deshabilita
-    //       break;
-    //      }
-    //     }
-    //     return auxDisabled;
-    //   }
+        const disable = () => {
+        if (ratingError || commentError) {
+            return true;
+        }
+        return false;
+        };
 
- 
+    useEffect(() => {
+        if (buys && buys.length > 0 && userData && userData.length > 0) {
+          const allMatchProductId = buys.some((buy) => {
+            return (
+              buy.products.items &&
+              buy.products.items.some((item) => item.id === allData[0].id) &&
+              buy.products.statusDetail === "accredited" &&
+              buy.userId === userData[0].id
+            );
+          });
+    
+          setReviewButtonEnabled(allMatchProductId);
+        } else {
+          setReviewButtonEnabled(false);
+        }
+      }, [buys, allData, userData]);
 
-    // console.log("getReviews: ", getReviews)
 
     const handleSubmit=(detailProduct)=>{
         const allData = [{...product, email}]
@@ -133,6 +218,10 @@ export const DetailProduct = () => {
         setReviewPopupOpen(false);
       };
 
+      const handlePuntajeChange = (newPuntaje) => {
+        setForm({ ...form, rating: newPuntaje });
+      };
+
       const submitReview = async (event) => {
         try {
             const response = await axios.post("http://localhost:3001/review/create", form);
@@ -145,25 +234,17 @@ export const DetailProduct = () => {
             setReviewCreated(true); 
             // actualiza el estado cuando se crea el perro con exito
             alert("Review creada con éxito!!!");
-          } catch (error) {
+            dispatch(getReviews());
+        } catch (error) {
             alert(error.response.data.error);
             //con este alert muestro los errores del back
-          } if(reviewCreated === false){
+        } 
+        if(reviewCreated === false){
             event.preventDefault()
-          }
-
+        }
         closeReviewPopup();
         };
-    //   console.log("reviewsProductId: ", review.ProductId)
-        // console.log("reviews: ", reviews)
-        useEffect(()=>{
-            dispatch(getReviews())
-        },[dispatch])
 
-        console.log("product: ", product)
-        console.log("allData[0].id: ", allData[0].id)
-        console.log("review: ", review)
-        console.log("review[0].ProductId: ", review.ProductId)
 
     return (
         <div className={styles.conteiner}>
@@ -194,41 +275,63 @@ export const DetailProduct = () => {
                             </div>
                         </div>
                     </div>
-                        <div className={styles.reviewsCont}>
-                            <div className={styles.contTitulos}>
-                            <h2 className={styles.tituloReviews}>Product Reviews</h2>
-                            <button className={styles.añadir} onClick={openReviewPopup}>Añadir review</button>
+                        <div className={style.reviewsCont}>
+                            <div className={style.contTitulos}>
+                            <h2 className={style.tituloReviews}>Product Reviews</h2>
+                            <button className={style.añadir} onClick={openReviewPopup} disabled={!isReviewButtonEnabled}>Añadir review</button>
                             </div>
                             {isReviewPopupOpen && (
-                            <div className={styles.modalBackground}>
-                                <div className={styles.reviewPopup}>
-                                {/* Contenido del popup aquí */}
-                                <h2 className={styles.queOpinas}>¿Que opinas sobre este producto?</h2>
-                                <div className={styles.imgReviewCont} >
-                                <img className={styles.imgReview} src={product?.image} alt="" />
+                            <div className={style.modalBackground}>
+                                <div className={style.reviewPopup}>
+                                <h2 className={style.queOpinas}>¿Que opinas sobre este producto?</h2>
+                                <span className={style.productName}>{name}</span>
+                                <div className={style.imgReviewCont} >
+                                <img className={style.imgReview} src={product?.image} alt="" />
                                 </div>
-                                <div className={styles.areaNombres}>
-                                <input disabled={true} className={styles.nombreRev} type="text" value={form.nombre} onChange={changeHandler} name="nombre" placeholder={displayName} />
-                                <input className={styles.puntajeRev} type="number" value={form.rating} onChange={changeHandler} name="rating" min="0" max="5" placeholder="Puntaje (0-5)" />
+                                <div className={style.areaNombres}>
+                                <h2 className={style.nombreRev}>Puntaje: </h2>
+                                <p className={style.numeros}>{form.rating}</p>
+                                {/* <input disabled={true} className={style.nombreRev} type="text" value={form.nombre} onChange={changeHandler} name="nombre" placeholder={displayName} /> */}
+                                <input
+                                    type="range"
+                                    min="1"
+                                    max="10"
+                                    step="0.1" // Para permitir decimales
+                                    value={form.rating}
+                                    onChange={changeHandler}
+                                    name="rating"
+                                    className={`${style.puntajeRange} ${style.customRange}`}
+                                    />                          
+                                {ratingError && <span className={style.error}>{ratingError}</span>}
                                 </div>
-                                <textarea className={styles.escribirRev} type="text" value={form.comment} onChange={changeHandler} name="comment" placeholder="Escribe tu opinión" />
-                                <div className={styles.botonesReview}>
-                                <button className={styles.enviar} onClick={submitReview} type="submit">Enviar</button>
+                                <textarea className={style.escribirRev} type="text" value={form.comment} onChange={changeHandler} name="comment" placeholder="Escribe tu opinión" />
+                                {commentError && <span className={style.error}>{commentError}</span>}
+                                <div className={style.botonesReview}>
+                                <button disabled={disable() || reviewCreated} className={style.enviar} onClick={submitReview} type="submit">Enviar</button>
                                 {/* disabled={disable() || reviewCreated} */}
                                 <button className={styles.cancelar} onClick={closeReviewPopup}>Cancelar</button>
                                 </div>
                                 </div>
                             </div>
                             )}
-                            <div className={styles.rev2}>
-                                {review.map((review, index) => {
+                            <div className={style.rev2}>
+                                {Array.isArray(review) && review.map((review, index) => {
                                     if (review.ProductId === allData[0].id) {
+                                        const formattedDateTime = new Date(review.createdAt).toLocaleString('es-ES', {
+                                            year: 'numeric',
+                                            month: '2-digit',
+                                            day: '2-digit',
+                                            hour: '2-digit',
+                                            minute: '2-digit'
+                                        });
                                         return (
-                                            <div className={styles.review} key={index}>
-                                                <h5>{review.createdAt}</h5>
-                                                <h3>{review.name}</h3>
-                                                <h4>Puntaje: {review.rating} / 5</h4>
-                                                <p>{review.comment}</p>
+                                            <div className={style.review} key={index}>
+                                                <div className={style.nombreFecha}>
+                                                <p className={style.user}>{review.user?.name}</p>
+                                                <p className={style.fecha}>{formattedDateTime}</p>
+                                                </div>
+                                                <p className={style.comment}>"{review.comment}"</p>
+                                                <p className={style.puntaje}>Puntaje: {review.rating} / 10</p>
                                             </div>
                                         );
                                     } else {

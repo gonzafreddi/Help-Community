@@ -21,7 +21,7 @@ const SideBarAdmin = () => {
       </div>
       <ul className={styles.menu}>
       <li>
-        <a href="#"   onClick={() => handleItemClick('Dashboard')}
+        <a href="/admin/dashboard"   onClick={() => handleItemClick('Dashboard')}
             className={selectedItem === 'Dashboard' ? styles.selected : ''}>
         {expanded ? (
               <>
