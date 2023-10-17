@@ -53,9 +53,14 @@ const createOrder = async (req, res) => {
       failure: "http://localhost:3001/payment/failure",
       pending: "http://localhost:3001/payment/pending", //cuando el usuario no ha pagado
     },
-    notification_url: `https://mvrmrv5j-3001.brs.devtunnels.ms/payment/webhook?email=${email}`, // Puerto de Juan Galli, idem Gonzalo Freddi ;)
-
+    notification_url: `https://312d05tj-3001.brs.devtunnels.ms/payment/webhook?email=${email}`, 
+    
+    // ? Perdon Juan, copie mi puerto arriba del tuyo 
+    // ? Perdon Juan, copie mi puerto arriba del tuyo 
+    // ? Perdon Juan, copie mi puerto arriba del tuyo 
     // notification_url: `https://pmcmwdd1-3001.brs.devtunnels.ms/payment/webhook?email=${email}`, // Puerto de gonzalo freddi si quieren probar cambien la url con su puerto https
+    // notification_url: `https://312d05tj-3001.brs.devtunnels.ms/payment/webhook?email=${email}`, // Puerto de Lucas Caruso, idem Gonzalo Freddi ;)
+
   });
 
   res.send(result.body);
