@@ -22,9 +22,10 @@ import UserBuys from "./Components/buys/UserBuys";
 // import { BrowserRouter as Switch } from "react-router-dom";
 // import SideBarAdmin from "./Components/adminComponents/SideBarAdmin/SideBarAdmin";
 // import MailingForm from "./Components/adminComponents/mailing/mailingForm";
-import CreateProduct from "./Components/createProduct/CreateProduct.jsx";
+
 
 import AdminLayout from './Components/adminComponents/admin/AdminLayout'; 
+import CreateProduct from "./Components/createProduct/CreateProduct";
 import HomeUnauthorized from './Components/adminComponents/HomeUnauthorized/HomeAnauthorized'
 // import { BrowserRouter as Switch } from 'react-router-dom';
 // import SideBarAdmin from './Components/adminComponents/SideBarAdmin/SideBarAdmin'
