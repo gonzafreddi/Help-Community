@@ -2,18 +2,19 @@ import style from "./CreateProduct.module.css"
 import UploadWidget from "../UploadWidget/UploadWidget";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react"
-import { getCateg, getProductByName, postProduct, putProduct } from "../../redux/actions/action";
+import { getCateg, getProduct, getProductByName, postProduct, putProduct } from "../../redux/actions/action";
 import { disableFunction, handleChange, handleSubmit } from "./productCreateOrEdit";
+import { useNavigate, useParams } from "react-router-dom";
+import Loader from "../loader/loader";
 
 //Notificaciones
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useParams } from "react-router-dom";
-import Loader from "../loader/loader";
 
 export default function CreateProduct(){
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const detailProduct = useSelector((state) => state.detailProduct);
     
 
@@ -132,7 +133,7 @@ export default function CreateProduct(){
 
     useEffect(()=>{
         if ( isEditing ) {
-            let productData = productName !== undefined ? detailProduct[1] : undefined
+            let productData = productName !== undefined ? detailProduct[0] : undefined
     
             // console.log(`PRODUCTO CON ID ====>`);
             // console.log(productData);
@@ -165,16 +166,20 @@ export default function CreateProduct(){
     }, [isEditing])
     
     
-    console.log(`PRODUCTO CON ID ====>`);
-    console.log(product);
+    // console.log(`PRODUCTO CON ID ====>`);
+    // console.log(product);
 
     const handleFormSubmit = async (e) => {
+        console.log(`isEditing =======>>>>>> ${isEditing}`);
         if (isEditing) {
             try {
     
                 e.preventDefault();
-                await handleSubmit(product, imageUrl, dispatch, product.id, postProduct, putProduct, isEditing);
+                await handleSubmit(product, imageUrl, dispatch, product.id, postProduct, putProduct, true);
                 notify('editSuccess');
+                dispatch(getProduct());
+                navigate(`/products/detail/${product.name}`)
+
                 
             } catch (error) {
                 notify('editError');
@@ -184,8 +189,10 @@ export default function CreateProduct(){
             try {
     
                 e.preventDefault();
-                await handleSubmit(product, imageUrl, dispatch, product.id, postProduct, putProduct, isEditing);
+                await handleSubmit(product, imageUrl, dispatch, product.id, postProduct, putProduct, false);
                 notify('success');
+                dispatch(getProduct());
+                navigate(`/products/detail/${product.name}`)
                 
             } catch (error) {
                 notify('error');

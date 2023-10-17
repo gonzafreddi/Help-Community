@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "../../context/AuthContext";
 import Loader from "../loader/loader";
-import CreateProduct from "../CreateProduct/CreateProduct";
+// import CreateProduct from "../CreateProduct/CreateProduct";
 
 
 export const DetailProduct = () => {
@@ -20,7 +20,8 @@ export const DetailProduct = () => {
     const auth = useAuth()
     const { email } = auth.user;
 
-
+    // console.log(`DETAIL PRODUCT ====>>>>`);
+    // console.log(detailProduct[0]);
 
     //Este use 
     useEffect(()=>{
@@ -87,34 +88,38 @@ export const DetailProduct = () => {
     const [reviewCreated, setReviewCreated] = useState(false);
         
       
-    let product = detailProduct[1];
+    let product = detailProduct[0];
     const allData =  [{...product, email}]
     // console.log("allData", allData)
 
-    console.log("allData[0].id: ", allData[0].id)
+    // console.log("allData[0].id: ", allData[0].id)
 
     const [form, setForm] = useState({    
         emailUser: allData[0].email,
         ProductId: allData[0].id,
         rating: 0,
         comment: ""
-      });
+    });
 
     const [error, setError] = useState({
         email: "",
         ProductId: "",
         rating: 0,
         comment: "",
-      });
+    });
 
-      useEffect(() => {
+    useEffect(() => {
         const fetchData = async () => {
-            await dispatch(getProductByName(name));
-            dispatch(getReviews());
+            try {
+                await dispatch(getProductByName(name));
+                await dispatch(getReviews());
+            } catch (error) {
+                console.log('ERROR AL OBTENER LA INFO DEL PRODUCTO');
+            }
             setLoading(false);
         };
         fetchData();
-    }, [name]);
+    }, [dispatch, name]);
 
 
 
@@ -145,7 +150,7 @@ export const DetailProduct = () => {
 
 
 
-      console.log("form", form)
+    //   console.log("form", form)
     const hancleAddtoCart = ()=>{
         const quantityToadd = 1
         dispatch(addToCart(product, quantityToadd))
@@ -219,13 +224,17 @@ export const DetailProduct = () => {
         } else {
           setReviewButtonEnabled(false);
         }
-      }, [buys, allData, userData]);
+      }, [buys, userData]);
 
 
     const handleSubmit=(detailProduct)=>{
         const allData = [{...product, email}]
         // console.log("allData de handleSubmit: ", allData)
         dispatch(createOrder(allData))
+    }
+
+    const handleEditButton = () => {
+        navigate(`/create/product/${product.name}`)
     }
 
 
@@ -268,10 +277,10 @@ export const DetailProduct = () => {
             dispatch(getReviews())
         },[dispatch])
 
-        console.log("product: ", product)
-        console.log("allData[0].id: ", allData[0].id)
-        console.log("review: ", review)
-        console.log("review[0].ProductId: ", review.ProductId)
+        // console.log("product: ", product)
+        // console.log("allData[0].id: ", allData[0].id)
+        // console.log("review: ", review)
+        // console.log("review[0].ProductId: ", review.ProductId)
 
     return (
         <div className={styles.conteiner}>
