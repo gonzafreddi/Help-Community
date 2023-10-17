@@ -43,7 +43,7 @@ export const Product = (props) => {
      <button  className={styles.btnCart} onClick={hancleAddtoCart}>Añadir al carrito</button>
       
 
-      <Link to={`/products/detail/${name}`} className={style.link}>
+      <Link to={`/products/detail/${name}`} className={styles.link}>
       <button className={styles.btnBuy}>Comprar</button>
 
       </Link>
