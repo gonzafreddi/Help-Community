@@ -1,9 +1,9 @@
 .cardsContainer{
     display: grid;
     grid-template-columns: repeat(4,1fr);
-    /* flex-wrap: wrap; */
+    flex-wrap: wrap;
     justify-content: space-between;
-    /* gap: 1em; */
+    gap: 1em;
     margin-left: 12vw;
     margin-right: 10vw;
     margin-top: 3vw;
@@ -21,4 +21,7 @@
 }
 .pagin{
 border: solid green;
+}
+.KeyVisual{
+    padding-left: 0px;
 }

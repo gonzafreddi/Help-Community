@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
-import style from './Login.module.css';
+import styles from './Login.module.css';
 import { useAuth } from '../../context/AuthContext';
 import { useState } from 'react';
 import { validateLogin, validateRegister } from './validateLogin';
@@ -201,20 +201,20 @@ const Login = ({closeLogin}) => {
 
 
     return (
-        <div className={style.modalOverlay}>
-            <div className={style.modal}>
-                <div className={style.closeContainer}>
-                    <button className={style.closeBtn} onClick={closeLogin}>X</button>
+        <div className={styles.modalOverlay}>
+            <div className={styles.modal}>
+                <div className={styles.closeContainer}>
+                    <button className={styles.closeBtn} onClick={closeLogin}>X</button>
                 </div>
-                <section className={style.formsSection}>
-                    <div className={style.login}>
+                <section className={styles.formsSection}>
+                    <div className={styles.login}>
                         <div>
-                            <h1 className={style.textoLI}>Inicie Sesión</h1>
-                            <h1 className={style.textoLI}>{auth.user.email}</h1>
+                            <h1 className={styles.textoLI}>Inicie Sesión</h1>
+                            <h1 className={styles.textoLI}>{auth.user.email}</h1>
                         </div>
 
-                        <div className={style.formContainer}>
-                            <form className={style.logInForm}>
+                        <div className={styles.formContainer}>
+                            <form className={styles.logInForm}>
                                 <input
                                     onChange={(e) => {
                                         setEmail(e.target.value)
@@ -229,11 +229,11 @@ const Login = ({closeLogin}) => {
                                             })
                                         }
                                     }}
-                                    className={style.logInInput}
+                                    className={styles.logInInput}
                                     type="email"
                                     placeholder='Correo electrónico'
                                 />
-                                <span className={style.errorMsgLI}>{errors.email}</span>
+                                <span className={styles.errorMsgLI}>{errors.email}</span>
 
                                 <input
                                     onChange={(e) => {
@@ -242,18 +242,18 @@ const Login = ({closeLogin}) => {
                                         setErrors(validateLogin({password, alreadyFocused}))
                                         isLogDisabled = disableLogin();
                                     }}
-                                    className={style.logInInput}
+                                    className={styles.logInInput}
                                     type="password"
                                     placeholder='Contraseña'
                                 />
-                                <span className={style.wrongPass}>{errors.password}</span>
-                                <div className={style.forgotPassContainer}>
+                                <span className={styles.wrongPass}>{errors.password}</span>
+                                <div className={styles.forgotPassContainer}>
                                     <Link>
-                                        <a className={style.forgotPass}>¿Has olvidado tu contraseña?</a>
+                                        <a className={styles.forgotPass}>¿Has olvidado tu contraseña?</a>
                                     </Link>
                                 </div>
 
-                                <button onClick={(e) => handleLogin(e)} className={style.submitBtn} disabled={isLogDisabled}>
+                                <button onClick={(e) => handleLogin(e)} className={styles.submitBtn} disabled={isLogDisabled}>
                                     Iniciar Sesión
                                 </button>
 
@@ -261,17 +261,17 @@ const Login = ({closeLogin}) => {
                         </div>
 
                         <div>
-                            <button className={style.google} onClick={(e) => handleGoogle(e)}>Inicia Sesión con Google</button>
+                            <button className={styles.google} onClick={(e) => handleGoogle(e)}>Inicia Sesión con Google</button>
                         </div>
 
                     </div>
-                    <div className={style.register}>
+                    <div className={styles.register}>
                         <div>
-                            <h1 className={style.textoREG}>Regístrese</h1>
+                            <h1 className={styles.textoREG}>Regístrese</h1>
                         </div>
 
-                        <div className={style.formContainer}>
-                            <form className={style.logInForm}>
+                        <div className={styles.formContainer}>
+                            <form className={styles.logInForm}>
                                 <input
                                     onChange={(e) => {
                                         
@@ -287,7 +287,7 @@ const Login = ({closeLogin}) => {
                                             })
                                         }
                                     }}
-                                    className={style.logInInput}
+                                    className={styles.logInInput}
                                     type="name"
                                     placeholder='Nombre'
                                 />
@@ -308,12 +308,12 @@ const Login = ({closeLogin}) => {
                                             })
                                         }
                                     }}
-                                    className={style.logInInput}
+                                    className={styles.logInInput}
                                     type="email"
                                     placeholder='Correo electrónico'
                                 />
 
-                                <span className={style.errorMsgLI}>{errors.emailRegister}</span>
+                                <span className={styles.errorMsgLI}>{errors.emailRegister}</span>
 
                                 <input
                                     onChange={handleInputChange}
@@ -325,21 +325,21 @@ const Login = ({closeLogin}) => {
                                             })
                                         }
                                     }}
-                                    className={style.logInInput}
+                                    className={styles.logInInput}
                                     type="password"
                                     placeholder='Contraseña'
                                 />
-                                <span className={style.errorMsgPassR}>{errors.passwordRegister}</span>
-                                <span className={style.errorMsg}>{errors.other}</span>
+                                <span className={styles.errorMsgPassR}>{errors.passwordRegister}</span>
+                                <span className={styles.errorMsg}>{errors.other}</span>
 
-                                <button onClick={(e) => handleRegister(e)} disabled={isRegDisabled} className={style.submitBtn}>
+                                <button onClick={(e) => handleRegister(e)} disabled={isRegDisabled} className={styles.submitBtn}>
                                     Registrarse
                                 </button>
                             </form>
                         </div>
 
                         <div>
-                            <button className={style.google} onClick={(e) => handleGoogle(e)}>Registrarme con Google</button>
+                            <button className={styles.google} onClick={(e) => handleGoogle(e)}>Registrarme con Google</button>
                         </div>
                     </div>
                 </section>

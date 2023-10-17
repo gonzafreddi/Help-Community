@@ -302,6 +302,7 @@ export const DetailProduct = () => {
                                 <p>Stock: {product?.stock}</p>
                                 { isAdmin === true ? <button className={styles.editButton} onClick={handleEditButton} >Editar<span className="material-icons">edit</span></button> : null}
                             </div>
+
                             <h1>{product?.name}</h1>
                             <p>{product?.description}</p>
                             <div className={styles.price}>
@@ -317,23 +318,37 @@ export const DetailProduct = () => {
                         <div className={styles.reviewsCont}>
                             <div className={styles.contTitulos}>
                             <h2 className={styles.tituloReviews}>Product Reviews</h2>
-                            <button className={styles.añadir} onClick={openReviewPopup}>Añadir review</button>
+                            <button className={styles.añadir} onClick={openReviewPopup} disabled={!isReviewButtonEnabled}>Añadir review</button>
                             </div>
                             {isReviewPopupOpen && (
                             <div className={styles.modalBackground}>
                                 <div className={styles.reviewPopup}>
-                                {/* Contenido del popup aquí */}
+
                                 <h2 className={styles.queOpinas}>¿Que opinas sobre este producto?</h2>
+                                <span className={styles.productName}>{name}</span>
                                 <div className={styles.imgReviewCont} >
                                 <img className={styles.imgReview} src={product?.image} alt="" />
                                 </div>
                                 <div className={styles.areaNombres}>
-                                <input disabled={true} className={styles.nombreRev} type="text" value={form.nombre} onChange={changeHandler} name="nombre" placeholder={displayName} />
-                                <input className={styles.puntajeRev} type="number" value={form.rating} onChange={changeHandler} name="rating" min="0" max="5" placeholder="Puntaje (0-5)" />
+                                <h2 className={styles.nombreRev}>Puntaje: </h2>
+                                <p className={styles.numeros}>{form.rating} / 10</p>
+                                {/* <input disabled={true} className={style.nombreRev} type="text" value={form.nombre} onChange={changeHandler} name="nombre" placeholder={displayName} /> */}
+                                <input
+                                    type="range"
+                                    min="1"
+                                    max="10"
+                                    step="0.1" // Para permitir decimales
+                                    value={form.rating}
+                                    onChange={changeHandler}
+                                    name="rating"
+                                    className={`${styles.puntajeRange} ${styles.customRange}`}
+                                    />                          
+                                {ratingError && <span className={styles.error}>{ratingError}</span>}
                                 </div>
                                 <textarea className={styles.escribirRev} type="text" value={form.comment} onChange={changeHandler} name="comment" placeholder="Escribe tu opinión" />
+                                {commentError && <span className={styles.error}>{commentError}</span>}
                                 <div className={styles.botonesReview}>
-                                <button className={styles.enviar} onClick={submitReview} type="submit">Enviar</button>
+                                <button disabled={disable() || reviewCreated} className={styles.enviar} onClick={submitReview} type="submit">Enviar</button>
                                 {/* disabled={disable() || reviewCreated} */}
                                 <button className={styles.cancelar} onClick={closeReviewPopup}>Cancelar</button>
                                 </div>
@@ -341,7 +356,7 @@ export const DetailProduct = () => {
                             </div>
                             )}
                             <div className={styles.rev2}>
-                                {review.map((review, index) => {
+                                {Array.isArray(review) && review.map((review, index) => {
                                     if (review.ProductId === allData[0].id) {
                                         const formattedDateTime = new Date(review.createdAt).toLocaleString('es-ES', {
                                             year: 'numeric',
@@ -352,10 +367,12 @@ export const DetailProduct = () => {
                                         });
                                         return (
                                             <div className={styles.review} key={index}>
-                                                <h5>{review.createdAt}</h5>
-                                                <h3>{review.name}</h3>
-                                                <h4>Puntaje: {review.rating} / 5</h4>
-                                                <p>{review.comment}</p>
+                                                <div className={styles.nombreFecha}>
+                                                <p className={styles.user}>{review.user?.name}</p>
+                                                <p className={styles.fecha}>{formattedDateTime}</p>
+                                                </div>
+                                                <p className={styles.comment}>{review.comment}</p>
+                                                <p className={styles.puntaje}>Puntaje: {review.rating} / 10</p>
                                             </div>
                                         );
                                     } else {
