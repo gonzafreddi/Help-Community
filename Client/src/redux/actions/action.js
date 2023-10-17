@@ -217,6 +217,19 @@ export function postProduct(payload) {
         }
     }
 }
+
+export function putProduct(payload) {
+    return async function () {
+        
+        console.log(payload);
+        try {
+            // const response = await axios.put(`/product/${payload.id}`, payload);
+            // return response
+        } catch (error) {
+            return error.message
+        }
+    }
+}
 export function postUser(payload) {
     return async function (dispatch) {
       
@@ -268,7 +281,7 @@ export const getProductByName=(name)=>{
         try {
             const response = await axios(`/product?name=${name}`)
             console.log(response.data)
-            dispatch({
+            await dispatch({
                 type: GET_PRODUCT_BY_NAME,
                 payload: response.data
             })
@@ -355,7 +368,7 @@ export const getUserByEmail = (email) => {
             try {
                 const response = await axios(`/user/email/?email=${email}`);
                 const userData = response.data[0];
-                console.log(userData);
+                // console.log(userData);
                 // Despacha una acción para actualizar el estado con los datos del usuario
                 dispatch({ type: GET_USER_DATA, payload: userData });
                 

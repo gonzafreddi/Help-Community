@@ -1,18 +1,26 @@
 import style from "./CreateProduct.module.css"
 import UploadWidget from "../UploadWidget/UploadWidget";
-import PropTypes from 'prop-types'
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react"
-import { getCateg, postProduct } from "../../redux/actions/action";
+import { getCateg, getProductByName, postProduct, putProduct } from "../../redux/actions/action";
 import { disableFunction, handleChange, handleSubmit } from "./productCreateOrEdit";
 
 //Notificaciones
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useParams } from "react-router-dom";
+import Loader from "../loader/loader";
 
-export default function CreateProduct({isEditing, productData}){
+export default function CreateProduct(){
 
     const dispatch = useDispatch();
+    const detailProduct = useSelector((state) => state.detailProduct);
+    
+
+    const {productName} = useParams();
+    // console.log(`NOMBRE DEL PRODUCTO --->>> ${productName}`);
+    let isEditing;
+    productName !== undefined ? isEditing = true : isEditing = false;
 
     const notify = (type) => {
         if (type === 'error') {
@@ -67,23 +75,27 @@ export default function CreateProduct({isEditing, productData}){
     },[dispatch]);
 
     useEffect(()=>{
-        if (isEditing && productData) {
-            setProduct({
-                name: productData.name,
-                description: productData.description,
-                image: productData.image,
-                price: productData.price,
-                category: productData.category,
-                stock: productData.stock
-            });
+        if (productName !== undefined && !detailProduct.name) {
+
+            const fetchProduct = async () =>{
+                await dispatch(getProductByName(productName));
+                setLoading(false);
+            }
+
+            fetchProduct();
         }
-    }, [isEditing, productData]);
+        setLoading(false);
+    }, [dispatch, productName]);
+
+    
     
     const categ = useSelector(state => state.categ);
   
     const [imageUrl, setImageUrl] = useState(""); // Estado para almacenar la URL
+    const [loading, setLoading] = useState(true)
 
     const [product, setProduct] = useState({
+        id:'',
         name: "",
         description: "",
         image: "",
@@ -118,16 +130,67 @@ export default function CreateProduct({isEditing, productData}){
         })
     }
 
-    const handleFormSubmit = async (e) => {
-        try {
-
-            e.preventDefault();
-            await handleSubmit(product, imageUrl, dispatch, postProduct);
-            notify('success');
+    useEffect(()=>{
+        if ( isEditing ) {
+            let productData = productName !== undefined ? detailProduct[1] : undefined
+    
+            // console.log(`PRODUCTO CON ID ====>`);
+            // console.log(productData);
+    
+            setProduct({
+                id: productData.id,
+                name: productData.name !== undefined ? productData.name : '',
+                description: productData.description ? productData.description : '',
+                image: productData.image ? productData.image : '',
+                price: productData.price ? productData.price : '',
+                category: productData.category ? productData.category : '',
+                stock: productData.stock ? productData.stock : ''
+            });
+    
+            setImageUrl(productData.image ? productData.image : '');
+        } else {
+            setProduct({
+                id: '',
+                name: '',
+                description: '',
+                image: '',
+                price: '',
+                category: '',
+                stock: ''
+            });
+    
+            setImageUrl('');
             
-        } catch (error) {
-            notify('error');
-            console.log(error.message);
+        }
+    }, [isEditing])
+    
+    
+    console.log(`PRODUCTO CON ID ====>`);
+    console.log(product);
+
+    const handleFormSubmit = async (e) => {
+        if (isEditing) {
+            try {
+    
+                e.preventDefault();
+                await handleSubmit(product, imageUrl, dispatch, product.id, postProduct, putProduct, isEditing);
+                notify('editSuccess');
+                
+            } catch (error) {
+                notify('editError');
+                console.log(error.message);
+            }
+        } else {
+            try {
+    
+                e.preventDefault();
+                await handleSubmit(product, imageUrl, dispatch, product.id, postProduct, putProduct, isEditing);
+                notify('success');
+                
+            } catch (error) {
+                notify('error');
+                console.log(error.message);
+            }
         }
     };
 
@@ -155,52 +218,64 @@ export default function CreateProduct({isEditing, productData}){
  
     return (
         <div className={style.conteiner}>
-            <div className={style.productCont}>
-                <div className={style.imgCont}>
-                    {
-                        imageUrl !== ""
-                        ? <button className={style.closeImgBtn} ><span className='material-icons' onClick={handleImageDelete} >close</span></button>
-                        : null
-                    }
-                    {
-                        imageUrl !== ""
-                        ? <img className={style.productImg} src={imageUrl} alt="productImg" /> 
-                        : <div className={style.txtAndImgCont}>
-                            <h2 className={style.imgTxt}>Subir Imagen</h2>
-                            <UploadWidget className={style.uploadButton} onImageUpload={handleImageUpload}/>
-                          </div>
-                    }
+            {
+                loading ? (
+                // Muestra "Cargando..." durante 1 segundo
+                <div className={style.loader}>
+                    <Loader/>
+                    <h1>Cargando...</h1>
                 </div>
-                <div className={style.infoProduct}>
-                    <input name="name" onChange={handleInputChange} className={style.productName} placeholder="Nombre del Producto"></input>
-                    <textarea onChange={handleInputChange} name="description" className={style.productDescription} placeholder="Descripción del producto"></textarea>
-                    <div className={style.priceAndCatContainer}>
-                        <div className={style.priceAndDollarContainer}>
-                            <p className={style.dollarSign}>$</p> <input name="price" onChange={handleInputChange} className={style.productPrice} placeholder="100.99" type="number"></input>
+                ) : (
+                        <>
+                        <div className={style.productCont}>
+                            <div className={style.imgCont}>
+                                {
+                                    imageUrl !== ""
+                                    ? <button className={style.closeImgBtn} ><span className='material-icons' onClick={handleImageDelete} >close</span></button>
+                                    : null
+                                }
+                                {
+                                    imageUrl !== ""
+                                    ? <img className={style.productImg} src={imageUrl} alt="productImg" /> 
+                                    : <div className={style.txtAndImgCont}>
+                                        <h2 className={style.imgTxt}>Subir Imagen</h2>
+                                        <UploadWidget className={style.uploadButton} onImageUpload={handleImageUpload}/>
+                                    </div>
+                                }
+                            </div>
+                            <div className={style.infoProduct}>
+                                <input name="name" onChange={handleInputChange} className={style.productName} placeholder="Nombre del Producto" defaultValue={isEditing ? product.name : ""} ></input>
+                                <textarea onChange={handleInputChange} name="description" className={style.productDescription} defaultValue={isEditing ? product.description : ""} placeholder="Descripción del producto"></textarea>
+                                <div className={style.priceAndCatContainer}>
+                                    <div className={style.priceAndDollarContainer}>
+                                        <p className={style.dollarSign}>$</p> <input name="price" onChange={handleInputChange} className={style.productPrice} defaultValue={isEditing ? product.price : ""} placeholder="100.99" type="number"></input>
+                                    </div>
+                                    <select name="category" defaultValue={isEditing ? product.category : ""} onChange={handleInputChange} className={style.productCategories}>
+                                        <option className={style.casillero} value="Todos">Categoría del producto</option>
+                                        {categ.map((category) => (
+                                            <option className={style.catOpciones} key={category.id} value={category.id}>
+                                                {capitalizeFirstLetter(category.name)}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </div>
+                                <div className={style.stockContainer}>
+                                    <p className={style.dollarSign}>Stock:</p><input name="stock" onChange={handleInputChange} className={style.productStock} defaultValue={isEditing ? product.stock : ""} type="number" placeholder="1000"></input>
+                                </div>
+                                <div className={style.buyCont}>
+                                    <button className={style.btnBuy} onClick={handleFormSubmit} disabled={isDisabled} type="submit">{isEditing ? 'Guardar' : 'Crear Producto'}</button>
+                                </div>
+                            </div>
                         </div>
-                        <select name="category" onChange={handleInputChange} className={style.productCategories}>
-                            <option className={style.casillero} value="Todos">Categoría del producto</option>
-                            {categ.map((category) => (
-                                <option className={style.catOpciones} key={category.id} value={category.id}>
-                                    {capitalizeFirstLetter(category.name)}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
-                    <div className={style.stockContainer}>
-                        <p className={style.dollarSign}>Stock:</p><input name="stock" onChange={handleInputChange} className={style.productStock} type="number" placeholder="1000"></input>
-                    </div>
-                    <div className={style.buyCont}>
-                        <button className={style.btnBuy} onClick={handleFormSubmit} disabled={isDisabled} type="submit">Crear Producto</button>
-                    </div>
-                </div>
-            </div>
-            <ToastContainer />
+                        <ToastContainer />
+                        </>
+                    )
+            }
         </div>
     );
 }
 
-CreateProduct.propTypes = {
-    isEditing: PropTypes.bool.isRequired, // 'isEditing' debe ser un booleano y es requerido.
-    productData: PropTypes.object, // 'productData' debe ser un objeto, pero no es requerido.
-};
+// CreateProduct.propTypes = {
+//     isEditing: PropTypes.bool.isRequired, // 'isEditing' debe ser un booleano y es requerido.
+//     productData: PropTypes.object, // 'productData' debe ser un objeto, pero no es requerido.
+// };

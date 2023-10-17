@@ -22,6 +22,31 @@
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.116);
 }
 
+.stockEdit{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.editButton{
+  background-color: rgba(150, 150, 150, 0.301);
+  border: 1px solid rgba(94, 94, 94, 0.171);
+  border-radius: 5px;
+  padding-bottom: 20px;
+  padding-top: 5px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  height: 20px;
+}
+
+.editButton:hover{
+  cursor: pointer;
+}
+.editButton span{
+  font-size: 10px;
+  margin-left: 10px;
+}
+
 .imgCont{
     width: 50%;
     height: 380px;
