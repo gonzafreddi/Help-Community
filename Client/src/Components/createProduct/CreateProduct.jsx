@@ -1,4 +1,4 @@
-import styles from "./CreateProduct.module.css"
+import style from "./CreateProduct.module.css"
 import UploadWidget from "../UploadWidget/UploadWidget";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react"
