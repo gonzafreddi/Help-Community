@@ -27,7 +27,7 @@ router.use("/review", reviewRouter);
 router.use("/categoryProduct", CategoryProductRouter);
 router.use("/buys", buysRouter);
 router.use("/shoppingCar", shoppingCarRouter);
-router.use("/nodemailer", nodemailerRouter);
+router.use("/admin", nodemailerRouter);
 
 router.use(express.json());
 

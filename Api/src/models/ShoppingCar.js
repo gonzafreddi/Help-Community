@@ -8,12 +8,12 @@ module.exports = (sequelize) => {
       defaultValue: UUIDV4,
     },
     products: {
-      type: DataTypes.ARRAY(DataTypes.STRING),
-      allowNull: false
+      type: DataTypes.ARRAY(DataTypes.STRING(1000)),
+      allowNull: false,
     },
     state: {
-        type: DataTypes.BOOLEAN,
-        defaultValue: false
-    }
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
   });
-};  
+};

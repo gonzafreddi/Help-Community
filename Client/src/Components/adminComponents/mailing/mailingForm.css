@@ -1,0 +1,25 @@
+.form {
+  display: flex;
+  margin: 5%;
+}
+.divs {
+  margin: 2%;
+}
+label {
+  color: #012a4a;
+  font-size: 1.2rem;
+  margin: 2%;
+}
+.sendBtn {
+  font-size: 1.2rem;
+  padding: 10px 25px 10px 25px;
+  background-color: #012a4a;
+  color: #ffff;
+  border: none;
+  border-radius: 10px;
+  transition: all ease 0.5s;
+}
+.sendBtn:hover {
+  color: #012a4a;
+  background-color: #ffff;
+}
