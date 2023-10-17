@@ -1,6 +1,6 @@
 // productCreateOrEdit
 import {validateProduct} from "./validateProduct"
-export function handleSubmit(product, imageUrl, dispatch, postProduct) {
+export function handleSubmit(product, imageUrl, dispatch, id, postProduct, putProduct, isEditing) {
 
     const { name, description, price, category, stock } = product;
 
@@ -11,16 +11,36 @@ export function handleSubmit(product, imageUrl, dispatch, postProduct) {
         price,
         stock,
         CategoryProductId: category,
-        brand:'Marca',
+        // brand:'Marca',
         rating: 0
     }
 
-    
-    try {
-        dispatch(postProduct(productToPost));
+    console.log('ESTA EDITANDO ======>>>>>>>>');
+    console.log(isEditing);
+
+    if (isEditing) {
+        try {
+
+            const productToPut = {
+                ...productToPost,
+                id: id
+            }
+            dispatch(putProduct([productToPut]));
+            
+        } catch (error) {
+            return(error.message);
+        }
+    } else {
+
+        console.log('ESTA INTENTANDO HACER UN POST');
+        try {
+            
+            dispatch(postProduct(productToPost));
+            
+        } catch (error) {
+            return(error.message);
+        }
         
-    } catch (error) {
-        return(error.message);
     }
 
 

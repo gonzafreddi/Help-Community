@@ -15,7 +15,7 @@ import {
     CREATE_REVIEW,
     GET_REVIEWS
   } from "../actions/action";
-  import { ADD_ONE_TO_CART, ADD_TO_CART, GET_DETAIL_CAMPAIGN, GET_PRODUCT_BY_NAME, GET_STATE, REMOVE_ONE_TO_CART, REMOVE_TO_CART } from "../actions/action_type";
+  import { HANDLE_USER_LOGOUT ,GET_USER_DATA ,ADD_ONE_TO_CART, ADD_TO_CART, GET_DETAIL_CAMPAIGN, GET_PRODUCT_BY_NAME, GET_STATE, REMOVE_ONE_TO_CART, REMOVE_TO_CART } from "../actions/action_type";
   
   const initialState = {
     campaign: [],
@@ -32,12 +32,21 @@ import {
     productsFiltered:[],
     filters: false,
     users:[],
-    review: []
+    review: [],
+    userData: {
+        name:'',
+        email:'',
+        id:'',
+        image:'',
+        userAdmin:false,
+        userSuperadmin:false,
+        userState:true,
+    }
 }
 
 
 const reducer = (state = initialState, action)=> {
-    console.log("state: ", state)
+    //console.log("state: ", state)
     switch (action.type) {
         case GET_CAMPAIGN:
                 return {
@@ -367,6 +376,16 @@ const reducer = (state = initialState, action)=> {
                           users: action.payload,   
                         };
 
+                case GET_USER_DATA:
+                        return {
+                            ...state,
+                            userData: action.payload,
+                        }
+                case HANDLE_USER_LOGOUT:
+                        return {
+                            ...state,
+                            userData: action.payload,
+                        }
                 default:
                     return state;
     }

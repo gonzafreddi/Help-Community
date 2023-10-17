@@ -2,21 +2,39 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createOrder, getProductByName, createReview, getReviews, getAllBuys, getAllBuysForUser } from "../../redux/actions/action";
 import styles from "./detail_campain.module.css";
-import { addToCart } from "../../redux/actions/action";
+import { addToCart, getUserByEmail } from "../../redux/actions/action";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "../../context/AuthContext";
 import Loader from "../loader/loader";
+// import CreateProduct from "../CreateProduct/CreateProduct";
 
 
 export const DetailProduct = () => {
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const detailProduct = useSelector((state) => state.detailProduct);
     const review = useSelector((state)=> state.review) || [];
     const auth = useAuth()
     const { email } = auth.user;
-    const emailUser = {email: email};
 
-    const dispatch = useDispatch();
+    // console.log(`DETAIL PRODUCT ====>>>>`);
+    // console.log(detailProduct[0]);
+
+    //Este use 
+    useEffect(()=>{
+        if (email) {
+            dispatch(getUserByEmail(email))
+        } else {
+            dispatch(getUserByEmail('logout'))
+        }
+    }, [dispatch, email])
+
+    const currentUser = useSelector((state) => state.userData);
+    const isAdmin = currentUser.userAdmin;
+
     const { name } = useParams();
     const [loading, setLoading] = useState(true);
     const [isReviewPopupOpen, setReviewPopupOpen] = useState(false);
@@ -70,34 +88,40 @@ export const DetailProduct = () => {
     const [reviewCreated, setReviewCreated] = useState(false);
         
       
-    let product = detailProduct[1];
+    let product = detailProduct[0];
     const allData =  [{...product, email}]
     // console.log("allData", allData)
 
-    console.log("allData[0].id: ", allData[0].id)
+    // console.log("allData[0].id: ", allData[0].id)
 
     const [form, setForm] = useState({    
         emailUser: allData[0].email,
         ProductId: allData[0].id,
         rating: 0,
         comment: ""
-      });
+    });
 
     const [error, setError] = useState({
         email: "",
         ProductId: "",
         rating: 0,
         comment: "",
-      });
+    });
 
-      useEffect(() => {
+    useEffect(() => {
         const fetchData = async () => {
-            await dispatch(getProductByName(name));
-            dispatch(getReviews());
+            try {
+                await dispatch(getProductByName(name));
+                await dispatch(getReviews());
+            } catch (error) {
+                console.log('ERROR AL OBTENER LA INFO DEL PRODUCTO');
+            }
             setLoading(false);
         };
         fetchData();
-    }, [name]);
+    }, [dispatch, name]);
+
+
 
 
     useEffect(() => {
@@ -126,13 +150,13 @@ export const DetailProduct = () => {
 
 
 
-      console.log("form", form)
+    //   console.log("form", form)
     const hancleAddtoCart = ()=>{
         const quantityToadd = 1
         dispatch(addToCart(product, quantityToadd))
-      }
+    }
 
-      const changeHandler = (event) => { //esta funcion actualiza el estado del formulario conel nuevo valor ingresado en los campos inputs
+    const changeHandler = (event) => { //esta funcion actualiza el estado del formulario conel nuevo valor ingresado en los campos inputs
         const property = event.target.name; //inputs
         const value = event.target.value; //valor ingresado
         setForm({ ...form, [property]: value });
@@ -200,13 +224,17 @@ export const DetailProduct = () => {
         } else {
           setReviewButtonEnabled(false);
         }
-      }, [buys, allData, userData]);
+      }, [buys, userData]);
 
 
     const handleSubmit=(detailProduct)=>{
         const allData = [{...product, email}]
-        console.log("allData de handleSubmit: ", allData)
+        // console.log("allData de handleSubmit: ", allData)
         dispatch(createOrder(allData))
+    }
+
+    const handleEditButton = () => {
+        navigate(`/create/product/${product.name}`)
     }
 
 
@@ -234,17 +262,25 @@ export const DetailProduct = () => {
             setReviewCreated(true); 
             // actualiza el estado cuando se crea el perro con exito
             alert("Review creada con éxito!!!");
-            dispatch(getReviews());
-        } catch (error) {
+          } catch (error) {
             alert(error.response.data.error);
             //con este alert muestro los errores del back
-        } 
-        if(reviewCreated === false){
+          } if(reviewCreated === false){
             event.preventDefault()
-        }
+          }
+
         closeReviewPopup();
         };
+    //   console.log("reviewsProductId: ", review.ProductId)
+        // console.log("reviews: ", reviews)
+        useEffect(()=>{
+            dispatch(getReviews())
+        },[dispatch])
 
+        // console.log("product: ", product)
+        // console.log("allData[0].id: ", allData[0].id)
+        // console.log("review: ", review)
+        // console.log("review[0].ProductId: ", review.ProductId)
 
     return (
         <div className={styles.conteiner}>
@@ -262,7 +298,11 @@ export const DetailProduct = () => {
                             <img src={product?.image} alt="" />
                         </div>
                         <div className={`${styles.column} ${styles.infoProduct}`}>
-                            <p>Stock: {product?.stock}</p>
+                            <div className={styles.stockEdit}>
+                                <p>Stock: {product?.stock}</p>
+                                { isAdmin === true ? <button className={styles.editButton} onClick={handleEditButton} >Editar<span className="material-icons">edit</span></button> : null}
+                            </div>
+
                             <h1>{product?.name}</h1>
                             <p>{product?.description}</p>
                             <div className={styles.price}>
@@ -283,6 +323,7 @@ export const DetailProduct = () => {
                             {isReviewPopupOpen && (
                             <div className={styles.modalBackground}>
                                 <div className={styles.reviewPopup}>
+
                                 <h2 className={styles.queOpinas}>¿Que opinas sobre este producto?</h2>
                                 <span className={styles.productName}>{name}</span>
                                 <div className={styles.imgReviewCont} >

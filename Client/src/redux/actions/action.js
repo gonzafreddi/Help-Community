@@ -1,15 +1,5 @@
 import axios from "axios";
-import {
-  ADD_ONE_TO_CART,
-  ADD_TO_CART,
-  CLEART_CART,
-  GET_DETAIL_CAMPAIGN,
-  GET_STATE,
-  REMOVE_ONE_TO_CART,
-  REMOVE_TO_CART,
-  GET_PRODUCT_BY_NAME,
-  GET_ALL_BUYS,
-} from "./action_type";
+import { HANDLE_USER_LOGOUT ,GET_USER_DATA ,ADD_ONE_TO_CART, ADD_TO_CART, CLEART_CART, GET_DETAIL_CAMPAIGN , GET_STATE, REMOVE_ONE_TO_CART, REMOVE_TO_CART, GET_PRODUCT_BY_NAME, GET_ALL_BUYS} from "./action_type";
 export const GET_CAMPAIGN = "GET_CAMPAIGN";
 export const FILTER_BY_STATE = "FILTER_BY_STATE";
 export const GET_STATES = "GET_STATES";
@@ -210,6 +200,21 @@ export function postProduct(payload) {
     }
   };
 }
+
+export function putProduct(payload) {
+    return async function () {
+        
+        console.log('PAYLOAD DEL PUT =====>>>>');
+        console.log(payload[0]);
+        try {
+          const response = await axios.put(`/product/edit/${payload[0].id}`, payload[0]);
+          return response
+        } catch (error) {
+          return "Error al editar el producto"
+          // return error.message
+        }
+    }
+}
 export function postUser(payload) {
   return async function (dispatch) {
     try {
@@ -274,6 +279,7 @@ export const getProductByName = (name) => {
         type: GET_PRODUCT_BY_NAME,
         payload: response.data,
       });
+      return response.data
     } catch (error) {
       console.log(error.message);
     }
@@ -290,8 +296,39 @@ export const createOrder = (payload) => {
     } catch (error) {
       console.log(error);
     }
-  };
-};
+  }
+}
+
+// export const getProductByName=(name)=>{
+//     console.log(name)
+//     return async (dispatch)=>{
+//         try {
+//             const response = await axios(`/product?name=${name}`)
+//             console.log(response.data)
+//             await dispatch({
+//                 type: GET_PRODUCT_BY_NAME,
+//                 payload: response.data
+//             })
+//         } catch (error) {
+//             console.log(error.message)
+//         }
+//     }
+// }
+
+// export const createOrder = (payload)=>{
+//     return async (dispatch)=>{
+//         try {
+//             const {data} = await axios.post("/payment/create_order", payload)
+//             console.log(data)
+//             window.location.href = data.init_point
+//             return order
+//         } catch (error) {
+//             console.log(error)
+//         }
+//     }
+// }
+
+
 
 export const getUsers = () => {
   return async (dispatch) => {
@@ -325,6 +362,46 @@ export const getAllBuysForUser = async (email) => {
   } catch (error) {
     console.log(error);
   }
+};
+
+export const getUserByEmail = (email) => {
+    return async (dispatch) => {
+        if (email === 'logout') {
+            try {
+                
+                const setUserTo = {
+                    name:'',
+                    email:'',
+                    id:'',
+                    image:'',
+                    userAdmin:false,
+                    userSuperadmin:false,
+                    userState:true,
+                }
+
+                dispatch({ type: HANDLE_USER_LOGOUT, payload: setUserTo });
+
+                return setUserTo;
+
+            } catch (error) {
+                console.error(error);
+                return null;
+            }
+        } else {
+            try {
+                const response = await axios(`/user/email/?email=${email}`);
+                const userData = response.data[0];
+                // console.log(userData);
+                // Despacha una acción para actualizar el estado con los datos del usuario
+                dispatch({ type: GET_USER_DATA, payload: userData });
+                
+                return userData;
+            } catch (error) {
+                console.error(error);
+                return null;
+            }
+        }
+    };
 };
 
 export const createReview = (review) => {
