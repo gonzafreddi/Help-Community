@@ -290,7 +290,7 @@ export const DetailProduct = () => {
                                 </div>
                                 <div className={style.areaNombres}>
                                 <h2 className={style.nombreRev}>Puntaje: </h2>
-                                <p className={style.numeros}>{form.rating}</p>
+                                <p className={style.numeros}>{form.rating} / 10</p>
                                 {/* <input disabled={true} className={style.nombreRev} type="text" value={form.nombre} onChange={changeHandler} name="nombre" placeholder={displayName} /> */}
                                 <input
                                     type="range"
@@ -330,7 +330,7 @@ export const DetailProduct = () => {
                                                 <p className={style.user}>{review.user?.name}</p>
                                                 <p className={style.fecha}>{formattedDateTime}</p>
                                                 </div>
-                                                <p className={style.comment}>"{review.comment}"</p>
+                                                <p className={style.comment}>{review.comment}</p>
                                                 <p className={style.puntaje}>Puntaje: {review.rating} / 10</p>
                                             </div>
                                         );
