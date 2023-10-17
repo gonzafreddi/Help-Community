@@ -10,6 +10,7 @@ import Loader from "../loader/loader";
 //Notificaciones
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ToggleSwitch from "../toggleSwitch/ToggleSwitch";
 
 export default function CreateProduct(){
 
@@ -268,6 +269,7 @@ export default function CreateProduct(){
                                 </div>
                                 <div className={style.stockContainer}>
                                     <p className={style.dollarSign}>Stock:</p><input name="stock" onChange={handleInputChange} className={style.productStock} defaultValue={isEditing ? product.stock : ""} type="number" placeholder="1000"></input>
+                                    {isEditing ? <ToggleSwitch text={'Activar/Desactivar'} defaultValue={true} /> : null }
                                 </div>
                                 <div className={style.buyCont}>
                                     <button className={style.btnBuy} onClick={handleFormSubmit} disabled={isDisabled} type="submit">{isEditing ? 'Guardar' : 'Crear Producto'}</button>
