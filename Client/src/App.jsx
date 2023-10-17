@@ -24,26 +24,12 @@ import SideBarAdmin from "./Components/adminComponents/SideBarAdmin/SideBarAdmin
 import MailingForm from "./Components/adminComponents/mailing/mailingForm";
 import CreateProduct from "./Components/createProduct/CreateProduct.jsx";
 
-
-import { useEffect } from 'react'
-import { getCategory, getState } from './redux/actions/action'
-import { useDispatch } from 'react-redux'
-import ShoppingCart from './Components/shopping cart/ShoppingCart'
-import { setItem } from './utils/localStorage'
-import { useSelector } from 'react-redux'
-// import './App.css'
-import UserProfile from './Components/userComponents/userProfile/userProfile'
-import UserBuys from './Components/buys/UserBuys'
-import { Products } from './Components/Products/Products'
-
 import AdminLayout from './Components/adminComponents/admin/AdminLayout'; 
 import HomeUnauthorized from './Components/adminComponents/HomeUnauthorized/HomeAnauthorized'
 // import { BrowserRouter as Switch } from 'react-router-dom';
 // import SideBarAdmin from './Components/adminComponents/SideBarAdmin/SideBarAdmin'
 // import Dashboard from './Components/adminComponents/Dashboard/Dashboard'
 // import { AllBuys } from './Components/buys/allBuysAdmin'
-import CreateProduct from './Components/createProduct/CreateProduct'
-import CreateCampaign from './Components/createCampaign/CreateCampaign'
 
 
 function App(){
