@@ -14,7 +14,7 @@ import { useDispatch } from "react-redux";
 import ShoppingCart from "./Components/shopping cart/ShoppingCart";
 import { setItem } from "./utils/localStorage";
 import { useSelector } from "react-redux";
-import "./App.css";
+// import "./App.css";
 import UserProfile from "./Components/userComponents/userProfile/userProfile";
 import Admin from "./Components/adminComponents/admin/admin";
 import UserBuys from "./Components/buys/UserBuys";
