@@ -18,20 +18,19 @@ const getShoppingCarController = async (req, res) => {
     }
 };
 
-const addShoppingCarController = async (req, res) => {
-    const { email, products, state } = req.body;
-    console.log(req.body)
+const addShoppingCarController = async (email, products, state) => {
+   
+    console.log("addShoppingCarController var email, products,state", email, products, state )
     const userId = await getUserByEmail(email);
-    try {
-        await ShoppingCar.create({
+    
+    const newShoppingCar = await ShoppingCar.create({
             userId,
             products,
-            state
+            state,
         });
-        res.send('Shopping card create successfull');
-    } catch (error) {
-        res.status(400).json(error.message);
-    }
+        
+    return newShoppingCar;
+    
 };
 
 const editShoppingCarController = async (req, res) => {

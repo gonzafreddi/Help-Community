@@ -1,6 +1,8 @@
 
 const {User} = require("../db")
 const getUserByEmail = async (userEmail) => {
+
+  console.log("getUserByEmail var userEmail", userEmail )
     try {
       const users = await User.findAll({
         where: { email: userEmail },
