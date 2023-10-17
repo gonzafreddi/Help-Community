@@ -28,7 +28,7 @@ const FilterProducts = ({ categ }) => {
     }
 
     
-        // console.log("categorias: ", categ)
+        console.log("categ: ", categ)
     
     const capitalizeFirstLetter = (str) => {            // Para poner la primera letra de la lista de categs en mayuscula
         if (str.length === 0) {
@@ -45,9 +45,7 @@ const FilterProducts = ({ categ }) => {
                 <option className={styles.italic} value="" disabled>Filtrar por categoria</option>
                 <option className={styles.casillero} value="Todos">Todas las categorias</option>
                 {categ.map((category) => (
-                    <option className={styles.opciones} key={category} value={category}>
-                        {capitalizeFirstLetter(category)}
-                    </option>
+                <option className={styles.opciones} key={category} value={category}>{capitalizeFirstLetter(category)}</option>
                 ))}
             </select>
             <button className={styles.boton} name="menor100" onClick={filtrosPrecio}>Menor a $100</button>

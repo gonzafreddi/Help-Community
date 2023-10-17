@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProduct, getCateg } from "../../redux/actions/action";
 import { Product } from "../Product/Product";
 import styles from "./Products.module.css"
-// import FilterProducts from '../FilterProducts/FilterProducts';
+import FilterProducts from '../FilterProducts/FilterProducts';
 import Pagination from "../Pagination/Pagination";
 import Kv from "../../assets/Compra-dona-4.png";
 
@@ -60,7 +60,7 @@ const currentCards = getCurrentPageCampaigns();
         </div>
 
         <div className={styles.barra}>
-        {/* <FilterProducts categ={categ}/> */}
+        <FilterProducts categ={categ}/>
 
         
         </div>
