@@ -13,7 +13,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import "./adminLayout.css"
 import { BrowserRouter as Switch } from 'react-router-dom';
 import SideBarAdmin from '../SideBarAdmin/SideBarAdmin.jsx'
-import Dashboard from '../Dashboard/Dashboard.jsx'
+import Dashboard from '../dashboard/Dashboard.jsx'
 import CreateCampaign from '../../createCampaign/CreateCampaign.jsx'
 import CreateProduct from '../../createProduct/CreateProduct.jsx'
 import { AllBuys }  from '../../buys/allBuysAdmin.jsx'
