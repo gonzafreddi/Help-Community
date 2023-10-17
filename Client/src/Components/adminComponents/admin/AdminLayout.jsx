@@ -18,7 +18,7 @@ import CreateCampaign from '../../createCampaign/CreateCampaign.jsx'
 import CreateProduct from '../../createProduct/CreateProduct.jsx'
 import { AllBuys }  from '../../buys/allBuysAdmin.jsx'
 import { Products } from '../../Products/Products.jsx'
-import { AdminUsers } from '../adminUsers/AdminUsers.jsx';
+import AdminUsers from '../adminUsers/AdminUsers.jsx';
 import MailingForm from '../mailing/mailingForm.jsx';
 
 function AdminLayout() {
