@@ -54,7 +54,7 @@ body{
 .btnDelete{
     border: none;
     display: flex;
-    align-items: start;
+    align-items: flex-start;
     color:#3A86FF; 
     background-color: #ffff;
     font-size: 1.1em;

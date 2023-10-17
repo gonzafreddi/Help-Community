@@ -50,12 +50,12 @@ export const Nav = () => {
                         <button className='nav-button'>Acerca de</button>
                     </Link>
                     {/* <Link to='/createcampaign'> */}
-                        <Link to={"/create/campaign"}>
+                        {/* <Link to={"/create/campaign"}>
                             <button className='nav-button' > Crear una campaña </button>
                         </Link>
                         <Link to={"/create/product"}>
                             <button className='nav-button' > Crear un producto </button>
-                        </Link>
+                        </Link> */}
                         <Link to={"/products"}>
                             <button className='nav-button' >Productos</button>
                         </Link>
