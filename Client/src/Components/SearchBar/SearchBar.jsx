@@ -14,6 +14,8 @@ const SearchBar = () => {
 
     const products = useSelector((state) => state.products);
 
+    console.log(products);
+
     //TODO --- Manejo de busqueda
 
     const navigate = useNavigate();
@@ -25,9 +27,9 @@ const SearchBar = () => {
 
     const onSearch = (product) => {
     
-        setSelectedProduct(product.title);
+        setSelectedProduct(product.name);
         console.log(selectedProduct);
-        navigate(`products/detail/${product.title}`);
+        navigate(`products/detail/${product.name}`);
     
     }
 
@@ -42,7 +44,7 @@ const SearchBar = () => {
         }
 
         const filtered = products.filter((product) => 
-            product.title.toUpperCase().includes(value.toUpperCase())
+            product.name.toUpperCase().includes(value.toUpperCase())
         );
 
         setSuggestions(filtered.slice(0, 10));
@@ -104,7 +106,7 @@ const SearchBar = () => {
                     <ul className={`suggestion-list ${showSuggestions ? 'showSuggestions' : ''}`}>
                         {suggestions.map((product, index) => (
                             <li className='suggestionItem' key={index} onClick={() => handleSuggestionClick(product)}>
-                                {product.title.toUpperCase()}
+                                {product.name.toUpperCase()}
                             </li>
                         ))}
                     </ul>

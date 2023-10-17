@@ -1,3 +1,4 @@
+
 body {
   margin: 0;
   font-family: 'DM Sans', sans-serif;  
@@ -9,7 +10,3 @@ body {
   min-height:100vh;
 
 }
-
-/* @tailwind base;
-@tailwind components;
-@tailwind utilities; */

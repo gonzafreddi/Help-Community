@@ -5,7 +5,7 @@ import styles from './Login.module.css';
 import { useAuth } from '../../context/AuthContext';
 import { useState } from 'react';
 import { validateLogin, validateRegister } from './validateLogin';
-import { postUser } from '../../redux/actions/action';
+import { postUser, getUserByEmail } from '../../redux/actions/action';
 
 const Login = ({closeLogin}) => {
     
@@ -103,6 +103,7 @@ const Login = ({closeLogin}) => {
                 image: "https://res.cloudinary.com/dauipbxlu/image/upload/v1697131213/uprwps0euakltzyee3zj.jpg"
             }
             await dispatch(postUser(userToPost))
+            await dispatch(getUserByEmail(userToPost.email))
             notify('regSuccess');
             closeLogin();
         } catch (error) {
@@ -119,6 +120,7 @@ const Login = ({closeLogin}) => {
 
             await auth.login(email, password);
             notify('logSuccess');
+            await dispatch(getUserByEmail(email))
             closeLogin();
 
         } catch (error) {
@@ -156,7 +158,9 @@ const Login = ({closeLogin}) => {
             console.log(userToPost);
 
             //TODO          Descomentar el dispatch cuando la funcion post este lista para recibir usuarios iguales
-            dispatch(postUser(userToPost))
+            await dispatch(postUser(userToPost))
+
+            await dispatch(getUserByEmail(userToPost.email))
 
             notify('googleSuccess');
 

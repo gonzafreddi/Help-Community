@@ -55,8 +55,19 @@ const updatereviews = async (id, rating, comment) => {
     return review;
   };
 
+const getUserreviews = async (req, res) => {
+    try {
+      const userId = req.params.userId;
+      const reviews = await Review.findAll({ where: { userId: userId } });
+      res.json(reviews);
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  };
+
 module.exports = {
   getAllreviews,
   postreviews,
   updatereviews,
+  getUserreviews,
 };
