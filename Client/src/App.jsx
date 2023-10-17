@@ -22,7 +22,7 @@ import { AllBuys } from "./Components/buys/allBuysAdmin";
 import { BrowserRouter as Switch } from "react-router-dom";
 import SideBarAdmin from "./Components/adminComponents/SideBarAdmin/SideBarAdmin";
 import MailingForm from "./Components/adminComponents/mailing/mailingForm";
-import CreateProduct from "./Components/CreateProduct/CreateProduct";
+import CreateProduct from "./Components/CreateProduct/CreateProduct.jsx";
 
 function App() {
   const dispatch = useDispatch();
