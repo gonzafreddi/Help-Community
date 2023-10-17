@@ -19,6 +19,7 @@ import CreateProduct from '../../createProduct/CreateProduct.jsx'
 import { AllBuys }  from '../../buys/allBuysAdmin.jsx'
 import { Products } from '../../Products/Products.jsx'
 import { AdminUsers } from '../adminUsers/AdminUsers.jsx';
+import MailingForm from '../mailing/mailingForm.jsx';
 
 function AdminLayout() {
   // const [isAdmin, setIsAdmin] = useState(false);
@@ -66,6 +67,7 @@ function AdminLayout() {
             <Route path='/allbuys' element={<AllBuys />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/users" element={<AdminUsers />} />
+            <Route path="/mailing" element={<MailingForm />} />
           </Routes>
         </div>
       </div>

@@ -120,7 +120,7 @@ const SideBarAdmin = () => {
         </li>
         
         <li>
-        <a href="#"   onClick={() => handleItemClick('Mailing')}
+        <a href="/admin/mailing"   onClick={() => handleItemClick('Mailing')}
             className={selectedItem === 'Mailing' ? styles.selected : ''}>
         {expanded ? (
               <>

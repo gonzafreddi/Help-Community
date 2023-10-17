@@ -33,42 +33,38 @@ function App(){
   const location = useLocation()
   const cart = useSelector((state) => state.cartShop);
 
-
-  useEffect(()=>{
-    setItem("cartShop", cart)
-    dispatch(getState())
-    dispatch(getCategory())
-  },[cart])
+  useEffect(() => {
+    setItem("cartShop", cart);
+    dispatch(getState());
+    dispatch(getCategory());
+  }, [cart]);
   return (
     <>
+      <AuthProvider>
+        {location.pathname !== "/" && <Nav />}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/detail/:id" element={<Detail />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/create/campaign" element={<CreateCampaign />} />
+          <Route path="/create/product" element={<CreateProduct />} />
+          <Route path="/products/detail/:name" element={<DetailProduct />} />
+          <Route path="/shoppingCart" element={<ShoppingCart />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/userProfile" element={<UserProfile />} />
+          <Route path="/buys" element={<UserBuys />} />
 
-     <AuthProvider>
-    {location.pathname !== "/" && <Nav />}
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path='/detail/:id' element={<Detail/>}/>
-        <Route path='/about' element={<About/>}/>
-        <Route path='/create/campaign' element={<CreateCampaign/>}/>
-        <Route path='/create/product' element={<CreateProduct/>}/>
-        <Route path='/products/detail/:name' element={<DetailProduct/>}/>
-        <Route path="/shoppingCart" element={<ShoppingCart />} />
-        <Route path="/products" element={<Products />} />
-        <Route path='/userProfile' element={<UserProfile/>}/>
-        <Route path='/buys' element={<UserBuys/>}/>
+          <Route path="/admin/*" element={<AdminLayout />} />
+          <Route path="/home" element={<HomeUnauthorized />} />
         
 
-
-        <Route path="/admin/*" element={<AdminLayout />} />
-        <Route path="/home" element={<HomeUnauthorized />} />
-        
-
-         {/* <Route path="/login" element={<Login />} /> */}
-      </Routes>
+          {/* <Route path="/login" element={<Login />} /> */}
+        </Routes>
       
     {location.pathname !== "/" && <Footer />}
      </AuthProvider>
     </>
-  )
+  );
 }
 
 // function AdminLayout() {
@@ -92,16 +88,13 @@ function App(){
 //   );
 // }
 
+// <Route path="/admin" element={<Admin />} />
+// <Route path="/admin/users" element={<Users />} />
+// <Route path="/admin/products" element={<Products />} />
+// <Route path="/admin/products/create" element={<CreateProduct />} />
+//  <Route path="/admin/products/:id" element={<editProduct />} />
+// <Route path='/admin/create/campaign' element={<CreateCampaign/>}/>
+//  <Route path="/admin/dashboard" element={<Dashboard />} />
+// <Route path="/admin/mailing" element={<Mailing />} />
 
-    
-        // <Route path="/admin" element={<Admin />} />
-        // <Route path="/admin/users" element={<Users />} /> 
-        // <Route path="/admin/products" element={<Products />} />
-        // <Route path="/admin/products/create" element={<CreateProduct />} />
-        //  <Route path="/admin/products/:id" element={<editProduct />} /> 
-        // <Route path='/admin/create/campaign' element={<CreateCampaign/>}/>
-        //  <Route path="/admin/dashboard" element={<Dashboard />} />
-        // <Route path="/admin/mailing" element={<Mailing />} /> 
-   
-
-export default App
+export default App;

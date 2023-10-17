@@ -1,6 +1,6 @@
 import styles from "./adminUsers.module.css";
 import { CardUser } from "../CardUser/CardUser";
-import { getUsers } from '../../../redux/actions/action.js'; // Importa la acción getUsers
+import { getUsers, banOrDeleteUser, grantAdminAccess } from '../../../redux/actions/action.js'; // Importa la acción getUsers
 import React, { useState, useEffect } from 'react';
 import Pagination from "../../Pagination/Pagination";
 import { useDispatch, useSelector } from 'react-redux';
