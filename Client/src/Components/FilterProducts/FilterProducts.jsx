@@ -30,13 +30,18 @@ const FilterProducts = ({ categ }) => {
     
         console.log("categ: ", categ)
     
-    const capitalizeFirstLetter = (str) => {            // Para poner la primera letra de la lista de categs en mayuscula
-        if (str.length === 0) {
-        return str; }                                   // Devuelve una cadena vacía si la cadena de entrada es vacía
-
-    const firstLetter = str.charAt(0).toUpperCase();    // Convierte la primera letra en mayúscula
-    const restOfString = str.slice(1).toLowerCase();    // Convierte el resto de la cadena en minúscula
-        return firstLetter + restOfString;              // Devuelve la cadena resultante
+        const capitalizeFirstLetter = (str) => {
+            if (typeof str !== 'string') {
+                return str; // Si no es una cadena, devuelve el valor original
+            }
+        
+            if (str.length === 0) {
+                return str;
+            }
+        
+            const firstLetter = str.charAt(0).toUpperCase();
+            const restOfString = str.slice(1).toLowerCase();
+            return firstLetter + restOfString;
         };
 
     return (
@@ -45,7 +50,7 @@ const FilterProducts = ({ categ }) => {
                 <option className={styles.italic} value="" disabled>Filtrar por categoria</option>
                 <option className={styles.casillero} value="Todos">Todas las categorias</option>
                 {categ.map((category) => (
-                <option className={styles.opciones} key={category} value={category}>{capitalizeFirstLetter(category)}</option>
+                <option className={styles.opciones} key={category.id} value={category.name}>{capitalizeFirstLetter(category.name)}</option>
                 ))}
             </select>
             <button className={styles.boton} name="menor100" onClick={filtrosPrecio}>Menor a $100</button>

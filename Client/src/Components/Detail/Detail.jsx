@@ -28,14 +28,19 @@ console.log("name.id: ", name.id)
   console.log("campdDetail: ", campDetail)
   //me susubribo al estdo global para consumir la info del detalle
   
-  const capitalizeFirstLetter = (str) => { //para poner la primera letra de la lista de categs en mayuscula
-    if (str.length === 0) {
-        return str; // Devuelve una cadena vacía si la cadena de entrada es vacía
+  const capitalizeFirstLetter = (str) => {
+    if (typeof str !== 'string') {
+        return str; // Si no es una cadena, devuelve el valor original
     }
-    const firstLetter = str.charAt(0).toUpperCase(); // Convierte la primera letra en mayúscula
-    const restOfString = str.slice(1).toLowerCase(); // Convierte el resto de la cadena en minúscula
-    return firstLetter + restOfString; // Devuelve la cadena resultante
-    };
+
+    if (str.length === 0) {
+        return str;
+    }
+
+    const firstLetter = str.charAt(0).toUpperCase();
+    const restOfString = str.slice(1).toLowerCase();
+    return firstLetter + restOfString;
+};
 
 
   return (
