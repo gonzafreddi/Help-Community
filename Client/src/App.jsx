@@ -16,12 +16,12 @@ import { setItem } from "./utils/localStorage";
 import { useSelector } from "react-redux";
 // import "./App.css";
 import UserProfile from "./Components/userComponents/userProfile/userProfile";
-import Admin from "./Components/adminComponents/admin/admin";
+// import Admin from "./Components/adminComponents/admin/admin";
 import UserBuys from "./Components/buys/UserBuys";
-import { AllBuys } from "./Components/buys/allBuysAdmin";
-import { BrowserRouter as Switch } from "react-router-dom";
-import SideBarAdmin from "./Components/adminComponents/SideBarAdmin/SideBarAdmin";
-import MailingForm from "./Components/adminComponents/mailing/mailingForm";
+// import { AllBuys } from "./Components/buys/allBuysAdmin";
+// import { BrowserRouter as Switch } from "react-router-dom";
+// import SideBarAdmin from "./Components/adminComponents/SideBarAdmin/SideBarAdmin";
+// import MailingForm from "./Components/adminComponents/mailing/mailingForm";
 import CreateProduct from "./Components/createProduct/CreateProduct.jsx";
 
 import AdminLayout from './Components/adminComponents/admin/AdminLayout'; 
