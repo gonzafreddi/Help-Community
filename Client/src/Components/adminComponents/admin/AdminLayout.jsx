@@ -12,46 +12,47 @@ import { getUsers } from '../../../redux/actions/action.js'; // Importa la acci�
 import { Navigate, Route, Routes } from 'react-router-dom';
 import "./adminLayout.css"
 import { BrowserRouter as Switch } from 'react-router-dom';
-import SideBarAdmin from '../../adminComponents/SideBarAdmin/SideBarAdmin'
-import Dashboard from '../../adminComponents/Dashboard/Dashboard'
-import CreateCampaign from '../../../Components/createCampaign/CreateCampaign'
-import CreateProduct from '../../../Components/createProduct/CreateProduct'
-import { AllBuys }  from '../../../Components/buys/allBuysAdmin'
-import { Products } from '../../../Components/Products/Products'
+import SideBarAdmin from '../SideBarAdmin/SideBarAdmin.jsx'
+import Dashboard from '../Dashboard/Dashboard.jsx'
+import CreateCampaign from '../../createCampaign/CreateCampaign.jsx'
+import CreateProduct from '../../createProduct/CreateProduct.jsx'
+import { AllBuys }  from '../../buys/allBuysAdmin.jsx'
+import { Products } from '../../Products/Products.jsx'
+import { AdminUsers } from '../adminUsers/AdminUsers.jsx';
 
 function AdminLayout() {
-  const [isAdmin, setIsAdmin] = useState(false);
-  const { currentUser } = useAuth(); // Asumiendo que tienes un contexto de autenticación
+  // const [isAdmin, setIsAdmin] = useState(false);
+  // const { currentUser } = useAuth(); // Asumiendo que tienes un contexto de autenticación
 
-  useEffect(() => {
-    // Realiza una llamada para obtener todos los usuarios de la base de datos
-    const fetchUsers = async () => {
-      try {
-        const users = await getUsers(); // Reemplaza con tu lógica para obtener los usuarios
+  // useEffect(() => {
+  //   // Realiza una llamada para obtener todos los usuarios de la base de datos
+  //   const fetchUsers = async () => {
+  //     try {
+  //       const users = await getUsers(); // Reemplaza con tu lógica para obtener los usuarios
 
-        // Verifica si el usuario autenticado tiene "userAdmin: true"
-        if (currentUser && (users.find(user => user.id === currentUser.id)?.userAdmin || users.find(user => user.id === currentUser.id)?.userSuperadmin)) {
-          setIsAdmin(true);
-        }
-      } catch (error) {
-        console.error('Error al obtener la lista de usuarios:', error);
-      }
-    };
+  //       // Verifica si el usuario autenticado tiene "userAdmin: true"
+  //       if (currentUser && (users.find(user => user.id === currentUser.id)?.userAdmin || users.find(user => user.id === currentUser.id)?.userSuperadmin)) {
+  //         setIsAdmin(true);
+  //       }
+  //     } catch (error) {
+  //       console.error('Error al obtener la lista de usuarios:', error);
+  //     }
+  //   };
 
-    fetchUsers();
-  }, [currentUser]);
+  //   fetchUsers();
+  // }, [currentUser]);
 
-  if (!isAdmin) {
-    // Redirige al usuario no autorizado a "/home"
-    return <Navigate to="/home" replace />;
+  // if (!isAdmin) {
+  //   // Redirige al usuario no autorizado a "/home"
+  //   return <Navigate to="/home" replace />;
 
-    // setTimeout(function () {
-    //   window.alert("Acceso bloqueado :)");
-    //   // Redirige al usuario a la página deseada después del mensaje de alerta
-    //   window.location.href = "/products"; // Cambia "/products" por la ruta que desees
-    // }, 1000);
-    // return null; // O simplemente regresa null para que no se muestre nada en la página
-  }
+  //   // setTimeout(function () {
+  //   //   window.alert("Acceso bloqueado :)");
+  //   //   // Redirige al usuario a la página deseada después del mensaje de alerta
+  //   //   window.location.href = "/products"; // Cambia "/products" por la ruta que desees
+  //   // }, 1000);
+  //   // return null; // O simplemente regresa null para que no se muestre nada en la página
+  // }
 
   return (
     <>
@@ -64,6 +65,7 @@ function AdminLayout() {
             <Route path='/create/campaign' element={<CreateCampaign />} />
             <Route path='/allbuys' element={<AllBuys />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/users" element={<AdminUsers />} />
           </Routes>
         </div>
       </div>

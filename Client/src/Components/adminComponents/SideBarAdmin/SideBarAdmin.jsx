@@ -35,7 +35,7 @@ const SideBarAdmin = () => {
         </li>
 
         <li>
-          <a href="#" onClick={() => handleItemClick('Usuarios')}
+          <a href="/admin/users" onClick={() => handleItemClick('Usuarios')}
             className={selectedItem === 'Usuarios' ? styles.selected : ''}
           >
           {expanded ? (
