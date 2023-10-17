@@ -330,3 +330,41 @@ export const getAllBuysForUser = async (email) => {
 export const createReview = (review) => {
   return { type: CREATE_REVIEW, payload: review };
 };
+
+
+
+// Acción para banear o eliminar un usuario
+export const banOrDeleteUser = (userId) => async (dispatch) => {
+  try {
+    const response = await axios.put(`/update/${userId}`, { userState: false, userAdmin: false });
+    if (response.status === 200) {
+      // Aquí puedes despachar una acción de éxito si lo deseas
+      dispatch({ type: 'BAN_OR_DELETE_USER_SUCCESS', payload: response.data });
+    } else {
+      // Aquí puedes despachar una acción de error si lo deseas
+      dispatch({ type: 'BAN_OR_DELETE_USER_ERROR', payload: 'Error al banear o eliminar al usuario' });
+    }
+  } catch (error) {
+    // Manejo de errores
+    console.error(error);
+    dispatch({ type: 'BAN_OR_DELETE_USER_ERROR', payload: 'Error al banear o eliminar al usuario' });
+  }
+};
+
+// Acción para otorgar acceso de administrador a un usuario
+export const grantAdminAccess = (userId) => async (dispatch) => {
+  try {
+    const response = await axios.put(`/update/${userId}`, { userAdmin: true });
+    if (response.status === 200) {
+      // Aquí puedes despachar una acción de éxito si lo deseas
+      dispatch({ type: 'GRANT_ADMIN_ACCESS_SUCCESS', payload: response.data });
+    } else {
+      // Aquí puedes despachar una acción de error si lo deseas
+      dispatch({ type: 'GRANT_ADMIN_ACCESS_ERROR', payload: 'Error al otorgar acceso de administrador' });
+    }
+  } catch (error) {
+    // Manejo de errores
+    console.error(error);
+    dispatch({ type: 'GRANT_ADMIN_ACCESS_ERROR', payload: 'Error al otorgar acceso de administrador' });
+  }
+};

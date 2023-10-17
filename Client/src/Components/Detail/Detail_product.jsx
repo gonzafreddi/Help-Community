@@ -247,31 +247,31 @@ export const DetailProduct = () => {
 
 
     return (
-        <div className={style.conteiner}>
+        <div className={styles.conteiner}>
             {loading ? (
                 // Muestra "Cargando..." durante 1 segundo
-                <div className={style.loader}>
+                <div className={styles.loader}>
                     <Loader/>
                     <h1>Cargando...</h1>
                 </div>
             ) : (
                 product && (
                     <div>
-                    <div className={style.productCont}>
-                        <div className={style.imgCont}>
+                    <div className={styles.productCont}>
+                        <div className={styles.imgCont}>
                             <img src={product?.image} alt="" />
                         </div>
-                        <div className={`${style.column} ${style.infoProduct}`}>
+                        <div className={`${styles.column} ${styles.infoProduct}`}>
                             <p>Stock: {product?.stock}</p>
                             <h1>{product?.name}</h1>
                             <p>{product?.description}</p>
-                            <div className={style.price}>
+                            <div className={styles.price}>
                                 <p>$ {product?.price}</p>
                             </div>
-                            <div className={style.buyCont}>
-                            <button className={style.btnBuy} onClick={() => handleSubmit(detailProduct)}>Comprar</button>
+                            <div className={styles.buyCont}>
+                            <button className={styles.btnBuy} onClick={() => handleSubmit(detailProduct)}>Comprar</button>
 
-                                <button className={style.btnAddToCart} onClick={hancleAddtoCart}>Agregar al carrito</button>
+                                <button className={styles.btnAddToCart} onClick={hancleAddtoCart}>Agregar al carrito</button>
                             </div>
                         </div>
                     </div>
@@ -309,7 +309,7 @@ export const DetailProduct = () => {
                                 <div className={style.botonesReview}>
                                 <button disabled={disable() || reviewCreated} className={style.enviar} onClick={submitReview} type="submit">Enviar</button>
                                 {/* disabled={disable() || reviewCreated} */}
-                                <button className={style.cancelar} onClick={closeReviewPopup}>Cancelar</button>
+                                <button className={styles.cancelar} onClick={closeReviewPopup}>Cancelar</button>
                                 </div>
                                 </div>
                             </div>

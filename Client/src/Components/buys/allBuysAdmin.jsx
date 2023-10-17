@@ -50,7 +50,7 @@ export function AllBuys() {
   return (
     <div className={style.container}>
       <div className={style.cards}>
-        <h1>Historial de compras</h1>
+        <h1>Historial de ventas</h1>
         <StatusBuyFilter buys={buys} onFilterChange={handleFilterChange} />
         <div className={style.cardCont}>
           {filteredBuys.length > 0 ? (
@@ -64,7 +64,7 @@ export function AllBuys() {
               />
             ))
           ) : (
-            <h1>No hay compras</h1>
+            <h1>No hay ventas</h1>
           )}
           
         </div>
