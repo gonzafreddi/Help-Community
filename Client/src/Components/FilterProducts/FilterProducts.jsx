@@ -1,6 +1,6 @@
 import { filterByCateg, productOrdenPrecio, productsFiltrosPrecio, resetProducts } from '../../redux/actions/action';
 import React, { useEffect, useState } from 'react';
-import style from './FilterProducts.module.css';
+import styles from './FilterProducts.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 
 const FilterProducts = ({ categ }) => {
@@ -28,35 +28,38 @@ const FilterProducts = ({ categ }) => {
     }
 
     
-        // console.log("categorias: ", categ)
+        console.log("categ: ", categ)
     
-    const capitalizeFirstLetter = (str) => {            // Para poner la primera letra de la lista de categs en mayuscula
-        if (str.length === 0) {
-        return str; }                                   // Devuelve una cadena vacía si la cadena de entrada es vacía
-
-    const firstLetter = str.charAt(0).toUpperCase();    // Convierte la primera letra en mayúscula
-    const restOfString = str.slice(1).toLowerCase();    // Convierte el resto de la cadena en minúscula
-        return firstLetter + restOfString;              // Devuelve la cadena resultante
+        const capitalizeFirstLetter = (str) => {
+            if (typeof str !== 'string') {
+                return str; // Si no es una cadena, devuelve el valor original
+            }
+        
+            if (str.length === 0) {
+                return str;
+            }
+        
+            const firstLetter = str.charAt(0).toUpperCase();
+            const restOfString = str.slice(1).toLowerCase();
+            return firstLetter + restOfString;
         };
 
     return (
-        <div className={style.filterBarContainer}>
-            <select className={style.filters} value={selectedCateg} onChange={handleFilterCateg}>
-                <option className={style.italic} value="" disabled>Filtrar por categoria</option>
-                <option className={style.casillero} value="Todos">Todas las categorias</option>
+        <div className={styles.filterBarContainer}>
+            <select className={styles.filters} value={selectedCateg} onChange={handleFilterCateg}>
+                <option className={styles.italic} value="" disabled>Filtrar por categoria</option>
+                <option className={styles.casillero} value="Todos">Todas las categorias</option>
                 {categ.map((category) => (
-                    <option className={style.opciones} key={category} value={category}>
-                        {capitalizeFirstLetter(category)}
-                    </option>
+                <option className={styles.opciones} key={category.id} value={category.name}>{capitalizeFirstLetter(category.name)}</option>
                 ))}
             </select>
-            <button className={style.boton} name="menor100" onClick={filtrosPrecio}>Menor a $100</button>
-            <button className={style.boton} name="menor500" onClick={filtrosPrecio}>Menor a $500</button>
-            <button className={style.boton} name="menor1000" onClick={filtrosPrecio}>Menor a $1000</button>
-            <button className={style.boton} name="mayor1000" onClick={filtrosPrecio}>Mayor a $1000</button>
-            <button className={style.boton} name="precioMenor" onClick={ordenPrecio}>Menor precio</button>
-            <button className={style.boton} name="precioMayor" onClick={ordenPrecio}>Mayor precio</button>
-            <button className={style.reset} onClick={reset}>RESET FILTERS</button>
+            <button className={styles.boton} name="menor100" onClick={filtrosPrecio}>Menor a $100</button>
+            <button className={styles.boton} name="menor500" onClick={filtrosPrecio}>Menor a $500</button>
+            <button className={styles.boton} name="menor1000" onClick={filtrosPrecio}>Menor a $1000</button>
+            <button className={styles.boton} name="mayor1000" onClick={filtrosPrecio}>Mayor a $1000</button>
+            <button className={styles.boton} name="precioMenor" onClick={ordenPrecio}>Menor precio</button>
+            <button className={styles.boton} name="precioMayor" onClick={ordenPrecio}>Mayor precio</button>
+            <button className={styles.reset} onClick={reset}>RESET FILTERS</button>
         </div>
     );
 };

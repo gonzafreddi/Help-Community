@@ -1,0 +1,8 @@
+.coco {
+    display: flex; /* Utiliza flexbox para que la sidebar y el contenido vayan en paralelo */
+  }
+
+.content {
+    flex-grow: 1; /* El contenido se expandirá para llenar el espacio restante */
+    padding: 20px; /* Añade relleno al contenido principal */
+  }

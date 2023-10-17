@@ -1,4 +1,4 @@
-import style from "./CreateProduct.module.css"
+import styles from "./CreateProduct.module.css"
 import UploadWidget from "../UploadWidget/UploadWidget";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react"
@@ -110,39 +110,39 @@ export default function CreateProduct(){
     const isDisabled = disableFunction(errors);
  
     return (
-        <div className={style.conteiner}>
-            <div className={style.productCont}>
-                <div className={style.imgCont}>
+        <div className={styles.conteiner}>
+            <div className={styles.productCont}>
+                <div className={styles.imgCont}>
                     {
                         imageUrl !== ""
-                        ? <img className={style.productImg} src={imageUrl} alt="productImg" /> 
-                        : <div className={style.txtAndImgCont}>
-                            <h2 className={style.imgTxt}>Subir Imagen</h2>
-                            <UploadWidget className={style.uploadButton} onImageUpload={handleImageUpload}/>
+                        ? <img className={styles.productImg} src={imageUrl} alt="productImg" /> 
+                        : <div className={styles.txtAndImgCont}>
+                            <h2 className={styles.imgTxt}>Subir Imagen</h2>
+                            <UploadWidget className={styles.uploadButton} onImageUpload={handleImageUpload}/>
                           </div>
                     }
                 </div>
-                <div className={style.infoProduct}>
-                    <input name="name" onChange={handleInputChange} className={style.productName} placeholder="Nombre del Producto"></input>
-                    <textarea onChange={handleInputChange} name="description" className={style.productDescription} placeholder="Descripción del producto"></textarea>
-                    <div className={style.priceAndCatContainer}>
-                        <div className={style.priceAndDollarContainer}>
-                            <p className={style.dollarSign}>$</p> <input name="price" onChange={handleInputChange} className={style.productPrice} placeholder="100.99" type="number"></input>
+                <div className={styles.infoProduct}>
+                    <input name="name" onChange={handleInputChange} className={styles.productName} placeholder="Nombre del Producto"></input>
+                    <textarea onChange={handleInputChange} name="description" className={styles.productDescription} placeholder="Descripción del producto"></textarea>
+                    <div className={styles.priceAndCatContainer}>
+                        <div className={styles.priceAndDollarContainer}>
+                            <p className={styles.dollarSign}>$</p> <input name="price" onChange={handleInputChange} className={styles.productPrice} placeholder="100.99" type="number"></input>
                         </div>
-                        <select name="category" onChange={handleInputChange} className={style.productCategories}>
-                            <option className={style.casillero} value="Todos">Categoría del producto</option>
+                        <select name="category" onChange={handleInputChange} className={styles.productCategories}>
+                            <option className={styles.casillero} value="Todos">Categoría del producto</option>
                             {categ.map((category) => (
-                                <option className={style.catOpciones} key={category.id} value={category.id}>
+                                <option className={styles.catOpciones} key={category.id} value={category.id}>
                                     {capitalizeFirstLetter(category.name)}
                                 </option>
                             ))}
                         </select>
                     </div>
-                    <div className={style.stockContainer}>
-                        <p className={style.dollarSign}>Stock:</p><input name="stock" onChange={handleInputChange} className={style.productStock} type="number" placeholder="1000"></input>
+                    <div className={styles.stockContainer}>
+                        <p className={styles.dollarSign}>Stock:</p><input name="stock" onChange={handleInputChange} className={styles.productStock} type="number" placeholder="1000"></input>
                     </div>
-                    <div className={style.buyCont}>
-                        <button className={style.btnBuy} onClick={handleFormSubmit} disabled={isDisabled} type="submit">Crear Producto</button>
+                    <div className={styles.buyCont}>
+                        <button className={styles.btnBuy} onClick={handleFormSubmit} disabled={isDisabled} type="submit">Crear Producto</button>
                     </div>
                 </div>
             </div>

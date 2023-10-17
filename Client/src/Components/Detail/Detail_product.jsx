@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createOrder, getProductByName, createReview, getReviews, getAllBuys, getAllBuysForUser } from "../../redux/actions/action";
-import style from "./detail_campain.module.css";
+import styles from "./detail_campain.module.css";
 import { addToCart } from "../../redux/actions/action";
 import { useParams } from "react-router-dom";
 import axios from "axios";
@@ -247,50 +247,50 @@ export const DetailProduct = () => {
 
 
     return (
-        <div className={style.conteiner}>
+        <div className={styles.conteiner}>
             {loading ? (
                 // Muestra "Cargando..." durante 1 segundo
-                <div className={style.loader}>
+                <div className={styles.loader}>
                     <Loader/>
                     <h1>Cargando...</h1>
                 </div>
             ) : (
                 product && (
                     <div>
-                    <div className={style.productCont}>
-                        <div className={style.imgCont}>
+                    <div className={styles.productCont}>
+                        <div className={styles.imgCont}>
                             <img src={product?.image} alt="" />
                         </div>
-                        <div className={`${style.column} ${style.infoProduct}`}>
+                        <div className={`${styles.column} ${styles.infoProduct}`}>
                             <p>Stock: {product?.stock}</p>
                             <h1>{product?.name}</h1>
                             <p>{product?.description}</p>
-                            <div className={style.price}>
+                            <div className={styles.price}>
                                 <p>$ {product?.price}</p>
                             </div>
-                            <div className={style.buyCont}>
-                            <button className={style.btnBuy} onClick={() => handleSubmit(detailProduct)}>Comprar</button>
+                            <div className={styles.buyCont}>
+                            <button className={styles.btnBuy} onClick={() => handleSubmit(detailProduct)}>Comprar</button>
 
-                                <button className={style.btnAddToCart} onClick={hancleAddtoCart}>Agregar al carrito</button>
+                                <button className={styles.btnAddToCart} onClick={hancleAddtoCart}>Agregar al carrito</button>
                             </div>
                         </div>
                     </div>
-                        <div className={style.reviewsCont}>
-                            <div className={style.contTitulos}>
-                            <h2 className={style.tituloReviews}>Product Reviews</h2>
-                            <button className={style.añadir} onClick={openReviewPopup} disabled={!isReviewButtonEnabled}>Añadir review</button>
+                        <div className={styles.reviewsCont}>
+                            <div className={styles.contTitulos}>
+                            <h2 className={styles.tituloReviews}>Product Reviews</h2>
+                            <button className={styles.añadir} onClick={openReviewPopup} disabled={!isReviewButtonEnabled}>Añadir review</button>
                             </div>
                             {isReviewPopupOpen && (
-                            <div className={style.modalBackground}>
-                                <div className={style.reviewPopup}>
-                                <h2 className={style.queOpinas}>¿Que opinas sobre este producto?</h2>
-                                <span className={style.productName}>{name}</span>
-                                <div className={style.imgReviewCont} >
-                                <img className={style.imgReview} src={product?.image} alt="" />
+                            <div className={styles.modalBackground}>
+                                <div className={styles.reviewPopup}>
+                                <h2 className={styles.queOpinas}>¿Que opinas sobre este producto?</h2>
+                                <span className={styles.productName}>{name}</span>
+                                <div className={styles.imgReviewCont} >
+                                <img className={styles.imgReview} src={product?.image} alt="" />
                                 </div>
-                                <div className={style.areaNombres}>
-                                <h2 className={style.nombreRev}>Puntaje: </h2>
-                                <p className={style.numeros}>{form.rating}</p>
+                                <div className={styles.areaNombres}>
+                                <h2 className={styles.nombreRev}>Puntaje: </h2>
+                                <p className={styles.numeros}>{form.rating} / 10</p>
                                 {/* <input disabled={true} className={style.nombreRev} type="text" value={form.nombre} onChange={changeHandler} name="nombre" placeholder={displayName} /> */}
                                 <input
                                     type="range"
@@ -300,21 +300,21 @@ export const DetailProduct = () => {
                                     value={form.rating}
                                     onChange={changeHandler}
                                     name="rating"
-                                    className={`${style.puntajeRange} ${style.customRange}`}
+                                    className={`${styles.puntajeRange} ${styles.customRange}`}
                                     />                          
-                                {ratingError && <span className={style.error}>{ratingError}</span>}
+                                {ratingError && <span className={styles.error}>{ratingError}</span>}
                                 </div>
-                                <textarea className={style.escribirRev} type="text" value={form.comment} onChange={changeHandler} name="comment" placeholder="Escribe tu opinión" />
-                                {commentError && <span className={style.error}>{commentError}</span>}
-                                <div className={style.botonesReview}>
-                                <button disabled={disable() || reviewCreated} className={style.enviar} onClick={submitReview} type="submit">Enviar</button>
+                                <textarea className={styles.escribirRev} type="text" value={form.comment} onChange={changeHandler} name="comment" placeholder="Escribe tu opinión" />
+                                {commentError && <span className={styles.error}>{commentError}</span>}
+                                <div className={styles.botonesReview}>
+                                <button disabled={disable() || reviewCreated} className={styles.enviar} onClick={submitReview} type="submit">Enviar</button>
                                 {/* disabled={disable() || reviewCreated} */}
-                                <button className={style.cancelar} onClick={closeReviewPopup}>Cancelar</button>
+                                <button className={styles.cancelar} onClick={closeReviewPopup}>Cancelar</button>
                                 </div>
                                 </div>
                             </div>
                             )}
-                            <div className={style.rev2}>
+                            <div className={styles.rev2}>
                                 {Array.isArray(review) && review.map((review, index) => {
                                     if (review.ProductId === allData[0].id) {
                                         const formattedDateTime = new Date(review.createdAt).toLocaleString('es-ES', {
@@ -325,13 +325,13 @@ export const DetailProduct = () => {
                                             minute: '2-digit'
                                         });
                                         return (
-                                            <div className={style.review} key={index}>
-                                                <div className={style.nombreFecha}>
-                                                <p className={style.user}>{review.user?.name}</p>
-                                                <p className={style.fecha}>{formattedDateTime}</p>
+                                            <div className={styles.review} key={index}>
+                                                <div className={styles.nombreFecha}>
+                                                <p className={styles.user}>{review.user?.name}</p>
+                                                <p className={styles.fecha}>{formattedDateTime}</p>
                                                 </div>
-                                                <p className={style.comment}>"{review.comment}"</p>
-                                                <p className={style.puntaje}>Puntaje: {review.rating} / 10</p>
+                                                <p className={styles.comment}>{review.comment}</p>
+                                                <p className={styles.puntaje}>Puntaje: {review.rating} / 10</p>
                                             </div>
                                         );
                                     } else {

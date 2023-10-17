@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getCampaign, getStates, getCategory } from '../../redux/actions/action';
 import Pagination from '../Pagination/Pagination';
 import { Cards } from "../Cards/Cards";
-import style from "./Home.module.css"
+import styles from "./Home.module.css"
 // import FilterBar from '../FilterBar/FilterBar';
 
 
@@ -45,11 +45,11 @@ export const Home = () => {
 
 
  return (
-   <div className={style.conteiner}>
+   <div className={styles.conteiner}>
        {/* <FilterBar states={states} category={category} /> */}
 
-       <Cards className={style.contenedor} data={getCurrentPageCampaigns()}/>
-     <div className={style.pagination}>
+       <Cards className={styles.contenedor} data={getCurrentPageCampaigns()}/>
+     <div className={styles.pagination}>
      <Pagination  page={page} setPage={setPage} itemsPerPage={cardsPerPage} totalItems={totalItems}/>
      </div>
    </div>

@@ -1,5 +1,7 @@
+const { User } = require("../db");
 const transporter = require("../config/nodemailer");
 
+//Mail de confirmación de registro en la página.
 const postNodemailerController = async (email) => {
   await transporter.sendMail({
     from: "message sent from <helpcommunityarg@gmail.com>",
@@ -19,4 +21,27 @@ const postNodemailerController = async (email) => {
   });
 };
 
-module.exports = postNodemailerController;
+//Mail masivos a usuarios.
+
+const postMailingController = async (subject, message) => {
+  try {
+    const users = await User.findAll();
+    console.log(users);
+
+    for (const user of users) {
+      await transporter.sendMail({
+        from: "message sent from <helpcommunityarg@gmail.com>",
+        to: user.email,
+        subject: subject,
+        html: message,
+      });
+      console.log(`Correo enviado a ${user.name} (${user.email})`);
+    }
+
+    console.log("Correos electrónicos enviados a todos los usuarios.");
+  } catch (error) {
+    console.error("Error al enviar correos electrónicos:", error);
+  }
+};
+
+module.exports = { postNodemailerController, postMailingController };

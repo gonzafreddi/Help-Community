@@ -21,7 +21,7 @@ const SideBarAdmin = () => {
       </div>
       <ul className={styles.menu}>
       <li>
-        <a href="#"   onClick={() => handleItemClick('Dashboard')}
+        <a href="/admin/dashboard"   onClick={() => handleItemClick('Dashboard')}
             className={selectedItem === 'Dashboard' ? styles.selected : ''}>
         {expanded ? (
               <>
@@ -35,7 +35,7 @@ const SideBarAdmin = () => {
         </li>
 
         <li>
-          <a href="#" onClick={() => handleItemClick('Usuarios')}
+          <a href="/admin/users" onClick={() => handleItemClick('Usuarios')}
             className={selectedItem === 'Usuarios' ? styles.selected : ''}
           >
           {expanded ? (
@@ -120,7 +120,7 @@ const SideBarAdmin = () => {
         </li>
         
         <li>
-        <a href="#"   onClick={() => handleItemClick('Mailing')}
+        <a href="/admin/mailing"   onClick={() => handleItemClick('Mailing')}
             className={selectedItem === 'Mailing' ? styles.selected : ''}>
         {expanded ? (
               <>
