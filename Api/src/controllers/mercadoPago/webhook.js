@@ -20,7 +20,7 @@ const receiveWebhook = async (req, res) => {
   console.log("USER_UUID", userUuId);
 
   try {
-    if (payment.type === "payment") {
+    if (payment?.type === "payment") {
       const data = await mercadopago.payment.findById(payment["data.id"]);
       const orderId = await data.body.order.id;
       const items = await data.response.additional_info.items;
@@ -49,6 +49,7 @@ const receiveWebhook = async (req, res) => {
     }
   } catch (error) {
     console.log(error);
+    res.status(404).json({ error: error.message });
   }
 };
 module.exports = receiveWebhook;
