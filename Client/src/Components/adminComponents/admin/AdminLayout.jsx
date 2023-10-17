@@ -18,7 +18,7 @@ import CreateCampaign from '../../createCampaign/CreateCampaign.jsx'
 import CreateProduct from '../../createProduct/CreateProduct.jsx'
 import { AllBuys }  from '../../buys/allBuysAdmin.jsx'
 import { Products } from '../../Products/Products.jsx'
-import AdminUsers from '../adminUsers/AdminUsers.jsx';
+// import AdminUsers from '../adminUsers/AdminUsers.jsx';
 import MailingForm from '../mailing/mailingForm.jsx';
 
 function AdminLayout() {
@@ -66,7 +66,7 @@ function AdminLayout() {
             <Route path='/create/campaign' element={<CreateCampaign />} />
             <Route path='/allbuys' element={<AllBuys />} />
             {/* <Route path="/dashboard" element={<Dashboard />} /> */}
-            <Route path="/users" element={<AdminUsers />} />
+            {/* <Route path="/users" element={<AdminUsers />} /> */}
             <Route path="/mailing" element={<MailingForm />} />
           </Routes>
         </div>
