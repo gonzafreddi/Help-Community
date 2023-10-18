@@ -64,7 +64,7 @@ export const Products = () => {
         </div>
 
         <div className={styles.barra}>
-        <FilterProducts categ={categ}/>
+        <FilterProducts categ={categ} products={products} />
 
         
         </div>
