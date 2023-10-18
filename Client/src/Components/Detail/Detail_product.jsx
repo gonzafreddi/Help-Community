@@ -78,6 +78,7 @@ export const DetailProduct = () => {
             console.error("Error al obtener la info:", error);
           });
       }, []);
+      
 
 
     const displayName = auth.user.displayName;
@@ -88,7 +89,7 @@ export const DetailProduct = () => {
     const [reviewCreated, setReviewCreated] = useState(false);
         
       
-    let product = detailProduct[0];
+    let product = detailProduct[1];
     const allData =  [{...product, email}]
     // console.log("allData", allData)
 
@@ -150,7 +151,7 @@ export const DetailProduct = () => {
 
 
 
-    //   console.log("form", form)
+      console.log("form", form)
     const hancleAddtoCart = ()=>{
         const quantityToadd = 1
         dispatch(addToCart(product, quantityToadd))
@@ -209,22 +210,25 @@ export const DetailProduct = () => {
         return false;
         };
 
-    useEffect(() => {
-        if (buys && buys.length > 0 && userData && userData.length > 0) {
-          const allMatchProductId = buys.some((buy) => {
-            return (
-              buy.products.items &&
-              buy.products.items.some((item) => item.id === allData[0].id) &&
-              buy.products.statusDetail === "accredited" &&
-              buy.userId === userData[0].id
-            );
-          });
-    
-          setReviewButtonEnabled(allMatchProductId);
-        } else {
-          setReviewButtonEnabled(false);
-        }
-      }, [buys, userData]);
+        useEffect(() => {
+          if (buys && buys.length > 0 && userData && userData.length > 0) {
+              const allMatchProductId = buys.some((buy) => {
+                  return (
+                      buy.products.items &&
+                      buy.products.items.some((item) => item.id === allData[0].id) &&
+                      buy.products.statusDetail === "accredited" &&
+                      buy.userId === userData[0].id
+                  );
+              });
+      
+              // Verifica si el usuario ya ha revisado el producto
+              const hasReviewed = Array.isArray(review) && review.some((rev) => rev.ProductId === allData[0].id && rev.emailUser === email);
+      
+              setReviewButtonEnabled(allMatchProductId && !hasReviewed);
+          } else {
+              setReviewButtonEnabled(false);
+          }
+      }, [buys, userData, review, allData, email]);
 
 
     const handleSubmit=(detailProduct)=>{
@@ -249,6 +253,7 @@ export const DetailProduct = () => {
       const handlePuntajeChange = (newPuntaje) => {
         setForm({ ...form, rating: newPuntaje });
       };
+      
 
       const submitReview = async (event) => {
         try {
@@ -262,6 +267,7 @@ export const DetailProduct = () => {
             setReviewCreated(true); 
             // actualiza el estado cuando se crea el perro con exito
             alert("Review creada con éxito!!!");
+            dispatch(getReviews())
           } catch (error) {
             alert(error.response.data.error);
             //con este alert muestro los errores del back
@@ -279,8 +285,27 @@ export const DetailProduct = () => {
 
         // console.log("product: ", product)
         // console.log("allData[0].id: ", allData[0].id)
-        // console.log("review: ", review)
-        // console.log("review[0].ProductId: ", review.ProductId)
+        console.log("review: ", review)
+        
+        // console.log("review.ProductId: ", review.ProductId)
+        console.log("buys: ", buys)
+
+        const calculateAverageRating = () => {
+          if (Array.isArray(review)) { // Verifica si 'review' es una matriz
+            const ratings = review
+              .filter((rev) => rev.ProductId === allData[0].id) // Filtra las revisiones del producto actual
+              .map((rev) => rev.rating); // Extrae los puntajes
+            if (ratings.length > 0) {
+              const sum = ratings.reduce((total, rating) => total + rating, 0);
+              return (sum / ratings.length).toFixed(1); // Calcula el promedio con dos decimales
+            }
+          }
+          return 0;
+        };
+
+        const averageRating = calculateAverageRating();
+
+        console.log("allData[0].rating: ",allData[0].rating)
 
     return (
         <div className={styles.conteiner}>
@@ -305,6 +330,7 @@ export const DetailProduct = () => {
 
                             <h1>{product?.name}</h1>
                             <p>{product?.description}</p>
+                            <p className={styles.ratingCard}>Rating: {averageRating === 0 ? allData[0].rating : averageRating}</p>
                             <div className={styles.price}>
                                 <p>$ {product?.price}</p>
                             </div>
