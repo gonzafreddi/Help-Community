@@ -413,7 +413,7 @@ export const createReview = (review) => {
 // Acción para banear o eliminar un usuario
 export const banOrDeleteUser = (userId) => async (dispatch) => {
   try {
-    const response = await axios.put(`/update/${userId}`, { userState: false, userAdmin: false });
+    const response = await axios.put(`/user/update/${userId}`, { userState: false, userAdmin: true, userSuperadmin: true });
     if (response.status === 200) {
       // Aquí puedes despachar una acción de éxito si lo deseas
       dispatch({ type: 'BAN_OR_DELETE_USER_SUCCESS', payload: response.data });
@@ -431,7 +431,7 @@ export const banOrDeleteUser = (userId) => async (dispatch) => {
 // Acción para otorgar acceso de administrador a un usuario
 export const grantAdminAccess = (userId) => async (dispatch) => {
   try {
-    const response = await axios.put(`/update/${userId}`, { userAdmin: true });
+    const response = await axios.put(`/user/update/${userId}`, { userState: false, userAdmin: true, userSuperadmin: true});
     if (response.status === 200) {
       // Aquí puedes despachar una acción de éxito si lo deseas
       dispatch({ type: 'GRANT_ADMIN_ACCESS_SUCCESS', payload: response.data });
