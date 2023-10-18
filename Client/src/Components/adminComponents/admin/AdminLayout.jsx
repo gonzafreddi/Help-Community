@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { useAuth } from '../../../context/AuthContext.jsx'; // Importa tu contexto de autenticación
 import { getUsers } from '../../../redux/actions/action.js'; // Importa la acción getUsers
-import { Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom';
+import { Routes, Route, Navigate, useNavigate, useLocation, Link } from 'react-router-dom';
 
 import axios from 'axios';
 
@@ -22,40 +22,99 @@ import MailingForm from '../mailing/mailingForm.jsx';
 
 
 
+// function AdminLayout() {
+//   const auth = useAuth();
+//   const { email } = auth.user; // Obtenemos el correo electrónico del usuario actual
+
+//   // const navigate = useNavigate();
+
+//   const [hasAdminPermissions, setHasAdminPermissions] = useState(false);
+
+//   useEffect(() => {
+//     // Inicializamos el estado con false
+//     setHasAdminPermissions(false);
+
+//     // Realizamos una solicitud al servidor para verificar los permisos de administrador
+//     axios.get(`/user/email?email=${email}`)
+//       .then((response) => {
+//         const data = response.data;
+//         console.log(data);
+
+//         if (data.length > 0 && (data[0].userAdmin || data[0].userSuperadmin)) {
+//           // Si el usuario tiene permisos, actualizamos el estado
+//           setHasAdminPermissions(true);
+
+//           // Puedes realizar una redirección aquí si es necesario
+//           // Por ejemplo, Navigate('/admin/dashboard') o algo similar
+//         } else {
+//           // Si el usuario no tiene permisos, el estado se mantiene en false
+//           // return <Navigate to="/home" replace />;
+//           // navigate('/home', { replace: true });
+          
+//         }
+//       })
+//       .catch((error) => {
+//         console.error('Error al verificar permisos de administrador', error);
+//       });
+//   }, [email]);
+
+//   return (
+//     <>
+//       {hasAdminPermissions ? (
+      
+//       <div className="coco">
+//         <SideBarAdmin />
+//         <div className="content">
+
+//           <Routes>
+//             <Route path="/products" element={<Products />} />
+//             <Route path="/products/create" element={<CreateProduct />} />
+//             <Route path='/create/campaign' element={<CreateCampaign />} />
+//             <Route path='/allbuys' element={<AllBuys />} />
+//             <Route path="/dashboard" element={<Dashboard />} />
+//             <Route path="/users" element={<AdminUsers />}  />
+//             <Route path="/mailing" element={<MailingForm />} />
+//           </Routes>
+     
+//         </div>
+//       </div>
+
+//       ) : null} 
+//     </>
+//   );
+// }
+
+// export default AdminLayout;
+
+
 function AdminLayout() {
   const auth = useAuth();
   const { email } = auth.user; // Obtenemos el correo electrónico del usuario actual
 
-  const [hasAdminPermissions, setHasAdminPermissions] = useState(false);
+  const [hasAdminPermissions, setHasAdminPermissions] = useState(null);
 
-  // Utilizamos useEffect para verificar los permisos de administrador al cargar el componente
   useEffect(() => {
-    // Realizamos una solicitud al servidor para verificar los permisos de administrador
-    axios.get(`/user/email?email=${email}`) // Reemplaza con la URL de tu endpoint para verificar permisos
-    .then((response) => {
-      const data = response.data;
+    setHasAdminPermissions(null);
 
-      console.log(data);
-      let hasPermissions = false;
+    axios.get(`/user/email?email=${email}`)
+      .then((response) => {
+        const data = response.data;
 
-      if (data && (data[0].userAdmin || data[0].userSuperadmin)) {
-        hasPermissions = true;
-      }
-      setHasAdminPermissions(hasPermissions); // Actualiza el estado después de verificar los permisos
-      console.log(hasPermissions); // Imprime el valor actualizado
-    })
+        if (data.length > 0 && (data[0].userAdmin || data[0].userSuperadmin)) {
+          setHasAdminPermissions(true);
+        } else {
+          setHasAdminPermissions(false);
+        }
+      })
       .catch((error) => {
         console.error('Error al verificar permisos de administrador', error);
       });
   }, [email]);
 
-  // Si el usuario no tiene permisos de administrador, redirigirlo a la página /home
-  // if (!hasAdminPermissions) {
-  //   return <Navigate to="/home" replace />;
-  // }
-
-  return (
-    <>
+  if (hasAdminPermissions === null) {
+    return <p id="text">Cargando permisos...</p>;
+  } else if (hasAdminPermissions) {
+    return (
       <div className="coco">
         <SideBarAdmin />
         <div className="content">
@@ -70,8 +129,11 @@ function AdminLayout() {
           </Routes>
         </div>
       </div>
-    </>
-  );
+    );
+  } else {
+    return <p id="text">Error en el acceso. <Link to="/">Volver a la página de inicio</Link></p>;
+    
+  }
 }
 
 export default AdminLayout;
@@ -79,89 +141,64 @@ export default AdminLayout;
 
 
 
-
-
-
-
-
-
-
-
-
-
-// function Admin() {
+// function AdminLayout() {
+//   const auth = useAuth();
+//   const { email } = auth.user;
 //   const navigate = useNavigate();
 
-//   return (
-//     <div>
-//     <Dashboard/> 
-//       <Outlet />
-//     </div>
-//   );
-// }
+//   const [hasAdminPermissions, setHasAdminPermissions] = useState(null);
 
-// export default Admin;
-
-
-
-
-  
-//   const dispatch = useDispatch();
-//   const navigate = useNavigate();
-//   const user1 = useSelector((state) => state.users);
-
-//   const [habilitado, setHabilitado] = useState(true);
-  
-//   let userEnStorage = JSON.parse(localStorage.getItem("user"));
-
-//   console.log("ESTO ES USER EN STORAGE LUEGO DE CERRAR SESION:", userEnStorage);
 //   useEffect(() => {
-//     dispatch(getUsers());
-//     if (user1) {
-//       if (!userEnStorage) {
-//         console.log("que onda");
-
-//         navigate("/home");
-//         setTimeout(function () {
-//           window.alert("Acceso bloqueado :)");
-//         }, 1000);
-//       } else if (userEnStorage.userAdmin === false) {
-//         console.log("entra en el segundod e admin");
-//         navigate("/home");
-//         setTimeout(function () {
-//           window.alert("Acceso bloqueado :)");
-//         }, 1000);
+//     async function checkAdminPermissions() {
+//       try {
+//         const response = await axios.get(`/user/email?email=${email}`);
+//         const data = response.data;
+//         console.log(data)
+//         if (data.length > 0 && (data[0].userAdmin || data[0].userSuperadmin)) {
+//           setHasAdminPermissions(true);
+//         } else {
+//           setHasAdminPermissions(false);
+//           navigate('/home', { replace: true });
+//         }
+//       } catch (error) {
+//         console.error('Error al verificar permisos de administrador', error);
+//         navigate('/home', { replace: true });
 //       }
-//     } else console.log("BIENVENIDO");
-//   }, []);
+//     }
 
-//   return (
-//     <>
-//       {userEnStorage && userEnStorage.userAdmin === true ? (
-//         <>
-//           <div>
-//             <SideBarAdmin />
-//           </div>
-//         </>
-//       ) : (
-//         ""
-//       )}
-//     </>
-//   );
+//     checkAdminPermissions();
+//   }, [email, navigate]);
+
+//   if (hasAdminPermissions === null) {
+//     return <p>Cargando permisos...</p>;
+//   }
+
+//   if (hasAdminPermissions) {
+//     return (
+//       <div className="coco">
+//         <SideBarAdmin />
+//         <div className="content">
+//           <Routes>
+//             <Route path="/products" element={<Products />} />
+//             <Route path="/products/create" element={<CreateProduct />} />
+//             <Route path='/create/campaign' element={<CreateCampaign />} />
+//             <Route path='/allbuys' element={<AllBuys />} />
+//             <Route path="/dashboard" element={<Dashboard />} />
+//             <Route path="/users" element={<AdminUsers />}  />
+//             <Route path="/mailing" element={<MailingForm />} />
+//           </Routes>
+//         </div>
+//       </div>
+//     );
+//   }
+
+//   return <p>No tienes permisos para acceder a esta página.</p>;
 // }
-// export default Admin;
+
+// export default AdminLayout;
 
 
 
-// Llama a dispatch(getUsers()) para obtener una lista de usuarios a través de Redux.
-// Comprueba si existe un usuario almacenado en el localStorage del navegador.
-// Si no hay un usuario en el almacenamiento local (userEnStorage es null o undefined), redirige al usuario a la página de inicio /home y muestra una alerta.
-// Si hay un usuario en el almacenamiento local, comprueba si el usuario tiene un perfil con el valor 1. Si es así, nuevamente redirige al usuario a la página de inicio y muestra una alerta.
-// Si no se cumple ninguna de las condiciones anteriores, muestra "BIENVENIDO" en la consola.
-// Renderizado condicional:
 
-// En la parte de retorno (return), el componente se renderiza condicionalmente.
-// Si existe un usuario en el almacenamiento local y ese usuario tiene un perfil con el valor 2, se renderiza el componente NavBar y SideBarAdmin. Esto sugiere que esta parte del código es específica para los usuarios con perfil de administrador.
-// En resumen, el componente Admin parece estar diseñado para proporcionar una interfaz y lógica de control para usuarios con perfiles de administrador. Realiza comprobaciones de autenticación y perfil de usuario antes de permitir el acceso a la interfaz de administrador. Si el usuario no cumple con ciertas condiciones, se le redirige a la página de inicio y se muestra una alerta. Este código se integra con otras partes de tu aplicación, como Redux y el enrutamiento, para lograr este comportamiento.
 
 
