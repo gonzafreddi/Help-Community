@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Card } from "../Card/Card"
-import style from "./Cards.module.css"
+import styles from "./Cards.module.css"
 import { getCampaign } from "../../redux/actions/action";
 import { Link } from "react-router-dom";
 
@@ -20,13 +20,13 @@ export const Cards = ({data}) => {
 
     return (
       <div>
-        <Link className={style.ingresarLink} to="/products">INGRESAR</Link>
-        <h2 className={style.bienvenidos}>BIENVENIDOS</h2>
-        <div className={style.cardsContainer}>
-        <div className={style.header}>
-          <div className={style.pregunta}>¿Te gustaría ayudar con una donación?</div>
+        <Link className={styles.ingresarLink} to="/products">INGRESAR</Link>
+        <h2 className={styles.bienvenidos}>BIENVENIDOS</h2>
+        <div className={styles.cardsContainer}>
+        <div className={styles.header}>
+          <div className={styles.pregunta}>¿Te gustaría ayudar con una donación?</div>
         </div>
-        <div className={style.conteiner}>
+        <div className={styles.conteiner}>
           {data.map((campaña) => (
             <div key={campaña.id}>
               <Card

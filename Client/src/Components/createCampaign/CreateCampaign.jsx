@@ -1,4 +1,4 @@
-import style from "./createCampaign.module.css"
+import styles from "./createCampaign.module.css"
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react"
 import UploadWidget from "../UploadWidget/UploadWidget";
@@ -62,35 +62,37 @@ export default function CreateCampaign(){
   const isDisabled = disableFunction(errors);
 
  
-    return(<div className={style.bodyConteiner}>
-        <div className={style.formConteiner}>
+    return(<div className={styles.bodyConteiner}>
+        <div className={styles.formConteiner}>
          
             <form onSubmit={handleFormSubmit} action="">
                 <h1>Crear una campaña</h1>
-                <label className={`${style.title}`} htmlFor=""><h3>Coloquele un nombre a su campaña</h3></label>
+                <label className={`${styles.title}`} htmlFor=""><h3>Coloquele un nombre a su campaña</h3></label>
                 <span>{errors.name}</span>
-                <input className={style.nameAndPrice} onChange={handleInputChange} type="text" name="name" placeholder="Nombre de la campaña" id="" />
+                <input className={styles.nameAndPrice} onChange={handleInputChange} type="text" name="name" placeholder="Nombre de la campaña" id="" />
 
-                <label className={`${style.title}`} htmlFor=""><h3>Describa su campaña en pocas palabras</h3></label>
+                <label className={`${styles.title}`} htmlFor=""><h3>Describa su campaña en pocas palabras</h3></label>
                 <span>{errors.resumeDescr}</span>
-                <input className={style.nameAndPrice} onChange={handleInputChange} type="text" name="short_description" id="" placeholder="Descripción corta de la campaña"/>
-                <label className={style.title} htmlFor=""><h3>Describa su campaña detalladamente</h3></label>
+                <input className={styles.nameAndPrice} onChange={handleInputChange} type="text" name="short_description" id="" placeholder="Descripción corta de la campaña"/>
+                <label className={styles.title} htmlFor=""><h3>Describa su campaña detalladamente</h3></label>
                 <span>{errors.description}</span>
                 <textarea onChange={handleInputChange} name="long_description" id="" cols="30" rows="10" readonly placeholder="Descripción completa de su campaña"></textarea>
                 
-                <label className={style.title}  htmlFor=""><h3>Añada una imagen a su campaña</h3></label>
-                <UploadWidget onImageUpload={handleImageUpload}/>
-                {
-                  imageUrl !== "" 
-                  ? <img className={style.campaignImg} src={imageUrl} alt="campaignImg" /> 
-                  : null
-                }
+                <label className={styles.title}  htmlFor=""><h3>Añada una imagen a su campaña</h3></label>
+                <div className={styles.prodImgContainer}>
+                  <UploadWidget onImageUpload={handleImageUpload}/>
+                  {
+                    imageUrl !== "" 
+                    ? <img className={styles.campaignImg} src={imageUrl} alt="campaignImg" /> 
+                    : null
+                  }
+                </div>
 
-               <div className={style.selectsConteiner}>
-                <div className={style.state}>
-                <label className={style.title}  htmlFor=""><h3>¿En que provincia se encuntra su campaña?</h3></label>
+               <div className={styles.selectsConteiner}>
+                <div className={styles.state}>
+                <label className={styles.title}  htmlFor=""><h3>¿En que provincia se encuntra su campaña?</h3></label>
                 <span>{errors.StateId}</span>
-                <select className={style.provSelect} onChange={handleInputChange} name="StateId" id="">
+                <select className={styles.provSelect} onChange={handleInputChange} name="StateId" id="">
                 <option value="">Provincia</option>
                 {
                   states.map((e, index)=> <option value={e.id} key={index}>
@@ -101,7 +103,7 @@ export default function CreateCampaign(){
                </div>
                  
               <div>
-              <label className={style.title}  htmlFor=""><h3>¿Cuando finaliza su campaña?</h3></label>
+              <label className={styles.title}  htmlFor=""><h3>¿Cuando finaliza su campaña?</h3></label>
                 
               
               <span>{errors.endDate}</span>
@@ -126,7 +128,7 @@ export default function CreateCampaign(){
                 </div>
                </div>
 
-                <h3 className={style.title} >¿Cuales son las razones principales por las que va a recaudar dinero?</h3>
+                <h3 className={styles.title} >¿Cuales son las razones principales por las que va a recaudar dinero?</h3>
                 <span>{errors.CategoryId}</span>
               <select onChange={handleInputChange} name="CategoryId" id="">
                 {
@@ -136,15 +138,20 @@ export default function CreateCampaign(){
                 }
               </select>
 
-              <h3 className={style.title} >¿Cuanto le gustaria recaudar?</h3>
-              <span className={style.spanAmount}>{errors.finalAmount}</span>
-             <div className={style.monto}>
+              <h3 className={styles.title} >¿Cuanto le gustaria recaudar?</h3>
+              <span className={styles.spanAmount}>{errors.finalAmount}</span>
+             <div className={styles.monto}>
              
-              <p className={style.peso}>$</p>
-              <input onChange={handleInputChange} name="finalAmount" className={style.nameAndPrice} type="number" />
-                <p className={style.ars}>ARS</p>
+              <p className={styles.peso}>$</p>
+              <input onChange={handleInputChange} name="finalAmount" className={styles.nameAndPrice} type="number" />
+                <p className={styles.ars}>ARS</p>
              </div>
-             <div className={style.sendCont}> <input disabled={isDisabled}className={style.send}type="submit" /></div>
+             <div className={styles.monto}>
+             
+             <p className={styles.peso}>Ingrese su CBU</p>
+             <input onChange={handleInputChange} name="addCbu" className={styles.nameAndPrice} type="number" />
+            </div>
+             <div className={styles.sendCont}> <input disabled={isDisabled}className={styles.send}type="submit" /></div>
             </form>
         </div>
     </div>)

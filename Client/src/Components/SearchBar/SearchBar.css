@@ -47,6 +47,7 @@
 .material-icons{
     font-size: 13px;
     transform: scale(2);
+    color: rgb(126, 126, 126);
 }
 
 .search-button:disabled {

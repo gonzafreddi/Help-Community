@@ -1,20 +1,41 @@
 .button {
-    --bg: #000;
-    --hover-bg: rgb(7, 56, 97);
-    --hover-text: #000;
-    color: #fff;
-    border: 1px solid var(--bg);
-    border-radius: 4px;
-    padding: 0.8em 2em;
-    background: var(--bg);
-    transition: 0.2s;
+  --bg: rgb(221, 221, 221, 0.5);
+  --hover-bg: rgb(221, 221, 221, 0.35);
+  --hover-text: #000;
+  color: rgb(221, 221, 221, 0.7);
+  /* border: 1px solid var(--bg); */
+  border: none;
+  width: 8rem;
+  height: 7rem;
+  border-radius: 8px;
+  background: var(--bg);
+  transition: 0.2s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttonPlus{
+  font-family: 'DM Sans', sans-serif;
+  font-size: 5rem;
+  justify-self: center;
+  font-weight: 100;
+  transform: translateY(-5px);
+  transition: all 0.2s;
+  color: rgb(1, 41, 74, 0.5);
 }
   
 .button:hover {
   /* color: var(--hover-text); */
-  transform: translate(-0.25rem,-0.25rem);
+  transform: scale(1.1);
   background: var(--hover-bg);
-  box-shadow: 0.25rem 0.25rem var(--bg);
+  /* box-shadow: 0.25rem 0.25rem var(--bg); */
+}
+
+.button:hover .buttonPlus {
+  /* color: rgb(235, 235, 235); */
+  color: rgb(1, 41, 74, 0.9);
+  /* transform: scale(1.2) translate(-2px, -6px); */
 }
   
 .button:active {

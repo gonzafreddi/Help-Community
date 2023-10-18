@@ -4,9 +4,11 @@ import { useAuth } from '../../context/AuthContext';
 import Login from '../Login/Login';
 import {faCartShopping} from "@fortawesome/free-solid-svg-icons"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
- import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import SearchBar from '../SearchBar/SearchBar';
+import { UserNav } from '../userComponents/userNav/userNav';
 import './Nav.css';
+import { getUserByEmail } from '../../redux/actions/action';
 
 
 export const Nav = () => {
@@ -14,6 +16,8 @@ export const Nav = () => {
     const totalProduct = cart.length;
   
     const auth = useAuth();
+    const dispatch = useDispatch();
+    
     const { email } = auth.user;
     const [loginOpen, setLoginOpen] = useState(false);
     
@@ -27,8 +31,10 @@ export const Nav = () => {
       document.body.style.overflow = 'unset';
     };
 
-    const handleLogout = () => {
+    const handleLogout = async () => {
         auth.logout();
+        await dispatch(getUserByEmail('logout'))
+
     }
 
     return (
@@ -44,9 +50,12 @@ export const Nav = () => {
                         <button className='nav-button'>Acerca de</button>
                     </Link>
                     {/* <Link to='/createcampaign'> */}
-                        <Link to={"/create/campaign"}>
-                            <button className='nav-button' > Crea una campaña! </button>
+                        {/* <Link to={"/create/campaign"}>
+                            <button className='nav-button' > Crear una campaña </button>
                         </Link>
+                        <Link to={"/create/product"}>
+                            <button className='nav-button' > Crear un producto </button>
+                        </Link> */}
                         <Link to={"/products"}>
                             <button className='nav-button' >Productos</button>
                         </Link>
@@ -72,7 +81,7 @@ export const Nav = () => {
                     {loginOpen && <Login closeLogin={closeLogin} />}
 
                     {
-                        email ? <button className='nav-button'>{email}</button> : null
+                        email ? <button className='nav-button'><Link to={"/userProfile"}><UserNav/></Link></button> : null
                     }
 
                 </div>

@@ -1,0 +1,252 @@
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.conteiner{
+    height: 99vh;
+    width: 99vw;
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+}
+.productCont{
+    width: 75%;
+    height: 70%;
+    display: flex;
+    font-size: 1.2rem;
+    justify-content:space-evenly;
+    background-color: #ffff;
+    border-radius: 10px;
+    padding: 2rem;
+}
+
+.imgCont{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 15%;
+    border: 2px solid rgb(221, 221, 221, 0.5);
+    padding: 0;
+}
+
+.closeImgBtn{
+    border: none;
+    background-color: transparent;
+    position: absolute;
+    transform: translate(280px, -280px);
+}
+
+.txtAndImgCont{
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+}
+
+.imgCont img{
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+}
+
+.imgTxt{
+    color: rgb(1, 41, 74, 0.9);
+    font-weight: 600;
+}
+
+.uploadButton:hover{
+    transform: scale(20rem);
+}
+
+/* .productImg{
+    overflow: hidden;
+} */
+
+.productName{
+    border: none;
+    font-size: 2rem;
+    color:rgb(1, 41, 74);
+    text-align: center;
+    caret-color:rgb(1, 41, 74);
+    overflow-x: visible;
+    font-weight: 600;
+    letter-spacing: 0.05;
+    width: fit-content;
+    margin-bottom: 5rem;
+    transition: all 0.5s;
+}
+
+.productName::placeholder{
+    color:rgba(1, 41, 74, 0.54);
+    font-size: 2rem;
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.15s;
+}
+
+.productName:focus::placeholder{
+    opacity: 0;
+}
+
+.infoProduct{
+    width: 40%;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.productDescription{
+    border:none;
+    height: 6rem;
+    font-size: 1.5rem;
+    align-self: start;
+}
+
+.productDescription::placeholder{
+    color:rgba(12, 12, 12, 0.541);
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.15s;
+}
+
+.productDescription:focus::placeholder{
+    opacity: 0;
+}
+
+.priceAndCatContainer{
+    display:flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 1rem;
+    /* background-color: #0963f5; */
+}
+
+.priceAndDollarContainer{
+    display: flex;
+    /* background-color: red; */
+    /* height: 2rem; */
+}
+
+.productPrice{
+    border: none;
+    height: 2.5rem;
+    font-size: 2.2rem;
+    width: 8rem;
+    appearance: none;
+}
+
+.productPrice::placeholder{
+    color:rgba(12, 12, 12, 0.541);
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.15s;
+}
+
+.productPrice:focus::placeholder{
+    opacity: 0;
+}
+
+.dollarSign{
+    font-size: 2rem;
+    padding: 0;
+    margin: 0;
+}
+
+.productCategories{
+    width: 15rem;
+    height: 2.3rem;
+    border: 1px solid rgb(221, 221, 221, 0.6);
+}
+
+.productCategories:focus{
+    outline: none;
+}
+
+.catOpciones{
+    background-color:rgb(1, 41, 74);
+    color: rgb(237, 237, 237, 0.8);
+}
+
+.casillero{
+    background-color:rgb(1, 41, 74);
+    color: rgb(237, 237, 237, 0.8);
+
+}
+
+.stockContainer{
+    display: flex;
+    align-self: start;
+}
+
+.stockContainer p {
+    margin-top: 1rem ;
+    margin-right: 0.5rem ;
+}
+
+.productStock{
+    align-self: flex-start;
+    margin-top: 1rem;
+    border: none;
+    height: 2.5rem;
+    font-size: 2.2rem;
+    width: 8rem;
+    appearance: none;
+}
+
+.productStock::placeholder{
+    color:rgba(12, 12, 12, 0.541);
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.15s;
+}
+
+.productStock:focus::placeholder{
+    opacity: 0;
+}
+
+.buyCont{
+    
+    display: flex;
+    justify-content: center;
+    justify-items: end;
+    gap: 80px;
+    margin-top: 50px;
+    
+}
+
+.btnBuy{
+    padding: 10px 30px 10px 30px;
+    border-radius: 10px;
+    background-color: #3A86FF;
+    color: #ffff;
+    border: none;
+    transition: all ease .3s;
+    font-size: 1.1rem;
+
+}
+
+.btnBuy:disabled{
+    padding: 10px 30px 10px 30px;
+    border-radius: 10px;
+    background-color: rgba(91, 107, 133, 0.418);
+    color: #505050;
+    border: none;
+    transition: all ease .3s;
+    font-size: 1.1rem;
+
+}
+.btnBuy:disabled:hover{
+    background-color: rgba(91, 107, 133, 0.808);
+    cursor:not-allowed;
+}
+.btnBuy:hover{
+    background-color: #0963f5;
+    cursor: pointer;
+}
+
+.btnAddToCart:hover{
+    background-color: #6490d776;
+}
