@@ -1,15 +1,44 @@
 
 .userConteiner{
-    width: 100%;
-    cursor: pointer;
+    width: 90%;
+    /* cursor: pointer; */
+    /* border: 1px solid black; */
+    padding: 50px;
+    
   
 }
 
 .userData{
-    display: flex;
+   display: flex;
    background-color: #ffff;
    height: 120px;
-   justify-content:space-between;
+   border: 2px solid rgb(146, 146, 146);
+   border-radius: 10px;
+   /* justify-content:space-between; */
+}
+
+.contenedorLista{
+    display: flex;
+    flex-direction: row;
+    width:fit-content;
+    margin-top: -105px;
+    margin-left: 300px;
+    color: white;
+}
+
+.lista2{
+    width: max-content;
+    font-size: 16px;
+    margin-left: 30px;
+    border: 2px solid rgb(46, 120, 231);
+    cursor: pointer;
+    padding: 2px;
+    border-radius: 10px;
+
+}
+
+.listas{
+    width: max-content;
 }
 
 .iconConteiner{
