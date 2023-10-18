@@ -44,8 +44,8 @@ export function CardUser({ user, onBanOrDelete, onGrantAdmin, onUnban, onRemoveA
             <div className={styles.listas}>
               <select className={styles.lista2} value={accountStatus} onChange={handleAccountStatusChange}>
                 <option value="">Estado de Usuario</option>
-                <option value="ban">Baneado</option>
-                <option value="enable">Habilitado</option>
+                <option value="ban">Banear</option>
+                <option value="enable">Habilitar</option>
               </select>
             </div>
             <div className={styles.listas}>
