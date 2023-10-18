@@ -79,7 +79,8 @@ export function AdminUsers() {
   return (
     <div className={styles.container}>
       <div className={styles.cards}>
-        <h1>Usuarios</h1> 
+        <h1>Usuarios</h1>
+        <UsersSB handleInputChange={handleInputChange}/>
         <div className={styles.cardCont}>
           {displayedData.map((user) => (
               <CardUser

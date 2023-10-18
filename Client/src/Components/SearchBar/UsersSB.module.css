@@ -1,20 +1,23 @@
 .containerSB{
 
     display: flex;
+    justify-self: center;
+    justify-content: center;
+    margin: 1rem;
 
 }
 
 .searchInput {
     font-family: 'DM Sans', sans-serif;
-    width: 20rem;
+    width: 40rem;
     height: 2.5rem;
     border: 0px;
-    /* margin-left: 1rem; */
     padding: 15px;
     font-size: 14px;
     font-weight: 500;
     border-radius: 0.75rem;
-    background-color: #f0f2f3;
+    background-color: #e2e2e2;
+    border: 1px solid #bbbbbb;
     text-indent: 12px;
     color: rgba(1, 42, 74, 1);
     transition: all 0.5s;
