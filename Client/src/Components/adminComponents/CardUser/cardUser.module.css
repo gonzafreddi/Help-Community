@@ -1,82 +1,95 @@
-
-.userConteiner{
-    width: 90%;
-    /* cursor: pointer; */
-    /* border: 1px solid black; */
-    padding: 50px;
-    
-  
-}
-
-.userData{
-   display: flex;
-   background-color: #ffff;
-   height: 120px;
-   border: 2px solid rgb(146, 146, 146);
-   border-radius: 10px;
-   /* justify-content:space-between; */
-}
-
-.contenedorLista{
+.userConteiner {
+    border: 1px solid #7e7e7e;
+    background-color: rgb(230, 227, 227);
+    margin: 10px;
+    padding: 10px;
     display: flex;
     flex-direction: row;
-    width:fit-content;
-    margin-top: -105px;
-    margin-left: 300px;
-    color: white;
-}
-
-.lista2{
-    width: max-content;
-    font-size: 16px;
-    margin-left: 30px;
-    border: 2px solid rgb(46, 120, 231);
-    cursor: pointer;
-    padding: 2px;
+    align-items: center;
     border-radius: 10px;
+    width: 650px;
+    justify-items: center;
+    align-content: center;
 
-}
-
-.listas{
-    width: max-content;
-}
-
-.iconConteiner{
-    width: 10%;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.iconConteiner img{
- 
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-}
-.text{
-    margin-left: 20px;
-    width: 80%;
-}
-
-.button{
+  }
   
-    width: 10%;
+span{
+    font-size: 14px;
+    font-weight: 450;
+}
+  
+  .userData {
     display: flex;
-    justify-content: center;
     align-items: center;
-
-}
-
-.button button{
-    background: #fff;
+  }
+  
+  .iconConteiner {
+    margin-right: 10px;
+  }
+  
+  .iconConteiner img {
+    max-width: 50px;
+    max-height: 50px;
+    border-radius: 50%;
+  }
+  
+  .text {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    font-size: 16px;
+  }
+  
+  h5 {
+    font-size: 18px;
+    margin: 0;
+  }
+  
+  p {
+    font-size: 16px;
+    margin: 0;
+  }
+  
+  .contenedorLista {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    position: absolute;
+    margin-left: 400px;
+  }
+  
+  .listas {
+    display: flex;
+    align-items: right;
+    text-align: right;
+    margin: 5px 0;
+    justify-content: right;
+    width: 260px;
+    
+  }
+  
+  .listaButton {
+    background-color: #8d8a8ab0;
+    color: #fff;
+    border-radius: 5px;
     border: none;
-    color: #12121273;
-    font-size: 1.2em;
-    margin-right: 20px;
+    padding: 5px 10px;
     cursor: pointer;
-}
-.button img{
-    height: 30%;
-    width: 30%;
-}
+    margin-right: 10px;
+  }
+  
+  .listaButton:hover {
+    background-color: #007bff;
+  }
+  
+  .green {
+    color: green;
+  }
+  
+  .red {
+    color: red;
+  }
+  
+  .blue {
+    color: #0563c9;
+  }
