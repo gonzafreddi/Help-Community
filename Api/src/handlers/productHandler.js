@@ -74,7 +74,9 @@ const putProductHandler = async (req, res) => {
       CategoryProductId
     );
     res.status(200).json(`The Product ${name} was successfully updated`);
-  } catch (error) {}
+  } catch (error) {
+    console.log(error.message);
+  }
 };
 
 module.exports = { getProductHandler, postProductHandler, putProductHandler };

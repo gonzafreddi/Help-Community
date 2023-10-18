@@ -10,53 +10,57 @@ import Kv from "../../assets/Compra-dona-4.png";
 
 export const Products = () => {
 
-const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-useEffect(()=>{
-    dispatch(getProduct());
-    dispatch(getCateg())
-},[dispatch])
-
-
-const categ = useSelector(state => state.categ);
-// console.log(categ)
+  useEffect(()=>{
+      dispatch(getProduct());
+      dispatch(getCateg())
+  },[dispatch])
 
 
-const products = useSelector((state) => state.products);
-
-console.log("products: ", products);
-const [page, setPage] = useState(1);
-
-// Número de tarjetas por página
-const cardsPerPage = 20;
-console.log(products)
-const totalItems = products.length;
+  const categ = useSelector(state => state.categ);
+  // console.log(categ)
 
 
-// Función para obtener las tarjetas en la página actual
+  const products = useSelector((state) => state.products);
 
-  const getCurrentPageCampaigns = () => {
-  const startIndex = (page - 1) * cardsPerPage;
-  const endIndex = startIndex + cardsPerPage;
-  const displayedData = products.slice(startIndex, endIndex);
-  return displayedData;
+  console.log("products: ", products);
+  const [page, setPage] = useState(1);
 
-};
+  // Número de tarjetas por página
+  const cardsPerPage = 20;
+  console.log(products)
+  const totalItems = products.length;
 
-console.log("products: ", products)
-// const products = useSelector((state) => state.products); //state.productsFiltered ver si cambio para filtros
-// // console.log("products: ", products)
+  //Aplicar borrado logico
+  const activeProducts = products.filter(product => product.state === true);
 
 
 
+  // Función para obtener las tarjetas en la página actual
 
-const currentCards = getCurrentPageCampaigns();
+    const getCurrentPageCampaigns = () => {
+    const startIndex = (page - 1) * cardsPerPage;
+    const endIndex = startIndex + cardsPerPage;
+    const displayedData = activeProducts.slice(startIndex, endIndex);
+    return displayedData;
+
+  };
+
+  // console.log("products: ", products)
+  // const products = useSelector((state) => state.products); //state.productsFiltered ver si cambio para filtros
+  // // console.log("products: ", products)
+
+
+
+
+  const currentCards = getCurrentPageCampaigns();
 
     return (
       <div>
 
         <div>
-        <img className={styles.KeyVisual} src={Kv} alt="image-donaciones" width="100%" />
+          <img className={styles.KeyVisual} src={Kv} alt="image-donaciones" width="100%" />
         </div>
 
         <div className={styles.barra}>
@@ -67,22 +71,23 @@ const currentCards = getCurrentPageCampaigns();
 
 
         <div className={styles.cardsContainer}>
-        {currentCards?.map((producto) => {
-        return  <Product
-                  key={producto.id}
-                  id={producto.id}
-                  name={producto.name}
-                  description={producto.description}
-                  image={producto?.image}
-                  price={producto.price}
-                  category={producto.category}
-                />
-        })}
-         
+          {currentCards?.map((producto) => {
+          return  <Product
+                    key={producto.id}
+                    id={producto.id}
+                    name={producto.name}
+                    description={producto.description}
+                    image={producto?.image}
+                    price={producto.price}
+                    category={producto.category}
+                  />
+          })}
+          
+        </div>
+        <div className={styles.paginationCont}><Pagination className={styles.pagin} page={page} setPage={setPage} itemsPerPage={cardsPerPage} totalItems={totalItems}/></div>
       </div>
-      <div className={styles.paginationCont}><Pagination className={styles.pagin} page={page} setPage={setPage} itemsPerPage={cardsPerPage} totalItems={totalItems}/></div>
-    </div>
     )
-  }
+
+}
 
   export default Products;
