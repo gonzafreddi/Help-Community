@@ -12,6 +12,20 @@
    justify-content:space-between;
 }
 
+.contenedorLista{
+    display: flex;
+    flex-direction: row;
+    width:fit-content;
+}
+
+.lista2{
+    width: max-content;
+}
+
+.listas{
+    width: max-content;
+}
+
 .iconConteiner{
     width: 10%;
 

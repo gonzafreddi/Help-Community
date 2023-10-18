@@ -1,38 +1,61 @@
-import styles from "./cardUser.module.css"
+import styles from "./cardUser.module.css";
+import { useState } from "react";
 
-export function CardUser({ user, onBanOrDelete, onGrantAdmin, onUnban, onRemoveAdmin }){
+export function CardUser({ user, onBanOrDelete, onGrantAdmin, onUnban, onRemoveAdmin }) {
+  const [accountStatus, setAccountStatus] = useState(""); // Estado de la cuenta
+  const [adminStatus, setAdminStatus] = useState(""); // Estado de administrador
 
-    const handleBanOrDelete = () => {
-        onBanOrDelete(user.id);
-      };
-    
-      const handleGrantAdmin = () => {
-        onGrantAdmin(user.id);
-      };
+  const handleAccountStatusChange = (event) => {
+    const selectedValue = event.target.value;
+    setAccountStatus(selectedValue);
 
-      const handleUnban = () => {
-        onUnban(user.id);
-      };
-    
-      const handleRemoveAdmin = () => {
-        onRemoveAdmin(user.id);
-      };
+    // Llama a la función correspondiente según la selección
+    if (selectedValue === "ban") {
+      onBanOrDelete(user.id);
+    } else if (selectedValue === "enable") {
+      onUnban(user.id);
+    }
+  };
 
+  const handleAdminStatusChange = (event) => {
+    const selectedValue = event.target.value;
+    setAdminStatus(selectedValue);
 
+    // Llama a la función correspondiente según la selección
+    if (selectedValue === "grantAdmin") {
+      onGrantAdmin(user.id);
+    } else if (selectedValue === "removeAdmin") {
+      onRemoveAdmin(user.id);
+    }
+  };
 
-    return(<div className={styles.userConteiner}>
-        
-        <div className={styles.userData}>
-            <div className={styles.iconConteiner}><img src={user.image} alt="" /></div>
-            <div className={styles.text}>
-            <h5>{user.name}</h5>
-            <p>{user.email}</p>
-            <button onClick={handleBanOrDelete}>Banear/Borrar</button>
-            <button onClick={handleUnban}>Habilitar</button>
-            <button onClick={handleGrantAdmin}>Dar Acceso de Administrador</button>
-            <button onClick={handleRemoveAdmin}>Quitar Acceso de Administrador</button>
-            </div>
-            {/* <div className={styles.button}><button>{check}</button></div> */}
+  return (
+    <div className={styles.userConteiner}>
+      <div className={styles.userData}>
+        <div className={styles.iconConteiner}>
+          <img src={user.image} alt="" />
         </div>
-    </div>)
+        <div className={styles.text}>
+          <h5>{user.name}</h5>
+          <p>{user.email}</p>
+        </div>
+      </div>
+          <div className={styles.contenedorLista}>
+            <div className={styles.listas}>
+              <select className={styles.lista2} value={accountStatus} onChange={handleAccountStatusChange}>
+                <option value="">Estado de Usuario</option>
+                <option value="ban">Baneado</option>
+                <option value="enable">Habilitado</option>
+              </select>
+            </div>
+            <div className={styles.listas}>
+              <select className={styles.lista2} value={adminStatus} onChange={handleAdminStatusChange}>
+                <option value="">Estado de Administrador</option>
+                <option value="grantAdmin">Administrador</option>
+                <option value="removeAdmin">No Administrador</option>
+              </select>
+            </div>
+          </div>
+    </div>
+  );
 }
