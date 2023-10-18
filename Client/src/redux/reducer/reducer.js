@@ -15,7 +15,7 @@ import {
     CREATE_REVIEW,
     GET_REVIEWS
   } from "../actions/action";
-  import { ADD_ONE_TO_CART, ADD_TO_CART, CLEART_CART, GET_DETAIL_CAMPAIGN, GET_PRODUCT_BY_NAME, GET_STATE, REMOVE_ONE_TO_CART, REMOVE_TO_CART } from "../actions/action_type";
+  import { ADD_ONE_TO_CART, ADD_TO_CART, CLEART_CART, GET_CART, GET_DETAIL_CAMPAIGN, GET_PRODUCT_BY_NAME, GET_STATE, REMOVE_ONE_TO_CART, REMOVE_TO_CART } from "../actions/action_type";
   
   const initialState = {
     campaign: [],
@@ -37,7 +37,7 @@ import {
 
 
 const reducer = (state = initialState, action)=> {
-    console.log("state: ", state)
+    console.log("state: ", state.cartShop)
     switch (action.type) {
         case GET_CAMPAIGN:
                 return {
@@ -274,11 +274,15 @@ const reducer = (state = initialState, action)=> {
             }
         case ADD_TO_CART:
             const {product, quantity} = action.payload;
-            const exisingItem = state.cartShop.find(item=> item.product.id === product.id)
+            if (!Array.isArray(state.cartShop)) {
+                // Si state.cartShop no es un arreglo, inicialízalo como un arreglo vacío
+                state.cartShop = [];
+            }
+            console.log(product, "producto puto")
+            const exisingItem = state.cartShop.find(item=> item.id === product.id)
             
             if(exisingItem){
-                //si esta actualizo la cantidad 
-                
+                //si esta actualizo la cantidad                 
                 const updtedCartItems = state.cartShop.map(item =>{
                     if(item.product.nombre === product.nombre){
                         return{
@@ -309,6 +313,12 @@ const reducer = (state = initialState, action)=> {
               ...state,
               cartShop:filteredCart
             };
+            case GET_CART:
+                console.log("lo q me llega", action.payload)
+                return{
+                    ...state,
+                    cartShop: action.payload
+                }
             case ADD_ONE_TO_CART:
             const productIdToAdd = action.payload
             const updtedCart = state.cartShop.map(item =>{

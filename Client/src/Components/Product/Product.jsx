@@ -5,18 +5,27 @@ import { addToCart } from '../../redux/actions/action';
 import { useDispatch } from "react-redux";
 import {faCartPlus} from "@fortawesome/free-solid-svg-icons"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
+import { addCartDb, saveCartDb } from '../../utils/localStorage';
+import { useAuth } from '../../context/AuthContext';
 
 
 export const Product = (props) => {
   const { name, description, image, price, category } = props;
   const dispatch = useDispatch()
-  
+  const auth = useAuth()
+  const email = auth.user.email
 
   
 
   const hancleAddtoCart = ()=>{
     const quantityToadd = 1
+    // saveCartDb(email)
     dispatch(addToCart(props, quantityToadd))
+    if(email){
+      addCartDb(props, email)
+    }
+    
+    
   }
   // console.log(props, "props log")
 

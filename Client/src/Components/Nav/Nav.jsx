@@ -18,8 +18,8 @@ export const Nav = () => {
     const totalProduct = cart.length;
     const auth = useAuth();
     const { email } = auth.user;
-    verifyLog(email)
-    saveCartDb(email)
+    // verifyLog(email)
+    // saveCartDb(email)
     const [loginOpen, setLoginOpen] = useState(false);
     const openLogin = () => {
       setLoginOpen(true);

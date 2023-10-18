@@ -16,7 +16,7 @@ const cart = useSelector((state)=>{state.cartShop})
 const {email} = auth.user
 useEffect(()=>{
     dispatch(getProduct());
-   
+    
     dispatch(getCateg())
 },[email, cart])
 

@@ -17,13 +17,9 @@ export const saveCartDb = async(email) => {
    if (emailUser) {
       let cart = getItem("cartShop");
       const request = [...cart, {email:email}]
-      console.log("me ejectute")
-      console.log(request)
       const data = await axios.post(`http://localhost:3001/shoppingCar`, request)
-     
-      console.log(data)
       console.log(cart); 
-      return cart; 
+      return data; 
    } else {
       console.log("Modo Invitado");
       localStorage.clear()
@@ -31,7 +27,16 @@ export const saveCartDb = async(email) => {
    }
 }
 
-
+export const addCartDb = async(product, email)=>{
+   console.log(product)
+   try {
+      const request = [{...product, quantity: 1}, {email:email}]
+      console.log(request)
+      const data = await axios.post(`http://localhost:3001/shoppingCar`, request)
+   } catch (error) {
+      console.log(error.message, "caaaaaart")
+   }
+}
 //funcion verifique si el usuario esta logeado
 //si esta logeada y hay algo en localStorage guardarlo en la base de datos ,
 // si no esta logeado guardar en localStorage

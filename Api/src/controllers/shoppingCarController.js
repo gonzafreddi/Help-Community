@@ -1,37 +1,57 @@
 const { ShoppingCar } = require("../db");
 const getUserByEmail = require('./getUserByEmail');
 
-const getShoppingCarController = async (req, res) => {
-    const { email } = req.params;
+const getShoppingCarController = async (email) => {
     try {
         const userId = await getUserByEmail(email);
-        console.log(userId);
-        const user = await ShoppingCar.findAll({
+        const cart = await ShoppingCar.findAll({
             where: {
                 userId,
             }
         });
-        if(user.length > 1) res.json(user);
-        res.send("No data exists");
+        return cart;
     } catch (error) {
-        res.status(400).json(error.message);
+        console.log(error.message);
+        throw error;
+    }
+};
+const addShoppingCarController = async (body, state) => {
+    try {
+        console.log(body);
+        let products = body[0];
+        const email = body[1].email;
+        const userId = await getUserByEmail(email);
+        const copy = await getShoppingCarController(email);
+        // deleteShoppingCarController(email)
+
+        console.log("productos nuevos", products);
+        console.log("carrito copy", copy);
+        console.log(userId)
+        // Combinar los productos existentes y los nuevos productos
+        let combinedProducts = {};
+
+        if (copy) {
+            combinedProducts = [{ ...copy.products, ...products }];
+        } else {
+            combinedProducts = [products];
+        }
+
+        console.log("productos combinados", combinedProducts);
+
+        // Crear un nuevo carrito con los productos combinados
+        const newShoppingCar = await ShoppingCar.create({
+                userId: userId,
+                products: combinedProducts,
+                state: state,
+        });
+        console.log("nuevo carrito", newShoppingCar);
+        return newShoppingCar;
+    } catch (error) {
+        console.log(error.message);
+        throw error;
     }
 };
 
-const addShoppingCarController = async (email, products, state) => {
-   
-    console.log("addShoppingCarController var email, products,state", email, products, state )
-    const userId = await getUserByEmail(email);
-    
-    const newShoppingCar = await ShoppingCar.create({
-            userId,
-            products,
-            state,
-        });
-        
-    return newShoppingCar;
-    
-};
 
 const editShoppingCarController = async (req, res) => {
     const { products, state } = req.body;
@@ -45,23 +65,24 @@ const editShoppingCarController = async (req, res) => {
                 id,
             }
         });
-        res.send('Shopping card add successfull');
+        res.send('Shopping cart updated successfully');
     } catch (error) {
         res.status(400).json(error.message);
     }
 };
 
-const deleteShoppingCarController = async (req, res) => {
-    const { id } = req.params;
+const deleteShoppingCarController = async (email) => {
+    const userId = await getUserByEmail(email);
     try {
         await ShoppingCar.destroy({
             where: {
-                id,
+                userId: userId
             }
         });
-        res.send('Shopping card deleted successfull');
+        return "eliminado";
     } catch (error) {
-        res.status(400).json(error.message);
+        console.log(error.message);
+        throw error;
     }
 };
 

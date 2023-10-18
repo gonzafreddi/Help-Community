@@ -5,13 +5,21 @@ import style from "./shoppingCart.module.css";
 import { useSelector } from "react-redux";
 import { setItem } from "../../utils/localStorage";
 import NoItemTocart from "./noItemTocar";
+import { useAuth } from "../../context/AuthContext";
+import { useDispatch } from "react-redux";
+import { getCar } from "../../redux/actions/action";
 
 export default function ShoppingCart() {
   const cart = useSelector((state) => state.cartShop);
-
+  const dispatch = useDispatch()
+  const auth = useAuth()
+  const {email} = auth.user
+  console.log(email)
   useEffect(() => {
+    // dispatch(getCar(email))
   }, [cart]);
 console.log(cart)
+dispatch(getCar(email, cart))
   return (
     <div className={style.conteiner}>
       <div className={style.cont}>
@@ -22,12 +30,12 @@ console.log(cart)
               return (
                 <CardShopping
                   key={index}
-                  id={e.product.id}
-                  name={e.product.name}
-                  price={e.product.price}
+                  id={e.id}
+                  name={e.name}
+                  price={e.price}
                   rating={e.rating}
-                  stock={e.product.stock}
-                  image={e.product.image}
+                  stock={e.stock}
+                  image={e.image}
                   quantity={e.quantity}
                 />
               );
