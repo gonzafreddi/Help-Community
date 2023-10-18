@@ -146,6 +146,11 @@ export default function CreateCampaign(){
               <input onChange={handleInputChange} name="finalAmount" className={styles.nameAndPrice} type="number" />
                 <p className={styles.ars}>ARS</p>
              </div>
+             <div className={styles.monto}>
+             
+             <p className={styles.peso}>Ingrese su CBU</p>
+             <input onChange={handleInputChange} name="addCbu" className={styles.nameAndPrice} type="number" />
+            </div>
              <div className={styles.sendCont}> <input disabled={isDisabled}className={styles.send}type="submit" /></div>
             </form>
         </div>

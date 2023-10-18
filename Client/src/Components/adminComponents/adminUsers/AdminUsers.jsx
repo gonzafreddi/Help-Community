@@ -1,6 +1,6 @@
 import styles from "./adminUsers.module.css";
 import { CardUser } from "../CardUser/CardUser";
-import { getUsers, banOrDeleteUser, grantAdminAccess } from '../../../redux/actions/action.js'; // Importa la acción getUsers
+import { getUsers, banOrDeleteUser, grantAdminAccess, unbanUser, removeAdminAccess } from '../../../redux/actions/action.js'; // Importa la acción getUsers
 import React, { useState, useEffect } from 'react';
 import Pagination from "../../Pagination/Pagination";
 import { useDispatch, useSelector } from 'react-redux';
@@ -37,6 +37,16 @@ export function AdminUsers() {
         // Llama a la acción para otorgar acceso de administrador al usuario
         dispatch(grantAdminAccess(userId));
       };
+
+      const handleUnban = (userId) => {
+        // Llama a la acción para habilitar al usuario
+        dispatch(unbanUser(userId));
+      };
+    
+      const handleRemoveAdmin = (userId) => {
+        // Llama a la acción para otorgar acceso de administrador al usuario
+        dispatch(removeAdminAccess(userId));
+      };
     
   
  
@@ -51,6 +61,8 @@ export function AdminUsers() {
                 user={user}
                 onBanOrDelete={handleBanOrDelete}
                 onGrantAdmin={handleGrantAdmin}
+                onUnban={handleUnban}
+                onRemoveAdmin={handleRemoveAdmin}
               />
             )
           ) }
