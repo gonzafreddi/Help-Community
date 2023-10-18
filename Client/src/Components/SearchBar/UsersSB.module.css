@@ -1,0 +1,38 @@
+.containerSB{
+
+    display: flex;
+
+}
+
+.searchInput {
+    font-family: 'DM Sans', sans-serif;
+    width: 20rem;
+    height: 2.5rem;
+    border: 0px;
+    /* margin-left: 1rem; */
+    padding: 15px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 0.75rem;
+    background-color: #f0f2f3;
+    text-indent: 12px;
+    color: rgba(1, 42, 74, 1);
+    transition: all 0.5s;
+}
+
+.input::placeholder{
+    font-family: 'DM Sans', sans-serif;
+    color: rgba(1, 42, 74, 1);
+    text-indent: 13px;
+    letter-spacing: 0.7px;
+    font-weight: 500;
+    opacity: 30%;
+}
+
+.searchInput:focus{
+    outline: none;
+    border-top-right-radius: 0.75rem;
+    border-bottom-right-radius: 0.75rem;
+    transition: border-top-right-radius 0s;
+    transition: border-bottom-right-radius 0s;
+}
