@@ -19,7 +19,7 @@ export const Product = (props) => {
 
   const hancleAddtoCart = ()=>{
     const quantityToadd = 1
-    // saveCartDb(email)
+    saveCartDb(email)
     dispatch(addToCart(props, quantityToadd))
     if(email){
       addCartDb(props, email)

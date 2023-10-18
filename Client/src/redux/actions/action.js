@@ -275,9 +275,7 @@ export const getCar = (email) => {
                     products: JSON.parse(e.products),
                 };
             });
-
             console.log(parsed, "parseado");
-
             return dispatch({
                 type: GET_CART,
                 payload: parsed,

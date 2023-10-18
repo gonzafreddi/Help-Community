@@ -10,15 +10,15 @@ export const  finalAmount = (cartItems) => {
     let totalAmount = 0;
 console.log(cartItems)
     for (let i = 0; i < cartItems.length; i++) {
-      console.log(cartItems[i].products.quantity)
+      console.log(cartItems[i])
       const product = cartItems[i].products;
-      const quantity = cartItems[i].products.quantity;
-      const productTotal = product.price  * quantity;
+      const quantity = cartItems[i].products?.quantity;
+      const productTotal = product?.price  * quantity;
       console.log(productTotal)
       totalAmount += productTotal;
-      console.log(totalAmount)
-    }
     
+    }
+    console.log(totalAmount)
     return totalAmount;
   };
   

@@ -9,7 +9,7 @@ import { createOrder } from "../../redux/actions/action";
 
 export default function Buy() {
   const cart = useSelector((state) => state.cartShop);
-  const totalProduct = cart.length;
+  const totalProduct = cart?.length;
   const dispatch = useDispatch()
   const auth = useAuth()
   const email = auth.user.email

@@ -25,7 +25,7 @@ export const saveCartDb = async(email) => {
    } else {
       console.log("Modo Invitado");
       localStorage.clear()
-      return null
+      return 
    }
 }
 

@@ -34,7 +34,7 @@ function App(){
 
 
   useEffect(()=>{
-    setItem("cartShop", cart)
+    // setItem("cartShop", cart)
     dispatch(getState())
     
     dispatch(getCategory())
