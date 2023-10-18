@@ -3,6 +3,9 @@ import { useAuth } from "../../../context/AuthContext";
 import { CardInfoUser } from "../cardInfo/cardInfoUser"
 import Login from "../../Login/Login";
 import { Link } from "react-router-dom";
+import axios from 'axios';
+
+import { useState, useEffect } from "react";
 
 
 export default function UserProfile(){
@@ -13,11 +16,24 @@ export default function UserProfile(){
   const {displayName} =auth.user
   const {photoURL} = auth.user
 
+  const [userAdmin, setUserAdmin] = useState(false);
 
-
-
-
-
+  useEffect(() => {
+    // Realiza una solicitud al servidor para obtener la lista de usuarios
+    axios.get('/user') // Reemplaza '/api/getUsers' con la URL de tu endpoint real
+      .then((response) => {
+        const data = response.data; // Obtiene los datos directamente desde la respuesta
+        // Encuentra al usuario actual por su correo electrónico
+        const currentUser = data.find((user) => user.email === email);
+        if (currentUser) {
+          // Establece el estado userAdmin basado en el valor de userAdmin del usuario actual
+          setUserAdmin(currentUser.userAdmin);
+        }
+      })
+      .catch((error) => {
+        console.error('Error al obtener la lista de usuarios', error);
+      });
+  }, [email]);
 
     return(<div className={styles.conteiner}>
      {
@@ -64,8 +80,19 @@ export default function UserProfile(){
          h5={"Comunicaciones"}
          p={"Elegi que tipo de informacion deseas recibir"}
          icon={"https://cdn-icons-png.flaticon.com/256/8748/8748531.png"}/>
+
+          {userAdmin ? (
+              <Link to="/admin/dashboard">
+                <CardInfoUser
+                  h5={'Panel de Administrador'}
+                  p={'Accede al panel de administrador'}
+                  icon={'https://cdn-icons-png.flaticon.com/128/295/295128.png'}
+                />
+              </Link>
+            ) : null}
+
+
         </div>
-      
      </div>
      : <Login/>
      }
