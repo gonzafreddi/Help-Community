@@ -1,18 +1,13 @@
-// import React, { useEffect, useContext, useState } from "react";
-// import SideBarAdmin from "../SideBarAdmin/SideBarAdmin";
-// import { useDispatch, useSelector } from "react-redux";
-// import { useNavigate, Outlet } from "react-router-dom";
-// import { getUsers } from "../../../redux/actions/action.js";    //hay que hacer un redux para traer usuarios, asi revisamos si son admin o no
-// // import { authContext } from "../Context/authContext";
-// import Dashboard from "../Dashboard/Dashboard";
 
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-// import { selectUser } from '../../../redux/reducer/reducer.js'; // Asegúrate de importar correctamente el selector de usuario
 
 import { useAuth } from '../../../context/AuthContext.jsx'; // Importa tu contexto de autenticación
 import { getUsers } from '../../../redux/actions/action.js'; // Importa la acción getUsers
-import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
+import { Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom';
+
+import axios from 'axios';
+
 import "./adminLayout.css"
 
 import SideBarAdmin from '../SideBarAdmin/SideBarAdmin.jsx'
@@ -28,31 +23,36 @@ import MailingForm from '../mailing/mailingForm.jsx';
 
 
 function AdminLayout() {
-  const dispatch = useDispatch();
+  const auth = useAuth();
+  const { email } = auth.user; // Obtenemos el correo electrónico del usuario actual
 
+  const [hasAdminPermissions, setHasAdminPermissions] = useState(false);
+
+  // Utilizamos useEffect para verificar los permisos de administrador al cargar el componente
   useEffect(() => {
-      dispatch(getUsers());
-  }, [dispatch]);
+    // Realizamos una solicitud al servidor para verificar los permisos de administrador
+    axios.get(`/user/email?email=${email}`) // Reemplaza con la URL de tu endpoint para verificar permisos
+    .then((response) => {
+      const data = response.data;
 
-  const user = useSelector((state) => state.users);
-  console.log(user);
-  const navigate = useNavigate();
-  const location = useLocation();
+      console.log(data);
+      let hasPermissions = false;
 
-  // Comprueba si el usuario está autenticado y tiene permisos de administrador
-  const isUserAdmin = user && (user.userAdmin || user.userSuperadmin);
+      if (data && (data[0].userAdmin || data[0].userSuperadmin)) {
+        hasPermissions = true;
+      }
+      setHasAdminPermissions(hasPermissions); // Actualiza el estado después de verificar los permisos
+      console.log(hasPermissions); // Imprime el valor actualizado
+    })
+      .catch((error) => {
+        console.error('Error al verificar permisos de administrador', error);
+      });
+  }, [email]);
 
-  console.log(isUserAdmin);
-
-  // useEffect(() => {
-  //   // Redirige al usuario si no está autenticado o no tiene permisos
-  //   if (!user) {
-  //     navigate('/home'); // Redirige a la página de inicio en caso de usuario no autenticado
-  //   } else if (!isUserAdmin) {
-  //     navigate('/home'); // Redirige a la página de inicio si el usuario no es administrador
-  //   }
-  // }, [user, isUserAdmin, navigate]);
-
+  // Si el usuario no tiene permisos de administrador, redirigirlo a la página /home
+  // if (!hasAdminPermissions) {
+  //   return <Navigate to="/home" replace />;
+  // }
 
   return (
     <>
@@ -65,7 +65,7 @@ function AdminLayout() {
             <Route path='/create/campaign' element={<CreateCampaign />} />
             <Route path='/allbuys' element={<AllBuys />} />
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/users" element={<AdminUsers />} />
+            <Route path="/users" element={<AdminUsers />}  />
             <Route path="/mailing" element={<MailingForm />} />
           </Routes>
         </div>
@@ -75,6 +75,18 @@ function AdminLayout() {
 }
 
 export default AdminLayout;
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // function Admin() {
