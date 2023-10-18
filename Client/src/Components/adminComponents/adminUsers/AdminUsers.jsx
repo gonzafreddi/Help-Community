@@ -14,7 +14,7 @@ export function AdminUsers() {
   }, [dispatch]);
 
   const users=useSelector((state)=>state.users);
-
+  console.log(users);
 
   const [page, setPage] = useState(1);
 

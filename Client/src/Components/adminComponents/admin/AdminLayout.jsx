@@ -7,11 +7,14 @@
 // import Dashboard from "../Dashboard/Dashboard";
 
 import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+// import { selectUser } from '../../../redux/reducer/reducer.js'; // Asegúrate de importar correctamente el selector de usuario
+
 import { useAuth } from '../../../context/AuthContext.jsx'; // Importa tu contexto de autenticación
 import { getUsers } from '../../../redux/actions/action.js'; // Importa la acción getUsers
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import "./adminLayout.css"
-import { BrowserRouter as Switch } from 'react-router-dom';
+
 import SideBarAdmin from '../SideBarAdmin/SideBarAdmin.jsx'
 import Dashboard from '../dashboard/Dashboard.jsx';
 import CreateCampaign from '../../createCampaign/CreateCampaign.jsx'
@@ -21,39 +24,49 @@ import { Products } from '../../Products/Products.jsx'
 import { AdminUsers } from '../adminUsers/AdminUsers.jsx';
 import MailingForm from '../mailing/mailingForm.jsx';
 
+
+function LoadingIndicator() {
+  return <div>Cargando...</div>;
+}
+
 function AdminLayout() {
-  // const [isAdmin, setIsAdmin] = useState(false);
-  // const { currentUser } = useAuth(); // Asumiendo que tienes un contexto de autenticación
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+      dispatch(getUsers());
+  }, [dispatch]);
+
+  const user = useSelector((state) => state.users);
+  console.log(user);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // Comprueba si el usuario está autenticado y tiene permisos de administrador
+  const isUserAdmin = user && (user.userAdmin || user.userSuperadmin);
+
+  console.log(isUserAdmin);
 
   // useEffect(() => {
-  //   // Realiza una llamada para obtener todos los usuarios de la base de datos
-  //   const fetchUsers = async () => {
-  //     try {
-  //       const users = await getUsers(); // Reemplaza con tu lógica para obtener los usuarios
+  //   // Redirige al usuario si no está autenticado o no tiene permisos
+  //   if (!user) {
+  //     navigate('/home'); // Redirige a la página de inicio en caso de usuario no autenticado
+  //   } else if (!isUserAdmin) {
+  //     navigate('/home'); // Redirige a la página de inicio si el usuario no es administrador
+  //   }
+  // }, [user, isUserAdmin, navigate]);
 
-  //       // Verifica si el usuario autenticado tiene "userAdmin: true"
-  //       if (currentUser && (users.find(user => user.id === currentUser.id)?.userAdmin || users.find(user => user.id === currentUser.id)?.userSuperadmin)) {
-  //         setIsAdmin(true);
-  //       }
-  //     } catch (error) {
-  //       console.error('Error al obtener la lista de usuarios:', error);
+  // useEffect(() => {
+  //   if (user === undefined) {
+  //     // Si el usuario aún no está disponible, muestra el indicador de carga.
+  //     return <LoadingIndicator />;
+  //   } else {
+  //     if (!user) {
+  //       navigate('/home');
+  //     } else if (!(user.userAdmin || user.userSuperadmin)) {
+  //       navigate('/home');
   //     }
-  //   };
-
-  //   fetchUsers();
-  // }, [currentUser]);
-
-  // if (!isAdmin) {
-  //   // Redirige al usuario no autorizado a "/home"
-  //   return <Navigate to="/home" replace />;
-
-  //   // setTimeout(function () {
-  //   //   window.alert("Acceso bloqueado :)");
-  //   //   // Redirige al usuario a la página deseada después del mensaje de alerta
-  //   //   window.location.href = "/products"; // Cambia "/products" por la ruta que desees
-  //   // }, 1000);
-  //   // return null; // O simplemente regresa null para que no se muestre nada en la página
-  // }
+  //   }
+  // }, [user, navigate]);
 
   return (
     <>
