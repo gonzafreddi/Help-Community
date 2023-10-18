@@ -1,76 +1,47 @@
 import { Link } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
+import { ToastContainer, toast } from 'react-toastify';
 import styles from './Login.module.css';
 import { useAuth } from '../../context/AuthContext';
 import { useState } from 'react';
 import { validateLogin, validateRegister } from './validateLogin';
 import { postUser, getUserByEmail } from '../../redux/actions/action';
 
-const Login = ({closeLogin}) => {
+const Login = ({closeLogin, showNotification}) => {
     
     const auth = useAuth();
 
     const dispatch = useDispatch();
 
+    const toastOptions = {
+        position: "bottom-right",
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+    };
+
     const notify = (type) => {
-        if (type === 'logError') {
-            toast.error('Ocurrio un error al iniciar sesión', {
-                position: "bottom-right",
-                autoClose: 4000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
-        } else if (type === 'regSuccess') {
-            toast.success('Registro completado', {
-                position: "bottom-right",
-                autoClose: 4000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
-        } else if (type === 'logSuccess') {
-            toast.success('Sesión iniciada correctamente', {
-                position: "bottom-right",
-                autoClose: 4000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
-        } else if (type === 'regError') {
-            toast.error('Ocurrio un error en el registro, intentelo nuevamente', {
-                position: "bottom-right",
-                autoClose: 4000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
-        } else if (type === 'googleSuccess') {
-            toast.success('Ingreso con Google realizado correctamente', {
-                position: "bottom-right",
-                autoClose: 4000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
+        
+        switch (type) {
+            case 'logError':
+                toast.error('Ocurrio un error al iniciar sesión', toastOptions);
+                break;
+            case 'regError':
+                toast.error('Ocurrio un error en el registro, intentelo nuevamente', toastOptions);
+                break;
+            case 'blockedUser':
+                toast.error("El usuario al que intentas entrar a sido desactivado", {...toastOptions, autoClose: 6000});
+                break;
+            default:
+                // Código a ejecutar si el tipo no coincide con ningún caso
+                break;
         }
     };
+
 
     //Estados de errores
     const [errors, setErrors] = useState({
@@ -104,8 +75,9 @@ const Login = ({closeLogin}) => {
             }
             await dispatch(postUser(userToPost))
             await dispatch(getUserByEmail(userToPost.email))
-            notify('regSuccess');
+            showNotification('regSuccess');
             closeLogin();
+
         } catch (error) {
             notify('regError');
             console.log(error);
@@ -116,34 +88,55 @@ const Login = ({closeLogin}) => {
     //Manejo de logueo
     const handleLogin = async (e) => {
         e.preventDefault();
-        try {
 
-            await auth.login(email, password);
-            notify('logSuccess');
+        try {
+            
+            let validateState = false;
+
             await dispatch(getUserByEmail(email))
-            closeLogin();
+            .then((response)=>{
+                console.log('entro')
+                console.log(response.userState)
+                validateState = response.userState;
+            })
+            
+            if(validateState) {
+                await auth.login(email, password);
+                await dispatch(getUserByEmail(email))
+                
+                setTimeout(showNotification('logSuccess'), 2000)
+                closeLogin();
+
+            } else {
+                notify('blockedUser');
+                throw new Error ("El usuario al que intentas entrar a sido desactivado")
+            }
+
 
         } catch (error) {
 
             if (error.code === 'auth/invalid-login-credentials') {
 
-            // Manejar intento de inicio de sesión con contraseña incorrecta
-            setErrors({...errors, password:'Contraseña incorrecta. Inténtalo de nuevo.'});
+                // Manejar intento de inicio de sesión con contraseña incorrecta
+                setErrors({...errors, password:'Contraseña incorrecta. Inténtalo de nuevo.'});
 
-        } else {
+            } else {
 
-            // Otro tipo de error, como cuenta inactiva, etc.
-            notify('logError');
-            console.error(error.message);
+                // Otro tipo de error, como cuenta inactiva, etc.
+                notify('logError');
+                console.error(error.message);
 
-        }
+            }
         }
     };
+    console.log(auth);
+
 
     //Manejo de logueo/registro con google
     const handleGoogle = async (e) => {
         e.preventDefault();
         const result = await auth.loginWithGoogle();
+        showNotification('googleSuccess');
 
         try {
             
@@ -159,10 +152,9 @@ const Login = ({closeLogin}) => {
 
             //TODO          Descomentar el dispatch cuando la funcion post este lista para recibir usuarios iguales
             await dispatch(postUser(userToPost))
-
             await dispatch(getUserByEmail(userToPost.email))
 
-            notify('googleSuccess');
+
 
         } catch (error) {
             setErrors({...errors, other:error.message})
@@ -210,7 +202,6 @@ const Login = ({closeLogin}) => {
                     <div className={styles.login}>
                         <div>
                             <h1 className={styles.textoLI}>Inicie Sesión</h1>
-                            <h1 className={styles.textoLI}>{auth.user.email}</h1>
                         </div>
 
                         <div className={styles.formContainer}>
@@ -218,7 +209,7 @@ const Login = ({closeLogin}) => {
                                 <input
                                     onChange={(e) => {
                                         setEmail(e.target.value)
-                                        setErrors(validateLogin({email}))
+                                        setErrors(validateLogin({email, dispatch, getUserByEmail}))
                                         isLogDisabled = disableLogin();
                                     }}
                                     onBlur={() => {
