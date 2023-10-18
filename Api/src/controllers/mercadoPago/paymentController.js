@@ -14,7 +14,7 @@ const createOrder = async (req, res) => {
   let email;
   console.log(req.body);
   let items = [];
-  if (products.length > 1) {
+  if (products.length >= 1) {
     for (const prod of products) {
       const pictureUrl = prod.product.image;
       const item = {
@@ -53,7 +53,7 @@ const createOrder = async (req, res) => {
       failure: "http://localhost:3001/payment/failure",
       pending: "http://localhost:3001/payment/pending", //cuando el usuario no ha pagado
     },
-    notification_url: `https://312d05tj-3001.brs.devtunnels.ms/payment/webhook?email=${email}`, 
+    notification_url: `https://3fcs1ln7-3001.brs.devtunnels.ms/payment/webhook?email=${email}`, 
     
     // ? Perdon Juan, copie mi puerto arriba del tuyo 
     // ? Perdon Juan, copie mi puerto arriba del tuyo 
