@@ -150,7 +150,7 @@ export default function CreateProduct(){
             ? productData = productName !== undefined ? detailProduct[1] : undefined
             : productData = productName !== undefined ? detailProduct[0] : undefined
     
-            // const category = categoryArray.find(item => item.name === categoryName);
+            const categoryId = categ.find(item => item.name === productData.category || item.id === productData.category);
 
             setProduct({
                 ...product,
@@ -159,7 +159,7 @@ export default function CreateProduct(){
                 description: productData.description ? productData.description : '',
                 image: productData.image ? productData.image : '',
                 price: productData.price ? productData.price : '',
-                category: productData.category ? productData.category : '',
+                category: categoryId.id,
                 stock: productData.stock ? productData.stock : '',
                 state: productData.state
             });
@@ -294,8 +294,3 @@ export default function CreateProduct(){
         </div>
     );
 }
-
-// CreateProduct.propTypes = {
-//     isEditing: PropTypes.bool.isRequired, // 'isEditing' debe ser un booleano y es requerido.
-//     productData: PropTypes.object, // 'productData' debe ser un objeto, pero no es requerido.
-// };
