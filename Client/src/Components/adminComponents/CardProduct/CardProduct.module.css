@@ -1,0 +1,26 @@
+.productConteiner{
+    width: 100%;
+    cursor: pointer;
+  
+}
+
+.productData{
+    display: flex;
+   background-color: #ffff;
+   height: 120px;
+   justify-content:space-between;
+}
+
+.iconConteiner{
+    width: 10%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.iconConteiner img{
+ 
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+}

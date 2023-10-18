@@ -2,10 +2,10 @@ import './ToggleSwitch.css';
 
 const ToggleSwitch = ({ text, defaultValue, onChange }) => {
   
-  const handleChange = (event) => {
-    const value = event.target.checked;
+  const handleChange = () => {
     if (onChange) {
-      onChange(value);
+      console.log(!defaultValue);
+      onChange(!defaultValue);
     }
   };
 
