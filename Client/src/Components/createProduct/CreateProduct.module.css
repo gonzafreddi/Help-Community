@@ -34,6 +34,13 @@ input[type="number"]::-webkit-outer-spin-button {
     padding: 0;
 }
 
+.closeImgBtn{
+    border: none;
+    background-color: transparent;
+    position: absolute;
+    transform: translate(280px, -280px);
+}
+
 .txtAndImgCont{
     display: flex;
     flex-direction: column;

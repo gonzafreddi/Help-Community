@@ -20,7 +20,7 @@ const getAllProducts = async function () {
           brand: product.brand,
           stock: product.stock,
           rating: product.rating,
-          state: false,
+          state: true,
           CategoryProductId: categoryProductId,
         },
       });

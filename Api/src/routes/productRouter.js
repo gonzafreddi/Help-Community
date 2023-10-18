@@ -11,6 +11,6 @@ productRouter.get("/", getProductHandler);
 
 productRouter.post("/", postProductHandler);
 
-productRouter.put("/:id", putProductHandler);
+productRouter.put("/edit/:id", putProductHandler);
 
 module.exports = productRouter;
