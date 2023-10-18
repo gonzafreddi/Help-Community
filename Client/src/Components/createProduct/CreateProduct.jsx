@@ -18,9 +18,8 @@ export default function CreateProduct(){
     const navigate = useNavigate();
     const detailProduct = useSelector((state) => state.detailProduct);
     
-
     const {productName} = useParams();
-    // console.log(`NOMBRE DEL PRODUCTO --->>> ${productName}`);
+
     let isEditing;
     productName !== undefined ? isEditing = true : isEditing = false;
 
@@ -92,6 +91,10 @@ export default function CreateProduct(){
     
     
     const categ = useSelector(state => state.categ);
+
+    console.log(categ);
+
+
   
     const [imageUrl, setImageUrl] = useState(""); // Estado para almacenar la URL
     const [loading, setLoading] = useState(true)
@@ -103,7 +106,8 @@ export default function CreateProduct(){
         image: "",
         price:"",
         category:"",
-        stock: ""
+        stock: "",
+        state: true
     })
    
     const [errors, setErrors] = useState({
@@ -115,6 +119,12 @@ export default function CreateProduct(){
         stock: "",
         other:""
     })
+
+    const [switchValue, setSwitchValue] = useState(false);
+
+    const handleSwitchChange = async (value) => {
+        await setSwitchValue(value);
+    };
 
     const handleImageUpload = (url) => {
         setImageUrl(url);
@@ -134,19 +144,24 @@ export default function CreateProduct(){
 
     useEffect(()=>{
         if ( isEditing ) {
-            let productData = productName !== undefined ? detailProduct[0] : undefined
+            
+            let productData;
+            detailProduct[1]
+            ? productData = productName !== undefined ? detailProduct[1] : undefined
+            : productData = productName !== undefined ? detailProduct[0] : undefined
     
-            // console.log(`PRODUCTO CON ID ====>`);
-            // console.log(productData);
-    
+            // const category = categoryArray.find(item => item.name === categoryName);
+
             setProduct({
+                ...product,
                 id: productData.id,
                 name: productData.name !== undefined ? productData.name : '',
                 description: productData.description ? productData.description : '',
                 image: productData.image ? productData.image : '',
                 price: productData.price ? productData.price : '',
                 category: productData.category ? productData.category : '',
-                stock: productData.stock ? productData.stock : ''
+                stock: productData.stock ? productData.stock : '',
+                state: productData.state
             });
     
             setImageUrl(productData.image ? productData.image : '');
@@ -165,18 +180,14 @@ export default function CreateProduct(){
             
         }
     }, [isEditing])
-    
-    
-    // console.log(`PRODUCTO CON ID ====>`);
-    // console.log(product);
 
     const handleFormSubmit = async (e) => {
-        console.log(`isEditing =======>>>>>> ${isEditing}`);
+
         if (isEditing) {
             try {
     
                 e.preventDefault();
-                await handleSubmit(product, imageUrl, dispatch, product.id, postProduct, putProduct, true);
+                await handleSubmit(product, imageUrl, dispatch, product.id, postProduct, putProduct, switchValue, isEditing);
                 notify('editSuccess');
                 dispatch(getProduct());
                 navigate(`/products/detail/${product.name}`)
@@ -190,7 +201,7 @@ export default function CreateProduct(){
             try {
     
                 e.preventDefault();
-                await handleSubmit(product, imageUrl, dispatch, product.id, postProduct, putProduct, false);
+                await handleSubmit(product, imageUrl, dispatch, product.id, postProduct, putProduct, switchValue, isEditing);
                 notify('success');
                 dispatch(getProduct());
                 navigate(`/products/detail/${product.name}`)
@@ -269,7 +280,7 @@ export default function CreateProduct(){
                                 </div>
                                 <div className={style.stockContainer}>
                                     <p className={style.dollarSign}>Stock:</p><input name="stock" onChange={handleInputChange} className={style.productStock} defaultValue={isEditing ? product.stock : ""} type="number" placeholder="1000"></input>
-                                    {isEditing ? <ToggleSwitch text={'Activar/Desactivar'} defaultValue={true} /> : null }
+                                    {isEditing ? <ToggleSwitch text={'Activar/Desactivar'} defaultValue={product.state} onChange={handleSwitchChange} /> : null }
                                 </div>
                                 <div className={style.buyCont}>
                                     <button className={style.btnBuy} onClick={handleFormSubmit} disabled={isDisabled} type="submit">{isEditing ? 'Guardar' : 'Crear Producto'}</button>

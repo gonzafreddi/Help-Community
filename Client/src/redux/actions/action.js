@@ -202,18 +202,18 @@ export function postProduct(payload) {
 }
 
 export function putProduct(payload) {
-    return async function () {
+  return async function () {
         
-        console.log('PAYLOAD DEL PUT =====>>>>');
-        console.log(payload[0]);
-        try {
-          const response = await axios.put(`/product/edit/${payload[0].id}`, payload[0]);
-          return response
-        } catch (error) {
-          return "Error al editar el producto"
-          // return error.message
-        }
+    console.log('PAYLOAD DEL PUT =====>>>>');
+    console.log(payload);
+    try {
+      const response = await axios.put(`/product/edit/${payload.id}`, payload);
+      console.log(response);
+    } catch (error) {
+      return "Error al editar el producto"
+      // return error.message
     }
+  }
 }
 export function postUser(payload) {
   return async function (dispatch) {
