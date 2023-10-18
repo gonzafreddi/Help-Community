@@ -25,9 +25,7 @@ import { AdminUsers } from '../adminUsers/AdminUsers.jsx';
 import MailingForm from '../mailing/mailingForm.jsx';
 
 
-function LoadingIndicator() {
-  return <div>Cargando...</div>;
-}
+
 
 function AdminLayout() {
   const dispatch = useDispatch();
@@ -55,18 +53,6 @@ function AdminLayout() {
   //   }
   // }, [user, isUserAdmin, navigate]);
 
-  // useEffect(() => {
-  //   if (user === undefined) {
-  //     // Si el usuario aún no está disponible, muestra el indicador de carga.
-  //     return <LoadingIndicator />;
-  //   } else {
-  //     if (!user) {
-  //       navigate('/home');
-  //     } else if (!(user.userAdmin || user.userSuperadmin)) {
-  //       navigate('/home');
-  //     }
-  //   }
-  // }, [user, navigate]);
 
   return (
     <>
