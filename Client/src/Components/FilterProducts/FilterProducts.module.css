@@ -65,3 +65,13 @@
     color: white;
     
 }
+
+.conteinerError{
+    justify-content: center;
+    text-align: center;
+}
+
+.noCoincidenciasMsg{
+    color: #007bff;
+    font-size: 28px;
+}
