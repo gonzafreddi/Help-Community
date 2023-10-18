@@ -17,9 +17,10 @@ export default function ShoppingCart() {
   console.log(email)
   useEffect(() => {
     // dispatch(getCar(email))
-  }, [cart]);
+    dispatch(getCar(email, cart))
+  }, []);
 console.log(cart)
-dispatch(getCar(email, cart))
+
   return (
     <div className={style.conteiner}>
       <div className={style.cont}>

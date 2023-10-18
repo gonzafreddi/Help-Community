@@ -30,12 +30,8 @@ const addShoppingCarController = async (body, state) => {
         // Combinar los productos existentes y los nuevos productos
         let combinedProducts = {};
 
-        if (copy) {
-            combinedProducts = [{ ...copy.products, ...products }];
-        } else {
-            combinedProducts = [products];
-        }
-
+    
+        combinedProducts = [{ ...copy.products, ...products }];
         console.log("productos combinados", combinedProducts);
 
         // Crear un nuevo carrito con los productos combinados
