@@ -14,7 +14,7 @@ const createOrder = async (req, res) => {
   let email;
   console.log(req.body);
   let items = [];
-  if (products.length > 1) {
+  if (products.length >= 1) {
     for (const prod of products) {
       const pictureUrl = prod.product.image;
       const item = {
