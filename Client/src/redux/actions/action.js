@@ -261,20 +261,34 @@ export const removeOneToCart=(id)=>{
     }
 }
 
-export const getCar= (email)=>{
-    console.log("3entro", email)
-    return async function(dispatch){
-        const {data}= await axios(`/shoppingCar/${email}`)
-    
-        // const parsed = await JSON.parse(data[0].products)
-        const parsed = data.map(e=> JSON.parse(e.products[0]))
-        console.log(data.map(e=> JSON.parse(e.products[0])), "parseao")
-        return dispatch({
-            type: GET_CART,
-            payload:parsed
-        })
-    }
-}
+export const getCar = (email) => {
+    console.log("Entro", email);
+    return async function (dispatch) {
+        try {
+            const { data } = await axios(`/shoppingCar/${email}`);
+            console.log(data);
+
+            // Si data es un arreglo, puedes recorrerlo directamente para realizar el parseo
+            const parsed = data.map((e) => {
+                return {
+                    id: e.id,
+                    products: JSON.parse(e.products),
+                };
+            });
+
+            console.log(parsed, "parseado");
+
+            return dispatch({
+                type: GET_CART,
+                payload: parsed,
+            });
+        } catch (error) {
+            console.error("Error al obtener el carrito:", error);
+            // Puedes manejar el error adecuadamente aquí, por ejemplo, enviando un mensaje de error al estado.
+        }
+    };
+};
+
 
 export const getProductByName=(name)=>{
     console.log(name)
@@ -351,3 +365,4 @@ export const clearCart = ()=>{
         type: CLEART_CART
     }
 }
+

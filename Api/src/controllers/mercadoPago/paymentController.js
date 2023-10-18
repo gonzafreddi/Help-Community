@@ -14,13 +14,13 @@ const createOrder = async (req, res) => {
   let items = [];
    if(products.length > 1){ 
     for (const prod of products) {
-        const pictureUrl = prod.product.image;
+        const pictureUrl = prod.image;
         const item = {
-          title: prod.product.name,
-          id: prod.product.id,
-          unit_price: prod.product.price,
+          title: prod.name,
+          id: prod.id,
+          unit_price: prod.price,
           currency_id: "ARS",
-          quantity:prod.product.quantity || 1,
+          quantity:prod.quantity || 1,
           picture_url: pictureUrl,
         };
         items.push(item);

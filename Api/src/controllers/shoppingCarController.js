@@ -9,6 +9,7 @@ const getShoppingCarController = async (email) => {
                 userId,
             }
         });
+
         return cart;
     } catch (error) {
         console.log(error.message);
@@ -49,35 +50,37 @@ const addShoppingCarController = async (body, state) => {
 };
 
 
-const editShoppingCarController = async (req, res) => {
-    const { products, state } = req.body;
+const editShoppingCarController = async (req) => {
+    const products = [req.body]
+    const state = false
     const { id } = req.params;
+    console.log(id)
     try {
         await ShoppingCar.update({
-            products,
-            state
+            products : products,
+            state : state
         }, {
             where: {
                 id,
             }
         });
-        res.send('Shopping cart updated successfully');
+        console.log("creado")
+
     } catch (error) {
-        res.status(400).json(error.message);
+        console.log("controler",error.message)
     }
 };
-
-const deleteShoppingCarController = async (email) => {
-    const userId = await getUserByEmail(email);
+const deleteShoppingCarController = async (id) => {
+    // const userId = await getUserByEmail(email);
     try {
         await ShoppingCar.destroy({
             where: {
-                userId: userId
+              id:id
             }
         });
         return "eliminado";
     } catch (error) {
-        console.log(error.message);
+        console.log("controler",error.message);
         throw error;
     }
 };

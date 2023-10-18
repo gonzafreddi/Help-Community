@@ -35,11 +35,12 @@ const {
   
 const editShoppingCarHandler = async (req, res) => {
     try {
-        const result = await editShoppingCarController(req, res);
+        const result = await editShoppingCarController(req);
     
         res.status(200).json(result);
       } catch (error) {
-        res.status(400).json({ error: error.message });
+        console.log(error)
+        res.status(400).send(error.message );
       }
 };
 
@@ -56,10 +57,8 @@ const getShoppingCarHandler = async (req, res) => {
 };
 
 const deleteShoppingCarHandler = async (req, res) => {
- 
     try {
         const result = await deleteShoppingCarController(req.params.id);
-    
         res.status(200).json(result);
       } catch (error) {
         res.status(400).json({ error: error.message });

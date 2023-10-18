@@ -18,7 +18,7 @@ export default function ShoppingCart() {
   useEffect(() => {
     // dispatch(getCar(email))
     dispatch(getCar(email, cart))
-  }, []);
+  }, [cart]);
 console.log(cart)
 
   return (
@@ -30,14 +30,16 @@ console.log(cart)
               console.log(e);
               return (
                 <CardShopping
+                  idCar={e.id}
                   key={index}
-                  id={e.id}
-                  name={e.name}
-                  price={e.price}
-                  rating={e.rating}
-                  stock={e.stock}
-                  image={e.image}
-                  quantity={e.quantity}
+                  id={e.products.id}
+                  name={e.products.name}
+                  price={e.products.price}
+                  rating={e.products.rating}
+                  stock={e.products.stock}
+                  image={e.products.image}
+                  quantity={e.products.quantity}
+                  email={email}
                 />
               );
             })

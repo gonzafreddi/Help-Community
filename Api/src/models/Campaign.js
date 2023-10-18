@@ -53,7 +53,7 @@ module.exports = (sequelize) => {
 
     ong:{
       type: DataTypes.STRING,
-      allowNull:false,
+      allowNull:true,
     }
 
   });
