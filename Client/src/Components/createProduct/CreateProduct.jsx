@@ -92,7 +92,7 @@ export default function CreateProduct(){
     
     const categ = useSelector(state => state.categ);
 
-    console.log(categ);
+    // console.log(categ);
 
 
   
@@ -120,10 +120,12 @@ export default function CreateProduct(){
         other:""
     })
 
-    const [switchValue, setSwitchValue] = useState(false);
-
-    const handleSwitchChange = async (value) => {
-        await setSwitchValue(value);
+    const handleSwitchChange = async () => {
+        const swapValue = product.state;
+        await setProduct({
+            ...product,
+            state: !swapValue
+        });
     };
 
     const handleImageUpload = (url) => {
@@ -187,7 +189,7 @@ export default function CreateProduct(){
             try {
     
                 e.preventDefault();
-                await handleSubmit(product, imageUrl, dispatch, product.id, postProduct, putProduct, switchValue, isEditing);
+                await handleSubmit(product, imageUrl, dispatch, product.id, postProduct, putProduct, isEditing);
                 notify('editSuccess');
                 dispatch(getProduct());
                 navigate(`/products/detail/${product.name}`)
@@ -201,7 +203,7 @@ export default function CreateProduct(){
             try {
     
                 e.preventDefault();
-                await handleSubmit(product, imageUrl, dispatch, product.id, postProduct, putProduct, switchValue, isEditing);
+                await handleSubmit(product, imageUrl, dispatch, product.id, postProduct, putProduct, isEditing);
                 notify('success');
                 dispatch(getProduct());
                 navigate(`/products/detail/${product.name}`)
@@ -280,7 +282,19 @@ export default function CreateProduct(){
                                 </div>
                                 <div className={style.stockContainer}>
                                     <p className={style.dollarSign}>Stock:</p><input name="stock" onChange={handleInputChange} className={style.productStock} defaultValue={isEditing ? product.stock : ""} type="number" placeholder="1000"></input>
-                                    {isEditing ? <ToggleSwitch text={'Activar/Desactivar'} defaultValue={product.state} onChange={handleSwitchChange} /> : null }
+                                    {
+                                        isEditing 
+                                        ?   <label>
+                                                <input
+                                                    type="checkbox"
+                                                    className="toggle-switch"
+                                                    defaultChecked={product.state}
+                                                    onChange={handleSwitchChange}
+                                                />
+                                                Activar/Desactivar
+                                            </label>
+                                        : null
+                                    }
                                 </div>
                                 <div className={style.buyCont}>
                                     <button className={style.btnBuy} onClick={handleFormSubmit} disabled={isDisabled} type="submit">{isEditing ? 'Guardar' : 'Crear Producto'}</button>
