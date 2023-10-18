@@ -43,7 +43,7 @@ const totalItems = products.length;
 
 };
 
-// console.log("products: ", products)
+console.log("products: ", products)
 // const products = useSelector((state) => state.products); //state.productsFiltered ver si cambio para filtros
 // // console.log("products: ", products)
 
@@ -60,7 +60,7 @@ const currentCards = getCurrentPageCampaigns();
         </div>
 
         <div className={styles.barra}>
-        <FilterProducts categ={categ}/>
+        <FilterProducts categ={categ} products={products} />
 
         
         </div>
