@@ -5,9 +5,7 @@ export const FILTER_BY_STATE = "FILTER_BY_STATE";
 export const GET_STATES = "GET_STATES";
 export const GET_CATEGORY = "GET_CATEGORY";
 export const FILTER_BY_CATEGORY = "FILTER_BY_CATEGORY";
-
 export const GET_PRODUCT = "GET_PRODUCT";
-
 export const ORDEN_PRECIO = "ORDEN_PRECIO";
 export const GET_CATEG = "GET_CATEG";
 export const FILTER_BY_CATEG = "FILTER_BY_CATEG";
@@ -17,15 +15,17 @@ export const CREATE_REVIEW = "CREATE_REVIEW";
 export const GET_REVIEWS = "GET_REVIEWS";
 export const GET_USERS = "GET_USERS";
 
-console.log(process.env.NODE_ENV);
-if (process.env.NODE_ENV === "development") {
-  // En entorno de desarrollo
-  axios.defaults.baseURL = "http://localhost:3001";
-} else {
-  // En otros entornos (por ejemplo, producción)
-  axios.defaults.baseURL =
-    "https://help-community-production-ad63.up.railway.app";
-}
+// console.log(process.env.NODE_ENV);
+// if (process.env.NODE_ENV === "development") {
+//   // En entorno de desarrollo
+//   axios.defaults.baseURL = "http://localhost:3001";
+// } else {
+//   // En otros entornos (por ejemplo, producción)
+//   axios.defaults.baseURL =
+//     "https://help-community-production-ad63.up.railway.app";
+// }
+
+axios.defaults.baseURL = "https://help-community-back.vercel.app";
 export const getCampaign = () => {
   return async function (dispatch) {
     try {
