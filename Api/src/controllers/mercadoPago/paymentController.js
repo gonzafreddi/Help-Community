@@ -54,7 +54,7 @@ const createOrder = async (req, res) => {
       pending: "http://localhost:3001/payment/pending", //cuando el usuario no ha pagado
     },
 
-    notification_url: `https://help-community-back.vercel.app/payment/webhook?email=${email}`, 
+    notification_url: `https://help-community-production-ad63.up.railway.app/payment/webhook?email=${email}`, 
     
     // ? Perdon Juan, copie mi puerto arriba del tuyo 
     // ? Perdon Juan, copie mi puerto arriba del tuyo 
