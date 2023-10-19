@@ -1,0 +1,62 @@
+/* Estilos para la tarjeta */
+.content{
+display: flex;
+gap: 1rem;
+}
+
+.card {
+    position: relative;
+    width: 100%;
+    text-align: left;
+    border: 1px solid #ccc;
+    border-radius: 1rem;
+    padding: 1rem;
+    max-width: 32rem;
+    margin: 0 auto;
+    background-color: white;
+  }
+  
+  /* Estilos para el título de la tarjeta */
+  .card .title {
+    font-weight: bold;
+    font-size: 1.25rem;
+    color: #333;
+    /* Añade estilos oscuros aquí */
+  }
+  
+  /* Estilos para los valores en la tarjeta */
+  .card .value {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #333;
+    /* Añade estilos oscuros aquí */
+  }
+  
+  /* Estilos para el contenedor flex en la tarjeta */
+  .card .flex-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  /* Estilos para la barra de progreso en la tarjeta */
+  .card .progress-bar {
+    width: 100%;
+    background-color: #eee;
+    height: 8px;
+    border-radius: 4px;
+    position: relative;
+  }
+  
+  /* Estilos para el progreso real en la barra de progreso */
+  .card .progress {
+    height: 100%;
+    background-color: #007bff; /* Cambia el color a tu preferencia */
+    border-radius: 4px;
+  }
+  
+  .cont-text{
+    display: flex;
+    font-size: small;
+    justify-content: space-between;
+  }
