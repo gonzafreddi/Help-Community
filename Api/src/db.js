@@ -15,7 +15,9 @@ const { DB_USER, DB_PASSWORD, DB_HOST, DB_DEPLOY } = process.env;
 //   }
 // );
 
-const database = new Sequelize(DB_DEPLOY, {
+const database = new Sequelize(
+  ` postgresql://postgres:CV4uY65A8ok0bBLAWIRq@containers-us-west-171.railway.app:5812/railway`
+  , {
   logging: false, // set to console.log to see the raw SQL queries
   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
 });
