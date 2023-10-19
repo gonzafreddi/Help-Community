@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import Login from '../Login/Login';
 import {faCartShopping} from "@fortawesome/free-solid-svg-icons"
+import { ToastContainer, toast } from 'react-toastify';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import { useDispatch, useSelector } from 'react-redux';
 import SearchBar from '../SearchBar/SearchBar';
@@ -35,6 +36,39 @@ export const Nav = () => {
         auth.logout();
         await dispatch(getUserByEmail('logout'))
 
+    }
+
+    const toastOptions = {
+        position: "bottom-right",
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+    };
+
+    const notify = (type) => {
+        
+        switch (type) {
+            case 'logSuccess':
+                toast.success('Sesión iniciada correctamente', toastOptions);
+                break;
+            case 'regError':
+                toast.error('Ocurrio un error en el registro, intentelo nuevamente', toastOptions);
+                break;
+            case 'googleSuccess':
+                toast.success('Ingreso con Google realizado correctamente', {...toastOptions, delay:1500});
+                break;
+            default:
+                // Código a ejecutar si el tipo no coincide con ningún caso
+                break;
+        }
+    };
+
+    const showNotification = (type) => {
+        notify(type);
     }
 
     return (
@@ -78,7 +112,7 @@ export const Nav = () => {
                         ? <button className='nav-button' onClick={handleLogout}>Cerrar Sesion</button>
                         : <button className='nav-button' onClick={openLogin}>Iniciar Sesion</button>
                     }
-                    {loginOpen && <Login closeLogin={closeLogin} />}
+                    {loginOpen && <Login closeLogin={closeLogin} showNotification={showNotification} />}
 
                     {
                         email ? <button className='nav-button'><Link to={"/userProfile"}><UserNav/></Link></button> : null
@@ -88,7 +122,7 @@ export const Nav = () => {
 
 
             </div>
-
+            <ToastContainer />
         </nav>
     )
 }

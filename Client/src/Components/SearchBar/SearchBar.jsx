@@ -12,9 +12,10 @@ const SearchBar = () => {
         dispatch(getProduct());
     },[dispatch])
 
-    const products = useSelector((state) => state.products);
+    const allProducts = useSelector((state) => state.products);
 
-    console.log(products);
+    // console.log(products);
+    const products = allProducts.filter(product => product.state === true);
 
     //TODO --- Manejo de busqueda
 

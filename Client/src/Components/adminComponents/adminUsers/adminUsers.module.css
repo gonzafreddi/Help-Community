@@ -1,16 +1,19 @@
 .container{
     display: flex;
     justify-content: center;
-  
+    align-content: center;
     min-height: 65vh;
 }
 .cards{
-    width: 70%;
+    padding: auto;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
 }
 
 .cardCont{
-    margin-bottom: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
 }
 .pagination{
     width: 100%;

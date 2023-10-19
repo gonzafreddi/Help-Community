@@ -75,9 +75,7 @@ const putProductHandler = async (req, res) => {
     );
     res.status(200).json(`The Product ${name} was successfully updated`);
   } catch (error) {
-
     res.status(400).json({ error: error.message });
-
   }
 };
 

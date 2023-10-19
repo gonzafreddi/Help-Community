@@ -30,6 +30,7 @@
 
 .ratingCard{
   color: #007bff;
+  font-size: 20px;
 }
 
 .editButton{
@@ -72,9 +73,12 @@
 }
 .infoProduct p{
     margin-top: -5px;
+    font-size: 20px;
+    padding-bottom: 10px;
 }
 .price{
-    font-size: xx-large;
+    font-size: 20px;
+    
 }
 .buyCont{
     
@@ -180,10 +184,10 @@
 }
 
 .review{
-    width: 25em;
+    width: 30em;
     background-color: rgba(255, 255, 255, 0.911);
     margin-bottom: 30px;
-    padding: 0px 15px;
+    padding: 15px;
     border-radius: 10px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.116);
 }
@@ -196,6 +200,7 @@
   /* justify-content: center; */
   /* text-align: justify; */
   gap: 11em;
+  padding: 10px 10px;
 }
 
 .fecha{
@@ -209,12 +214,14 @@
 }
 
 .puntaje{
+  padding: 10px;
   font-size: 14px;
 }
 
 .comment{
   margin-top: -1%;
   font-size: medium;
+  padding: 10px;
 }
 
 
