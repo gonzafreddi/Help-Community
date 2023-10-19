@@ -4,7 +4,8 @@
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); 
     background-color: #fff;
     padding: 10px;
-    max-height: 200px;
+    min-height: 12rem;
+    max-height: 30rem;
 
 
 
@@ -23,6 +24,7 @@
 .total{
     color: black;
     font-size: large;
+    margin-top: 2rem;
 }
 
 .btnBuy{
@@ -39,4 +41,14 @@
     display: flex;
     justify-content: center;
     padding-bottom: 10px;
+}
+.btnBuy:disabled{
+    background-color: #69768b;
+    cursor: not-allowed;
+}
+.btnBuy:disabled:hover{
+    cursor: not-allowed;
+}
+.btnBuy:hover{
+    cursor: pointer;
 }

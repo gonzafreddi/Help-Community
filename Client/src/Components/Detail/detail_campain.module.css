@@ -107,6 +107,10 @@
     background-color: #1055c4;
     cursor: pointer;
 }
+.btnBuy:disabled{
+    background-color: #69768b;
+    cursor: not-allowed;
+}
 .btnAddToCart{
     height: 40px;
     padding: 0px 20px;

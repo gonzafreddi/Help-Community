@@ -110,12 +110,12 @@ const SideBarAdmin = () => {
               className={selectedItem === 'Crear campaña' ? styles.selected : ''}
               >Crear Campaña</a>
             </li>
-            <li>
+            {/* <li>
               <a href="#"
               onClick={() => handleItemClick('Editar campaña')}
               className={selectedItem === 'Editar campaña' ? styles.selected : ''}
               >Editar Campaña</a>
-            </li>
+            </li> */}
           </ul>
         </li>
         
