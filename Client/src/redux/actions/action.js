@@ -17,15 +17,17 @@ export const CREATE_REVIEW = "CREATE_REVIEW";
 export const GET_REVIEWS = "GET_REVIEWS";
 export const GET_USERS = "GET_USERS";
 
-console.log(process.env.NODE_ENV);
-if (process.env.NODE_ENV === "development") {
-  // En entorno de desarrollo
-  axios.defaults.baseURL = "http://localhost:3001";
-} else {
-  // En otros entornos (por ejemplo, producción)
-  axios.defaults.baseURL =
-    "https://help-community-production-ad63.up.railway.app";
-}
+// console.log(process.env.NODE_ENV);
+// if (process.env.NODE_ENV === "development") {
+//   // En entorno de desarrollo
+//   axios.defaults.baseURL = "http://localhost:3001";
+// } else {
+//   // En otros entornos (por ejemplo, producción)
+//   axios.defaults.baseURL =
+//     "https://help-community-production-ad63.up.railway.app";
+// }
+axios.defaults.baseURL =
+"https://help-community-production-ad63.up.railway.app";
 export const getCampaign = () => {
   return async function (dispatch) {
     try {
