@@ -113,3 +113,10 @@
     right: 0;
     padding: 5%;
   }
+  .conteiner{
+    min-height: 50vh;
+  }
+  .load{
+
+    margin-top: 60px;
+  }
