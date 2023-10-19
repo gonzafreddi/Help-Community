@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import style from './Pagination.module.css';
 
-const Pagination = ({ page, setPage, itemsPerPage, totalItems }) => {
-    const [input, setInput] = useState(1);
+const Pagination = ({ page, setPage, itemsPerPage, totalItems, input, setInput }) => {
+    
 
     // Calcular el número total de páginas
     const totalPages = Math.ceil(totalItems / itemsPerPage);
