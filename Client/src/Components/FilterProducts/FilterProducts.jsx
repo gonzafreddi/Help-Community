@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import styles from './FilterProducts.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 
-const FilterProducts = ({ categ, products }) => { // Asegúrate de pasar "products" como prop.
+const FilterProducts = ({ categ, products, applyFilters }) => { // Asegúrate de pasar "products" como prop.
     const dispatch = useDispatch();
 
     // Estados para opciones seleccionadas y mensaje de no coincidencias
@@ -17,6 +17,7 @@ const FilterProducts = ({ categ, products }) => { // Asegúrate de pasar "produc
         setSelectedCateg(selectedValue);
         dispatch(filterByCateg(selectedValue));
         setNoCoincidencias(false);
+        applyFilters({ selectedCateg, selectedPrecio, selectedOrden });
     }
 
     const ordenPrecio = (event) => {
@@ -24,6 +25,7 @@ const FilterProducts = ({ categ, products }) => { // Asegúrate de pasar "produc
         setSelectedOrden(selectedValue);
         dispatch(productOrdenPrecio(selectedValue));
         setNoCoincidencias(false);
+        applyFilters({ selectedCateg, selectedPrecio, selectedOrden });
     }
 
     const filtrosPrecio = (event) => {
@@ -31,6 +33,7 @@ const FilterProducts = ({ categ, products }) => { // Asegúrate de pasar "produc
         setSelectedPrecio(selectedValue);
         dispatch(productsFiltrosPrecio(selectedValue));
         setNoCoincidencias(false);
+        applyFilters({ selectedCateg, selectedPrecio, selectedOrden });
     }
 
     const reset = () => {
@@ -39,6 +42,7 @@ const FilterProducts = ({ categ, products }) => { // Asegúrate de pasar "produc
         setSelectedOrden("");
         dispatch(resetProducts());
         setNoCoincidencias(false);
+        applyFilters({ selectedCateg: "", selectedPrecio: "", selectedOrden: "" });
     }
 
     const capitalizeFirstLetter = (str) => {
