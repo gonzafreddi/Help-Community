@@ -1,12 +1,22 @@
 /* Estilos para la tarjeta */
+.general-content{
+  display: flex;
+  flex-direction: column;
+ 
+  align-items: center;
+}
+
 .content{
 display: flex;
 gap: 1rem;
+/* flex-wrap: wrap; */
+justify-content: center;
 }
 
 .card {
+    width: 300px; 
     position: relative;
-    width: 100%;
+    /* width: 100%; */
     text-align: left;
     border: 1px solid #ccc;
     border-radius: 1rem;
@@ -60,3 +70,49 @@ gap: 1rem;
     font-size: small;
     justify-content: space-between;
   }
+
+  .content-charts{
+    display: flex;
+    /* gap: 5rem; */
+    justify-content: center;
+  }
+
+
+
+
+  /* Estilos para la tarjeta de gráficos */
+.chart-card {
+  width: 500px; /* Ajusta el ancho según tus preferencias */
+  text-align: center;
+  margin: 1rem; /* Agrega un margen entre las tarjetas de gráficos */
+  background-color: white;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 1rem;
+  padding-bottom: 1rem;
+}
+
+/* Estilos para el título de la tarjeta de gráficos */
+.chart-title {
+  font-weight: bold;
+  font-size: 1.25rem;
+  color: #333;
+  
+}
+
+/* Estilos para el texto de la tarjeta de gráficos */
+.chart-text {
+  font-size: small;
+  color: #777;
+  margin-bottom: 0.5rem ; /* Agrega un espacio entre el título y el texto */
+}
+
+/* Estilos para el contenedor del gráfico en la tarjeta de gráficos */
+.chart {
+  /* Ajusta los estilos para el gráfico según sea necesario */
+  display: flex;
+  justify-content: center;
+  width: min-content;
+  padding-left: 90px;
+
+}
