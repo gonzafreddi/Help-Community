@@ -2,5 +2,5 @@
 module.exports = (req,res)=> {
     console.log(req.query);
     // res.send('Pago rechazado')
-    res.redirect('http://localhost:3000/products')
+    res.redirect('http://https://help-community-back.vercel.app/products')
 };
