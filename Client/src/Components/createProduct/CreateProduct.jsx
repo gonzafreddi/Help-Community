@@ -212,7 +212,7 @@ export default function CreateProduct(){
                 await handleSubmit(product, imageUrl, dispatch, product.id, postProduct, putProduct, isEditing);
                 notify('editSuccess');
                 dispatch(getProduct());
-                navigate(`/products/detail/${product.name}`)
+                navigate(`/products`)
 
                 
             } catch (error) {
@@ -226,7 +226,7 @@ export default function CreateProduct(){
                 await handleSubmit(product, imageUrl, dispatch, product.id, postProduct, putProduct, isEditing);
                 notify('success');
                 dispatch(getProduct());
-                navigate(`/products/detail/${product.name}`)
+                navigate(`/products`)
                 
             } catch (error) {
                 notify('error');
