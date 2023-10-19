@@ -80,7 +80,7 @@ export function AdminUsers() {
     <div className={styles.container}>
       <div className={styles.cards}>
         <h1>Usuarios</h1>
-        <UsersSB handleInputChange={handleInputChange}/>
+        <UsersSB handleInputChange={handleInputChange} placeholder={"Busca usuarios por id, nombre o email"}/>
         <div className={styles.cardCont}>
           {displayedData.map((user) => (
               <CardUser

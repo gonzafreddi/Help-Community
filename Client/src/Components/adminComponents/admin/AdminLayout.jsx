@@ -15,9 +15,10 @@ import Dashboard from '../dashboard/Dashboard.jsx';
 import CreateCampaign from '../../createCampaign/CreateCampaign.jsx'
 import CreateProduct from '../../createProduct/CreateProduct.jsx'
 import { AllBuys }  from '../../buys/allBuysAdmin.jsx'
-import { Products } from '../../Products/Products.jsx'
+// import { Products } from '../../Products/Products.jsx'
 import { AdminUsers } from '../adminUsers/AdminUsers.jsx';
 import MailingForm from '../mailing/mailingForm.jsx';
+import AllProducts from '../AllProducts/AllProducts.jsx';
 
 
 
@@ -119,8 +120,8 @@ function AdminLayout() {
         <SideBarAdmin />
         <div className="content">
           <Routes>
-            <Route path="/products" element={<Products />} />
-            <Route path="/products/create" element={<CreateProduct />} />
+            <Route path="/allProducts" element={<AllProducts />} />
+            <Route path="/products/create/:productName?" element={<CreateProduct />} />
             <Route path='/create/campaign' element={<CreateCampaign />} />
             <Route path='/allbuys' element={<AllBuys />} />
             <Route path="/dashboard" element={<Dashboard />} />

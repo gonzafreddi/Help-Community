@@ -65,7 +65,7 @@ const SideBarAdmin = () => {
         </li>
 
         <li>
-        <a href="/admin/products"   onClick={() => handleItemClick('Productos')}
+        <a href="#"   onClick={() => handleItemClick('Productos')}
             className={selectedItem === 'Productos' ? styles.selected : ''}>
         {expanded ? (
               <>
@@ -84,7 +84,7 @@ const SideBarAdmin = () => {
               >Crear producto</a>
             </li>
             <li>
-              <a href="#"
+              <a href="/admin/allProducts"
               onClick={() => handleItemClick('Editar producto')}
               className={selectedItem === 'Editar producto' ? styles.selected : ''}
               >Editar producto</a>

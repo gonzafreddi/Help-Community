@@ -238,7 +238,7 @@ export const DetailProduct = () => {
     }
 
     const handleEditButton = () => {
-        navigate(`/create/product/${product.name}`)
+        navigate(`/admin/create/product/${product.name}`)
     }
 
 
@@ -325,7 +325,7 @@ export const DetailProduct = () => {
                         <div className={`${styles.column} ${styles.infoProduct}`}>
                             <div className={styles.stockEdit}>
                                 <p>Stock: {product?.stock}</p>
-                                { isAdmin === true ? <button className={styles.editButton} onClick={handleEditButton} >Editar<span className="material-icons">edit</span></button> : null}
+                                {/* { isAdmin === true ? <button className={styles.editButton} onClick={handleEditButton} >Editar<span className="material-icons">edit</span></button> : null} */}
                             </div>
 
                             <h1>{product?.name}</h1>
