@@ -5,7 +5,7 @@
   import { Product } from "../Product/Product";
   import styles from "./Products.module.css";
   import FilterProducts from '../FilterProducts/FilterProducts';
-  import Pagination from "../Pagination/Pagination";
+  import PaginationProducts from "../Pagination/PaginationProducts";
   import Kv from "../../assets/Compra-dona-4.png";
   
   export const Products = () => {
@@ -78,7 +78,7 @@
           })}
           
         </div>
-        <div className={styles.paginationCont}><Pagination className={styles.pagin} page={page} setPage={setPage} itemsPerPage={cardsPerPage} totalItems={totalItems} input={input} setInput={setInput}/></div>
+        <div className={styles.paginationCont}><PaginationProducts className={styles.pagin} page={page} setPage={setPage} itemsPerPage={cardsPerPage} totalItems={totalItems} input={input} setInput={setInput}/></div>
       </div>
     )
 
