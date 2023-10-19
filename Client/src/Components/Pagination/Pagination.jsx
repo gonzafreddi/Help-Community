@@ -10,7 +10,7 @@ const Pagination = ({ page, setPage, itemsPerPage, totalItems }) => {
         setInput(parseInt(input) + 1);
         setPage(parseInt(page) + 1);
         console.log(page)
-    }
+    } 
 
     const previousPage = () => {
         setInput(input - 1);
