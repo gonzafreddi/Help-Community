@@ -25,7 +25,7 @@ export const GET_USERS = "GET_USERS";
 //     "https://help-community-production-ad63.up.railway.app";
 // }
 
-axios.defaults.baseURL = "https://help-community-back.vercel.app";
+axios.defaults.baseURL = "https://help-community-production-ad63.up.railway.app/";
 export const getCampaign = () => {
   return async function (dispatch) {
     try {

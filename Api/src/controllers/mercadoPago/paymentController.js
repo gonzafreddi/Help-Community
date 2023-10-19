@@ -49,9 +49,9 @@ const createOrder = async (req, res) => {
 
     // ? Darle el control a mercado pago...
     back_urls: {
-      success: "http://localhost:3001/payment/success",
-      failure: "http://localhost:3001/payment/failure",
-      pending: "http://localhost:3001/payment/pending", //cuando el usuario no ha pagado
+      success: "https://help-community-production-ad63.up.railway.app/payment/success",
+      failure: "https://help-community-production-ad63.up.railway.app/payment/failure",
+      pending: "https://help-community-production-ad63.up.railway.app/payment/pending", //cuando el usuario no ha pagado
     },
 
     notification_url: `https://help-community-production-ad63.up.railway.app/payment/webhook?email=${email}`, 

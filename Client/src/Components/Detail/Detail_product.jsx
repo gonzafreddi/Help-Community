@@ -257,7 +257,8 @@ export const DetailProduct = () => {
 
       const submitReview = async (event) => {
         try {
-            const response = await axios.post("http://localhost:3001/review/create", form);
+          console.log(axios.defaults.baseURL)
+            const response = await axios.post("https://help-community-production-ad63.up.railway.app/review/create", form);
             //los datos del formulario los paso en formData (incluido los temperamentos en forma de cadena "hola, perro, paz")
             const newReview = response.data;
             setReviews([...reviews, newReview]);
