@@ -101,7 +101,7 @@ export default function CreateProduct(){
     const [loading, setLoading] = useState(true)
 
     useEffect(()=>{
-        detailProduct.length > 0 ? setLoading(false) : setLoading(true)
+        detailProduct.length > 0 || !productName ? setLoading(false) : setLoading(true)
     },[detailProduct]);
 
     const [product, setProduct] = useState({
