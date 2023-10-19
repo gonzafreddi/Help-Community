@@ -1,7 +1,7 @@
 .container{
     display: flex;
     justify-content: center;
-  
+    width: 100vh;
     min-height: 65vh;
 }
 .cards{

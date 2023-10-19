@@ -336,7 +336,7 @@ export const DetailProduct = () => {
                                 <p>$ {product?.price}</p>
                             </div>
                             <div className={styles.buyCont}>
-                            <button className={styles.btnBuy} onClick={() => handleSubmit(detailProduct)}>Comprar</button>
+                            <button className={styles.btnBuy} onClick={() => handleSubmit(detailProduct)} disabled={email ? false : true} >Comprar</button>
 
                                 <button className={styles.btnAddToCart} onClick={hancleAddtoCart}>Agregar al carrito</button>
                             </div>

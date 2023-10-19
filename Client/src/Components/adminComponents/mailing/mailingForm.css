@@ -23,3 +23,7 @@ label {
   color: #012a4a;
   background-color: #ffff;
 }
+
+.form textarea {
+  width: 60%;
+}
