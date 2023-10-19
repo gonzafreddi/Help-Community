@@ -13,15 +13,15 @@ export function validateRegister({emailRegister, passwordRegister}) {
     return error;
 }
 
-export function validateLogin({email, password, alreadyFocused}) {
-    let error = {};
-    const regexMail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+export function validateLogin({email}) {
+  let error = {};
+  const regexMail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-    if (email && !regexMail.test(email)) {
-      error.email = "El email ingresado no es válido";
-    }
-    // if (alreadyFocused && !password) {
-    //   error.password = "Debe ingresar una contraseña";
-    // }
-    return error;
+
+
+  if (email && !regexMail.test(email)) {
+    error.email = "El email ingresado no es válido";
+  }
+
+  return error;
 }

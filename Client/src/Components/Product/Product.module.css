@@ -42,7 +42,7 @@
 }
 
 .descripcion{
-    margin-top: -10px;
+    /* margin-top: -10px; */
     padding-left: 10px;
     padding-right: 10px;
     text-align: left;
@@ -55,7 +55,8 @@
 }
 
 .precio{
-    margin-top: -13px;
+    /* margin-top: -13px; */
+    padding-top: 10px;
     padding-left: 10px;
     text-align: left;
     color: rgba(0, 0, 0, 0.9);
@@ -64,7 +65,7 @@
 }
 
 .categoria{
-    margin-top: -13px;
+    /* margin-top: -13px; */
     padding-left: 10px;
     text-align: left;
     color: rgba(0, 0, 0, 0.9);
@@ -73,13 +74,15 @@
 }
 
 .link{
+   
     text-decoration: none;
     
     
 }
 
 .verMas{
-    margin-top: -15px;
+    
+    /* margin-top: -15px; */
     padding-right: 15px;
     text-align: right;
     color: rgb(19, 153, 2);
@@ -88,7 +91,7 @@
 }
 
 .btnCont{
-
+    
     display: flex;
     justify-content: center;
     gap: 20px;

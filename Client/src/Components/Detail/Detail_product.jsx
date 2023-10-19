@@ -89,7 +89,7 @@ export const DetailProduct = () => {
     const [reviewCreated, setReviewCreated] = useState(false);
         
       
-    let product = detailProduct[1];
+    let product = detailProduct[1] ? detailProduct[1] : detailProduct[0];
     const allData =  [{...product, email}]
     // console.log("allData", allData)
 
