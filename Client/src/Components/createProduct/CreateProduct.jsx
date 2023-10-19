@@ -6,19 +6,22 @@ import { getCateg, getProduct, getProductByName, postProduct, putProduct } from 
 import { disableFunction, handleChange, handleSubmit } from "./productCreateOrEdit";
 import { useNavigate, useParams } from "react-router-dom";
 import Loader from "../loader/loader";
-
+import '../toggleSwitch/ToggleSwitch.css'
 //Notificaciones
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import ToggleSwitch from "../toggleSwitch/ToggleSwitch";
 
 export default function CreateProduct(){
-
+    
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const detailProduct = useSelector((state) => state.detailProduct);
     
     const {productName} = useParams();
+
+    console.log('NOMBRE DEL PRODUCTO ======>>>> ' + productName);
+    console.log('ESTADO DEL DETALLE DEL PRODUCTO ======>>>> ');
+    console.log(detailProduct);
 
     let isEditing;
     productName !== undefined ? isEditing = true : isEditing = false;
@@ -80,12 +83,10 @@ export default function CreateProduct(){
 
             const fetchProduct = async () =>{
                 await dispatch(getProductByName(productName));
-                setLoading(false);
             }
 
             fetchProduct();
         }
-        setLoading(false);
     }, [dispatch, productName]);
 
     
@@ -98,6 +99,10 @@ export default function CreateProduct(){
   
     const [imageUrl, setImageUrl] = useState(""); // Estado para almacenar la URL
     const [loading, setLoading] = useState(true)
+
+    useEffect(()=>{
+        detailProduct.length > 0 ? setLoading(false) : setLoading(true)
+    },[detailProduct]);
 
     const [product, setProduct] = useState({
         id:'',
@@ -148,9 +153,24 @@ export default function CreateProduct(){
         if ( isEditing ) {
             
             let productData;
-            detailProduct[1]
-            ? productData = productName !== undefined ? detailProduct[1] : undefined
-            : productData = productName !== undefined ? detailProduct[0] : undefined
+            const findIndex = () => {
+                for (let i = 0; i < detailProduct.length; i++) {
+                    const {id} = detailProduct[i];
+                    if(isNaN(id)) {
+                        return i;
+                    }
+                    
+                }
+            }
+            const index = findIndex();
+            // detailProduct[1]
+            // ? productData = productName !== undefined ? detailProduct[1] : undefined
+            // : productData = productName !== undefined ? detailProduct[0] : undefined
+
+            productData = detailProduct[index];
+
+            console.log('DETALLE DEL PRODUCTO RECIEN =======>');
+            console.log(productData);
     
             const categoryId = categ.find(item => item.name === productData.category || item.id === productData.category);
 
@@ -240,12 +260,11 @@ export default function CreateProduct(){
     return (
         <div className={style.conteiner}>
             {
-                loading ? (
-                // Muestra "Cargando..." durante 1 segundo
-                <div className={style.loader}>
-                    <Loader/>
-                    <h1>Cargando...</h1>
-                </div>
+                loading ? (                
+                    <div className={style.loader}>
+                        <Loader/>
+                        <h1>Cargando...</h1>
+                    </div>
                 ) : (
                         <>
                         <div className={style.productCont}>

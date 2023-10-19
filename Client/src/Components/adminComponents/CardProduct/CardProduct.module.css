@@ -1,26 +1,75 @@
 .productConteiner{
-    width: 100%;
+    min-width: 750px;
     cursor: pointer;
-  
+    
 }
 
 .productData{
+    margin-bottom: 0.7rem;
     display: flex;
-   background-color: #ffff;
-   height: 120px;
-   justify-content:space-between;
+    background-color: #ffff;
+    height: 140px;
+    align-items: center;
+    border-radius: 1rem;
+}
+
+.productActive{
+    margin-bottom: 0.7rem;
+    display: flex;
+    background-color: rgba(100, 204, 83, 0.05);
+    height: 140px;
+    align-items: center;
+    border-radius: 1rem;
 }
 
 .iconConteiner{
-    width: 10%;
-
+    width: 6rem;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 .iconConteiner img{
- 
-    width: 45px;
-    height: 45px;
+    width: 4rem;
+    height: 4rem;
     border-radius: 50%;
+}
+
+.prodInfo{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.nameAndId{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 0.3rem;
+    /* background-color: red; */
+    width: 630px;
+
+}
+
+.infoAndButton{
+    display: flex;
+    justify-content: space-between;
+}
+
+.editButton{
+    background-color: rgb(187, 187, 187, 0.3);
+    padding: 8px;
+    border-radius: 7px;
+    border: none;
+    font-family: 'DM Sans', sans-serif;
+    /* height: 20px; */
+    align-self: center;
+    /* margin-top: 20px; */
+}
+
+.prodId{
+    background-color: rgba(202, 202, 202, 0.3);
+    /* padding: 3px; */
+    /* margin-left: ; */
+    padding-left: 8px;
+    padding-right: 8px;
+    border-radius: 20px;
 }
