@@ -132,7 +132,7 @@ function AdminLayout() {
       </div>
     );
   } else {
-    return <p id="text">Error en el acceso. <Link to="/">Volver a la página de inicio</Link></p>;
+    return <div className='contenedorError'><p id="text">Error en el acceso. <Link to="/">Volver a la página de inicio</Link></p></div>;
     
   }
 }
