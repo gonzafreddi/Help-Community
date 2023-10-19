@@ -1,6 +1,5 @@
 .productConteiner{
     min-width: 750px;
-    cursor: pointer;
     
 }
 
@@ -62,6 +61,7 @@
     font-family: 'DM Sans', sans-serif;
     /* height: 20px; */
     align-self: center;
+    cursor: pointer;
     /* margin-top: 20px; */
 }
 
