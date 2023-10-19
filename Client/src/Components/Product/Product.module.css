@@ -1,11 +1,13 @@
 .contenedor{
     height: 390px;
-    width: 220px;
+    width: 270px;
     text-align: center;
     transition: animation 0.2s;
     box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.178);
     margin-bottom: 35px;
     border-radius: 5px;
+    background-color: white;
+    padding-bottom: 30px;
 }
 
 .contenedorImagen{
@@ -40,7 +42,7 @@
 }
 
 .descripcion{
-    margin-top: -10px;
+    /* margin-top: -10px; */
     padding-left: 10px;
     padding-right: 10px;
     text-align: left;
@@ -53,7 +55,8 @@
 }
 
 .precio{
-    margin-top: -13px;
+    /* margin-top: -13px; */
+    padding-top: 10px;
     padding-left: 10px;
     text-align: left;
     color: rgba(0, 0, 0, 0.9);
@@ -62,7 +65,7 @@
 }
 
 .categoria{
-    margin-top: -13px;
+    /* margin-top: -13px; */
     padding-left: 10px;
     text-align: left;
     color: rgba(0, 0, 0, 0.9);
@@ -71,16 +74,57 @@
 }
 
 .link{
+   
     text-decoration: none;
     
     
 }
 
 .verMas{
-    margin-top: -15px;
+    
+    /* margin-top: -15px; */
     padding-right: 15px;
     text-align: right;
     color: rgb(19, 153, 2);
     font-size: 16px;
     /* font-weight: 500; */
+}
+
+.btnCont{
+    
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding-bottom: 10px;
+    background-color: #ffff;
+}
+
+.btnCart{
+    background-color: #ffff;
+    border: none;
+    padding: 15px;
+    color: rgb(9, 110, 188);
+    cursor: pointer;
+    border-radius:8px ;
+    transition: all ease .3s;
+}
+
+.btnCart:hover{
+    color:#ffff;
+    background-color: rgb(9, 110, 188);
+}
+
+.btnBuy{
+    padding: 15px;
+    background-color: rgb(9, 110, 188);
+    border: none;
+    border-radius: 8px;
+    color: #ffff;
+    transition: all ease .3s;
+    cursor: pointer;
+}
+
+.btnBuy:hover{
+    background-color: #ffff;
+    color: rgb(9, 110, 188);
 }

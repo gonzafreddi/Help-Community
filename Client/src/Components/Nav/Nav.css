@@ -28,6 +28,9 @@
 .sb{
     /* margin-left: auto; */
     margin-right: 3rem;
+
+    display: flex;
+    align-items: center;
 }
 
 .nav-button-container{
@@ -50,4 +53,12 @@
 .sb-and-login{
     display: flex;
     margin-right: 3rem;
+}
+.cart-item{
+display: flex;
+}
+.cart-item p{
+    margin: -15px;
+    margin-left: 5px;
+    color: red;
 }

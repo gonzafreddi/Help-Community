@@ -1,0 +1,43 @@
+label {
+    display: flex;
+    align-items: center;
+}
+  
+.toggle-switch {
+    -webkit-appearance: none; /* hide checkbox */
+    outline-width: 0; /* remove chrome's blue outline */
+    height: 30px;
+    width: 60px;
+    background: #eee;
+    margin-right: 20px;
+    border: 1px solid rgba(0, 0, 0, .1);
+    border-radius: 25%/50%;
+    position: relative;
+    transition: .2s;
+    cursor: pointer;
+}
+
+.toggle-switch:checked {
+    background: limegreen;
+}
+
+.toggle-switch::before {
+    content: '';
+    height: 26px;
+    width: 26px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, .3);
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    transition: .15s;
+}
+
+.toggle-switch:checked:before {
+    transform:translateX(30px);
+}
+
+.toggle-switch:active:before {
+    background: #eee;
+}

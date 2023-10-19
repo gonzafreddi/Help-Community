@@ -1,0 +1,42 @@
+.buyCont{
+  border-radius: 5px;
+    width: 30%;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); 
+    background-color: #fff;
+    padding: 10px;
+    max-height: 200px;
+
+
+
+}
+.resume{
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.274);
+}
+.amount{
+    line-height:.5em;
+    display: flex;
+    color: rgba(0, 0, 0, 0.599);
+    justify-content: space-between;
+}
+
+.total{
+    color: black;
+    font-size: large;
+}
+
+.btnBuy{
+    padding: 10px 30px 10px 30px;
+    border-radius: 10px;
+    background-color: #3A86FF;
+    color: #ffff;
+    border: none;
+    transition: all ease .3s;
+    font-size: 1.1rem;
+}
+.btn{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 10px;
+}

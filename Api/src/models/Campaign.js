@@ -25,12 +25,7 @@ module.exports = (sequelize) => {
     },
     startDate: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        isDate: {
-          msg: "endDate must be a valid date ie.: 1980-01-25",
-        },
-      },
+      allowNull: true,
     },
     endDate: {
       type: DataTypes.STRING,
@@ -51,10 +46,10 @@ module.exports = (sequelize) => {
       defaultValue: false,
     },
 
-    ong:{
+    ong: {
       type: DataTypes.STRING,
-      allowNull:false,
-    }
-
+      allowNull: true,
+      defaultValue: "Ascassubi ONG",
+    },
   });
 };

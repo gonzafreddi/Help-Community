@@ -1,31 +1,36 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { getProduct } from "../../redux/actions/action";
 import { useEffect, useState } from 'react';
-
-import { getCampaign } from "../../redux/actions/action";
 import './SearchBar.css';
 
 const SearchBar = () => {
+    
+    const dispatch = useDispatch();
 
-    const campaigns = useSelector((state) => state.campaignBackup);
-    // console.log('CAMPAÑAS ========');
-    // console.log(campaigns);
+    useEffect(()=>{
+        dispatch(getProduct());
+    },[dispatch])
+
+    const allProducts = useSelector((state) => state.products);
+
+    // console.log(products);
+    const products = allProducts.filter(product => product.state === true);
 
     //TODO --- Manejo de busqueda
 
     const navigate = useNavigate();
 
-    const [selectedCampaign, setSelectedCampaign] = useState('');
+    const [selectedProduct, setSelectedProduct] = useState('');
     const [searchText, setSearchText] = useState("");
     const [suggestions, setSuggestions] = useState([]);
     const [showSuggestions, setShowSuggestions] = useState(false)
 
-    const onSearch = (campaign) => {
+    const onSearch = (product) => {
     
-        setSelectedCampaign(campaign.name);
-        console.log(selectedCampaign);
-        navigate(`detail/${selectedCampaign}`);
+        setSelectedProduct(product.name);
+        console.log(selectedProduct);
+        navigate(`products/detail/${product.name}`);
     
     }
 
@@ -39,16 +44,16 @@ const SearchBar = () => {
             setShowSuggestions(false);
         }
 
-        const filtered = campaigns.filter((campaign) => 
-            campaign.name.toUpperCase().includes(value.toUpperCase())
+        const filtered = products.filter((product) => 
+            product.name.toUpperCase().includes(value.toUpperCase())
         );
 
         setSuggestions(filtered.slice(0, 10));
 
     };
 
-    const handleSuggestionClick = (campaign) => {
-        onSearch(campaign);
+    const handleSuggestionClick = (product) => {
+        onSearch(product);
         setSearchText('');
         setSuggestions([]);
         setShowSuggestions(false);
@@ -84,12 +89,12 @@ const SearchBar = () => {
                 
                 <div className='input-container'>
                     <input 
-                        className='input'
+                        className='searchInput'
                         type='search'
                         value={searchText}
                         onChange={handleInputChange}
                         onKeyPress={handleEnterPress}
-                        placeholder='Busca una campaña'
+                        placeholder='Busca un producto'
                     />
 
                     <button className='search-button' onClick={handleSearchButton} disabled={suggestions.length === 0} >
@@ -100,9 +105,9 @@ const SearchBar = () => {
                     </button>
 
                     <ul className={`suggestion-list ${showSuggestions ? 'showSuggestions' : ''}`}>
-                        {suggestions.map((campaign, index) => (
-                            <li className='suggestionItem' key={index} onClick={() => handleSuggestionClick(campaign)}>
-                                {campaign.name.toUpperCase()}
+                        {suggestions.map((product, index) => (
+                            <li className='suggestionItem' key={index} onClick={() => handleSuggestionClick(product)}>
+                                {product.name.toUpperCase()}
                             </li>
                         ))}
                     </ul>
@@ -118,16 +123,3 @@ const SearchBar = () => {
 }
 
 export default SearchBar;
-
-
-// const mapStateToProps = (state) => {
-//     return {
-//         allCampaigns: state.allCampaigns
-//     }
-// };
-
-
-
-// export default connect (
-//     mapStateToProps
-// ) (SearchBar);

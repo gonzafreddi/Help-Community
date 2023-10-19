@@ -1,0 +1,56 @@
+
+.userConteiner{
+    width: 100%;
+    cursor: pointer;
+    
+}
+
+.userData{
+    display: flex;
+   background-color: #ffff;
+   height: 120px;
+   justify-content:space-between;
+   
+}
+
+.iconConteiner{
+    width: 10%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.iconConteiner img{
+ 
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+}
+.text{
+    margin-left: 20px;
+    width: 80%;
+    margin-top: 35px;
+
+}
+
+.button{
+  
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.button button{
+    background: #fff;
+    border: none;
+    color: #12121273;
+    font-size: 1.2em;
+    margin-right: 20px;
+    cursor: pointer;
+}
+.button img{
+    height: 30%;
+    width: 30%;
+}

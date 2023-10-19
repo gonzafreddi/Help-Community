@@ -1,0 +1,100 @@
+.userConteiner {
+    border: 1px solid #7e7e7e;
+    background-color: rgb(230, 227, 227);
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 10px;
+    width: 650px;
+    justify-items: center;
+    align-content: center;
+
+  }
+  
+span{
+    font-size: 14px;
+    font-weight: 450;
+}
+  
+  .userData {
+    display: flex;
+    align-items: center;
+  }
+  
+  .iconConteiner {
+    margin-right: 10px;
+  }
+  
+  .iconConteiner img {
+    max-width: 50px;
+    max-height: 50px;
+    border-radius: 50%;
+  }
+  
+  .text {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    font-size: 16px;
+  }
+  
+  h5 {
+    font-size: 18px;
+    margin: 0;
+  }
+  
+  p {
+    font-size: 16px;
+    margin: 0;
+  }
+  
+  .contenedorLista {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    position: absolute;
+    margin-left: 400px;
+  }
+  
+  .listas {
+    display: flex;
+    align-items: right;
+    text-align: right;
+    margin: 5px 0;
+    justify-content: right;
+    width: 260px;
+    
+  }
+  
+  .listaButton {
+    background-color: #8d8a8ab0;
+    color: #fff;
+    border-radius: 5px;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  .listaButton:hover {
+    background-color: #007bff;
+  }
+  
+  .listaButton:disabled {
+    background-color: #ccc; /* Color más oscuro cuando está deshabilitado */
+    cursor:auto;
+  }
+
+  .green {
+    color: green;
+  }
+  
+  .red {
+    color: red;
+  }
+  
+  .blue {
+    color: #0563c9;
+  }

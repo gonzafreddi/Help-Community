@@ -1,14 +1,40 @@
-const axios = require("axios");
-const { Campaign, Category, Donation, Ong_donor, State } = require("../db");
+const { Campaign, Category, State } = require("../db");
 const { Op } = require("sequelize");
 const {
   cleanArrayCampaignApi,
   cleanArrayCampaignDB,
+  getStateId,
+  getCategoryId,
 } = require("../../helpers/helpers");
 
 const ong = require("../../dataApi/ong");
 
 const getAllCampaign = async function () {
+  const campaignsInDB = await Campaign.findAll();
+  if (campaignsInDB.length < 33) {
+    const rawCampaignApi = ong.flatMap((ong) =>
+      ong.campañas.map(async (campaign) => {
+        const CategoryId = await getCategoryId(campaign.category);
+        const StateId = await getStateId(campaign.province);
+
+        const newCampaign = await Campaign.create({
+          name: campaign.name,
+          short_description: campaign.short_description,
+          long_description: campaign.long_description,
+          image: campaign.image,
+          startDate: campaign.CBU,
+          endDate: campaign.endDate,
+          finalAmount: campaign.finalAmount,
+          state: true,
+          ong: ong.name,
+        });
+        await newCampaign.setCategories(CategoryId);
+        await newCampaign.setStates(StateId);
+      })
+    );
+
+    await Promise.all(rawCampaignApi);
+  }
   const rawArrayDB = await Campaign.findAll({
     include: [
       {
@@ -21,23 +47,18 @@ const getAllCampaign = async function () {
         attributes: ["name"],
         through: { attributes: [] },
       },
-      {
-        model: Ong_donor,
-        attributes: ["name"],
-        through: { attributes: [] },
-      },
     ],
   });
+
   const campaignDB = cleanArrayCampaignDB(rawArrayDB);
-  const campaignApi = cleanArrayCampaignApi(ong);
-  return [...campaignDB, ...campaignApi];
+  return campaignDB;
+  //const campaignApi = cleanArrayCampaignApi(ong);
+  //return [...campaignDB, ...campaignApi];
 };
 
 const getCampaignByName = async function (name) {
-  console.log(name);
   if (name) {
     //Insensitve Case
-    console.log(name);
     const rawArrayDB = await Campaign.findAll({
       where: {
         name: {
@@ -55,15 +76,17 @@ const getCampaignByName = async function (name) {
           attributes: ["name"],
           through: { attributes: [] },
         },
-        {
-          model: Ong_donor,
-          attributes: ["name"],
-          through: { attributes: [] },
-        },
       ],
     });
+    const campaignDB = cleanArrayCampaignDB(rawArrayDB);
 
-    if (rawArrayDB.length > 0) return rawArrayDB;
+    const campaignApi = cleanArrayCampaignApi(ong);
+    const filteredApi = campaignApi.filter((campaign) => {
+      return campaign.name.toLowerCase().includes(name.toLowerCase()); // Busqueda inexacta
+    });
+
+    if (filteredApi.length > 0 || campaignDB.length > 0)
+      return [...filteredApi, ...campaignDB];
     else throw new Error("Campaign name not found");
   }
 };
@@ -77,8 +100,8 @@ const postCampaign = async (
   endDate,
   finalAmount,
   state,
+  ong,
   StateId,
-  ongDonorId,
   CategoryId
 ) => {
   const newCampaign = await Campaign.create({
@@ -90,16 +113,53 @@ const postCampaign = async (
     endDate,
     finalAmount,
     state,
+    ong,
   });
   await newCampaign.setCategories(CategoryId);
   await newCampaign.setStates(StateId);
-  //await newCampaign.setOng_donors(ongDonorId); // Todavia falta hacer el getAllOngDonor()
 
   return newCampaign;
+};
+
+const putCampaign = async (
+  id,
+  name,
+  short_description,
+  long_description,
+  image,
+  startDate,
+  endDate,
+  finalAmount,
+  ong,
+  state,
+  StateId,
+  CategoryId
+) => {
+  await Campaign.update(
+    {
+      name,
+      short_description,
+      long_description,
+      image,
+      startDate,
+      endDate,
+      finalAmount,
+      ong,
+      state,
+      StateId,
+      CategoryId,
+    },
+    {
+      where: {
+        id,
+      },
+    }
+  );
 };
 
 module.exports = {
   getAllCampaign,
   getCampaignByName,
   postCampaign,
+  putCampaign,
 };

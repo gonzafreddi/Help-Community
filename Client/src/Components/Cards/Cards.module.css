@@ -1,10 +1,48 @@
 .cardsContainer{
-    display: grid;
-    grid-template-columns: repeat(4,1fr);
-    /* flex-wrap: wrap; */
-    justify-content: space-between;
+    /* background-color:aqua; */
+    margin-left: 48em;
+    margin-top: 3em;
+}
+
+.conteiner{
+    display: flex;
+    flex-direction: row;
     gap: 2em;
-    margin-left: 10vw;
-    margin-right: 8vw;
-    margin-top: 3vw;
+    justify-content: center;
+    align-content: center;
+    /* margin-left: 50em; */
+}
+.pregunta{
+    margin-left: 8.5em;
+    margin-bottom: 20px;
+    font-size: 20px;
+    align-content: center;
+    justify-content: center;
+}
+
+.ingresarLink {
+    margin-top: 270px;
+        position: absolute;
+        margin-left: 350px;
+        grid-column: 2; /* Coloca el botón "INGRESAR" en la columna del medio */
+        text-align: center; /* Centrar el texto del botón */
+        text-decoration: none; /* Elimina el subrayado predeterminado de los enlaces */
+        padding: 10px 20px; /* Espaciado para el botón */
+        background-color: #007bff; /* Color de fondo del botón */
+        color: white; /* Color del texto del botón */
+        border-radius: 5px; /* Borde redondeado para el botón */
+        transition: background-color 0.3s ease; /* Transición suave del color de fondo */
+      }
+      
+.ingresarLink:hover {
+        background-color: #ffffff; /* Cambia el color de fondo al pasar el mouse por encima */
+        color: black;
+      }
+
+.bienvenidos{
+    position: absolute;
+    font-size: 60px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin-left: 220px;
+    margin-top: 170px;
 }

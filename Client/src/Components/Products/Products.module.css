@@ -1,10 +1,28 @@
 .cardsContainer{
     display: grid;
     grid-template-columns: repeat(4,1fr);
-    /* flex-wrap: wrap; */
+    flex-wrap: wrap;
     justify-content: space-between;
-    /* gap: 1em; */
+    gap: 1em;
     margin-left: 12vw;
     margin-right: 10vw;
     margin-top: 3vw;
+    
+}
+
+.barra{
+    display:flex;
+    justify-content:space-around;
+    margin-left: 200px;
+}
+.paginationCont{
+
+    display: flex;
+    justify-content: center;
+}
+.pagin{
+border: solid green;
+}
+.KeyVisual{
+    padding-left: 0px;
 }
