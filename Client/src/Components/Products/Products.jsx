@@ -1,61 +1,55 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getProduct, getCateg } from "../../redux/actions/action";
-import { Product } from "../Product/Product";
-import styles from "./Products.module.css"
-import FilterProducts from '../FilterProducts/FilterProducts';
-import Pagination from "../Pagination/Pagination";
-import Kv from "../../assets/Compra-dona-4.png";
 
-
-export const Products = () => {
-
-  const dispatch = useDispatch();
-
-  useEffect(()=>{
+  import React, { useEffect, useState } from "react";
+  import { useDispatch, useSelector } from "react-redux";
+  import { getProduct, getCateg } from "../../redux/actions/action";
+  import { Product } from "../Product/Product";
+  import styles from "./Products.module.css";
+  import FilterProducts from '../FilterProducts/FilterProducts';
+  import PaginationProducts from "../Pagination/PaginationProducts";
+  import Kv from "../../assets/Compra-dona-4.png";
+  
+  export const Products = () => {
+    const dispatch = useDispatch();
+    const [page, setPage] = useState(1);
+    const [filters, setFilters] = useState({}); // Mantener los filtros como estado
+    const [input, setInput] = useState(1); 
+  
+    useEffect(() => {
       dispatch(getProduct());
-      dispatch(getCateg())
-  },[dispatch])
+      dispatch(getCateg());
+    }, [dispatch]);
+  
+    const categ = useSelector(state => state.categ);
+    const products = useSelector(state => state.products);
+  
+ 
 
-
-  const categ = useSelector(state => state.categ);
-  // console.log(categ)
-
-
-  const products = useSelector((state) => state.products);
-
-  console.log("products: ", products);
-  const [page, setPage] = useState(1);
-
-  // Número de tarjetas por página
   const cardsPerPage = 20;
-  console.log(products)
+
   const totalItems = products.length;
 
   //Aplicar borrado logico
   const activeProducts = products.filter(product => product.state === true);
-
-
-
+  
   // Función para obtener las tarjetas en la página actual
 
-    const getCurrentPageCampaigns = () => {
+  const getCurrentPageCampaigns = () => {
     const startIndex = (page - 1) * cardsPerPage;
     const endIndex = startIndex + cardsPerPage;
     const displayedData = activeProducts.slice(startIndex, endIndex);
     return displayedData;
 
   };
-
-  // console.log("products: ", products)
-  // const products = useSelector((state) => state.products); //state.productsFiltered ver si cambio para filtros
-  // // console.log("products: ", products)
-
-
-
-
   const currentCards = getCurrentPageCampaigns();
-
+  
+    // Función para aplicar los filtros y actualizar la página a 1
+    const applyFilters = (newFilters) => {
+      setFilters(newFilters);
+      setPage(1); // Reiniciar la página a 1
+      setInput(1); // Reiniciar el input a 1
+    };
+  
+ 
     return (
       <div>
 
@@ -64,7 +58,7 @@ export const Products = () => {
         </div>
 
         <div className={styles.barra}>
-        <FilterProducts categ={categ} products={products} />
+        <FilterProducts categ={categ} products={products} applyFilters={applyFilters}/>
 
         
         </div>
@@ -84,10 +78,11 @@ export const Products = () => {
           })}
           
         </div>
-        <div className={styles.paginationCont}><Pagination className={styles.pagin} page={page} setPage={setPage} itemsPerPage={cardsPerPage} totalItems={totalItems}/></div>
+        <div className={styles.paginationCont}><PaginationProducts className={styles.pagin} page={page} setPage={setPage} itemsPerPage={cardsPerPage} totalItems={totalItems} input={input} setInput={setInput}/></div>
       </div>
     )
 
 }
 
   export default Products;
+

@@ -3,14 +3,17 @@
    
     display: flex;
     justify-content: center;
+    
 }
 .center{
-
+    
     width: 60%;
 }
 .userConteiner{
     width: 100%;
-
+    margin-top: 20px;
+    margin-bottom: 20px;
+    
   
 }
 
@@ -18,14 +21,21 @@
     display: flex;
    background-color: #ffff;
    height: 120px;
-   margin-top: -15px;
+   margin-top: 15px;
+   align-items: center;
+   justify-items: center;
+   padding: auto;
+   margin-bottom: 20px;
+   
+   
 }
 
 .imgUserCont{
-    width: 20%;
+    width: 15%;
+    
 }
 .imgsize{
- 
+    
     height: 100%;
     width: 100%;
     display: flex;
@@ -37,14 +47,15 @@
     object-fit: contain;
     height: 80%;
     width: 80%;
-   
 
 }
 .text{
     margin-left: 20px;
+   
 }
 
 .cardConteiner{
     margin-bottom: 30px;
-    margin-top: -15px;
+    margin-top: 15px;
+
 }

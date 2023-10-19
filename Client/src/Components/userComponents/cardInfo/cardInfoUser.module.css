@@ -2,7 +2,7 @@
 .userConteiner{
     width: 100%;
     cursor: pointer;
-  
+    
 }
 
 .userData{
@@ -10,6 +10,7 @@
    background-color: #ffff;
    height: 120px;
    justify-content:space-between;
+   
 }
 
 .iconConteiner{
@@ -28,6 +29,8 @@
 .text{
     margin-left: 20px;
     width: 80%;
+    margin-top: 35px;
+
 }
 
 .button{
