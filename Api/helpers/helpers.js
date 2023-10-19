@@ -1,3 +1,25 @@
+const { Category, State } = require("../src/db");
+const getCategoryId = async (categoryName) => {
+  const category = await Category.findOne({
+    where: { name: categoryName },
+  });
+  if (!category) {
+    throw new Error(`Category "${categoryName}" not found`);
+  }
+
+  return category.id;
+};
+const getStateId = async (stateName) => {
+  const state = await State.findOne({
+    where: { name: stateName },
+  });
+  if (!state) {
+    throw new Error(`Category "${stateName}" not found`);
+  }
+
+  return state.id;
+};
+
 const cleanArrayCampaignDB = (arr) =>
   arr.map((campaign) => {
     return {
@@ -13,7 +35,7 @@ const cleanArrayCampaignDB = (arr) =>
       category: stringAll(campaign.Categories),
       ong: campaign.ong,
       borradoCondicional: campaign.state,
-      created: true,
+      /* created: true, */
     };
   });
 
@@ -40,13 +62,15 @@ const cleanArrayCampaignApi = function (ongs) {
   return result;
 };
 
-const stringAll = (Teams) => {
-  const teamsNames = Teams.map((team) => team.name);
-  return teamsNames.join(", ");
+const stringAll = (Elements) => {
+  const names = Elements.map((elem) => elem.name);
+  return names.join(", ");
 };
 
 module.exports = {
   cleanArrayCampaignApi,
   cleanArrayCampaignDB,
   stringAll,
+  getCategoryId,
+  getStateId,
 };

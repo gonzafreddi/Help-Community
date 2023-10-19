@@ -1,6 +1,6 @@
 import style from './UsersSB.module.css';
 
-const UsersSB = ({ handleInputChange }) => {
+const UsersSB = ({ handleInputChange, placeholder }) => {
 
 
     return(
@@ -12,7 +12,7 @@ const UsersSB = ({ handleInputChange }) => {
                     className={style.searchInput}
                     type='search'
                     onChange={handleInputChange}
-                    placeholder='Busca usuarios por id, nombre o email'
+                    placeholder={placeholder}
                 />
             </div>
 

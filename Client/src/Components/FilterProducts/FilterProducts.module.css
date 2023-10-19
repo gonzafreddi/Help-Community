@@ -72,6 +72,8 @@
 }
 
 .noCoincidenciasMsg{
+    padding: 60px;
     color: #007bff;
     font-size: 28px;
+    height: 40vh;
 }

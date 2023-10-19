@@ -2,32 +2,50 @@ import styles from "./cardUser.module.css";
 import { useState } from "react";
 
 export function CardUser({ user, onBanOrDelete, onGrantAdmin, onUnban, onRemoveAdmin }) {
-  const [accountStatus, setAccountStatus] = useState(""); // Estado de la cuenta
-  const [adminStatus, setAdminStatus] = useState(""); // Estado de administrador
+  const [accountStatus, setAccountStatus] = useState(user.userState);
+  const [adminStatus, setAdminStatus] = useState(user.userAdmin);
 
-  const handleAccountStatusChange = (event) => {
-    const selectedValue = event.target.value;
-    setAccountStatus(selectedValue);
-
-    // Llama a la función correspondiente según la selección
-    if (selectedValue === "ban") {
+  const toggleAccountStatus = () => {
+    if (accountStatus) {
+      // Si el usuario estaba habilitado y se deshabilita
+      if (adminStatus) {
+        // Si el usuario tiene permisos de administrador, quitarlos
+        onRemoveAdmin(user.id);
+        setAdminStatus(false);
+      }
       onBanOrDelete(user.id);
-    } else if (selectedValue === "enable") {
+    } else {
+      // Si el usuario estaba deshabilitado y se habilita
       onUnban(user.id);
     }
+    setAccountStatus(!accountStatus);
   };
 
-  const handleAdminStatusChange = (event) => {
-    const selectedValue = event.target.value;
-    setAdminStatus(selectedValue);
-
-    // Llama a la función correspondiente según la selección
-    if (selectedValue === "grantAdmin") {
-      onGrantAdmin(user.id);
-    } else if (selectedValue === "removeAdmin") {
-      onRemoveAdmin(user.id);
+  const toggleAdminStatus = () => {
+    if (accountStatus) {
+      if (adminStatus) {
+        onRemoveAdmin(user.id);
+      } else {
+        onGrantAdmin(user.id);
+      }
+      setAdminStatus(!adminStatus);
     }
   };
+
+  const getAccountStatusText = () => {
+    return accountStatus ? "Deshabilitar Usuario" : "Habilitar Usuario";
+  };
+
+  const getAdminStatusText = () => {
+    if (!accountStatus) {
+      return "Dar permiso de Administrador";
+    } else {
+      return adminStatus ? "Quitar permiso de Administrador" : "Dar permiso de Administrador";
+    }
+  };
+
+  const accountStatusClass = accountStatus ? styles.green : styles.red;
+  const adminStatusClass = adminStatus ? styles.blue : styles.red;
 
   return (
     <div className={styles.userConteiner}>
@@ -37,25 +55,27 @@ export function CardUser({ user, onBanOrDelete, onGrantAdmin, onUnban, onRemoveA
         </div>
         <div className={styles.text}>
           <h5>{user.name}</h5>
+          <span className={accountStatusClass}>
+            {accountStatus ? "Usuario Habilitado" : "Usuario Deshabilitado"}
+          </span>
+          <span className={adminStatusClass}>
+            {accountStatus && adminStatus ? "Administrador" : null}
+          </span>
           <p>{user.email}</p>
         </div>
       </div>
-          <div className={styles.contenedorLista}>
-            <div className={styles.listas}>
-              <select className={styles.lista2} value={accountStatus} onChange={handleAccountStatusChange}>
-                <option value="">Estado de Usuario</option>
-                <option value="ban">Banear</option>
-                <option value="enable">Habilitar</option>
-              </select>
-            </div>
-            <div className={styles.listas}>
-              <select className={styles.lista2} value={adminStatus} onChange={handleAdminStatusChange}>
-                <option value="">Estado de Administrador</option>
-                <option value="grantAdmin">Administrador</option>
-                <option value="removeAdmin">No Administrador</option>
-              </select>
-            </div>
-          </div>
+      <div className={styles.contenedorLista}>
+        <div className={styles.listas}>
+          <button className={styles.listaButton} onClick={toggleAccountStatus}>
+            {getAccountStatusText()}
+          </button>
+        </div>
+        <div className={styles.listas}>
+          <button className={styles.listaButton} onClick={toggleAdminStatus} disabled={!accountStatus}>
+            {getAdminStatusText()}
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
